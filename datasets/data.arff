@@ -11,71 +11,73 @@
 @attribute location {UK, International}
 @attribute point_of_view {First, Third}
 @attribute murder_weapon {Poison, Stabbing, Accident, Shooting, Strangling, Concussion, ThroatSlit, None, Drowning}
+@attribute average_ratings numeric
+@attribute number_of_ratings numeric
 
 @data
-"The Mysterious Affair at Styles",1920,"Hercule Poirot",UK,First,Poison
-"The Secret Adversary",1922,"Tommy and Tuppence",UK,Third,Poison
-"The Murder on the Links",1923,"Hercule Poirot",International,First,Stabbing
-"The Man in the Brown Suit",1924,"Colonel Race",International,First,Accident
-"The Secret of Chimneys",1925,"Superintendent Battle",UK,Third,Shooting
-"The Murder of Roger Ackroyd",1926,"Hercule Poirot",UK,First,Stabbing
-"The Big Four",1927,"Hercule Poirot",UK,First,Poison
-"The Mystery of the Blue Train",1928,"Hercule Poirot",International,Third,Strangling
-"The Seven Dials Mystery",1929,"Superintendent Battle",UK,Third,Poison
-"The Murder at the Vicarage",1930,"Miss Marple",UK,First,Shooting
-"The Sittaford Mystery",1931,"Mystery novel",UK,Third,Concussion
-"Peril at End House",1932,"Hercule Poirot",UK,First,Shooting
-"Lord Edgware Dies",1933,"Hercule Poirot",UK,First,Stabbing
-"Why Didn't They Ask Evans?",1934,"Mystery novel",UK,Third,Accident
-"Murder on the Orient Express",1934,"Hercule Poirot",International,Third,Stabbing
-"Three Act Tragedy",1935,"Hercule Poirot",UK,Third,Poison
-"Death in the Clouds",1935,"Hercule Poirot",UK,Third,Poison
-"The A.B.C. Murders",1936,"Hercule Poirot",UK,First,Concussion
-"Cards on the Table",1936,"Hercule Poirot",UK,Third,Stabbing
-"Murder in Mesopotamia",1936,"Hercule Poirot",International,First,Concussion
-"Death on the Nile",1937,"Hercule Poirot",International,Third,Shooting
-"Dumb Witness",1937,"Hercule Poirot",UK,First,Poison
-"Appointment with Death",1938,"Hercule Poirot",International,Third,Poison
-"Hercule Poirot's Christmas",1938,"Hercule Poirot",UK,Third,ThroatSlit
-"Murder Is Easy",1939,"Superintendent Battle",UK,Third,Accident
-"And then there were none",1940,"Mystery novel",UK,Third,Poison
-"One Two Buckle My Shoe",1940,"Hercule Poirot",UK,Third,Shooting
-"Sad Cypress",1940,"Hercule Poirot",UK,Third,Poison
-"Evil Under the Sun",1941,"Hercule Poirot",UK,Third,Strangling
-"N or M?",1941,"Tommy and Tuppence",UK,Third,Accident
-"The Body in the Library",1942,"Miss Marple",UK,Third,Poison
-"The Moving Finger",1942,"Miss Marple",UK,First,Poison
-"Five Little Pigs",1942,"Hercule Poirot",UK,Third,Poison
-"Towards Zero",1944,"Superintendent Battle",UK,Third,Concussion
-"Death Comes as the End",1945,"Mystery novel",International,Third,Accident
-"Sparkling Cyanide",1945,"Colonel Race",UK,Third,Poison
-"The Hollow",1946,"Hercule Poirot",UK,Third,Shooting
-"Taken at the Flood",1948,"Hercule Poirot",UK,Third,Accident
-"Crooked House",1949,"Mystery novel",UK,First,Poison
-"A Murder Is Announced",1950,"Miss Marple",UK,Third,Shooting
-"They Came to Baghdad",1951,"Mystery novel",International,Third,Stabbing
-"They Do It with Mirrors",1952,"Miss Marple",UK,Third,Shooting
-"Mrs McGinty's Dead",1952,"Hercule Poirot",UK,Third,Concussion
-"After the Funeral",1953,"Hercule Poirot",UK,Third,Concussion
-"A Pocket Full of Rye",1953,"Miss Marple",UK,Third,Poison
-"Destination Unknown",1954,"Mystery novel",International,Third,Poison
-"Hickory Dickory Dock",1955,"Hercule Poirot",UK,Third,Poison
-"Dead Man's Folly",1956,"Hercule Poirot",UK,Third,Strangling
-"4.50 from Paddington",1957,"Miss Marple",UK,Third,Strangling
-"Ordeal by Innocence",1958,"Mystery novel",UK,Third,Concussion
-"Cat Among the Pigeons",1959,"Hercule Poirot",UK,Third,Shooting
-"The Pale Horse",1961,"Mystery novel",UK,First,Poison
-"The Mirror Crack'd from Side to Side",1962,"Miss Marple",UK,Third,Poison
-"The Clocks",1963,"Hercule Poirot",UK,First,Stabbing
-"A Caribbean Mystery",1964,"Miss Marple",International,Third,Poison
-"At Bertram's Hotel",1965,"Miss Marple",UK,Third,Shooting
-"Third Girl",1966,"Hercule Poirot",UK,Third,Accident
-"Endless Night",1967,"Mystery novel",UK,First,Accident
-"By the Pricking of My Thumbs",1968,"Tommy and Tuppence",UK,Third,Poison
-"Hallowe'en Party",1969,"Hercule Poirot",UK,Third,Drowning
-"Passenger to Frankfurt",1970,"Mystery novel",International,Third,None
-"Nemesis",1971,"Miss Marple",UK,Third,Poison
-"Elephants Can Remember",1972,"Hercule Poirot",UK,Third,Shooting
-"Postern of Fate",1973,"Tommy and Tuppence",UK,Third,Poison
-"Curtain",1975,"Hercule Poirot",UK,First,Poison
-"Sleeping Murder",1976,"Miss Marple",UK,Third,Strangling
+"The Mysterious Affair at Styles",1920,"Hercule Poirot",UK,First,Poison,3.96,122922
+"The Secret Adversary",1922,"Tommy and Tuppence",UK,Third,Poison,3.82,22649
+"The Murder on the Links",1923,"Hercule Poirot",International,First,Stabbing,3.77,18910
+"The Man in the Brown Suit",1924,"Colonel Race",International,First,Accident,3.95,49495
+"The Secret of Chimneys",1925,"Superintendent Battle",UK,Third,Shooting,3.83,8651
+"The Murder of Roger Ackroyd",1926,"Hercule Poirot",UK,First,Stabbing,4.17,66801
+"The Big Four",1927,"Hercule Poirot",UK,First,Poison,3.61,17901
+"The Mystery of the Blue Train",1928,"Hercule Poirot",International,Third,Strangling,3.75,17262
+"The Seven Dials Mystery",1929,"Superintendent Battle",UK,Third,Poison,3.78,9968
+"The Murder at the Vicarage",1930,"Miss Marple",UK,First,Shooting,4.02,85677
+"The Sittaford Mystery",1931,"Mystery novel",UK,Third,Concussion,3.67,7240
+"Peril at End House",1932,"Hercule Poirot",UK,First,Shooting,3.87,18613
+"Lord Edgware Dies",1933,"Hercule Poirot",UK,First,Stabbing,3.87,15536
+"Why Didn't They Ask Evans?",1934,"Mystery novel",UK,Third,Accident,3.83,11190
+"Murder on the Orient Express",1934,"Hercule Poirot",International,Third,Stabbing,4.13,136560
+"Three Act Tragedy",1935,"Hercule Poirot",UK,Third,Poison,3.8,10616
+"Death in the Clouds",1935,"Hercule Poirot",UK,Third,Poison,3.77,17294
+"The A.B.C. Murders",1936,"Hercule Poirot",UK,First,Concussion,3.95,47222
+"Cards on the Table",1936,"Hercule Poirot",UK,Third,Stabbing,3.88,19266
+"Murder in Mesopotamia",1936,"Hercule Poirot",International,First,Concussion,3.84,20756
+"Death on the Nile",1937,"Hercule Poirot",International,Third,Shooting,4.04,62803
+"Dumb Witness",1937,"Hercule Poirot",UK,First,Poison,3.79,11233
+"Appointment with Death",1938,"Hercule Poirot",International,Third,Poison,3.83,20383
+"Hercule Poirot's Christmas",1938,"Hercule Poirot",UK,Third,ThroatSlit,3.88,18770
+"Murder Is Easy",1939,"Superintendent Battle",UK,Third,Accident,3.74,9034
+"And then there were none",1940,"Mystery novel",UK,Third,Poison,4.21,364542
+"One Two Buckle My Shoe",1940,"Hercule Poirot",UK,Third,Shooting,3.72,12553
+"Sad Cypress",1940,"Hercule Poirot",UK,Third,Poison,3.81,12699
+"Evil Under the Sun",1941,"Hercule Poirot",UK,Third,Strangling,3.93,27508
+"N or M?",1941,"Tommy and Tuppence",UK,Third,Accident,3.72,11396
+"The Body in the Library",1942,"Miss Marple",UK,Third,Poison,3.83,35267
+"The Moving Finger",1942,"Miss Marple",UK,First,Poison,3.83,15301
+"Five Little Pigs",1942,"Hercule Poirot",UK,Third,Poison,3.93,20068
+"Towards Zero",1944,"Superintendent Battle",UK,Third,Concussion,3.83,7921
+"Death Comes as the End",1945,"Mystery novel",International,Third,Accident,3.83,9681
+"Sparkling Cyanide",1945,"Colonel Race",UK,Third,Poison,3.83,10141
+"The Hollow",1946,"Hercule Poirot",UK,Third,Shooting,3.75,17390
+"Taken at the Flood",1948,"Hercule Poirot",UK,Third,Accident,3.69,7706
+"Crooked House",1949,"Mystery novel",UK,First,Poison,3.95,15973
+"A Murder Is Announced",1950,"Miss Marple",UK,Third,Shooting,3.94,25476
+"They Came to Baghdad",1951,"Mystery novel",International,Third,Stabbing,3.77,8935
+"They Do It with Mirrors",1952,"Miss Marple",UK,Third,Shooting,3.73,13628
+"Mrs McGinty's Dead",1952,"Hercule Poirot",UK,Third,Concussion,3.79,11223
+"After the Funeral",1953,"Hercule Poirot",UK,Third,Concussion,3.82,13957
+"A Pocket Full of Rye",1953,"Miss Marple",UK,Third,Poison,3.82,17224
+"Destination Unknown",1954,"Mystery novel",International,Third,Poison,3.64,5096
+"Hickory Dickory Dock",1955,"Hercule Poirot",UK,Third,Poison,3.73,11438
+"Dead Man's Folly",1956,"Hercule Poirot",UK,Third,Strangling,3.76,10723
+"4.50 from Paddington",1957,"Miss Marple",UK,Third,Strangling,3.91,24564
+"Ordeal by Innocence",1958,"Mystery novel",UK,Third,Concussion,3.76,6680
+"Cat Among the Pigeons",1959,"Hercule Poirot",UK,Third,Shooting,3.81,17246
+"The Pale Horse",1961,"Mystery novel",UK,First,Poison,3.73,7917
+"The Mirror Crack'd from Side to Side",1962,"Miss Marple",UK,Third,Poison,3.87,19898
+"The Clocks",1963,"Hercule Poirot",UK,First,Stabbing,3.69,12905
+"A Caribbean Mystery",1964,"Miss Marple",International,Third,Poison,3.76,14663
+"At Bertram's Hotel",1965,"Miss Marple",UK,Third,Shooting,3.69,14716
+"Third Girl",1966,"Hercule Poirot",UK,Third,Accident,3.59,11464
+"Endless Night",1967,"Mystery novel",UK,First,Accident,3.74,9748
+"By the Pricking of My Thumbs",1968,"Tommy and Tuppence",UK,Third,Poison,3.7,8488
+"Hallowe'en Party",1969,"Hercule Poirot",UK,Third,Drowning,3.66,15341
+"Passenger to Frankfurt",1970,"Mystery novel",International,Third,None,3.05,5140
+"Nemesis",1971,"Miss Marple",UK,Third,Poison,3.74,10439
+"Elephants Can Remember",1972,"Hercule Poirot",UK,Third,Shooting,3.62,15546
+"Postern of Fate",1973,"Tommy and Tuppence",UK,Third,Poison,3.26,5358
+"Curtain",1975,"Hercule Poirot",UK,First,Poison,4.03,19280
+"Sleeping Murder",1976,"Miss Marple",UK,Third,Strangling,3.9,16477
