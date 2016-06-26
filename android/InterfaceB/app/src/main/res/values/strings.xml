@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Iteration1</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="screen_title">Select features</string>
+    <string name="title_label">Title</string>
+
+    <string name="year_label">Year of Publication</string>
+    <string name="select_label">Select...</string>
+
+    <string name="detective_label">Detective</string>
+
+    <string name="setting_label">Setting</string>
+    <string name="uk_button">UK</string>
+    <string name="international_button">International</string>
+
+    <string name="cause_label">Cause of death</string>
+
+    <string name="pov_label">Point of View</string>
+
+    <string name="detect_button">Go Detect!</string>
+
+    <string name="first_button">First</string>
+    <string name="third_button">Third</string>
+
+    <string name="detective_prompt">Select...</string>
+    <string-array name="detective_arrays">
+        <item>Colonel Race</item>
+        <item>Hercule Poirot</item>
+        <item>Miss Marple</item>
+        <item>Mystery Novel</item>
+        <item>Superintendent Battle</item>
+        <item>Tommy and Tuppence</item>
+    </string-array>
+
+    <string name="cause_prompt">Select...</string>
+    <string-array name="cause_arrays">
+        <item>Accident</item>
+        <item>Concussion</item>
+        <item>Drowning</item>
+        <item>None</item>
+        <item>Poison</item>
+        <item>Shooting</item>
+        <item>Stabbing</item>
+        <item>Strangling</item>
+        <item>Throat Slit</item>
+    </string-array>
+
+    <string name="year_cancel">Cancel</string>
+    <string name="year_ok">OK</string>
+
+
+    <string name="prediction_title">Prediction</string>
+    <string name="image_description">Murder Weapon</string>
+
+</resources>
