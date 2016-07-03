@@ -76,6 +76,9 @@ public class WekaTester
     		answer = scanner.nextLine();
     	}
 
+    	if(data.numInstances() == 0)
+    		return null;
+
         System.out.println("Data filtered\n");
 
         return filterData(data, stringAttributes);	
@@ -269,6 +272,9 @@ public class WekaTester
         tester.evaluate(data, classifier);
 
         Instances dataFromConsole = tester.createDataset("1");
+
+        if(dataFromConsole == null)
+        	System.exit(0);
 
         data.add(dataFromConsole.instance(0));
 
