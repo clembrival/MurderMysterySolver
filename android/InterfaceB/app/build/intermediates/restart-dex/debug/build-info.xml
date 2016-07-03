@@ -1,50 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="x86"
-    api-level="23"
-    density="560dpi"
+    abi="armeabi-v7a,armeabi"
+    api-level="19"
+    density="xhdpi"
     format="7"
-    timestamp="782896735668158"
-    token="8744122015306465731" >
+    timestamp="589972507196669"
+    token="8516206726631011444" >
 
     <task
         name="javac"
-        duration="5512" />
+        duration="1897" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="531" />
+        duration="62" />
     <task
         name="verifier"
-        duration="531" />
+        duration="10" />
 
     <artifact
-        location="C:\Users\Clem\StudioProjects\InterfaceB\app\build\intermediates\res\resources-debug.ap_"
-        type="RESOURCES" />
-    <artifact
-        location="C:\Users\Clem\StudioProjects\InterfaceB\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_2\classes.dex"
-        type="DEX" />
-    <artifact
-        location="C:\Users\Clem\StudioProjects\InterfaceB\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_3\classes.dex"
-        type="DEX" />
+        location="C:\Users\Clem\StudioProjects\app\build\outputs\apk\app-debug.apk"
+        type="MAIN" />
 
-    <build timestamp="782669193212499" >
+    <build timestamp="589972507196669" >
         <artifact
-            location="C:\Users\Clem\StudioProjects\InterfaceB\app\build\outputs\apk\app-debug.apk"
+            location="C:\Users\Clem\StudioProjects\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
-    </build>
-    <build timestamp="782896735668158" >
-        <artifact
-            location="C:\Users\Clem\StudioProjects\InterfaceB\app\build\intermediates\res\resources-debug.ap_"
-            type="RESOURCES" />
-        <artifact
-            location="C:\Users\Clem\StudioProjects\InterfaceB\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_2\classes.dex"
-            type="DEX" />
-        <artifact
-            location="C:\Users\Clem\StudioProjects\InterfaceB\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_3\classes.dex"
-            type="DEX" />
     </build>
 
 </instant-run>

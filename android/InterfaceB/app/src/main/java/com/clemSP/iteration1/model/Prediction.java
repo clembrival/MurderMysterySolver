@@ -1,48 +1,71 @@
 package com.clemSP.iteration1.model;
 
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
 import android.util.Log;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import weka.classifiers.Classifier;
 import weka.core.Attribute;
 import weka.core.DenseInstance;
+import weka.core.Instance;
 import weka.core.Instances;
+import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.StringToWordVector;
 
 
 public class Prediction
 {
-    private final String[] DETECTIVES = {"Hercule Poirot", "Tommy and Tuppence", "Colonel Race",
+    private static Prediction sPrediction;
+
+    private static final String[] LOCATIONS = {"unknown", "UK", "International"};
+    private static final String[] POVS = {"unknown", "First", "Third"};
+    private final String[] DETECTIVES = {"unknown", "Hercule Poirot", "Tommy and Tuppence", "Colonel Race",
             "Superintendent Battle", "Miss Marple", "Mystery novel"};
     private final String[] WEAPONS = {"Poison", "Stabbing", "Accident", "Shooting", "Strangling",
             "Concussion", "ThroatSlit", "None", "Drowning"};
 
-    private String mTitle;
-    private Instances mData;
+    /* Indices of the attributes of the instances. */
+    private static final int TITLE = 0, YEAR = 1, LOCATION = 2, POV = 3,
+            DETECTIVE = 4, WEAPON = 5, AVG_RATINGS = 6, NUM_RATINGS = 7;
+
+    private Instances mData, mLabelled;
+
+
+    public static Prediction get(Context context)
+    {
+        if(sPrediction == null)
+            sPrediction = new Prediction();
+        return sPrediction;
+    }
+
+    private Prediction(){ }
+
+
+    public Instance getLastInstance()
+    {
+        return mLabelled.instance(0);
+    }
 
 
     private ArrayList<Attribute> getAttributes()
     {
+        // Setting the string attribute
         Attribute titleAtt = new Attribute("title");
-        Attribute yearAtt = new Attribute("year");
 
+        // Setting the numeric attributes
+        Attribute yearAtt = new Attribute("year");
+       /* Attribute avgRatingsAtt = new Attribute("average_ratings");
+        Attribute numRatingsAtt = new Attribute("number_of_ratings");*/
+
+        // Setting the nominal attributes
         List<String> locationValues = new ArrayList<>(2);
-        locationValues.add("UK");
-        locationValues.add("International");
+        Collections.addAll(locationValues, LOCATIONS);
         Attribute locationAtt = new Attribute("location", locationValues);
 
         List<String> povValues = new ArrayList<>(2);
-        povValues.add("First");
-        povValues.add("Third");
+        Collections.addAll(povValues, POVS);
         Attribute povAtt = new Attribute("point_of_view", povValues);
 
         List<String> detectiveValues = new ArrayList<>(6);
@@ -60,6 +83,8 @@ public class Prediction
         attributes.add(povAtt);
         attributes.add(detectiveAtt);
         attributes.add(weaponAtt);
+        // attributes.add(avgRatingsAtt);
+        // attributes.add(numRatingsAtt);
 
         return attributes;
     }
@@ -67,55 +92,48 @@ public class Prediction
 
     public void setData(String title, int year, String setting, String pov, String detective)
     {
-        mTitle = title;
-
         mData = new Instances("data", getAttributes(), 0);
 
         double[] values = new double[mData.numAttributes()];
-        values[0] = mData.attribute(0).addStringValue(title);
-        values[1] = year;
-        values[2] = mData.attribute(2).indexOfValue(setting);
-        values[3] = mData.attribute(3).indexOfValue(pov);
-        values[4] = mData.attribute(4).indexOfValue(detective);
+        values[TITLE] = mData.attribute(0).addStringValue(title);
+        values[YEAR] = year;
+        values[LOCATION] = mData.attribute(2).indexOfValue(setting);
+        values[POV] = mData.attribute(3).indexOfValue(pov);
+        values[DETECTIVE] = mData.attribute(4).indexOfValue(detective);
 
         mData.add(new DenseInstance(1.0, values));
-    }
 
-
-    public Instances classify(Context context)
-    {
-        try
+      /*  try
         {
-            // Loading the model
-            ObjectInputStream ois = new ObjectInputStream(context.getAssets().open("j48.model"));
+            /* Many algorithms can't handle string attributes (book title for example)
+            * so we use a filter to transform the string attribute into a nominal one. *
+            StringToWordVector filter = new StringToWordVector();
+            filter.setAttributeIndices("" + TITLE + 1);
+            filter.setInputFormat(mData);
 
-            // Creating the classifier from the model
-            Classifier classifier = (Classifier) ois.readObject();
-            ois.close();
-
-            // Loading the data to be classified
-            mData.setClassIndex(mData.numAttributes() - 1);
-
-            Instances labelled = new Instances(mData);
-
-            // Classifying each instance
-            for(int i = 0; i < mData.numInstances(); i++)
-            {
-                double label = classifier.classifyInstance(mData.instance(i));
-                labelled.instance(i).setClassValue(label);
-                labelled.attribute(0).addStringValue(mTitle);
-            }
-
-            return labelled;
-        }
-        catch(IOException ioe)
-        {
-            Log.e("Prediction", "IOException caught", ioe);
+            // Applying the filter to the data
+            mData = Filter.useFilter(mData, filter);
         }
         catch(Exception e)
         {
             Log.e("Prediction", "Exception caught", e);
         }
-        return null;
+*/
+    }
+
+
+    public String classify(Context context)
+    {
+        KillerClassifier classifier = KillerClassifier.get(context);
+
+        /* After applying the filter, the title attribute is moved to the end
+           of the list of attributes and separated into multiple ones.
+         * So the indices of other attributes move down by 1.
+         */
+        mLabelled = classifier.classify(mData, WEAPON - 1);
+
+        //classifier.retrain(mLabelled.instance(0));
+
+        return mLabelled.instance(0).classAttribute().value(0);
     }
 }

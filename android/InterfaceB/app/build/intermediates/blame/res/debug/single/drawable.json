@@ -1,154 +1,150 @@
 [
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_check_material.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_btn_check_material.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\stabbing.png",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\src\\main\\res\\drawable\\stabbing.png"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_tab_indicator_material.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\textfield.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\src\\main\\res\\drawable\\textfield.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_edit_text_material.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_edit_text_material.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_light.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_item_background_holo_light.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_colored_material.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_btn_colored_material.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_list_selector_holo_dark.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_small_material.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_ratingbar_small_material.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_full_material.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_ratingbar_full_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\accident.png",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\src\\main\\res\\drawable\\accident.png"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_edit_text_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_internal_bg.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_cab_background_internal_bg.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\shooting.png",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\src\\main\\res\\drawable\\shooting.png"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_radio_material.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_btn_radio_material.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\poison.png",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\src\\main\\res\\drawable\\poison.png"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_light.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_list_selector_holo_light.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_text_cursor_material.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_text_cursor_material.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\textfield.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\src\\main\\res\\drawable\\textfield.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background_dark.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_dialog_material_background_dark.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\poison.png",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\src\\main\\res\\drawable\\poison.png"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background_light.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_dialog_material_background_light.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_textfield_search_material.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_check_material.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_btn_check_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background_light.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_dialog_material_background_light.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_tab_indicator_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\concussion.png",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\src\\main\\res\\drawable\\concussion.png"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_colored_material.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_btn_colored_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_list_selector_holo_dark.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_radio_material.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_btn_radio_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_light.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_item_background_holo_light.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_dark.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_item_background_holo_dark.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_dark.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_item_background_holo_dark.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_spinner_textfield_background_material.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_spinner_textfield_background_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_track_material.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_seekbar_track_material.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_track_material.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_seekbar_track_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_full_material.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_ratingbar_full_material.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\concussion.png",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\src\\main\\res\\drawable\\concussion.png"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_borderless_material.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_btn_borderless_material.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_internal_bg.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_cab_background_internal_bg.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\background_button_right.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\src\\main\\res\\drawable\\background_button_right.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_textfield_search_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\drowning.png",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\src\\main\\res\\drawable\\drowning.png"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_text_cursor_material.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_text_cursor_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\background_button_left.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\src\\main\\res\\drawable\\background_button_left.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\stabbing.png",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\src\\main\\res\\drawable\\stabbing.png"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_top_material.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_cab_background_top_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_borderless_material.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_btn_borderless_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background_dark.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_dialog_material_background_dark.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\accident.png",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\src\\main\\res\\drawable\\accident.png"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\shooting.png",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\src\\main\\res\\drawable\\shooting.png"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_indicator_material.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_ratingbar_indicator_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\background_image.png",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\src\\main\\res\\drawable\\background_image.png"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\unknown.png",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\src\\main\\res\\drawable\\unknown.png"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_thumb_material.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_seekbar_thumb_material.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_small_material.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_ratingbar_small_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_switch_thumb_material.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_thumb_material.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_seekbar_thumb_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_top_material.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_cab_background_top_material.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_switch_thumb_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_light.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_list_selector_holo_light.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\border_image.xml",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\src\\main\\res\\drawable\\border_image.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_indicator_material.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_ratingbar_indicator_material.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\drowning.png",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\src\\main\\res\\drawable\\drowning.png"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\throat_slit.png",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\src\\main\\res\\drawable\\throat_slit.png"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\throatslit.png",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\src\\main\\res\\drawable\\throatslit.png"
     },
     {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_spinner_textfield_background_material.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_spinner_textfield_background_material.xml"
-    },
-    {
-        "merged": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\background_color.xml",
-        "source": "C:\\Users\\Clem\\StudioProjects\\InterfaceB\\app\\src\\main\\res\\drawable\\background_color.xml"
+        "merged": "C:\\Users\\Clem\\StudioProjects\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\background_image.png",
+        "source": "C:\\Users\\Clem\\StudioProjects\\app\\src\\main\\res\\drawable\\background_image.png"
     }
 ]

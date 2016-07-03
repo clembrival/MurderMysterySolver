@@ -19,5 +19,55 @@
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Partager avec"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Partager avec %s"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Réduire"</string>
+    <string name="accident">Accident</string>
+    <string name="action_settings">Réglages</string>
+    <string name="answer_dialog_title">Sélectionner la bonne réponse</string>
+    <string name="back_label">Retour</string>
+    <string name="cancel_label">Annuler</string>
+    <string name="cause_label">Cause de décès</string>
+    <string name="cause_prompt">Choisir…</string>
+    <string name="colonel_race">Colonel Race</string>
+    <string name="concussion">Commotion</string>
+    <string name="correct_label">Correct</string>
+    <string name="detect_button">Enquêter!</string>
+    <string name="detective_error">Entrer le nom du détective.</string>
+    <string name="detective_label">Détective</string>
+    <string name="detective_prompt">Choisir…</string>
+    <string name="drowning">Noyade</string>
+    <string name="first_button">Première personne</string>
+    <string name="hercule_poirot">Hercule Poirot</string>
+    <string name="image_description">Arme du crime</string>
+    <string name="incorrect_label">Incorrect</string>
+    <string name="international_button">International</string>
+    <string name="main_title">Détails du roman</string>
+    <string name="miss_marple">Miss Marple</string>
+    <string name="mystery_novel">Aucun</string>
+    <string name="negative_button">Non</string>
+    <string name="none">Aucun</string>
+    <string name="poison">Poison</string>
+    <string name="positive_button">Oui</string>
+    <string name="pov_error">Entrer le point de vue de la narration.</string>
+    <string name="pov_label">Point de vue de la narration</string>
+    <string name="prediction_title">Prédiction</string>
+    <string name="retrain_question">Voulez-vous m\'apprendre la bonne réponse?</string>
+    <string name="select_label">Saisir…</string>
+    <string name="setting_error">Entrer le lieu où se déroule l\'histoire (cadre).</string>
+    <string name="setting_label">Cadre</string>
+    <string name="shooting">Fusillade</string>
+    <string name="stabbing">Poignardage</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">">999"</string>
+    <string name="strangling">Etranglement</string>
+    <string name="superintendent_battle">Superintendent Battle</string>
+    <string name="third_button">Troisième personne</string>
+    <string name="throatslit">Egorgement</string>
+    <string name="title_error">Entrer le titre du roman.</string>
+    <string name="title_label">Titre</string>
+    <string name="tommy_tuppence">Tommy et Tuppence</string>
+    <string name="uk_button">GB</string>
+    <string name="unknown">Inconnu</string>
+    <string name="weapon_error">Erreur</string>
+    <string name="year_dialog_title">Année de publication</string>
+    <string name="year_error">Entrer l\'année de publication.</string>
+    <string name="year_label">Année de publication</string>
+    <string name="year_ok">OK</string>
 </resources>

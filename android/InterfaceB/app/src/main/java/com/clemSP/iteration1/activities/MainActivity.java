@@ -3,6 +3,8 @@ package com.clemSP.iteration1.activities;
 import com.clemSP.iteration1.R;
 import com.clemSP.iteration1.model.Prediction;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,22 +14,23 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-import weka.core.Instances;
 
 public class MainActivity extends AppCompatActivity 
 {
-
-	private EditText mTitleField, mYearField;
+	private EditText mTitleField;
 	private Spinner mDetectiveSpin;
 	private RadioGroup mSettingGroup, mPovGroup;
-	private RadioButton mUkButton, mInterButton, mFirstButton, mThirdButton;
 	private Button mYearButton;
+	private NumberPicker mYearPicker1, mYearPicker2, mYearPicker3, mYearPicker4;
 
-	private Instances mPrediction;
+	private int mYear;
+	private int mPrediction;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -36,8 +39,10 @@ public class MainActivity extends AppCompatActivity
 		setContentView(R.layout.activity_main);
 
 		inflateWidgets();
-		inflateButtons();
+		inflateYearButton();
+		inflateDetectButton();
 	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -52,7 +57,8 @@ public class MainActivity extends AppCompatActivity
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.action_settings)
+		{
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -62,46 +68,119 @@ public class MainActivity extends AppCompatActivity
 	private void inflateWidgets()
 	{
 		mTitleField = (EditText)findViewById(R.id.title_textfield);
+		if(mTitleField == null)
+			return;
+		// Setting hint text
+		mTitleField.setHint(R.string.title_label);
 
-		mYearField = (EditText)findViewById(R.id.year_textField);
-		
-		mDetectiveSpin = (Spinner)findViewById(R.id.detective_spinner);
-		ArrayAdapter<CharSequence> detective_adapter = ArrayAdapter.createFromResource(this, 
-				R.array.detective_arrays, android.R.layout.simple_spinner_item);
+		// String array containing the different detectives
+		String[] names = getResources().getStringArray(R.array.detective_array);
+
+		// Adding detective entries and custom layout to spinner
+		ArrayAdapter<String> detective_adapter = new ArrayAdapter<>(this,
+				R.layout.spinner_layout, names);
+		// Setting layout of the drop down menu (appears after touching the spinner)
 		detective_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		mDetectiveSpin.setAdapter(detective_adapter);
-		mDetectiveSpin.setPromptId(R.string.detective_prompt);
-		
-		/*mDeathSpin = (Spinner)findViewById(R.id.cause_spinner);
-		ArrayAdapter<CharSequence> death_adapter = ArrayAdapter.createFromResource(this, 
-				R.array.cause_arrays, android.R.layout.simple_spinner_item);
-		death_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		mDeathSpin.setAdapter(death_adapter);
-		mDeathSpin.setPromptId(R.string.cause_prompt);*/
-		
-		/*mUkButton = (RadioButton)findViewById(R.id.uk_button);
-		mInterButton = (RadioButton)findViewById(R.id.international_button);
 
-		mFirstButton = (RadioButton)findViewById(R.id.first_button);
-		mThirdButton = (RadioButton)findViewById(R.id.third_button);*/
+		mDetectiveSpin = (Spinner)findViewById(R.id.detective_spinner);
+		if(mDetectiveSpin == null)
+			return;
+		mDetectiveSpin.setAdapter(detective_adapter);
+
 		mSettingGroup = (RadioGroup)findViewById(R.id.setting_group);
 		mPovGroup = (RadioGroup)findViewById(R.id.pov_group);
 	}
-	
-	
-	private void inflateButtons()
-	{
-		/*mYearButton = (Button)findViewById(R.id.year_button);
 
-		mYearButton.setOnClickListener(new View.OnClickListener()
+
+	private void inflateYearButton()
+	{
+		// Button which opens a dialog to select the year of publication
+		mYearButton = (Button) findViewById(R.id.year_button);
+
+		if (mYearButton != null)
+			mYearButton.setOnClickListener(new View.OnClickListener()
+			{
+				@Override
+				public void onClick(View v)
+				{
+					Dialog yearDialog = new Dialog(MainActivity.this);
+					yearDialog.setTitle(R.string.year_dialog_title);
+					// Setting custom layout of the dialog
+					yearDialog.setContentView(R.layout.year_dialog);
+					// Pressing the back button won't close the dialog
+					yearDialog.setCancelable(false);
+
+					inflateDialogPickers(yearDialog);
+					inflateDialogButton(yearDialog);
+
+					yearDialog.setOnDismissListener(new DialogInterface.OnDismissListener()
+					{
+						@Override
+						public void onDismiss(DialogInterface dialog) {
+							// Set year button to the selected year
+							mYearButton.setText(String.valueOf(mYear));
+						}
+					});
+
+					yearDialog.show();
+				}
+			});
+	}
+
+
+	private void inflateDialogPickers(Dialog dialog)
+	{
+		// First digit picker
+		mYearPicker1 = (NumberPicker) dialog.findViewById(R.id.year_picker_1);
+		mYearPicker1.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+		mYearPicker1.setMinValue(1);
+		mYearPicker1.setMaxValue(2);
+		mYearPicker1.setValue(1);
+
+		// Second digit picker
+		mYearPicker2 = (NumberPicker) dialog.findViewById(R.id.year_picker_2);
+		mYearPicker2.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+		mYearPicker2.setMinValue(0);
+		mYearPicker2.setMaxValue(9);
+		mYearPicker2.setValue(9);
+
+		// Third digit picker
+		mYearPicker3 = (NumberPicker) dialog.findViewById(R.id.year_picker_3);
+		mYearPicker3.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+		mYearPicker3.setMinValue(0);
+		mYearPicker3.setMaxValue(9);
+		mYearPicker3.setValue(0);
+
+		// Fourth digit picker
+		mYearPicker4 = (NumberPicker) dialog.findViewById(R.id.year_picker_4);
+		mYearPicker4.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+		mYearPicker4.setMinValue(0);
+		mYearPicker4.setMaxValue(9);
+		mYearPicker4.setValue(0);
+	}
+
+
+	private void inflateDialogButton(final Dialog dialog)
+	{
+		// Confirm button on the year of publication dialog
+		Button button = (Button) dialog.findViewById(R.id.year_ok_button);
+		button.setOnClickListener(new View.OnClickListener()
 		{
-			@Override
 			public void onClick(View v)
 			{
-				Toast.makeText(MainActivity.this, "Pick year", Toast.LENGTH_SHORT).show();
-			}
-		});*/
+				mYear = mYearPicker1.getValue() * 1000;
+				mYear += mYearPicker2.getValue() * 100;
+				mYear += mYearPicker3.getValue() * 10;
+				mYear += mYearPicker4.getValue();
 
+				dialog.dismiss();
+			}
+		});
+	}
+
+
+	private void inflateDetectButton()
+	{
 		Button detectButton = (Button)findViewById(R.id.detect_button);
 		if(detectButton != null)
 			detectButton.setOnClickListener(new View.OnClickListener()
@@ -110,30 +189,96 @@ public class MainActivity extends AppCompatActivity
 				public void onClick(View v)
 				{
 					String title = mTitleField.getText().toString();
-					int year = Integer.parseInt(mYearField.getText().toString());
+					if("".equals(title))
+					{
+						printErrorToast(R.string.title_error);
+						return;
+					}
 
-					String setting = "";
+					if(mYear == 0)
+					{
+						printErrorToast(R.string.year_error);
+						return;
+					}
+
+					String setting;
+					// Getting checked setting radio button, if any
 					int selectedSettingId = mSettingGroup.getCheckedRadioButtonId();
 					RadioButton settingButton = (RadioButton) findViewById(selectedSettingId);
 					if (settingButton != null)
 						setting = settingButton.getText().toString();
+					else
+					{
+						printErrorToast(R.string.setting_error);
+						return;
+					}
 
-					String pov = "";
+					String pov;
+					// Getting checked point of view radio button, if any
 					int selectedPovId = mPovGroup.getCheckedRadioButtonId();
 					RadioButton povButton = (RadioButton) findViewById(selectedPovId);
 					if (povButton != null)
 						pov = povButton.getText().toString();
+					else
+					{
+						printErrorToast(R.string.pov_error);
+						return;
+					}
 
-					String detective = mDetectiveSpin.getSelectedItem().toString();
+					View detective = mDetectiveSpin.getSelectedView();
+					if(R.string.select_label == (int)detective.getId())
+					{
+						printErrorToast(R.string.detective_error);
+						return;
+					}
 
-					Prediction prediction = new Prediction();
-					prediction.setData(title, year, setting, pov, detective);
-					mPrediction = prediction.classify(MainActivity.this);
-
-					Intent intent = new Intent(MainActivity.this, PredictionActivity.class);
-					intent.putExtra("prediction", mPrediction.classAttribute().value(0));
-					startActivity(intent);
+					Prediction prediction = Prediction.get(MainActivity.this);
+					prediction.setData(title, mYear, setting, pov, detective.toString());
+					showPrediction(prediction);
 				}
 			});
+	}
+
+	private void printErrorToast(int resource)
+	{
+		Toast.makeText(this, resource, Toast.LENGTH_SHORT).show();
+	}
+
+	private void showPrediction(Prediction prediction)
+	{
+		String label = prediction.classify(MainActivity.this);
+
+		switch (label)
+		{
+			case "Accident": mPrediction = R.string.accident; break;
+			case "Concussion": mPrediction = R.string.concussion; break;
+			case "Drowning": mPrediction = R.string.drowning; break;
+			case "Poison": mPrediction = R.string.poison; break;
+			case "None": mPrediction = R.string.none; break;
+			case "Shooting": mPrediction = R.string.shooting; break;
+			case "Stabbing": mPrediction = R.string.stabbing; break;
+			case "Strangling": mPrediction = R.string.strangling; break;
+			case "ThroatSlit": mPrediction = R.string.throatslit; break;
+			case "unknown": mPrediction = R.string.unknown; break;
+		}
+
+		Intent intent = new Intent(MainActivity.this, PredictionActivity.class);
+		intent.putExtra("prediction", mPrediction);
+
+		startActivityForResult(intent, 0);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		// If user confirmed login or registration process, retrieve the corresponding user object
+		if(resultCode == RESULT_OK)
+		{
+			mTitleField.setText("");
+			mYearButton.setText(R.string.select_label);
+			mDetectiveSpin.setSelection(0);
+			mSettingGroup.clearCheck();
+			mPovGroup.clearCheck();
+		}
 	}
 }

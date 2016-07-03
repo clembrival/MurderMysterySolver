@@ -11,11 +11,8 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_horizontal"
-		android:text="@string/screen_title"
-		android:textColor="@color/firebrick"
-		android:textAppearance="?android:textAppearanceLarge"
-		android:textStyle="bold"
-		android:textSize="25sp" />
+		android:text="@string/main_title"
+		style="@style/titleview" />
 
 	<GridLayout
 		android:layout_width="match_parent"
@@ -29,12 +26,12 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_vertical"
-			android:textColorHint="@color/moccasin"
-			android:textColor="@color/moccasin"
 			android:background="@drawable/textfield"
-			android:hint="@string/title_label"
-			android:textSize="20sp"
-			android:textStyle="bold" />
+			style="@style/edittext"
+			android:focusable="true"
+			android:nextFocusForward="@+id/year_button"
+			android:nextFocusDown="@+id/year_button"
+			android:nextFocusUp="@+id/detect_button" />
 
 		<RelativeLayout
 			android:layout_row="1"
@@ -48,26 +45,19 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_centerVertical="true"
-				android:text="@string/year_label"
-				style="@style/textview"/>
+				style="@style/textview"
+				android:text="@string/year_label" />
 
-			<!--Button android:id="@+id/year_button"
+			<Button android:id="@+id/year_button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_alignParentEnd="true"
+				style="@style/button"
 				android:text="@string/select_label"
-				android:textColor="@color/moccasin"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:background="@color/firebrick"
-				android:textStyle="bold"
-				android:textSize="15sp" /-->
-
-			<EditText android:id="@+id/year_textField"
-				android:layout_width="100dp"
-				android:layout_height="wrap_content"
-				android:padding="5dp"
-				android:layout_alignParentEnd="true"
-				android:background="@drawable/textfield" />
+				android:focusable="true"
+				android:nextFocusForward="@+id/detective_spinner"
+				android:nextFocusDown="@+id/detective_spinner"
+				android:nextFocusUp="@id/title_textfield" />
 
 		</RelativeLayout>
 
@@ -83,16 +73,20 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_centerVertical="true"
-				android:text="@string/detective_label"
-				style="@style/textview" />
+				style="@style/textview"
+				android:text="@string/detective_label" />
 
 			<Spinner android:id="@+id/detective_spinner"
-				android:layout_width="150dp"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_alignParentEnd="true"
-				android:prompt="@string/detective_prompt"
-				android:background="@color/firebrick"
-				android:spinnerMode="dropdown" />
+				android:layout_centerVertical="true"
+				style="@style/spinner"
+				android:entries="@array/detective_array"
+				android:focusable="true"
+				android:nextFocusForward="@+id/uk_button"
+				android:nextFocusDown="@+id/uk_button"
+				android:nextFocusUp="@id/year_button" />
 
 		</RelativeLayout>
 
@@ -118,50 +112,32 @@
 				android:orientation="horizontal"
 				android:background="@color/firebrick" >
 
-				<RadioButton
+				<RadioButton android:id="@+id/uk_button"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/uk_button"
-					android:textColor="@color/moccasin"
-					android:textSize="18sp" />
+					style="@style/radiobutton"
+					android:focusable="true"
+					android:nextFocusForward="@+id/international_button"
+					android:nextFocusRight="@+id/international_button"
+					android:nextFocusDown="@+id/first_button"
+					android:nextFocusUp="@id/detective_spinner" />
 
-				<RadioButton
+				<RadioButton android:id="@+id/international_button"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:paddingEnd="5dp"
 					android:text="@string/international_button"
-					android:textColor="@color/moccasin"
-					android:textSize="18sp" />
+					style="@style/radiobutton"
+					android:focusable="true"
+					android:nextFocusForward="@+id/first_button"
+					android:nextFocusLeft="@id/uk_button"
+					android:nextFocusDown="@+id/third_button"
+					android:nextFocusUp="@id/detective_spinner" />
 
 			</RadioGroup>
 
 		</RelativeLayout>
-
-		<!--RelativeLayout
-			android:layout_row="4"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center_vertical"
-			android:layout_marginTop="20dp"
-			android:orientation="horizontal" >
-
-			<TextView android:id="@+id/cause_textView"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_centerVertical="true"
-				android:text="@string/cause_label"
-				style="@style/textview" />
-
-			<Spinner android:id="@+id/cause_spinner"
-				android:layout_width="150dp"
-				android:layout_height="wrap_content"
-				android:layout_alignParentEnd="true"
-				android:prompt="@string/cause_prompt"
-				android:background="@color/firebrick"
-				android:textColor="@color/moccasin"
-				android:spinnerMode="dropdown" />
-
-		</RelativeLayout-->
 
 		<RelativeLayout
 			android:layout_row="4"
@@ -172,35 +148,41 @@
 			android:orientation="horizontal" >
 
 			<TextView android:id="@+id/cause_textView"
-				android:layout_width="wrap_content"
+				android:layout_width="150dp"
 				android:layout_height="wrap_content"
 				android:layout_centerVertical="true"
 				android:text="@string/pov_label"
 				style="@style/textview" />
 
-			<RadioGroup android:id="@+id/pov_group"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_alignParentEnd="true"
-				android:orientation="horizontal"
-				android:background="@color/firebrick" >
-
-				<RadioButton
-					android:layout_width="wrap_content"
+				<RadioGroup android:id="@+id/pov_group"
+					android:layout_width="150dp"
 					android:layout_height="wrap_content"
-					android:text="@string/first_button"
-					android:textColor="@color/moccasin"
-					android:textSize="18sp" />
+					android:layout_alignParentEnd="true"
+					android:orientation="vertical"
+					android:background="@color/firebrick" >
 
-				<RadioButton
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:paddingEnd="5dp"
-					android:text="@string/third_button"
-					android:textColor="@color/moccasin"
-					android:textSize="18sp" />
+					<RadioButton android:id="@+id/first_button"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/first_button"
+						style="@style/radiobutton"
+						android:nextFocusForward="@+id/third_button"
+						android:nextFocusRight="@+id/third_button"
+						android:nextFocusDown="@+id/detect_button"
+						android:nextFocusUp="@id/uk_button" />
 
-			</RadioGroup>
+					<RadioButton android:id="@+id/third_button"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:paddingEnd="5dp"
+						android:text="@string/third_button"
+						style="@style/radiobutton"
+						android:nextFocusForward="@+id/detect_button"
+						android:nextFocusLeft="@+id/first_button"
+						android:nextFocusDown="@+id/detect_button"
+						android:nextFocusUp="@id/international_button" />
+
+				</RadioGroup>
 
 		</RelativeLayout>
 
@@ -209,12 +191,14 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_vertical|center_horizontal"
 			android:layout_marginTop="20dp"
-			android:background="@color/firebrick"
-			android:textColor="@color/moccasin"
-			android:textStyle="bold"
-			android:textAppearance="?android:attr/textAppearanceLarge"
 			android:padding="10dp"
-			android:text="@string/detect_button" />
+			style="@style/button"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textSize="20sp"
+			android:text="@string/detect_button"
+			android:nextFocusForward="@id/title_textfield"
+			android:nextFocusDown="@id/title_textfield"
+			android:nextFocusUp="@id/third_button" />
 
 	</GridLayout>
 

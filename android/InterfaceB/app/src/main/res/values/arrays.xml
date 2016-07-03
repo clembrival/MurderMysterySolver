@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="detective_array">
+        <item>@string/select_label</item>
+        <item>@string/colonel_race</item>
+        <item>@string/hercule_poirot</item>
+        <item>@string/miss_marple</item>
+        <item>@string/mystery_novel</item>
+        <item>@string/superintendent_battle</item>
+        <item>@string/tommy_tuppence</item>
+    </string-array>
+
+    <string-array name="cause_array">
+        <item>@string/select_label</item>
+        <item>@string/accident</item>
+        <item>@string/concussion</item>
+        <item>@string/drowning</item>
+        <item>@string/none</item>
+        <item>@string/poison</item>
+        <item>@string/shooting</item>
+        <item>@string/stabbing</item>
+        <item>@string/strangling</item>
+        <item>@string/throatslit</item>
+    </string-array>
+
+</resources>

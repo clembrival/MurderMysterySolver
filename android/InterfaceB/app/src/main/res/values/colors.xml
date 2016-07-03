@@ -9,6 +9,7 @@
     <item name="lightteal" type="color">#4F7E84</item> 
     <item name="beige" type="color">#F8E9C8</item>
     <item name="moccasin" type="color">#FFE4B5</item>
+    <item name="burlywood" type="color">#DEB887</item>
     <item name="firebrick" type="color">#B22222</item>
     <item name="firebrick_transp" type="color">#B5B22222</item>
     

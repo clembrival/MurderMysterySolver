@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
+    compile files('libs/weka.jar')
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
-    compile files('C:/Users/Clem/StudioProjects/InterfaceB/libs/weka.jar')
 }

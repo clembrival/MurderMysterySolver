@@ -1,45 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_centerInParent="true">
+	android:padding="5dp"
+	android:theme="@android:style/Theme.Holo.Dialog">
 
-    <NumberPicker android:id="@+id/year_picker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:background="@color/moccasin" />
+	<GridLayout android:id="@+id/picker_layout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_margin="10dp"
+		android:rowCount="1"
+		android:columnCount="4">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/year_picker"
-        android:layout_marginTop="10dp">
+		<NumberPicker android:id="@+id/year_picker_1"
+			android:layout_width="50dp"
+			android:layout_height="150dp"
+			android:layout_marginEnd="5dp"
+			android:theme="@style/numpicker" />
 
-        <Button android:id="@+id/year_cancel_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/moccasin"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:background="@drawable/background_button_right"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:text="@string/year_cancel"/>
+		<NumberPicker android:id="@+id/year_picker_2"
+			android:layout_width="50dp"
+			android:layout_height="150dp"
+			android:layout_marginEnd="5dp"
+			android:theme="@style/numpicker" />
 
-        <Button android:id="@+id/year_ok_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/year_cancel_button"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/moccasin"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:background="@drawable/background_button_left"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:text="@string/year_ok"/>
+		<NumberPicker android:id="@+id/year_picker_3"
+			android:layout_width="50dp"
+			android:layout_height="150dp"
+			android:layout_marginEnd="5dp"
+			android:theme="@style/numpicker" />
 
-    </RelativeLayout>
+		<NumberPicker android:id="@+id/year_picker_4"
+			android:layout_width="50dp"
+			android:layout_height="150dp"
+			android:theme="@style/numpicker" />
+
+	</GridLayout>
+
+	<Button android:id="@+id/year_ok_button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/picker_layout"
+		android:layout_centerHorizontal="true"
+		android:text="@string/ok_label"
+		style="@style/AlertDialog.AppCompat.Light"/>
 
 </RelativeLayout>
