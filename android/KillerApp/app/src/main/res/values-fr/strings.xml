@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="action_settings">Réglages</string>
+    <string name="main_title">Détails du roman</string>
+    <string name="title_label">Titre</string>
+    <string name="year_label">Année de publication</string>
+    <string name="select_label">Saisir&#8230;</string>
+    <string name="detective_label">Détective</string>
+    <string name="setting_label">Cadre</string>
+    <string name="cause_label">Cause du décès</string>
+    <string name="pov_label">Point de vue de la narration</string>
+
+    <string name="detective_prompt">Choisir&#8230;</string>
+    <string name="mystery_novel">Aucun</string>
+    <string name="colonel_race">Colonel Race</string>
+    <string name="hercule_poirot">Hercule Poirot</string>
+    <string name="miss_marple">Miss Marple</string>
+    <string name="superintendent_battle">Superintendent Battle</string>
+    <string name="tommy_tuppence">Tommy et Tuppence</string>
+
+    <string name="cause_prompt">Choisir&#8230;</string>
+    <string name="accident">Accident</string>
+    <string name="none">Aucun</string>
+    <string name="concussion">Commotion</string>
+    <string name="throatslit">Egorgement</string>
+    <string name="strangling">Etranglement</string>
+    <string name="shooting">Fusillade</string>
+    <string name="unknown">Inconnu</string>
+    <string name="drowning">Noyade</string>
+    <string name="stabbing">Poignardage</string>
+    <string name="poison">Poison</string>
+
+    <string name="title_error">Entrer le titre du roman.</string>
+    <string name="year_error">Entrer l\'année de publication.</string>
+    <string name="detective_error">Veuillez entrer le nom du détective.</string>
+    <string name="setting_error">Entrer le lieu où se déroule l\'histoire (cadre).</string>
+    <string name="pov_error">Veuillez entrer le point de vue de la narration.</string>
+
+    <string name="year_dialog_title">Année de publication</string>
+
+    <string name="prediction_title">Prédiction</string>
+    <string name="correct_label">Correct</string>
+    <string name="incorrect_label">Incorrect</string>
+    <string name="back_label">Retour</string>
+
+    <string name="retrain_question">Voulez-vous m\'apprendre la bonne réponse?</string>
+    <string name="negative_button">Non</string>
+    <string name="positive_button">Oui</string>
+
+    <string name="answer_dialog_title">Sélectionner la bonne réponse</string>
+    <string name="cancel_label">Annuler</string>
+    <string name="ok_label">OK</string>
+    <string name="cause_error">Veuillez sélectionner la cause du décès de la victime.</string>
+    <string name="detect_label">Enquêter!</string>
+    <string name="detective_image_description">Détective</string>
+    <string name="down_image_description">Flèche vers le bas</string>
+    <string name="error">Erreur</string>
+    <string name="f_label">Féminin</string>
+    <string name="feature_error">Veuillez sélectionner au moins deux éléments.</string>
+    <string name="first_label">Premi&#232;re personne</string>
+    <string name="gender_error">Veuillez sélectionner le sexe du meurtrier.</string>
+    <string name="international_label">International</string>
+    <string name="lots">Plusieurs</string>
+    <string name="m_label">Masculin</string>
+    <string name="male">Masculin</string>
+    <string name="murderer_image_description">Sexe du meurtrier</string>
+    <string name="murderer_label">Sexe du meurtrier</string>
+    <string name="prediction_error">Veuillez sélectionner le type de prédiction que vous voulez recevoir.</string>
+    <string name="female">Féminin</string>
+    <string name="quite_confident">Je suis assez confiant..</string>
+    <string name="right_answer_error">Veuillez sélectionner la bonne réponse.</string>
+    <string name="select_features_title">Que savez-vous?</string>
+    <string name="select_prediction_title">Que voulez-vous savoir?</string>
+    <string name="setting_image_description">Cadre</string>
+    <string name="third_label">Troisi&#232;me Personne</string>
+    <string name="uk_label">GB</string>
+    <string name="up_image_description">Flèche vers le haut</string>
+    <string name="very_confident">Je suis très confiant..</string>
+    <string name="victim_error">Veuillez sélectionner le sexe de la victime.</string>
+    <string name="victim_label">Sexe de la victime</string>
+    <string name="victime_image_description">Sexe de la victime</string>
+    <string name="weapon_image_description">Arme du crime</string>
+    <string name="wild_guess">C\'est une idée au hasard..</string>
+</resources>

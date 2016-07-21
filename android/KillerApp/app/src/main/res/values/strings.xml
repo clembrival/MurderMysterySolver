@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" translatable="false">KillerApp</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_weapon">Predict weapon</string>
+    <string name="action_gender">Predict gender</string>
+    <string name="action_feature">Choose features</string>
+    <string name="action_prototypes">Choose version</string>
+
+    <string name="main_title">Tell me what you know</string>
+    <string name="year_dialog_title">Year of publication</string>
+    <string name="prediction_title">Here is what I think</string>
+    <string name="answer_dialog_title">Select the right answer</string>
+    <string name="select_prediction_title">What do you want to know?</string>
+    <string name="select_features_title">What do you already know?</string>
+
+    <string name="title_label">Title</string>
+    <string name="year_label">Year of publication</string>
+    <string name="detective_label">Detective</string>
+    <string name="setting_label">Setting</string>
+    <string name="cause_label">Cause of death</string>
+    <string name="pov_label">Point of view</string>
+    <string name="victim_label">Victim\'s gender</string>
+    <string name="first_label">First</string>
+    <string name="third_label">Third</string>
+    <string name="uk_label">UK</string>
+    <string name="international_label">International</string>
+    <string name="f_label">Female</string>
+    <string name="m_label">Male</string>
+    <string name="murderer_label">Murderer\'s gender</string>
+
+    <string name="select_label">Select&#8230;</string>
+    <string name="correct_label">Correct</string>
+    <string name="incorrect_label">Incorrect</string>
+    <string name="ok_label">OK</string>
+    <string name="detect_label">Go Detect!</string>
+    <string name="back_label">Back</string>
+    <string name="cancel_label">Cancel</string>
+    <string name="save_label">Save</string>
+
+    <string name="detective_prompt">Select&#8230;</string>
+    <string name="cause_prompt">Select&#8230;</string>
+
+    <string name="colonel_race">Colonel Race</string>
+    <string name="hercule_poirot">Hercule Poirot</string>
+    <string name="miss_marple">Miss Marple</string>
+    <string name="mystery_novel">Mystery Novel</string>
+    <string name="superintendent_battle">Superintendent Battle</string>
+    <string name="tommy_tuppence">Tommy and Tuppence</string>
+
+    <string name="accident">Accident</string>
+    <string name="concussion">Concussion</string>
+    <string name="drowning">Drowning</string>
+    <string name="none">None</string>
+    <string name="poison">Poison</string>
+    <string name="shooting">Shooting</string>
+    <string name="stabbing">Stabbing</string>
+    <string name="strangling">Strangling</string>
+    <string name="throatslit">Throat Slit</string>
+    <string name="unknown">Unknown</string>
+    <string name="error">Error</string>
+
+    <string name="title_error">Please enter the title of the novel.</string>
+    <string name="year_error">Please select the year of publication.</string>
+    <string name="detective_error">Please select the detective of the story.</string>
+    <string name="setting_error">Please select the setting of the story.</string>
+    <string name="pov_error">Please select the point of view of the story.</string>
+    <string name="cause_error">Please select the cause of death of the victim.</string>
+    <string name="gender_error">Please select the gender of the murderer.</string>
+    <string name="victim_error">Please select the gender of the victim.</string>
+    <string name="right_answer_error">Please select the right answer.</string>
+    <string name="prediction_error">Please select the prediction you are interested in.</string>
+    <string name="feature_error">Please select at least two different elements.</string>
+
+    <string name="weapon_image_description">Murder Weapon</string>
+    <string name="detective_image_description">Detective</string>
+    <string name="setting_image_description">Setting</string>
+    <string name="victime_image_description">Victim\'s gender</string>
+    <string name="murderer_image_description">Murderer\'s gender</string>
+    <string name="up_image_description">Up button</string>
+    <string name="down_image_description">Down button</string>
+
+    <string name="retrain_question">Do you want to teach me the right answer?</string>
+    <string name="positive_button">Yes</string>
+    <string name="negative_button">No</string>
+
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="lots">Lots</string>
+
+    <string name="wild_guess">It is just a wild guess..</string>
+    <string name="quite_confident">I am quite confident..</string>
+    <string name="very_confident">I am very confident..</string>
+    <string name="title_activity_manager">Test Manager</string>
+
+    <string name="test_title">Select layouts</string>
+    <string name="test_class_label">Class Selection</string>
+    <string name="test_class_menu">Menu</string>
+    <string name="test_class_dialog">Dialog</string>
+    <string name="test_input_label">Features Input</string>
+    <string name="test_input_text">Text</string>
+    <string name="test_input_images">Images</string>
+    <string name="test_images_label">Images Selection</string>
+    <string name="test_images_spinner">Spinner</string>
+    <string name="test_images_grid">Grid</string>
+
+    <string name="saved_class_layout">Class Layout</string>
+    <string name="saved_input_layout">Input Layout</string>
+    <string name="saved_images_layout">Images Layout</string>
+
+</resources>

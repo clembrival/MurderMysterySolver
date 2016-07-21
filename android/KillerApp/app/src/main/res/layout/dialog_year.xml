@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    		  android:layout_width="match_parent"
+    		  android:layout_height="match_parent"
+			  android:padding="5dp"
+			  android:orientation="vertical"
+			  android:theme="@android:style/Theme.Holo.Dialog">
+
+	<GridLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:layout_margin="10dp"
+		android:rowCount="1"
+		android:columnCount="4">
+
+		<NumberPicker android:id="@+id/year_picker_1"
+					  android:layout_width="50dp"
+					  android:layout_height="150dp"
+					  android:layout_marginEnd="5dp"
+					  android:theme="@style/numpicker" />
+
+		<NumberPicker android:id="@+id/year_picker_2"
+					  android:layout_width="50dp"
+					  android:layout_height="150dp"
+					  android:layout_marginEnd="5dp"
+					  android:theme="@style/numpicker" />
+
+		<NumberPicker android:id="@+id/year_picker_3"
+					  android:layout_width="50dp"
+					  android:layout_height="150dp"
+					  android:layout_marginEnd="5dp"
+					  android:theme="@style/numpicker" />
+
+		<NumberPicker android:id="@+id/year_picker_4"
+					  android:layout_width="50dp"
+					  android:layout_height="150dp"
+					  android:theme="@style/numpicker" />
+
+	</GridLayout>
+
+	<Button android:id="@+id/year_ok_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:text="@string/ok_label"
+			style="@style/AlertDialog.AppCompat.Light"/>
+
+</LinearLayout>

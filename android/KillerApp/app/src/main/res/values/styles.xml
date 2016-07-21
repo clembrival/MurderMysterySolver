@@ -1,0 +1,83 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="textview">
+        <item name="android:padding">5dp</item>
+        <item name="android:textColor">@color/firebrick</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">@color/moccasin</item>
+    </style>
+
+    <style name="textview_contrasted">
+        <item name="android:padding">5dp</item>
+        <item name="android:textColor">@color/moccasin</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">@color/firebrick</item>
+    </style>
+
+    <style name="titleview">
+        <item name="android:textColor">@color/firebrick</item>
+        <item name="android:textAppearance">?android:textAppearanceLarge</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="button">
+        <item name="android:textColor">@color/moccasin</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:background">@color/firebrick</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="edittext">
+        <item name="android:textColorHint">@color/moccasin</item>
+        <item name="android:textColor">@color/moccasin</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:hint">@string/title_label</item>
+    </style>
+
+    <style name="spinner">
+        <item name="android:background">@color/firebrick</item>
+        <item name="android:spinnerMode">dropdown</item>
+        <item name="android:prompt">@string/detective_prompt</item>
+    </style>
+
+    <style name="radiobutton">
+        <item name="android:background">@color/firebrick</item>
+        <item name="android:textColor">@color/moccasin</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="radiobutton_contrasted">
+        <item name="android:background">@color/moccasin</item>
+        <item name="android:textColor">@color/firebrick</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+
+    </style>
+
+    <style name="numpicker" parent="@android:style/Theme.DeviceDefault.Light">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>
