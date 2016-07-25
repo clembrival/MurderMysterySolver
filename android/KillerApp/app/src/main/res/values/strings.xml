@@ -39,6 +39,8 @@
     <string name="back_label">Back</string>
     <string name="cancel_label">Cancel</string>
     <string name="save_label">Save</string>
+    <string name="selectall_label">Select all</string>
+    <string name="deselectall_label">Deselect all</string>
 
     <string name="detective_prompt">Select&#8230;</string>
     <string name="cause_prompt">Select&#8230;</string>

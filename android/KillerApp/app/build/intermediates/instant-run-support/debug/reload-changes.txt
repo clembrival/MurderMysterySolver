@@ -1,2 +1,3 @@
-CHANGED,C:\Users\Clem\StudioProjects\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\clemSP\iteration1\model\ImageFeatureManager$override.class
-CHANGED,C:\Users\Clem\StudioProjects\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\android\tools\fd\runtime\AppPatchesLoaderImpl.class
+CHANGED,C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\android\tools\fd\runtime\AppPatchesLoaderImpl.class
+CHANGED,C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\clemSP\iteration1\activities\FeaturesDialog$1$override.class
+CHANGED,C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\clemSP\iteration1\activities\FeaturesDialog$2$override.class

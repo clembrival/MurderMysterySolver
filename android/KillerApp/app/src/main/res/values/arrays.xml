@@ -31,4 +31,14 @@
         <item>@string/lots</item>
     </string-array>
 
+    <string-array name="features_array">
+        <item>@string/year_label</item>
+        <item>@string/detective_label</item>
+        <item>@string/setting_label</item>
+        <item>@string/pov_label</item>
+        <item>@string/cause_label</item>
+        <item>@string/victim_label</item>
+        <item>@string/murderer_label</item>
+    </string-array>
+
 </resources>

@@ -33,6 +33,15 @@
         <item>@string/superintendent_battle</item>
         <item>@string/tommy_tuppence</item>
     </string-array>
+    <string-array name="features_array">
+        <item>@string/year_label</item>
+        <item>@string/detective_label</item>
+        <item>@string/setting_label</item>
+        <item>@string/pov_label</item>
+        <item>@string/cause_label</item>
+        <item>@string/victim_label</item>
+        <item>@string/murderer_label</item>
+    </string-array>
     <string-array name="gender_array">
         <item>@string/select_label</item>
         <item>@string/female</item>
@@ -286,6 +295,7 @@
     <string name="colonel_race">Colonel Race</string>
     <string name="concussion">Concussion</string>
     <string name="correct_label">Correct</string>
+    <string name="deselectall_label">Deselect all</string>
     <string name="detect_label">Go Detect!</string>
     <string name="detective_error">Please select the detective of the story.</string>
     <string name="detective_image_description">Detective</string>
@@ -329,6 +339,7 @@
     <string name="select_features_title">What do you already know?</string>
     <string name="select_label">Select…</string>
     <string name="select_prediction_title">What do you want to know?</string>
+    <string name="selectall_label">Select all</string>
     <string name="setting_error">Please select the setting of the story.</string>
     <string name="setting_image_description">Setting</string>
     <string name="setting_label">Setting</string>
