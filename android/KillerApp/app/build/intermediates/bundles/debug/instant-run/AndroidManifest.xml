@@ -9,34 +9,26 @@
         android:minSdkVersion="17"
         android:targetSdkVersion="23" />
 
-    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <application
         android:name="com.android.tools.fd.runtime.BootstrapApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity android:name="com.clemSP.iteration1.activities.WeaponActivity" >
-        </activity>
-        <activity android:name="com.clemSP.iteration1.activities.WeaponPredictionActivity" />
-        <activity android:name="com.clemSP.iteration1.activities.GenderActivity" />
-        <activity android:name="com.clemSP.iteration1.activities.GenderPredictionActivity" />
-        <activity android:name="com.clemSP.iteration1.activities.SelectFeaturesActivity" >
-        </activity>
-        <activity android:name="com.clemSP.iteration1.activities.ManagerActivity" >
+        <activity android:name="com.clemSP.iteration1.frontend.WeaponActivity" />
+        <activity android:name="com.clemSP.iteration1.frontend.prediction.WeaponPredictionActivity" />
+        <activity android:name="com.clemSP.iteration1.frontend.GenderActivity" />
+        <activity android:name="com.clemSP.iteration1.frontend.prediction.GenderPredictionActivity" />
+        <activity android:name="com.clemSP.iteration1.frontend.SelectFeaturesActivity" />
+        <activity android:name="com.clemSP.iteration1.frontend.ManagerActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.clemSP.iteration1.activities.MainActivity" >
-        </activity>
-        <activity android:name="com.clemSP.iteration1.activities.ClassMenuActivity" >
-        </activity>
+        <activity android:name="com.clemSP.iteration1.frontend.MainActivity" />
+        <activity android:name="com.clemSP.iteration1.frontend.class_selection.ClassMenuActivity" />
     </application>
 
 </manifest>

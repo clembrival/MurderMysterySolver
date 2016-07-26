@@ -99,16 +99,24 @@
 
     <string name="test_title">Select layouts</string>
     <string name="test_class_label">Class Selection</string>
-    <string name="test_class_menu">Menu</string>
+    <string name="test_class_activity">Activity</string>
     <string name="test_class_dialog">Dialog</string>
+    <string name="test_class_tabs">Tabs</string>
+    <string name="test_class_menu_item">Menu Item</string>
+    <string name="test_features_label">Features Selection</string>
+    <string name="test_features_dialog">Dialog</string>
+    <string name="test_features_activity">Activity</string>
+    <string name="test_features_drawer">Drawer</string>
     <string name="test_input_label">Features Input</string>
     <string name="test_input_text">Text</string>
     <string name="test_input_images">Images</string>
     <string name="test_images_label">Images Selection</string>
     <string name="test_images_spinner">Spinner</string>
     <string name="test_images_grid">Grid</string>
+    <string name="test_images_both">Spinner + Grid</string>
 
     <string name="saved_class_layout">Class Layout</string>
+    <string name="saved_features_layout">Features Layout</string>
     <string name="saved_input_layout">Input Layout</string>
     <string name="saved_images_layout">Images Layout</string>
 

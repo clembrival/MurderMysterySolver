@@ -5,11 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CheckedTextView;
 import android.widget.ListView;
 
 import com.clemSP.iteration1.R;
 import com.clemSP.iteration1.backend.AppAttribute;
+import com.clemSP.iteration1.frontend.InvalidInputException;
 import com.clemSP.iteration1.frontend.features_input.BaseInputFragment;
 
 
@@ -20,8 +20,8 @@ public class FeatureDrawer
     private boolean mPredictWeapon;
 
     private DrawerLayout mDrawer;
-    private ListView mDrawerList;
-
+    private ListView mSelectOptionsList, mFeaturesList;
+    
 
     public FeatureDrawer(AppCompatActivity activity, boolean[] selectedFeatures, boolean predictWeapon)
     {
@@ -30,14 +30,19 @@ public class FeatureDrawer
         mPredictWeapon = predictWeapon;
 
         mDrawer = (DrawerLayout) mActivity.findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) mActivity.findViewById(R.id.left_drawer);
+        mSelectOptionsList = (ListView) mActivity.findViewById(R.id.select_drawer);
+        mFeaturesList = (ListView) mActivity.findViewById(R.id.features_drawer);
 
+        String[] selectOptions = mActivity.getResources().getStringArray(R.array.select_array);
+        mSelectOptionsList.setAdapter(new ArrayAdapter<>(mActivity, 
+        		android.R.layout.simple_list_item_single_choice, selectOptions));
+        
         String[] features = mActivity.getResources().getStringArray(R.array.features_array);
-        mDrawerList.setAdapter(new ArrayAdapter<>(mActivity,
+        mFeaturesList.setAdapter(new ArrayAdapter<>(mActivity,
                 android.R.layout.simple_list_item_multiple_choice, features));
 
         setDrawerLayoutListener();
-        setDrawerLisstListener();
+        setDrawerListListener();
     }
 
 
@@ -54,34 +59,34 @@ public class FeatureDrawer
                 for(int index = 0; index < mSelectedFeatures.length; index++)
                     if((index == AppAttribute.Weapon.getIndex() && mPredictWeapon) ||
                             (index == AppAttribute.Murderer.getIndex() && !mPredictWeapon))
-                        mDrawerList.getChildAt(index).setVisibility(View.GONE);
+                    	mFeaturesList.getChildAt(index).setVisibility(View.INVISIBLE);
                     else
                     {
-                        mDrawerList.getChildAt(index).setVisibility(View.VISIBLE);
-                        mDrawerList.setItemChecked(index, mSelectedFeatures[index]);
+                    	mFeaturesList.getChildAt(index).setVisibility(View.VISIBLE);
+                    	mFeaturesList.setItemChecked(index, mSelectedFeatures[index]);
                     }
             }
 
             @Override
             public void onDrawerClosed(View drawerView)
             {
-                int selectedCount = 0;
+            	try
+            	{
+            		boolean[] selectedFeatures = getSelectedFeatures(); 
+            		for(int index = 0; index < selectedFeatures.length; index++)
+            			mSelectedFeatures[index] = selectedFeatures[index];
+                	
+                    BaseInputFragment inputFragment = (BaseInputFragment) mActivity.getSupportFragmentManager()
+                            .findFragmentById(R.id.fragment_container);
 
-                for(int index = 0; index < mDrawerList.getChildCount(); index++)
-                    if(mDrawerList.isItemChecked(index))
-                        selectedCount++;
+                    if(inputFragment != null)
+                        inputFragment.update();
 
-                if(selectedCount < 2)
-                {
-                    BaseInputFragment.printErrorToast(mActivity, mActivity.getString(R.string.feature_error));
-                    return;
-                }
-
-                BaseInputFragment inputFragment = (BaseInputFragment) mActivity.getSupportFragmentManager()
-                        .findFragmentById(R.id.fragment_container);
-
-                if(inputFragment != null)
-                    inputFragment.update();
+            	}
+            	catch(InvalidInputException iie)
+            	{
+            		iie.printToast(mActivity);
+            	}
             }
 
             @Override
@@ -90,15 +95,39 @@ public class FeatureDrawer
 
     }
 
-
-    private void setDrawerLisstListener()
+    
+    private boolean[] getSelectedFeatures() throws InvalidInputException
     {
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener()
+    	boolean[] selectedFeatures = new boolean[mSelectedFeatures.length];
+    	int selectedCount = 0;
+    	
+    	for(int index = 0; index < mFeaturesList.getChildCount(); index++)
+    	{
+    		boolean checked = mFeaturesList.isItemChecked(index);
+    		
+    		selectedFeatures[index] = checked;
+    		
+    		if(checked)
+                selectedCount++;
+    	}
+
+        if(selectedCount < 2)
+            throw new InvalidInputException(R.string.feature_error);
+        
+        return selectedFeatures;
+    }
+
+    
+    private void setDrawerListListener()
+    {
+    	mSelectOptionsList.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {
-                mSelectedFeatures[position] = ((CheckedTextView) view).isChecked();
+            {          	
+        		for(int index = 0; index < mFeaturesList.getChildCount(); index++)
+        			if(mFeaturesList.getChildAt(index).getVisibility() == View.VISIBLE)
+        				mFeaturesList.setItemChecked(index, position == 0);
             }
         });
     }

@@ -4,10 +4,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.widget.Toast;
+import android.view.View;
 
 import com.clemSP.iteration1.R;
 import com.clemSP.iteration1.backend.AppAttribute;
@@ -17,7 +18,7 @@ import com.clemSP.iteration1.frontend.features_input.BaseInputFragment;
 import com.clemSP.iteration1.frontend.features_input.ImagesInputFragment;
 import com.clemSP.iteration1.frontend.features_input.TextInputFragment;
 import com.clemSP.iteration1.frontend.features_selection.FeatureDrawer;
-import com.clemSP.iteration1.frontend.features_selection.FeaturesDialog;
+import com.clemSP.iteration1.frontend.features_selection.FeatureFragment;
 import com.clemSP.iteration1.frontend.prediction.GenderPredictionActivity;
 import com.clemSP.iteration1.frontend.prediction.WeaponPredictionActivity;
 
@@ -25,38 +26,47 @@ import com.clemSP.iteration1.frontend.prediction.WeaponPredictionActivity;
 /**
  * Activity containing the widgets for the features selected to make the prediction.
  */
-public class MainActivity extends BaseActivity implements BaseInputFragment.OnFeaturesInputListener
+public class MainActivity extends BaseActivity implements BaseInputFragment.OnFeaturesInputListener,
+        FeatureFragment.SelectorListener
 {
+    /** Request codes for other activities started by this activity. */
     private static final int CLASS_REQUEST_CODE = 0;
     private static final int WEAPON_PREDICTION_REQUEST_CODE = 1;
     private static final int GENDER_PREDICTION_REQUEST_CODE = 2;
 
+    /** Request code of the last activity that finished before this activity resumed. */
+    private int mReturningActivity;
+
+    private SharedPreferences mSharedPref;
+    private FragmentManager mFragmentManager;
+
+    private boolean mHasDrawerLayout;
+
     private boolean mPredictWeapon;
     private boolean[] mSelectedFeatures;
     private int mPrediction;
-
-    private SharedPreferences mSharedPref;
-
-    private FragmentManager mFragmentManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        mReturningActivity = -1;
+
+        mSelectedFeatures = new boolean[AppAttribute.getNumAttributes()];
+        mSharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        mFragmentManager = getSupportFragmentManager();
+
+        mHasDrawerLayout = mSharedPref.getInt(getString(R.string.saved_features_layout),
+                R.id.test_features_drawer) == R.id.test_features_drawer;
+        setContentView(mHasDrawerLayout ? R.layout.activity_main_drawer : R.layout.activity_main_coordinator);
 
         if(findViewById(R.id.fragment_container) == null)
             return;
 
         if (savedInstanceState != null)
             return;
-
-        mSelectedFeatures = new boolean[AppAttribute.getNumAttributes()];
-
-        mSharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-
-        mFragmentManager = getSupportFragmentManager();
 
         selectClass();
     }
@@ -66,12 +76,13 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
     private void selectClass()
     {
         int classLayout = mSharedPref.getInt(getString(R.string.saved_class_layout),
-                R.id.test_dialog_button);
+                R.id.test_class_dialog);
 
-        if(classLayout == R.id.test_dialog_button)
+        if(classLayout == R.id.test_class_dialog)
             setClassDialog();
-        else
-            setClassMenu();
+        else if(classLayout == R.id.test_class_activity)
+            setClassActivity();
+        // TODO setClassTabs
     }
 
 
@@ -89,52 +100,83 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
                 if(!classDialog.cancelled())
                 {
                     mPredictWeapon = classDialog.getPredictWeapon();
-                    setFeaturesDialog();
+                    selectFeatures();
                 }
             }
         });
     }
 
 
-    private void setClassMenu()
+    private void setClassActivity()
     {
         startActivityForResult(new Intent(this, ClassMenuActivity.class), CLASS_REQUEST_CODE);
+    }
+
+    
+    private void selectFeatures()
+    {
+    	int featuresLayout = mSharedPref.getInt(getString(R.string.saved_features_layout), 
+    			R.id.test_features_dialog);
+
+        if(featuresLayout == R.id.test_features_dialog)
+            setFeaturesDialog();
+        else if(featuresLayout == R.id.test_features_activity)
+            setFeaturesActivity();
+        // TODO setFeaturesDrawer
     }
 
 
     /* Opens a dialog for the user to select the features to be used for the prediction. */
     private void setFeaturesDialog()
     {
-        FeaturesDialog dialog = new FeaturesDialog(this, mPredictWeapon);
+        FeatureFragment selector = FeatureFragment.newInstance(mPredictWeapon, mSelectedFeatures, this);
+        selector.show(mFragmentManager, "featuresDialog");
+    }
 
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener()
+    
+    private void setFeaturesActivity()
+    {
+        FeatureFragment selector = FeatureFragment.newInstance(mPredictWeapon, mSelectedFeatures, this);
+        mFragmentManager.beginTransaction().add(R.id.fragment_container, selector).commit();
+    }
+    
+    
+    private void setFeaturesDrawer()
+    {
+    	
+    }
+
+
+    private void layoutActivity()
+    {
+        FloatingActionButton editButton = (FloatingActionButton) findViewById(R.id.edit_button);
+        if(editButton == null)
+            return;
+
+        if(mHasDrawerLayout)
         {
-            @Override
-            public void onDismiss(DialogInterface dialog)
+            editButton.hide();
+            layoutActivityDrawer();
+        }
+        else
+        {
+            editButton.show();
+            editButton.setOnClickListener(new View.OnClickListener()
             {
-                FeaturesDialog featuresDialog = (FeaturesDialog) dialog;
-
-                if(!featuresDialog.cancelled())
+                @Override
+                public void onClick(View v)
                 {
-                    mSelectedFeatures = ((FeaturesDialog) dialog).getSelectedFeatures();
-                    String test = "";
-                    for(boolean b : mSelectedFeatures)
-                        test += "" + b;
-                    Toast.makeText(MainActivity.this, test, Toast.LENGTH_LONG).show();
-                    layoutActivityDrawer();
+                    selectFeatures();
                 }
-                else
-                    selectClass();
-            }
-        });
+            });
+        }
+        layoutActivityFragment();
     }
 
 
     private void layoutActivityDrawer()
     {
-        FeatureDrawer drawer = new FeatureDrawer(this, mSelectedFeatures, mPredictWeapon);
-
-        layoutActivityFragment();
+        new FeatureDrawer(this, mSelectedFeatures, mPredictWeapon);
     }
 
 
@@ -143,7 +185,7 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
     {
         Fragment inputFragment = mFragmentManager.findFragmentById(R.id.fragment_container);
 
-        if(inputFragment == null)
+        if(inputFragment == null || !(inputFragment instanceof BaseInputFragment))
         {
             int inputType = mSharedPref.getInt(getString(R.string.saved_input_layout),
                     R.id.test_images_button);
@@ -163,6 +205,8 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
                 mFragmentManager.beginTransaction().add(R.id.fragment_container, textInputFragment).commit();
             }
         }
+        else
+            ((BaseInputFragment)inputFragment).update();
     }
 
 
@@ -219,13 +263,49 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-        if(requestCode == CLASS_REQUEST_CODE)
+        if(resultCode == RESULT_OK)
         {
-            if (resultCode == RESULT_OK)
+            mReturningActivity = requestCode;
+
+            if(requestCode == CLASS_REQUEST_CODE)
             {
                 mPredictWeapon = data.getExtras().getBoolean("weapon");
-                setFeaturesDialog();
+            }
+            else if(requestCode == GENDER_PREDICTION_REQUEST_CODE
+                    || requestCode == WEAPON_PREDICTION_REQUEST_CODE)
+            {
+                layoutActivityFragment();
+            }
+            else
+            {
+                mReturningActivity = -1;
             }
         }
+        else
+            mReturningActivity = -1;
+    }
+    
+    
+    @Override
+    public void onResume() 
+    {
+    	super.onResume();
+    	
+    	if(mReturningActivity == CLASS_REQUEST_CODE)
+    		selectFeatures();
+    }
+
+    @Override
+    public void onOkButtonPressed(FeatureFragment selector)
+    {
+        mSelectedFeatures = selector.getSelectedFeatures();
+        selector.dismiss();
+        layoutActivity();
+    }
+
+    @Override
+    public void onCancelButtonPressed(FeatureFragment selector)
+    {
+        selector.dismiss();
     }
 }

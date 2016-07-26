@@ -1,8 +1,6 @@
 package com.clemSP.iteration1.backend;
 
 
-import com.clemSP.iteration1.backend.AppAttribute;
-
 public class Data
 {
     private static final int TITLE = 0, YEAR = AppAttribute.Year.getIndex() + 1,
@@ -110,6 +108,8 @@ public class Data
             case Weapon: setWeapon(value); break;
             case Murderer: setGender(value); break;
             case Location: setSetting(value); break;
+            case Year: setYear(value);
+            case Pov: setPov(value);
         }
     }
 

@@ -81,6 +81,21 @@ public enum AppAttribute
         return -1;
     }
 
+    public static int getCheckboxRes(int index)
+    {
+        switch(index)
+        {
+            case 0: return R.id.year_checkbox;
+            case 1: return R.id.detective_checkbox;
+            case 2: return R.id.setting_checkbox;
+            case 3: return R.id.pov_checkbox;
+            case 4: return R.id.weapon_checkbox;
+            case 5: return R.id.victim_checkbox;
+            case 6: return R.id.murderer_checkbox;
+        }
+        return -1;
+    }
+
     public static int getNumAttributes()
     {
         return NUM_ATTRIBUTES;

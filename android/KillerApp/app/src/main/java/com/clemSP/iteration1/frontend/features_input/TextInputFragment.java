@@ -28,83 +28,88 @@ public class TextInputFragment extends BaseInputFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_text_input, container, false);
+        mView = inflater.inflate(R.layout.fragment_text_input, container, false);
 
-        inflateWidgets(view);
-        super.inflateYearButton(view);
-        inflateDetectButton(view);
+        inflateWidgets();
+        super.inflateYearButton();
+        inflateDetectButton();
 
-        return view;
+        return mView;
     }
 
 
     @Override
-    public void inflateWidgets(View view)
+    public void inflateWidgets()
     {
-        super.inflateWidgets(view);
+        super.inflateWidgets();
 
-        mSettingGroup = inflateRadioGroup(view, AppAttribute.Location, R.id.setting_layout,
+        mSettingGroup = inflateRadioGroup(AppAttribute.Location, R.id.setting_layout,
                 R.id.setting_group);
 
-        mDetectiveSpin = inflateSpinner(view, AppAttribute.Detective, R.id.detective_layout,
+        mDetectiveSpin = inflateSpinner(AppAttribute.Detective, R.id.detective_layout,
                 R.id.detective_spinner, R.array.detective_array);
 
         if(mPredictWeapon)
-            mGenderSpin = inflateSpinner(view, AppAttribute.Murderer, R.id.weapon_layout,
+            mGenderSpin = inflateSpinner(AppAttribute.Murderer, R.id.weapon_layout,
                     R.id.weapon_spinner, R.array.gender_array);
         else
-            mWeaponSpin = inflateSpinner(view, AppAttribute.Weapon, R.id.weapon_layout,
+            mWeaponSpin = inflateSpinner(AppAttribute.Weapon, R.id.weapon_layout,
                     R.id.weapon_spinner, R.array.cause_array);
 
         if(mGenderSpin != null || mWeaponSpin != null)
         {
-            TextView label = (TextView) view.findViewById(R.id.weapon_textview);
+            TextView label = (TextView) mView.findViewById(R.id.weapon_textview);
             if(label != null)
                 label.setText((mGenderSpin != null) ? R.string.murderer_label : R.string.cause_label);
         }
 
-        mVictimSpin = inflateSpinner(view, AppAttribute.Victim, R.id.victim_layout,
+        mVictimSpin = inflateSpinner(AppAttribute.Victim, R.id.victim_layout,
                 R.id.victim_spinner, R.array.gender_array);
     }
 
 
-    private RadioGroup inflateRadioGroup(View view, AppAttribute attribute, int layoutRes, int groupRes)
+    private RadioGroup inflateRadioGroup(AppAttribute attribute, int layoutRes, int groupRes)
     {
-        RelativeLayout layout = (RelativeLayout) view.findViewById(layoutRes);
+        RelativeLayout layout = (RelativeLayout) mView.findViewById(layoutRes);
 
         if(layout != null)
         {
             if (!mSelectedFeatures[attribute.getIndex()])
                 layout.setVisibility(View.GONE);
             else
-                return (RadioGroup) view.findViewById(groupRes);
+            {
+                layout.setVisibility(View.VISIBLE);
+                return (RadioGroup) mView.findViewById(groupRes);
+            }
         }
 
         return null;
     }
 
 
-    private Spinner inflateSpinner(View view, AppAttribute attribute, int layoutRes, int spinnerRes,
+    private Spinner inflateSpinner(AppAttribute attribute, int layoutRes, int spinnerRes,
                                    int entriesRes)
     {
-        RelativeLayout layout = (RelativeLayout) view.findViewById(layoutRes);
+        RelativeLayout layout = (RelativeLayout) mView.findViewById(layoutRes);
 
         if(layout != null)
             if (!mSelectedFeatures[attribute.getIndex()])
                 layout.setVisibility(View.GONE);
             else
             {
+                layout.setVisibility(View.VISIBLE);
+
                 // String array containing the different entries
                 String[] entries = getResources().getStringArray(entriesRes);
 
                 // Adding entries and custom layout to spinner
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(view.getContext(),
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(mView.getContext(),
                         R.layout.spinner_layout, entries);
 
                 // Setting layout of the drop down menu (appears after touching the spinner)
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                Spinner spinner = (Spinner) view.findViewById(spinnerRes);
+                Spinner spinner = (Spinner) mView.findViewById(spinnerRes);
                 if (spinner != null)
                     spinner.setAdapter(adapter);
                 return spinner;
@@ -113,9 +118,9 @@ public class TextInputFragment extends BaseInputFragment
     }
 
 
-    private void inflateDetectButton(final View view)
+    private void inflateDetectButton()
     {
-        Button detectButton = (Button) view.findViewById(R.id.detect_button);
+        Button detectButton = (Button) mView.findViewById(R.id.detect_button);
         if(detectButton != null)
             detectButton.setOnClickListener(new View.OnClickListener()
             {
@@ -132,7 +137,7 @@ public class TextInputFragment extends BaseInputFragment
 
                         data.setYear("" + getInputYear());
 
-                        data.setPov(getInputFromRadioGroup(view, AppAttribute.Pov, mPovGroup,
+                        data.setPov(getInputFromRadioGroup(AppAttribute.Pov, mPovGroup,
                                 R.string.pov_error));
 
                         data.setDetective(getInputFromSpinner(AppAttribute.Detective,
@@ -147,17 +152,19 @@ public class TextInputFragment extends BaseInputFragment
                         data.setGender(getInputFromSpinner(AppAttribute.Murderer, mGenderSpin,
                                 R.string.gender_error));
 
-                        data.setSetting(getInputFromRadioGroup(view, AppAttribute.Location,
+                        data.setSetting(getInputFromRadioGroup(AppAttribute.Location,
                                 mSettingGroup, R.string.setting_error));
 
+                        data.setOthers();
+
                         VariableDataset.clear();
-                        VariableDataset dataset = VariableDataset.get(view.getContext(), mPredictWeapon);
+                        VariableDataset dataset = VariableDataset.get(mView.getContext(), mPredictWeapon);
                         dataset.setData(data);
                         mCallback.onFeaturesInput(dataset.classify());
                     }
                     catch (InvalidInputException iie)
                     {
-                        printErrorToast(view.getContext(), iie.getMessage());
+                        iie.printToast(mView.getContext());
                     }
                 }
             });
@@ -166,6 +173,7 @@ public class TextInputFragment extends BaseInputFragment
     @Override
     public void update()
     {
-        //TODO
+    	inflateWidgets();
+        super.inflateYearButton();
     }
 }

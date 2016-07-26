@@ -27,7 +27,6 @@ import android.widget.GridView;
  */
 public class ImagesInputFragment extends BaseInputFragment
 {
-    private View mView;
     private List<ImageFeature> mFragmentFeatures;
 
     private GridView mFeatureGrid;
@@ -39,17 +38,17 @@ public class ImagesInputFragment extends BaseInputFragment
     {
         mView = inflater.inflate(R.layout.fragment_images_input, container, false);
 
-        super.inflateWidgets(mView);
-        super.inflateYearButton(mView);
+        super.inflateWidgets();
+        super.inflateYearButton();
 
-        inflateFeatureGrid(mView);
-        inflateDetectButton(mView);
+        inflateFeatureGrid();
+        inflateDetectButton();
 
         return mView;
     }
 
 
-    private void inflateFeatureGrid(final View mainview)
+    private void inflateFeatureGrid()
     {
         mFragmentFeatures = new ArrayList<>();
 
@@ -65,8 +64,8 @@ public class ImagesInputFragment extends BaseInputFragment
                 }
         }
 
-        mFeatureGrid = (GridView) mainview.findViewById(R.id.feature_gridview);
-        mFeatureGrid.setAdapter(new ImageViewAdapter(mainview.getContext(), mFragmentFeatures,
+        mFeatureGrid = (GridView) mView.findViewById(R.id.feature_gridview);
+        mFeatureGrid.setAdapter(new ImageViewAdapter(mView.getContext(), mFragmentFeatures,
                 R.layout.feature_layout_fragment));
 
         mFeatureGrid.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -74,25 +73,25 @@ public class ImagesInputFragment extends BaseInputFragment
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                selectImage(mainview, mFragmentFeatures.get(position).getAttribute());
+                selectImage(mFragmentFeatures.get(position).getAttribute());
             }
         });
     }
 
 
-    private void selectImage(final View view, final AppAttribute attribute)
+    private void selectImage(final AppAttribute attribute)
     {
-        int layoutPref = PreferenceManager.getDefaultSharedPreferences(view.getContext())
-                .getInt(getString(R.string.saved_images_layout), R.id.test_grid_button);
+        int layoutPref = PreferenceManager.getDefaultSharedPreferences(mView.getContext())
+                .getInt(getString(R.string.saved_images_layout), R.id.test_images_grid);
 
         int layout;
 
-        if(layoutPref == R.id.test_grid_button)
+        if(layoutPref == R.id.test_images_grid)
             layout = R.layout.dialog_image_grid;
         else
             layout = R.layout.dialog_image_spinner;
 
-        final ImageFeatureDialog selectImageDialog = new ImageFeatureDialog(view.getContext(), layout, attribute);
+        final ImageFeatureDialog selectImageDialog = new ImageFeatureDialog(mView.getContext(), layout, attribute);
 
         selectImageDialog.setOnDismissListener(new DialogInterface.OnDismissListener()
         {
@@ -124,9 +123,9 @@ public class ImagesInputFragment extends BaseInputFragment
     }
 
 
-    private void inflateDetectButton(final View view)
+    private void inflateDetectButton()
     {
-        Button detectButton = (Button) view.findViewById(R.id.detect_button);
+        Button detectButton = (Button) mView.findViewById(R.id.detect_button);
         if(detectButton != null)
             detectButton.setOnClickListener(new View.OnClickListener()
             {
@@ -143,27 +142,27 @@ public class ImagesInputFragment extends BaseInputFragment
 
                         data.setYear("" + getInputYear());
 
-                        data.setPov(getInputFromRadioGroup(view, AppAttribute.Pov, mPovGroup,
+                        data.setPov(getInputFromRadioGroup(AppAttribute.Pov, mPovGroup,
                                 R.string.pov_error));
 
                         for(ImageFeature feature : mFragmentFeatures)
                         {
                             AppAttribute attribute = feature.getAttribute();
-                            data.setAttribute(attribute, getInputFromImageFeature(view, attribute,
-                                    view.getContext().getString(feature.getCaptionRes()),
+                            data.setAttribute(attribute, getInputFromImageFeature(mView, attribute,
+                            		mView.getContext().getString(feature.getCaptionRes()),
                                     AppAttribute.getErrorRes(attribute)));
                         }
 
                         data.setOthers();
 
                         VariableDataset.clear();
-                        VariableDataset dataset = VariableDataset.get(view.getContext(), mPredictWeapon);
+                        VariableDataset dataset = VariableDataset.get(mView.getContext(), mPredictWeapon);
                         dataset.setData(data);
                         mCallback.onFeaturesInput(dataset.classify());
                     }
                     catch (InvalidInputException iie)
                     {
-                        printErrorToast(view.getContext(), view.getContext().getString(iie.getErrorRes()));
+                    	iie.printToast(mView.getContext());
                     }
                 }
             });
@@ -191,8 +190,8 @@ public class ImagesInputFragment extends BaseInputFragment
     @Override
     public void update()
     {
-        inflateWidgets(mView);
-        inflateYearButton(mView);
-        inflateFeatureGrid(mView);
+        inflateWidgets();
+        inflateYearButton();
+        inflateFeatureGrid();
     }
 }

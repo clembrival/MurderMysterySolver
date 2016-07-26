@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout android:id="@+id/fragment_container"
+                  xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  tools:context="com.clemSP.iteration1.frontend.MainActivity"
+                  android:background="@drawable/background_image" />
+
+    <LinearLayout android:id="@+id/listviews_container"
+        		  xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:layout_width="240dp"
+                  android:layout_height="match_parent"
+                  android:layout_gravity="start"
+                  android:orientation="vertical" >
+                  
+        <ListView android:id="@+id/select_drawer"
+              	  android:layout_width="match_parent"
+	              android:layout_height="wrap_content"
+	              android:choiceMode="none"
+	              android:divider="@android:color/transparent"
+	              android:dividerHeight="0dp"
+	              android:background="@color/moccasin"
+	              android:textColor="@color/firebrick" />
+	        
+    	<ListView android:id="@+id/features_drawer"
+              	  android:layout_width="match_parent"
+	              android:layout_height="match_parent"
+	              android:layout_gravity="start"
+	              android:choiceMode="multipleChoice"
+	              android:divider="@android:color/transparent"
+	              android:dividerHeight="0dp"
+	              android:background="@color/moccasin"
+	              android:textColor="@color/firebrick" />
+	        
+    </LinearLayout>
+    
+</android.support.v4.widget.DrawerLayout>

@@ -23,6 +23,7 @@ import com.clemSP.iteration1.backend.AppAttribute;
  */
 public abstract class BaseInputFragment extends Fragment
 {
+	protected View mView;
     // Interface implemented by the container activity to communicate with this fragment.
     protected OnFeaturesInputListener mCallback;
 
@@ -78,31 +79,36 @@ public abstract class BaseInputFragment extends Fragment
     }
 
 
-    public void inflateWidgets(View view)
+    public void inflateWidgets()
     {
-        mTitleField = (EditText) view.findViewById(R.id.title_textfield);
+        mTitleField = (EditText) mView.findViewById(R.id.title_textfield);
         if (mTitleField == null)
             return;
 
         mTitleField.setHint(R.string.title_label);
 
-        if (mSelectedFeatures[AppAttribute.Pov.getIndex()])
-            mPovGroup = (RadioGroup) view.findViewById(R.id.pov_group);
-        else
+        RelativeLayout povLayout = (RelativeLayout) mView.findViewById(R.id.pov_layout);
+        if (povLayout != null)
         {
-            RelativeLayout povLayout = (RelativeLayout) view.findViewById(R.id.pov_layout);
-            if (povLayout != null)
+            if (mSelectedFeatures[AppAttribute.Pov.getIndex()])
+            {
+                povLayout.setVisibility(View.VISIBLE);
+                mPovGroup = (RadioGroup) mView.findViewById(R.id.pov_group);
+            }
+            else
+            {
                 povLayout.setVisibility(View.GONE);
-            mPovGroup = null;
+                mPovGroup = null;
+            }
         }
     }
 
 
-    public void inflateYearButton(final View view)
+    public void inflateYearButton()
     {
         if(!mSelectedFeatures[AppAttribute.Year.getIndex()])
         {
-            RelativeLayout yearLayout = (RelativeLayout) view.findViewById(R.id.year_layout);
+            RelativeLayout yearLayout = (RelativeLayout) mView.findViewById(R.id.year_layout);
             if(yearLayout != null)
                 yearLayout.setVisibility(View.GONE);
             mYearButton = null;
@@ -110,7 +116,7 @@ public abstract class BaseInputFragment extends Fragment
         }
 
         // Button which opens a dialog to select the year of publication
-        mYearButton = (Button) view.findViewById(R.id.year_button);
+        mYearButton = (Button) mView.findViewById(R.id.year_button);
 
         if (mYearButton != null)
             mYearButton.setOnClickListener(new View.OnClickListener()
@@ -118,7 +124,7 @@ public abstract class BaseInputFragment extends Fragment
                 @Override
                 public void onClick(View v)
                 {
-                    final YearDialog yearDialog = new YearDialog(view.getContext());
+                    final YearDialog yearDialog = new YearDialog(mView.getContext());
                     yearDialog.setOnDismissListener(new DialogInterface.OnDismissListener()
                     {
                         @Override
@@ -148,7 +154,7 @@ public abstract class BaseInputFragment extends Fragment
     }
 
 
-    public String getInputFromRadioGroup(View view, AppAttribute attribute, RadioGroup group,
+    public String getInputFromRadioGroup(AppAttribute attribute, RadioGroup group,
                                          int errorRes) throws InvalidInputException
     {
         if(mSelectedFeatures[attribute.getIndex()])
@@ -156,7 +162,7 @@ public abstract class BaseInputFragment extends Fragment
             // Getting checked point of view radio button, if any
             int selectedId = group.getCheckedRadioButtonId();
 
-            RadioButton radioButton = (RadioButton) view.findViewById(selectedId);
+            RadioButton radioButton = (RadioButton) mView.findViewById(selectedId);
             if (radioButton == null)
                 throw new InvalidInputException(errorRes);
             else

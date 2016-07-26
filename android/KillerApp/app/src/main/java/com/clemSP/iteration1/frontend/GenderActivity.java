@@ -143,7 +143,7 @@ public class GenderActivity extends BaseActivity
                     }
                     catch (InvalidInputException iie)
                     {
-                        printErrorToast(iie.getErrorRes());
+                        iie.printToast(GenderActivity.this);
                     }
                 }
             });

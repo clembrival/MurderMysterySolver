@@ -18,7 +18,7 @@ import com.clemSP.iteration1.R;
  */
 public class ManagerActivity extends AppCompatActivity
 {
-    private RadioGroup mClassGroup, mInputGroup, mImagesGroup;
+    private RadioGroup mClassGroup, mFeaturesGroup, mInputGroup, mImagesGroup;
 
 
     @Override
@@ -35,6 +35,7 @@ public class ManagerActivity extends AppCompatActivity
     private void inflateWidgets()
     {
         mClassGroup = (RadioGroup) findViewById(R.id.test_class_group);
+        mFeaturesGroup = (RadioGroup) findViewById(R.id.test_features_group);
         mInputGroup = (RadioGroup) findViewById(R.id.test_input_group);
         mImagesGroup = (RadioGroup) findViewById(R.id.test_images_group);
 
@@ -72,6 +73,11 @@ public class ManagerActivity extends AppCompatActivity
                 RadioButton classButton = (RadioButton) findViewById(selectedClassId);
                 if(classButton != null)
                     editor.putInt(getString(R.string.saved_class_layout), classButton.getId());
+                
+                int selectedFeaturesId = mFeaturesGroup.getCheckedRadioButtonId();
+                RadioButton featuresButton = (RadioButton) findViewById(selectedFeaturesId);
+                if(featuresButton != null)
+                	editor.putInt(getString(R.string.saved_features_layout), featuresButton.getId());
 
                 int selectedInputId = mInputGroup.getCheckedRadioButtonId();
                 RadioButton inputButton = (RadioButton) findViewById(selectedInputId);
