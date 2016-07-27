@@ -188,8 +188,9 @@ public class ImagesInputFragment extends BaseInputFragment
 
 
     @Override
-    public void update()
+    public void update(boolean[] selectedFeatures)
     {
+        mSelectedFeatures = selectedFeatures;
         inflateWidgets();
         inflateYearButton();
         inflateFeatureGrid();

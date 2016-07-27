@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.clemSP.iteration1.frontend.InvalidInputException;
 import com.clemSP.iteration1.R;
@@ -171,8 +172,9 @@ public class TextInputFragment extends BaseInputFragment
     }
 
     @Override
-    public void update()
+    public void update(boolean[] selectedFeatures)
     {
+        mSelectedFeatures = selectedFeatures;
     	inflateWidgets();
         super.inflateYearButton();
     }

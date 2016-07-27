@@ -193,5 +193,5 @@ public abstract class BaseInputFragment extends Fragment
     }
 
 
-    public abstract void update();
+    public abstract void update(boolean[] selectedFeatures);
 }

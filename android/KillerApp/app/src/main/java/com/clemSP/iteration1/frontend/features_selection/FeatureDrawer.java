@@ -1,5 +1,6 @@
 package com.clemSP.iteration1.frontend.features_selection;
 
+import android.app.Activity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,30 +16,38 @@ import com.clemSP.iteration1.frontend.features_input.BaseInputFragment;
 
 public class FeatureDrawer
 {
-    private AppCompatActivity mActivity;
     private boolean[] mSelectedFeatures;
     private boolean mPredictWeapon;
 
     private DrawerLayout mDrawer;
     private ListView mSelectOptionsList, mFeaturesList;
-    
 
-    public FeatureDrawer(AppCompatActivity activity, boolean[] selectedFeatures, boolean predictWeapon)
+    private FeatureDrawerListener mListener;
+
+
+    public interface FeatureDrawerListener
     {
-        mActivity = activity;
+        void onFeatureDrawerClosed(boolean[] selectedFeatures);
+    }
+
+
+    public FeatureDrawer(Activity activity, boolean[] selectedFeatures, boolean predictWeapon,
+                         FeatureDrawerListener listener)
+    {
+        mListener = listener;
         mSelectedFeatures = selectedFeatures;
         mPredictWeapon = predictWeapon;
 
-        mDrawer = (DrawerLayout) mActivity.findViewById(R.id.drawer_layout);
-        mSelectOptionsList = (ListView) mActivity.findViewById(R.id.select_drawer);
-        mFeaturesList = (ListView) mActivity.findViewById(R.id.features_drawer);
+        mDrawer = (DrawerLayout) activity.findViewById(R.id.drawer_layout);
+        mSelectOptionsList = (ListView) activity.findViewById(R.id.select_drawer);
+        mFeaturesList = (ListView) activity.findViewById(R.id.features_drawer);
 
-        String[] selectOptions = mActivity.getResources().getStringArray(R.array.select_array);
-        mSelectOptionsList.setAdapter(new ArrayAdapter<>(mActivity, 
+        String[] selectOptions = activity.getResources().getStringArray(R.array.select_array);
+        mSelectOptionsList.setAdapter(new ArrayAdapter<>(activity,
         		android.R.layout.simple_list_item_single_choice, selectOptions));
         
-        String[] features = mActivity.getResources().getStringArray(R.array.features_array);
-        mFeaturesList.setAdapter(new ArrayAdapter<>(mActivity,
+        String[] features = activity.getResources().getStringArray(R.array.features_array);
+        mFeaturesList.setAdapter(new ArrayAdapter<>(activity,
                 android.R.layout.simple_list_item_multiple_choice, features));
 
         setDrawerLayoutListener();
@@ -70,23 +79,10 @@ public class FeatureDrawer
             @Override
             public void onDrawerClosed(View drawerView)
             {
-            	try
-            	{
-            		boolean[] selectedFeatures = getSelectedFeatures(); 
-            		for(int index = 0; index < selectedFeatures.length; index++)
-            			mSelectedFeatures[index] = selectedFeatures[index];
-                	
-                    BaseInputFragment inputFragment = (BaseInputFragment) mActivity.getSupportFragmentManager()
-                            .findFragmentById(R.id.fragment_container);
-
-                    if(inputFragment != null)
-                        inputFragment.update();
-
-            	}
-            	catch(InvalidInputException iie)
-            	{
-            		iie.printToast(mActivity);
-            	}
+                boolean[] selectedFeatures = getSelectedFeatures();
+                if(selectedFeatures != null)
+                    mSelectedFeatures = selectedFeatures;
+            	mListener.onFeatureDrawerClosed(selectedFeatures);
             }
 
             @Override
@@ -96,7 +92,7 @@ public class FeatureDrawer
     }
 
     
-    private boolean[] getSelectedFeatures() throws InvalidInputException
+    private boolean[] getSelectedFeatures()
     {
     	boolean[] selectedFeatures = new boolean[mSelectedFeatures.length];
     	int selectedCount = 0;
@@ -112,7 +108,7 @@ public class FeatureDrawer
     	}
 
         if(selectedCount < 2)
-            throw new InvalidInputException(R.string.feature_error);
+            return null;
         
         return selectedFeatures;
     }

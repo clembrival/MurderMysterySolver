@@ -4,9 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,6 +20,8 @@ import java.util.List;
 
 public class FeatureFragment extends DialogFragment
 {
+    public static final String TAG = "featuresFragment";
+
     private SelectorListener mListener;
 
     private List<CheckBox> mFeaturesBoxes;
@@ -33,7 +33,6 @@ public class FeatureFragment extends DialogFragment
     public interface SelectorListener extends Serializable
     {
         void onOkButtonPressed(FeatureFragment selector);
-        void onCancelButtonPressed(FeatureFragment selector);
     }
 
 
@@ -57,20 +56,13 @@ public class FeatureFragment extends DialogFragment
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.activity_features_menu, container, false);
+        super.onCreate(savedInstanceState);
 
         mFeaturesBoxes = new ArrayList<>(AppAttribute.getNumAttributes());
         mSelectedFeatures = getArguments().getBooleanArray("selectedFeatures");
         mListener = (SelectorListener) getArguments().getSerializable("listener");
-
-        inflateFeaturesCheckboxes(view, getArguments().getBoolean("predictWeapon"));
-        inflateSelectButtons(view);
-        inflateCancelButton(view);
-        inflateFeaturesOkButton(view);
-
-        return view;
     }
 
 
@@ -85,26 +77,20 @@ public class FeatureFragment extends DialogFragment
         // Pressing the back button won't close the dialog
         dialog.setCancelable(false);
 
-        mFeaturesBoxes = new ArrayList<>(AppAttribute.getNumAttributes());
-        mSelectedFeatures = getArguments().getBooleanArray("selectedFeatures");
-        mListener = (SelectorListener) getArguments().getSerializable("listener");
-
-        ViewGroup view = (ViewGroup)dialog.getWindow().getDecorView();
-
-        inflateFeaturesCheckboxes(view, getArguments().getBoolean("predictWeapon"));
-        inflateSelectButtons(view);
-        inflateCancelButton(view);
-        inflateFeaturesOkButton(view);
+        inflateFeaturesCheckboxes(dialog, getArguments().getBoolean("predictWeapon"));
+        inflateSelectButtons(dialog);
+        inflateCancelButton(dialog);
+        inflateFeaturesOkButton(dialog);
 
         return dialog;
     }
 
 
-    private void inflateFeaturesCheckboxes(View view, boolean predictWeapon)
+    private void inflateFeaturesCheckboxes(Dialog dialog, boolean predictWeapon)
     {
         for(int index = 0; index < mSelectedFeatures.length; index++)
         {
-            CheckBox box = (CheckBox) view.findViewById(AppAttribute.getCheckboxRes(index));
+            CheckBox box = (CheckBox) dialog.findViewById(AppAttribute.getCheckboxRes(index));
             if((predictWeapon && index == AppAttribute.Weapon.getIndex()) ||
                     (!predictWeapon && index == AppAttribute.Murderer.getIndex()))
                 box.setVisibility(View.GONE);
@@ -115,9 +101,9 @@ public class FeatureFragment extends DialogFragment
     }
 
 
-    private void inflateSelectButtons(View view)
+    private void inflateSelectButtons(Dialog dialog)
     {
-        Button selectallButton = (Button) view.findViewById(R.id.features_selectall);
+        Button selectallButton = (Button) dialog.findViewById(R.id.features_selectall);
 
         selectallButton.setOnClickListener(new View.OnClickListener()
         {
@@ -129,7 +115,7 @@ public class FeatureFragment extends DialogFragment
             }
         });
 
-        Button deselectallButton = (Button) view.findViewById(R.id.features_deselectall);
+        Button deselectallButton = (Button) dialog.findViewById(R.id.features_deselectall);
 
         deselectallButton.setOnClickListener(new View.OnClickListener()
         {
@@ -143,9 +129,9 @@ public class FeatureFragment extends DialogFragment
     }
 
 
-    private void inflateCancelButton(final View view)
+    private void inflateCancelButton(final Dialog dialog)
     {
-        Button cancelButton = (Button) view.findViewById(R.id.features_back_button);
+        Button cancelButton = (Button) dialog.findViewById(R.id.features_back_button);
         if(cancelButton == null)
             return;
 
@@ -154,14 +140,14 @@ public class FeatureFragment extends DialogFragment
             @Override
             public void onClick(View v)
             {
-                mListener.onCancelButtonPressed(FeatureFragment.this);
+                dismiss();
             }
         });
     }
 
-    private void inflateFeaturesOkButton(final View view)
+    private void inflateFeaturesOkButton(final Dialog dialog)
     {
-        Button okButton = (Button) view.findViewById(R.id.features_ok_button);
+        Button okButton = (Button) dialog.findViewById(R.id.features_ok_button);
 
         okButton.setOnClickListener(new View.OnClickListener()
         {
@@ -185,10 +171,11 @@ public class FeatureFragment extends DialogFragment
 
                 if(mSelectedCount < 2)
                 {
-                    Toast.makeText(view.getContext(), R.string.feature_error, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(dialog.getContext(), R.string.feature_error, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 mListener.onOkButtonPressed(FeatureFragment.this);
+                dismiss();
             }
         });
     }

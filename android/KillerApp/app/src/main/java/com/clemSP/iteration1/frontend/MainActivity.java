@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
+import android.widget.TextView;
 
 import com.clemSP.iteration1.R;
 import com.clemSP.iteration1.backend.AppAttribute;
@@ -27,7 +28,7 @@ import com.clemSP.iteration1.frontend.prediction.WeaponPredictionActivity;
  * Activity containing the widgets for the features selected to make the prediction.
  */
 public class MainActivity extends BaseActivity implements BaseInputFragment.OnFeaturesInputListener,
-        FeatureFragment.SelectorListener
+        FeatureFragment.SelectorListener, FeatureDrawer.FeatureDrawerListener
 {
     /** Request codes for other activities started by this activity. */
     private static final int CLASS_REQUEST_CODE = 0;
@@ -45,6 +46,8 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
     private boolean mPredictWeapon;
     private boolean[] mSelectedFeatures;
     private int mPrediction;
+
+    private TextView mDrawerHintView;
 
 
     @Override
@@ -120,9 +123,8 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
 
         if(featuresLayout == R.id.test_features_dialog)
             setFeaturesDialog();
-        else if(featuresLayout == R.id.test_features_activity)
-            setFeaturesActivity();
-        // TODO setFeaturesDrawer
+        else if(featuresLayout == R.id.test_features_drawer)
+            setFeaturesDrawer();
     }
 
 
@@ -130,33 +132,34 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
     private void setFeaturesDialog()
     {
         FeatureFragment selector = FeatureFragment.newInstance(mPredictWeapon, mSelectedFeatures, this);
-        selector.show(mFragmentManager, "featuresDialog");
+        selector.show(mFragmentManager, FeatureFragment.TAG);
     }
 
-    
-    private void setFeaturesActivity()
-    {
-        FeatureFragment selector = FeatureFragment.newInstance(mPredictWeapon, mSelectedFeatures, this);
-        mFragmentManager.beginTransaction().add(R.id.fragment_container, selector).commit();
-    }
-    
-    
+
     private void setFeaturesDrawer()
     {
-    	
+        new FeatureDrawer(this, mSelectedFeatures, mPredictWeapon, this);
+
+        mDrawerHintView = (TextView) findViewById(R.id.hint_textview);
+        if(mDrawerHintView == null)
+            return;
+
+        layoutActivity(true);
     }
 
 
-    private void layoutActivity()
+    private void layoutActivity(boolean empty)
     {
         FloatingActionButton editButton = (FloatingActionButton) findViewById(R.id.edit_button);
-        if(editButton == null)
+        if(!mHasDrawerLayout && editButton == null)
             return;
 
         if(mHasDrawerLayout)
         {
-            editButton.hide();
-            layoutActivityDrawer();
+            if(empty)
+                mDrawerHintView.setVisibility(View.VISIBLE);
+            else
+                mDrawerHintView.setVisibility(View.GONE);
         }
         else
         {
@@ -170,13 +173,8 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
                 }
             });
         }
-        layoutActivityFragment();
-    }
-
-
-    private void layoutActivityDrawer()
-    {
-        new FeatureDrawer(this, mSelectedFeatures, mPredictWeapon);
+        if(!empty)
+            layoutActivityFragment();
     }
 
 
@@ -185,7 +183,7 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
     {
         Fragment inputFragment = mFragmentManager.findFragmentById(R.id.fragment_container);
 
-        if(inputFragment == null || !(inputFragment instanceof BaseInputFragment))
+        if(inputFragment == null)
         {
             int inputType = mSharedPref.getInt(getString(R.string.saved_input_layout),
                     R.id.test_images_button);
@@ -206,7 +204,7 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
             }
         }
         else
-            ((BaseInputFragment)inputFragment).update();
+            ((BaseInputFragment)inputFragment).update(mSelectedFeatures);
     }
 
 
@@ -295,17 +293,32 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
     		selectFeatures();
     }
 
+
     @Override
     public void onOkButtonPressed(FeatureFragment selector)
     {
         mSelectedFeatures = selector.getSelectedFeatures();
-        selector.dismiss();
-        layoutActivity();
+        layoutActivity(false);
     }
 
+
     @Override
-    public void onCancelButtonPressed(FeatureFragment selector)
+    public void onFeatureDrawerClosed(boolean[] selectedFeatures)
     {
-        selector.dismiss();
+        if(selectedFeatures == null)
+            printErrorToast(R.string.feature_error);
+        else
+        {
+            mSelectedFeatures = selectedFeatures;
+
+            BaseInputFragment inputFragment = (BaseInputFragment) mFragmentManager
+                    .findFragmentById(R.id.fragment_container);
+
+            if(inputFragment != null)
+                inputFragment.update(mSelectedFeatures);
+            else
+                layoutActivity(false);
+
+        }
     }
 }
