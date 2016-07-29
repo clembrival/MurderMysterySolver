@@ -17,11 +17,11 @@ public class AppClassifier
     private static AppClassifier sClassifier;
     private Classifier mClassifier;
 
-    private static String mModel;
+    private static String sModel;
 
     public static AppClassifier get(Context context, String modelFile)
     {
-        if(sClassifier == null || !modelFile.equals(mModel))
+        if(sClassifier == null || !modelFile.equals(sModel))
             sClassifier = new AppClassifier(context, modelFile);
         return sClassifier;
     }
@@ -31,10 +31,10 @@ public class AppClassifier
     {
         try
         {
-            mModel = modelFile;
+            sModel = modelFile;
 
             // Loading the model
-            ObjectInputStream ois = new ObjectInputStream(context.getAssets().open(mModel));
+            ObjectInputStream ois = new ObjectInputStream(context.getAssets().open(sModel));
 
             // Creating the classifier from the model
             mClassifier = (weka.classifiers.Classifier) ois.readObject();

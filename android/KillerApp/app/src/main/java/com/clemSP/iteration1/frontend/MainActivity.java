@@ -12,9 +12,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.clemSP.iteration1.R;
-import com.clemSP.iteration1.backend.AppAttribute;
 import com.clemSP.iteration1.frontend.class_selection.ClassDialog;
-import com.clemSP.iteration1.frontend.class_selection.ClassMenuActivity;
+import com.clemSP.iteration1.frontend.class_selection.ClassTabLayout;
 import com.clemSP.iteration1.frontend.features_input.BaseInputFragment;
 import com.clemSP.iteration1.frontend.features_input.ImagesInputFragment;
 import com.clemSP.iteration1.frontend.features_input.TextInputFragment;
@@ -28,7 +27,8 @@ import com.clemSP.iteration1.frontend.prediction.WeaponPredictionActivity;
  * Activity containing the widgets for the features selected to make the prediction.
  */
 public class MainActivity extends BaseActivity implements BaseInputFragment.OnFeaturesInputListener,
-        FeatureFragment.SelectorListener, FeatureDrawer.FeatureDrawerListener
+        FeatureFragment.SelectorListener, FeatureDrawer.FeatureDrawerListener,
+        ClassTabLayout.TabLayoutListener
 {
     /** Request codes for other activities started by this activity. */
     private static final int CLASS_REQUEST_CODE = 0;
@@ -41,10 +41,11 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
     private SharedPreferences mSharedPref;
     private FragmentManager mFragmentManager;
 
-    private boolean mHasDrawerLayout;
+    private PredictionSettings mSettings;
 
-    private boolean mPredictWeapon;
-    private boolean[] mSelectedFeatures;
+    private boolean mHasDrawerLayout;
+    private boolean mIsEmpty;
+
     private int mPrediction;
 
     private TextView mDrawerHintView;
@@ -56,8 +57,11 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
         super.onCreate(savedInstanceState);
 
         mReturningActivity = -1;
+        mIsEmpty = true;
 
-        mSelectedFeatures = new boolean[AppAttribute.getNumAttributes()];
+        mSettings = PredictionSettings.getSettings();
+        mSettings.setPredictWeapon(true);
+
         mSharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         mFragmentManager = getSupportFragmentManager();
 
@@ -83,9 +87,9 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
 
         if(classLayout == R.id.test_class_dialog)
             setClassDialog();
-        else if(classLayout == R.id.test_class_activity)
-            setClassActivity();
-        // TODO setClassTabs
+        else if(classLayout == R.id.test_class_tabs)
+            setClassTabs();
+        // TODO setClassMenuItem
     }
 
 
@@ -101,21 +105,19 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
                 ClassDialog classDialog = (ClassDialog) dialog;
 
                 if(!classDialog.cancelled())
-                {
-                    mPredictWeapon = classDialog.getPredictWeapon();
                     selectFeatures();
-                }
             }
         });
     }
 
 
-    private void setClassActivity()
+    private void setClassTabs()
     {
-        startActivityForResult(new Intent(this, ClassMenuActivity.class), CLASS_REQUEST_CODE);
+        new ClassTabLayout(this);
+        selectFeatures();
     }
 
-    
+
     private void selectFeatures()
     {
     	int featuresLayout = mSharedPref.getInt(getString(R.string.saved_features_layout), 
@@ -131,24 +133,24 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
     /* Opens a dialog for the user to select the features to be used for the prediction. */
     private void setFeaturesDialog()
     {
-        FeatureFragment selector = FeatureFragment.newInstance(mPredictWeapon, mSelectedFeatures, this);
+        FeatureFragment selector = FeatureFragment.newInstance(this);
         selector.show(mFragmentManager, FeatureFragment.TAG);
     }
 
 
     private void setFeaturesDrawer()
     {
-        new FeatureDrawer(this, mSelectedFeatures, mPredictWeapon, this);
+        new FeatureDrawer(this);
 
         mDrawerHintView = (TextView) findViewById(R.id.hint_textview);
         if(mDrawerHintView == null)
             return;
 
-        layoutActivity(true);
+        layoutActivity();
     }
 
 
-    private void layoutActivity(boolean empty)
+    private void layoutActivity()
     {
         FloatingActionButton editButton = (FloatingActionButton) findViewById(R.id.edit_button);
         if(!mHasDrawerLayout && editButton == null)
@@ -156,7 +158,7 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
 
         if(mHasDrawerLayout)
         {
-            if(empty)
+            if(mIsEmpty)
                 mDrawerHintView.setVisibility(View.VISIBLE);
             else
                 mDrawerHintView.setVisibility(View.GONE);
@@ -173,7 +175,7 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
                 }
             });
         }
-        if(!empty)
+        if(!mIsEmpty)
             layoutActivityFragment();
     }
 
@@ -191,27 +193,24 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
             if(inputType == R.id.test_images_button)
             {
                 ImagesInputFragment imagesInputFragment = new ImagesInputFragment();
-                imagesInputFragment.setPredictWeapon(mPredictWeapon);
-                imagesInputFragment.setSelectedFeatures(mSelectedFeatures);
                 mFragmentManager.beginTransaction().add(R.id.fragment_container, imagesInputFragment).commit();
             }
             else
             {
                 TextInputFragment textInputFragment = new TextInputFragment();
-                textInputFragment.setPredictWeapon(mPredictWeapon);
-                textInputFragment.setSelectedFeatures(mSelectedFeatures);
                 mFragmentManager.beginTransaction().add(R.id.fragment_container, textInputFragment).commit();
             }
+            mIsEmpty = false;
         }
         else
-            ((BaseInputFragment)inputFragment).update(mSelectedFeatures);
+            ((BaseInputFragment)inputFragment).update();
     }
 
 
     @Override
     public void onFeaturesInput(String label)
     {
-        if(mPredictWeapon)
+        if(mSettings.getPredictWeapon())
             predictWeapon(label);
         else
             predictGender(label);
@@ -267,7 +266,7 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
 
             if(requestCode == CLASS_REQUEST_CODE)
             {
-                mPredictWeapon = data.getExtras().getBoolean("weapon");
+                mSettings.setPredictWeapon(data.getExtras().getBoolean("weapon"));
             }
             else if(requestCode == GENDER_PREDICTION_REQUEST_CODE
                     || requestCode == WEAPON_PREDICTION_REQUEST_CODE)
@@ -295,30 +294,38 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
 
 
     @Override
-    public void onOkButtonPressed(FeatureFragment selector)
+    public void onOkButtonPressed()
     {
-        mSelectedFeatures = selector.getSelectedFeatures();
-        layoutActivity(false);
+        mIsEmpty = false;
+        layoutActivity();
     }
 
 
     @Override
-    public void onFeatureDrawerClosed(boolean[] selectedFeatures)
+    public void onFeatureDrawerClosed(boolean selectionIsValid)
     {
-        if(selectedFeatures == null)
+        if(!selectionIsValid)
             printErrorToast(R.string.feature_error);
         else
         {
-            mSelectedFeatures = selectedFeatures;
+            mIsEmpty = false;
 
             BaseInputFragment inputFragment = (BaseInputFragment) mFragmentManager
                     .findFragmentById(R.id.fragment_container);
 
             if(inputFragment != null)
-                inputFragment.update(mSelectedFeatures);
+                inputFragment.update();
             else
-                layoutActivity(false);
+                layoutActivity();
 
         }
+    }
+
+
+    @Override
+    public void onTabSelected()
+    {
+        if(!mIsEmpty)
+            layoutActivityFragment();
     }
 }

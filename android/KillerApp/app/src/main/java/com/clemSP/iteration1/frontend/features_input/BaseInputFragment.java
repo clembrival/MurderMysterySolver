@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.clemSP.iteration1.frontend.InvalidInputException;
 import com.clemSP.iteration1.R;
 import com.clemSP.iteration1.backend.AppAttribute;
+import com.clemSP.iteration1.frontend.PredictionSettings;
 
 
 /**
@@ -24,16 +25,16 @@ import com.clemSP.iteration1.backend.AppAttribute;
 public abstract class BaseInputFragment extends Fragment
 {
 	protected View mView;
-    // Interface implemented by the container activity to communicate with this fragment.
-    protected OnFeaturesInputListener mCallback;
 
+    protected OnFeaturesInputListener mListener;
+
+    // Interface implemented by the container activity to communicate with this fragment.
     public interface OnFeaturesInputListener
     {
         void onFeaturesInput(String label);
     }
 
-    protected boolean mPredictWeapon;
-    protected boolean[] mSelectedFeatures;
+    protected PredictionSettings mSettings;
 
     protected EditText mTitleField;
     protected RadioGroup mPovGroup;
@@ -50,7 +51,8 @@ public abstract class BaseInputFragment extends Fragment
         // Make sure that the container activity has implemented the callback interface.
         try
         {
-            mCallback = (OnFeaturesInputListener) context;
+            mListener = (OnFeaturesInputListener) context;
+            mSettings = PredictionSettings.getSettings();
         }
         catch (ClassCastException e)
         {
@@ -67,17 +69,6 @@ public abstract class BaseInputFragment extends Fragment
     }
 
 
-    public void setPredictWeapon(boolean predictWeapon)
-    {
-        mPredictWeapon = predictWeapon;
-    }
-
-
-    public void setSelectedFeatures(boolean[] selectedFeatures)
-    {
-        mSelectedFeatures = selectedFeatures;
-    }
-
 
     public void inflateWidgets()
     {
@@ -90,7 +81,7 @@ public abstract class BaseInputFragment extends Fragment
         RelativeLayout povLayout = (RelativeLayout) mView.findViewById(R.id.pov_layout);
         if (povLayout != null)
         {
-            if (mSelectedFeatures[AppAttribute.Pov.getIndex()])
+            if (mSettings.getFeatureIsSelected(AppAttribute.Pov.getIndex()))
             {
                 povLayout.setVisibility(View.VISIBLE);
                 mPovGroup = (RadioGroup) mView.findViewById(R.id.pov_group);
@@ -106,7 +97,7 @@ public abstract class BaseInputFragment extends Fragment
 
     public void inflateYearButton()
     {
-        if(!mSelectedFeatures[AppAttribute.Year.getIndex()])
+        if(!mSettings.getFeatureIsSelected(AppAttribute.Year.getIndex()))
         {
             RelativeLayout yearLayout = (RelativeLayout) mView.findViewById(R.id.year_layout);
             if(yearLayout != null)
@@ -143,7 +134,7 @@ public abstract class BaseInputFragment extends Fragment
     public int getInputYear() throws InvalidInputException
     {
         int year = 0;
-        if(mSelectedFeatures[AppAttribute.Year.getIndex()])
+        if(mSettings.getFeatureIsSelected(AppAttribute.Year.getIndex()))
         {
             if (mYear == 0)
                 throw new InvalidInputException(R.string.year_error);
@@ -157,7 +148,7 @@ public abstract class BaseInputFragment extends Fragment
     public String getInputFromRadioGroup(AppAttribute attribute, RadioGroup group,
                                          int errorRes) throws InvalidInputException
     {
-        if(mSelectedFeatures[attribute.getIndex()])
+        if(mSettings.getFeatureIsSelected(attribute.getIndex()))
         {
             // Getting checked point of view radio button, if any
             int selectedId = group.getCheckedRadioButtonId();
@@ -175,7 +166,7 @@ public abstract class BaseInputFragment extends Fragment
     public String getInputFromSpinner(AppAttribute attribute, Spinner spinner, int errorRes)
             throws InvalidInputException
     {
-        if(mSelectedFeatures[attribute.getIndex()])
+        if(mSettings.getFeatureIsSelected(attribute.getIndex()))
         {
             View spinnerView = spinner.getSelectedView();
             if(R.string.select_label == (int)spinnerView.getId())
@@ -193,5 +184,5 @@ public abstract class BaseInputFragment extends Fragment
     }
 
 
-    public abstract void update(boolean[] selectedFeatures);
+    public abstract void update();
 }

@@ -15,11 +15,8 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity android:name="com.clemSP.iteration1.frontend.WeaponActivity" />
         <activity android:name="com.clemSP.iteration1.frontend.prediction.WeaponPredictionActivity" />
-        <activity android:name="com.clemSP.iteration1.frontend.GenderActivity" />
         <activity android:name="com.clemSP.iteration1.frontend.prediction.GenderPredictionActivity" />
-        <activity android:name="com.clemSP.iteration1.frontend.SelectFeaturesActivity" />
         <activity android:name="com.clemSP.iteration1.frontend.ManagerActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +25,6 @@
             </intent-filter>
         </activity>
         <activity android:name="com.clemSP.iteration1.frontend.MainActivity" />
-        <activity android:name="com.clemSP.iteration1.frontend.class_selection.ClassMenuActivity" />
     </application>
 
 </manifest>

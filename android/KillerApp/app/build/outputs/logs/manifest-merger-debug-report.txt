@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:2:1-32:12
+ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:2:1-28:12
 	package
 		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:3:11-42
 		INJECTED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml
@@ -27,7 +27,7 @@ MERGED from [com.android.support:support-vector-drawable:23.3.0] C:\Users\Clem\w
 MERGED from [com.android.support:support-v4:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:design:23.1.1] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\design\23.3.0\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:appcompat-v7:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:support-vector-drawable:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\AndroidManifest.xml:5:5-43
 MERGED from [com.android.support:support-v4:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:20:5-43
@@ -35,8 +35,8 @@ MERGED from [com.android.support:animated-vector-drawable:23.3.0] C:\Users\Clem\
 MERGED from [com.android.support:support-vector-drawable:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\AndroidManifest.xml:5:5-43
 MERGED from [com.android.support:support-v4:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:recyclerview-v7:23.1.1] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.3.0\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:20:5-43
 	tools:overrideLibrary
 		ADDED from [com.android.support:appcompat-v7:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\AndroidManifest.xml:23:9-75
@@ -49,7 +49,7 @@ MERGED from [com.android.support:support-v4:23.3.0] C:\Users\Clem\workspace\summ
 		INJECTED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml
 application
-ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:12:5-30:19
+ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:12:5-26:19
 MERGED from [com.android.support:appcompat-v7:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-vector-drawable:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\AndroidManifest.xml:7:5-20
 MERGED from [com.android.support:support-v4:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:22:5-20
@@ -58,7 +58,7 @@ MERGED from [com.android.support:support-vector-drawable:23.3.0] C:\Users\Clem\w
 MERGED from [com.android.support:support-v4:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:design:23.1.1] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\design\23.3.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-vector-drawable:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\AndroidManifest.xml:7:5-20
 MERGED from [com.android.support:support-v4:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:22:5-20
@@ -76,45 +76,29 @@ MERGED from [com.android.support:support-v4:23.3.0] C:\Users\Clem\workspace\summ
 		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:14:9-45
 	android:theme
 		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:16:9-40
-activity#com.clemSP.iteration1.frontend.WeaponActivity
-ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:17:9-60
-	android:name
-		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:17:19-58
 activity#com.clemSP.iteration1.frontend.prediction.WeaponPredictionActivity
+ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:17:9-81
+	android:name
+		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:17:19-79
+activity#com.clemSP.iteration1.frontend.prediction.GenderPredictionActivity
 ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:18:9-81
 	android:name
 		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:18:19-79
-activity#com.clemSP.iteration1.frontend.GenderActivity
-ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:19:9-60
-	android:name
-		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:19:19-58
-activity#com.clemSP.iteration1.frontend.prediction.GenderPredictionActivity
-ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:20:9-81
-	android:name
-		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:20:19-79
-activity#com.clemSP.iteration1.frontend.SelectFeaturesActivity
-ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:21:9-68
-	android:name
-		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:21:19-66
 activity#com.clemSP.iteration1.frontend.ManagerActivity
-ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:22:9-27:20
+ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:19:9-24:20
 	android:name
-		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:22:19-59
+		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:19:19-59
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:23:13-26:29
+ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:20:13-23:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:24:17-68
+ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:21:17-68
 	android:name
-		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:24:25-66
+		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:21:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:25:17-76
+ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:22:17-76
 	android:name
-		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:25:27-74
+		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:22:27-74
 activity#com.clemSP.iteration1.frontend.MainActivity
-ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:28:9-58
+ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:25:9-58
 	android:name
-		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:28:19-56
-activity#com.clemSP.iteration1.frontend.class_selection.ClassMenuActivity
-ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:29:9-79
-	android:name
-		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:29:19-77
+		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:25:19-56

@@ -80,4 +80,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="tablayout" parent="Base.Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/firebrick</item>
+        <item name="android:textColor">@color/firebrick</item>
+        <item name="tabSelectedTextColor">@color/firebrick</item>
+    </style>
+
 </resources>

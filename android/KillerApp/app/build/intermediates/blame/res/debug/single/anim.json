@@ -1,15 +1,15 @@
 [
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_out.xml",
-        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.1.1\\res\\anim\\design_fab_out.xml"
+        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\anim\\design_fab_out.xml"
     },
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_in.xml",
-        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.1.1\\res\\anim\\design_fab_in.xml"
+        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\anim\\design_fab_in.xml"
     },
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_in.xml",
-        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.1.1\\res\\anim\\design_snackbar_in.xml"
+        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\anim\\design_snackbar_in.xml"
     },
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_in.xml",
@@ -30,6 +30,10 @@
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_exit.xml",
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\anim\\abc_popup_exit.xml"
+    },
+    {
+        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_in.xml",
+        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\anim\\design_bottom_sheet_slide_in.xml"
     },
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
@@ -53,6 +57,10 @@
     },
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_out.xml",
-        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.1.1\\res\\anim\\design_snackbar_out.xml"
+        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\anim\\design_snackbar_out.xml"
+    },
+    {
+        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_out.xml",
+        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\anim\\design_bottom_sheet_slide_out.xml"
     }
 ]

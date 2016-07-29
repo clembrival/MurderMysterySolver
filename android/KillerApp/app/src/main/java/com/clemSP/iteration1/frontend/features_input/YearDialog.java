@@ -8,9 +8,7 @@ import android.widget.NumberPicker;
 
 import com.clemSP.iteration1.R;
 
-/**
- * Created by Clem on 17/07/2016.
- */
+
 public class YearDialog extends Dialog
 {
     private NumberPicker mYearPicker1, mYearPicker2, mYearPicker3, mYearPicker4;

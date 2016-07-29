@@ -10,7 +10,6 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.clemSP.iteration1.frontend.InvalidInputException;
 import com.clemSP.iteration1.R;
@@ -50,18 +49,19 @@ public class TextInputFragment extends BaseInputFragment
         mDetectiveSpin = inflateSpinner(AppAttribute.Detective, R.id.detective_layout,
                 R.id.detective_spinner, R.array.detective_array);
 
-        if(mPredictWeapon)
+        if(mSettings.getPredictWeapon())
+        {
             mGenderSpin = inflateSpinner(AppAttribute.Murderer, R.id.weapon_layout,
                     R.id.weapon_spinner, R.array.gender_array);
+            if(mGenderSpin != null)
+                inflateLabel(R.id.weapon_textview, R.string.murderer_label);
+        }
         else
+        {
             mWeaponSpin = inflateSpinner(AppAttribute.Weapon, R.id.weapon_layout,
                     R.id.weapon_spinner, R.array.cause_array);
-
-        if(mGenderSpin != null || mWeaponSpin != null)
-        {
-            TextView label = (TextView) mView.findViewById(R.id.weapon_textview);
-            if(label != null)
-                label.setText((mGenderSpin != null) ? R.string.murderer_label : R.string.cause_label);
+            if(mWeaponSpin != null)
+                inflateLabel(R.id.weapon_textview, R.string.cause_label);
         }
 
         mVictimSpin = inflateSpinner(AppAttribute.Victim, R.id.victim_layout,
@@ -75,7 +75,7 @@ public class TextInputFragment extends BaseInputFragment
 
         if(layout != null)
         {
-            if (!mSelectedFeatures[attribute.getIndex()])
+            if (!mSettings.getFeatureIsSelected(attribute.getIndex()))
                 layout.setVisibility(View.GONE);
             else
             {
@@ -94,7 +94,7 @@ public class TextInputFragment extends BaseInputFragment
         RelativeLayout layout = (RelativeLayout) mView.findViewById(layoutRes);
 
         if(layout != null)
-            if (!mSelectedFeatures[attribute.getIndex()])
+            if (!mSettings.getFeatureIsSelected(attribute.getIndex()))
                 layout.setVisibility(View.GONE);
             else
             {
@@ -113,9 +113,18 @@ public class TextInputFragment extends BaseInputFragment
                 Spinner spinner = (Spinner) mView.findViewById(spinnerRes);
                 if (spinner != null)
                     spinner.setAdapter(adapter);
+
                 return spinner;
             }
         return null;
+    }
+
+
+    private void inflateLabel(int textviewRes, int labelRes)
+    {
+        TextView label = (TextView) mView.findViewById(textviewRes);
+        if(label != null)
+            label.setText(labelRes);
     }
 
 
@@ -159,9 +168,9 @@ public class TextInputFragment extends BaseInputFragment
                         data.setOthers();
 
                         VariableDataset.clear();
-                        VariableDataset dataset = VariableDataset.get(mView.getContext(), mPredictWeapon);
+                        VariableDataset dataset = VariableDataset.get(mView.getContext());
                         dataset.setData(data);
-                        mCallback.onFeaturesInput(dataset.classify());
+                        mListener.onFeaturesInput(dataset.classify());
                     }
                     catch (InvalidInputException iie)
                     {
@@ -172,9 +181,8 @@ public class TextInputFragment extends BaseInputFragment
     }
 
     @Override
-    public void update(boolean[] selectedFeatures)
+    public void update()
     {
-        mSelectedFeatures = selectedFeatures;
     	inflateWidgets();
         super.inflateYearButton();
     }

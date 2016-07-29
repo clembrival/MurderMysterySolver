@@ -39,7 +39,6 @@ public class ImageViewAdapter extends BaseAdapter
     @Override
     public Object getItem(int position)
     {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -47,22 +46,9 @@ public class ImageViewAdapter extends BaseAdapter
     @Override
     public long getItemId(int position)
     {
-        // TODO Auto-generated method stub
         return 0;
     }
 
-
-    public void removeItem(int position)
-    {
-        mResources.remove(position);
-        notifyDataSetChanged();
-    }
-
-    public void addItem(ImageFeature feature)
-    {
-        mResources.add(feature);
-        notifyDataSetChanged();
-    }
 
     private class ViewHolder
     {

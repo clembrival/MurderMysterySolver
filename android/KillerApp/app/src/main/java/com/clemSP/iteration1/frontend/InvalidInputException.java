@@ -14,12 +14,6 @@ public class InvalidInputException extends Exception
         mErrorRes = errorRes;
     }
 
-
-    public int getErrorRes()
-    {
-        return mErrorRes;
-    }
-    
     
     public void printToast(Context context)
     {

@@ -2,6 +2,8 @@ package com.clemSP.iteration1.backend;
 
 import android.content.Context;
 
+import com.clemSP.iteration1.frontend.PredictionSettings;
+
 import java.util.ArrayList;
 
 import weka.core.Attribute;
@@ -13,10 +15,11 @@ public class VariableDataset extends Dataset
     private static VariableDataset sVariableDataset;
 
 
-    public static VariableDataset get(Context context, boolean predictWeapon)
+    public static VariableDataset get(Context context)
     {
         if(sVariableDataset == null)
         {
+            boolean predictWeapon = PredictionSettings.getSettings().getPredictWeapon();
             String model = predictWeapon ? "ibk_weapon.model" : "ibk_gender.model";
             int classIndex = predictWeapon ? WEAPON : MURDERER;
 

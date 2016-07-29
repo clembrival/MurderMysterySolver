@@ -24,20 +24,12 @@ public class ImageFeature implements Serializable
         return mImageRes;
     }
 
-    public void setImageRes(int imageRes)
-    {
-        mImageRes = imageRes;
-    }
 
     public int getCaptionRes()
     {
         return mCaptionRes;
     }
 
-    public void setCaptionRes(int captionRes)
-    {
-        mCaptionRes = captionRes;
-    }
 
     public AppAttribute getAttribute()
     {

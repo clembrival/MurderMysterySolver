@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.clemSP.iteration1.R;
 import com.clemSP.iteration1.backend.AppAttribute;
+import com.clemSP.iteration1.frontend.PredictionSettings;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,29 +25,27 @@ public class FeatureFragment extends DialogFragment
 
     private SelectorListener mListener;
 
+    private PredictionSettings mSettings;
+
     private List<CheckBox> mFeaturesBoxes;
-    private boolean[] mSelectedFeatures;
 
     private int mSelectedCount;
 
 
     public interface SelectorListener extends Serializable
     {
-        void onOkButtonPressed(FeatureFragment selector);
+        void onOkButtonPressed();
     }
 
 
     public FeatureFragment() { }
 
 
-    public static FeatureFragment newInstance(boolean predictWeapon, boolean[] selectedFeatures,
-                                              SelectorListener listener)
+    public static FeatureFragment newInstance(SelectorListener listener)
     {
         FeatureFragment selector = new FeatureFragment();
 
         Bundle bundle = new Bundle();
-        bundle.putBoolean("predictWeapon", predictWeapon);
-        bundle.putBooleanArray("selectedFeatures", selectedFeatures);
         bundle.putSerializable("listener", listener);
 
         selector.setArguments(bundle);
@@ -61,8 +60,10 @@ public class FeatureFragment extends DialogFragment
         super.onCreate(savedInstanceState);
 
         mFeaturesBoxes = new ArrayList<>(AppAttribute.getNumAttributes());
-        mSelectedFeatures = getArguments().getBooleanArray("selectedFeatures");
         mListener = (SelectorListener) getArguments().getSerializable("listener");
+
+        mSettings = PredictionSettings.getSettings();
+
     }
 
 
@@ -77,7 +78,7 @@ public class FeatureFragment extends DialogFragment
         // Pressing the back button won't close the dialog
         dialog.setCancelable(false);
 
-        inflateFeaturesCheckboxes(dialog, getArguments().getBoolean("predictWeapon"));
+        inflateFeaturesCheckboxes(dialog);
         inflateSelectButtons(dialog);
         inflateCancelButton(dialog);
         inflateFeaturesOkButton(dialog);
@@ -86,16 +87,17 @@ public class FeatureFragment extends DialogFragment
     }
 
 
-    private void inflateFeaturesCheckboxes(Dialog dialog, boolean predictWeapon)
+    private void inflateFeaturesCheckboxes(Dialog dialog)
     {
-        for(int index = 0; index < mSelectedFeatures.length; index++)
+        boolean predictWeapon = mSettings.getPredictWeapon();
+        for(int index = 0; index < mSettings.getSelectedFeaturesLength(); index++)
         {
             CheckBox box = (CheckBox) dialog.findViewById(AppAttribute.getCheckboxRes(index));
             if((predictWeapon && index == AppAttribute.Weapon.getIndex()) ||
                     (!predictWeapon && index == AppAttribute.Murderer.getIndex()))
                 box.setVisibility(View.GONE);
             else
-                box.setChecked(mSelectedFeatures[index]);
+                box.setChecked(mSettings.getFeatureIsSelected(index));
             mFeaturesBoxes.add(box);
         }
     }
@@ -158,15 +160,12 @@ public class FeatureFragment extends DialogFragment
 
                 for(int index = 0; index < mFeaturesBoxes.size(); index++)
                 {
-                    CheckBox box = mFeaturesBoxes.get(index);
+                    boolean boxChecked = mFeaturesBoxes.get(index).isChecked();
 
-                    if(box.isChecked())
-                    {
+                    if(boxChecked)
                         mSelectedCount++;
-                        mSelectedFeatures[index] = true;
-                    }
-                    else
-                        mSelectedFeatures[index] = false;
+
+                    mSettings.setFeatureIsSelected(index, boxChecked);
                 }
 
                 if(mSelectedCount < 2)
@@ -174,16 +173,10 @@ public class FeatureFragment extends DialogFragment
                     Toast.makeText(dialog.getContext(), R.string.feature_error, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                mListener.onOkButtonPressed(FeatureFragment.this);
+                mListener.onOkButtonPressed();
                 dismiss();
             }
         });
-    }
-
-
-    public boolean[] getSelectedFeatures()
-    {
-        return mSelectedFeatures;
     }
 }
 

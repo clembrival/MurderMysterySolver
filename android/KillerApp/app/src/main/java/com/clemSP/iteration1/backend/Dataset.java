@@ -2,9 +2,6 @@ package com.clemSP.iteration1.backend;
 
 import android.content.Context;
 
-import com.clemSP.iteration1.backend.AppAttribute;
-import com.clemSP.iteration1.backend.AppClassifier;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,12 +16,12 @@ public abstract class Dataset
     // Values of the nominal attributes
     protected static final String[] LOCATIONS = {"unknown", "UK", "International"};
     protected static final String[] POVS = {"unknown", "First", "Third"};
-    protected final String[] DETECTIVES = {"unknown", "Hercule Poirot", "Tommy and Tuppence",
+    protected static final String[] DETECTIVES = {"unknown", "Hercule Poirot", "Tommy and Tuppence",
             "Colonel Race", "Superintendent Battle", "Miss Marple", "Mystery novel"};
-    protected final String[] WEAPONS = {"unknown", "Poison", "Stabbing", "Accident", "Shooting",
+    protected static final String[] WEAPONS = {"unknown", "Poison", "Stabbing", "Accident", "Shooting",
             "Strangling", "Concussion", "ThroatSlit", "None", "Drowning"};
-    protected final String[] VICTIMS = {"unknown", "F", "M", "None"};
-    protected final String[] MURDERERS = {"unknown", "F", "M", "Lots", "None"};
+    protected static final String[] VICTIMS = {"unknown", "F", "M", "None"};
+    protected static final String[] MURDERERS = {"unknown", "F", "M", "Lots", "None"};
 
     protected ArrayList<Attribute> mAttributes;
 
@@ -33,7 +30,7 @@ public abstract class Dataset
             DETECTIVE = AppAttribute.Detective.getIndex(),
             LOCATION = AppAttribute.Location.getIndex(), POV = AppAttribute.Pov.getIndex(),
             WEAPON = AppAttribute.Weapon.getIndex(), VICTIM = AppAttribute.Victim.getIndex(),
-            MURDERER = AppAttribute.Murderer.getIndex(), AVG_RATINGS = 7, NUM_RATINGS = 8;
+            MURDERER = AppAttribute.Murderer.getIndex();/*, AVG_RATINGS = 7, NUM_RATINGS = 8;*/
 
     protected Instances mData, mLabelled;
     protected String mTitle, mLabel;

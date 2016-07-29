@@ -7,6 +7,7 @@ import android.widget.RadioGroup;
 
 import com.clemSP.iteration1.R;
 import com.clemSP.iteration1.frontend.BaseDialog;
+import com.clemSP.iteration1.frontend.PredictionSettings;
 
 
 /**
@@ -15,7 +16,6 @@ import com.clemSP.iteration1.frontend.BaseDialog;
 public class ClassDialog extends BaseDialog
 {
     private RadioGroup mPredictionGroup;
-    private boolean mPredictWeapon;
 
 
     public ClassDialog(Context context)
@@ -40,13 +40,14 @@ public class ClassDialog extends BaseDialog
             @Override
             public void onClick(View v)
             {
+                PredictionSettings settings = PredictionSettings.getSettings();
                 int selectedId = mPredictionGroup.getCheckedRadioButtonId();
 
                 if(selectedId == R.id.weapon_button)
-                    mPredictWeapon = true;
+                    settings.setPredictWeapon(true);
 
                 else if(selectedId == R.id.gender_button)
-                    mPredictWeapon = false;
+                    settings.setPredictWeapon(false);
 
                 else
                 {
@@ -58,11 +59,5 @@ public class ClassDialog extends BaseDialog
                 dismiss();
             }
         });
-    }
-
-
-    public boolean getPredictWeapon()
-    {
-        return mPredictWeapon;
     }
 }

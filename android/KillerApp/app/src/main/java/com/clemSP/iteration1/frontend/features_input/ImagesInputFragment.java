@@ -52,11 +52,11 @@ public class ImagesInputFragment extends BaseInputFragment
     {
         mFragmentFeatures = new ArrayList<>();
 
-        for(int index = 0; index < mSelectedFeatures.length; index++)
+        for(int index = 0; index < mSettings.getSelectedFeaturesLength(); index++)
         {
             AppAttribute attribute = AppAttribute.getAttributeFromIndex(index);
             if(attribute != AppAttribute.Pov && attribute != AppAttribute.Year)
-                if(mSelectedFeatures[index])
+                if(mSettings.getFeatureIsSelected(index))
                 {
                     int imageRes = R.drawable.unknown;
                     int captionRes = AppAttribute.getLabelRes(attribute);
@@ -156,9 +156,9 @@ public class ImagesInputFragment extends BaseInputFragment
                         data.setOthers();
 
                         VariableDataset.clear();
-                        VariableDataset dataset = VariableDataset.get(mView.getContext(), mPredictWeapon);
+                        VariableDataset dataset = VariableDataset.get(mView.getContext());
                         dataset.setData(data);
-                        mCallback.onFeaturesInput(dataset.classify());
+                        mListener.onFeaturesInput(dataset.classify());
                     }
                     catch (InvalidInputException iie)
                     {
@@ -170,15 +170,12 @@ public class ImagesInputFragment extends BaseInputFragment
 
 
     private String getInputFromImageFeature(View view, AppAttribute attribute, String caption,
-                                           int errorRes)
+                                           int errorRes) throws InvalidInputException
     {
-        if(mSelectedFeatures[attribute.getIndex()])
+        if(mSettings.getFeatureIsSelected(attribute.getIndex()))
         {
             if(view.getContext().getString(AppAttribute.getLabelRes(attribute)).equals(caption))
-            {
-                printErrorToast(view.getContext(), view.getContext().getString(errorRes));
-                return "";
-            }
+                throw new InvalidInputException(errorRes);
             else
                 return caption;
         }
@@ -188,9 +185,8 @@ public class ImagesInputFragment extends BaseInputFragment
 
 
     @Override
-    public void update(boolean[] selectedFeatures)
+    public void update()
     {
-        mSelectedFeatures = selectedFeatures;
         inflateWidgets();
         inflateYearButton();
         inflateFeatureGrid();
