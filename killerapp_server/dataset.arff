@@ -1,0 +1,84 @@
+% 1. Title: Agatha Christie Novels
+%
+% 2. Sources:
+%		(a) Creator: Jeremy Singer
+%		(b) Date: February, 2016
+@relation novel
+
+@attribute title string
+@attribute year numeric
+@attribute detective {unknown, "Hercule Poirot", "Tommy and Tuppence", "Colonel Race", "Superintendent Battle", "Miss Marple", "Mystery novel"}
+@attribute location {unknown, UK, International}
+@attribute point_of_view {unknown, First, Third}
+@attribute murder_weapon {unknown, Poison, Stabbing, Accident, Shooting, Strangling, Concussion, ThroatSlit, None, Drowning}
+@attribute victim_gender {unknown, F, M, None}
+@attribute murderer_gender {unknown, F, M, Lots, None}
+@attribute average_ratings numeric
+
+@data
+'The Mysterious Affair at Styles',1920,'Hercule Poirot',UK,First,Poison,F,M, 3.96
+'The Secret Adversary',1922,'Tommy and Tuppence',UK,Third,Poison,F,M,3.82
+'The Murder on the Links',1923,'Hercule Poirot',International,First,Stabbing,M,F,3.77
+'The Man in the Brown Suit',1924,'Colonel Race',International,First,Accident,M,M,3.95
+'The Secret of Chimneys',1925,'Superintendent Battle',UK,Third,Shooting,M,F,3.83
+'The Murder of Roger Ackroyd',1926,'Hercule Poirot',UK,First,Stabbing,M,M,4.17
+'The Big Four',1927,'Hercule Poirot',UK,First,Poison,M,M,3.61
+'The Mystery of the Blue Train',1928,'Hercule Poirot',International,Third,Strangling,F,M,3.75
+'The Seven Dials Mystery',1929,'Superintendent Battle',UK,Third,Poison,M,M,3.78
+'The Murder at the Vicarage',1930,'Miss Marple',UK,First,Shooting,M,F,4.02
+'The Sittaford Mystery',1931,'Mystery novel',UK,Third,Concussion,M,M,3.67
+'Peril at End House',1932,'Hercule Poirot',UK,First,Shooting,F,F,3.87
+'Lord Edgware Dies',1933,'Hercule Poirot',UK,First,Stabbing,M,F,3.87
+'Why Didn\'t They Ask Evans?',1934,'Mystery novel',UK,Third,Accident,M,M,3.83
+'Murder on the Orient Express',1934,'Hercule Poirot',International,Third,Stabbing,M,Lots,4.13
+'Three Act Tragedy',1935,'Hercule Poirot',UK,Third,Poison,M,M,3.8
+'Death in the Clouds',1935,'Hercule Poirot',UK,Third,Poison,F,M,3.77
+'The A.B.C. Murders',1936,'Hercule Poirot',UK,First,Concussion,F,M,3.95
+'Cards on the Table',1936,'Hercule Poirot',UK,Third,Stabbing,M,M,3.88
+'Murder in Mesopotamia',1936,'Hercule Poirot',International,First,Concussion,F,M,3.84
+'Death on the Nile',1937,'Hercule Poirot',International,Third,Shooting,F,M,4.04
+'Dumb Witness',1937,'Hercule Poirot',UK,First,Poison,F,F,3.79
+'Appointment with Death',1938,'Hercule Poirot',International,Third,Poison,F,F,3.83
+'Hercule Poirot\'s Christmas',1938,'Hercule Poirot',UK,Third,ThroatSlit,M,M,3.88
+'Murder Is Easy',1939,'Superintendent Battle',UK,Third,Accident,F,F,3.74
+'And then there were none',1940,'Mystery novel',UK,Third,Poison,M,M,4.21
+'One Two Buckle My Shoe',1940,'Hercule Poirot',UK,Third,Shooting,M,M,3.72
+'Sad Cypress',1940,'Hercule Poirot',UK,Third,Poison,F,F,3.81
+'Evil Under the Sun',1941,'Hercule Poirot',UK,Third,Strangling,F,M,3.93
+'N or M?',1941,'Tommy and Tuppence',UK,Third,Accident,M,M,3.72
+'The Body in the Library',1942,'Miss Marple',UK,Third,Poison,F,F,3.83
+'The Moving Finger',1942,'Miss Marple',UK,First,Poison,F,M,3.83
+'Five Little Pigs',1942,'Hercule Poirot',UK,Third,Poison,M,F,3.93
+'Towards Zero',1944,'Superintendent Battle',UK,Third,Concussion,M,M,3.83
+'Death Comes as the End',1945,'Mystery novel',International,Third,Accident,F,M,3.83
+'Sparkling Cyanide',1945,'Colonel Race',UK,Third,Poison,M,F,3.83
+'The Hollow',1946,'Hercule Poirot',UK,Third,Shooting,M,F,3.75
+'Taken at the Flood',1948,'Hercule Poirot',UK,Third,Concussion,M,M,3.69
+'Crooked House',1949,'Mystery novel',UK,First,Poison,M,F,3.95
+'A Murder Is Announced',1950,'Miss Marple',UK,Third,Shooting,M,F,3.94
+'They Came to Baghdad',1951,'Mystery novel',International,Third,Stabbing,M,M,3.77
+'They Do It with Mirrors',1952,'Miss Marple',UK,Third,Shooting,M,M,3.73
+'Mrs McGinty\'s Dead',1952,'Hercule Poirot',UK,Third,Concussion,F,M,3.79
+'After the Funeral',1953,'Hercule Poirot',UK,Third,Concussion,F,F,3.82
+'A Pocket Full of Rye',1953,'Miss Marple',UK,Third,Poison,M,M,3.82
+'Destination Unknown',1954,'Mystery novel',International,Third,Poison,F,M,3.64
+'Hickory Dickory Dock',1955,'Hercule Poirot',UK,Third,Poison,F,M,3.73
+'Dead Man\'s Folly',1956,'Hercule Poirot',UK,Third,Strangling,F,F,3.76
+'4.50 from Paddington',1957,'Miss Marple',UK,Third,Strangling,F,M,3.91
+'Ordeal by Innocence',1958,'Mystery novel',UK,Third,Concussion,F,F,3.76
+'Cat Among the Pigeons',1959,'Hercule Poirot',UK,Third,Shooting,F,F,3.81
+'The Pale Horse',1961,'Mystery novel',UK,First,Poison,F,M,3.73
+'The Mirror Crack\'d from Side to Side',1962,'Miss Marple',UK,Third,Poison,F,F,3.87
+'The Clocks',1963,'Hercule Poirot',UK,First,Stabbing,M,M,3.69
+'A Caribbean Mystery',1964,'Miss Marple',International,Third,Poison,M,M,3.76
+'At Bertram\'s Hotel',1965,'Miss Marple',UK,Third,Shooting,M,F,3.69
+'Third Girl',1966,'Hercule Poirot',UK,Third,Accident,F,F,3.59
+'Endless Night',1967,'Mystery novel',UK,First,Accident,F,M,3.74
+'By the Pricking of My Thumbs',1968,'Tommy and Tuppence',UK,Third,Poison,F,F,3.7
+'Hallowe\'en Party',1969,'Hercule Poirot',UK,Third,Drowning,F,F,3.66
+'Passenger to Frankfurt',1970,'Mystery novel',International,Third,None,None,None,3.05
+Nemesis,1971,'Miss Marple',UK,Third,Poison,F,F,3.74
+'Elephants Can Remember',1972,'Hercule Poirot',UK,Third,Shooting,F,M,3.62
+'Postern of Fate',1973,'Tommy and Tuppence',UK,Third,Poison,?,?,3.26
+Curtain,1975,'Hercule Poirot',UK,First,Poison,M,M,4.03
+'Sleeping Murder',1976,'Miss Marple',UK,Third,Strangling,F,M,3.9
