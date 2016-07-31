@@ -3,12 +3,12 @@ package com.clemSP.iteration1.frontend.features_input;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.clemSP.iteration1.backend.Dataset;
 import com.clemSP.iteration1.frontend.InvalidInputException;
 import com.clemSP.iteration1.R;
-import com.clemSP.iteration1.backend.AppAttribute;
+import com.clemSP.iteration1.backend.AttributeFactory.AppAttribute;
 import com.clemSP.iteration1.backend.Data;
 import com.clemSP.iteration1.frontend.ImageFeature;
-import com.clemSP.iteration1.backend.VariableDataset;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -55,7 +55,8 @@ public class ImagesInputFragment extends BaseInputFragment
         for(int index = 0; index < mSettings.getSelectedFeaturesLength(); index++)
         {
             AppAttribute attribute = AppAttribute.getAttributeFromIndex(index);
-            if(attribute != AppAttribute.Pov && attribute != AppAttribute.Year)
+            if(attribute != AppAttribute.Pov && attribute != AppAttribute.Year
+                    && attribute != AppAttribute.Rating)
                 if(mSettings.getFeatureIsSelected(index))
                 {
                     int imageRes = R.drawable.unknown;
@@ -145,6 +146,8 @@ public class ImagesInputFragment extends BaseInputFragment
                         data.setPov(getInputFromRadioGroup(AppAttribute.Pov, mPovGroup,
                                 R.string.pov_error));
 
+                        data.setRating("" + getInputRating());
+
                         for(ImageFeature feature : mFragmentFeatures)
                         {
                             AppAttribute attribute = feature.getAttribute();
@@ -155,8 +158,8 @@ public class ImagesInputFragment extends BaseInputFragment
 
                         data.setOthers();
 
-                        VariableDataset.clear();
-                        VariableDataset dataset = VariableDataset.get(mView.getContext());
+                        Dataset.clear();
+                        Dataset dataset = Dataset.get(mView.getContext());
                         dataset.setData(data);
                         mListener.onFeaturesInput(dataset.classify());
                     }

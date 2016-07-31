@@ -30,6 +30,7 @@
     <string name="f_label">Female</string>
     <string name="m_label">Male</string>
     <string name="murderer_label">Murderer\'s gender</string>
+    <string name="rating_label">Book\'s rating</string>
 
     <string name="select_label">Select&#8230;</string>
     <string name="correct_label">Correct</string>
@@ -75,6 +76,8 @@
     <string name="right_answer_error">Please select the right answer.</string>
     <string name="prediction_error">Please select the prediction you are interested in.</string>
     <string name="feature_error">Please select at least two different elements.</string>
+    <!--string name="classifier_error">An error has occurred. The app is now going to shut down.</string-->
+    <string name="rating_error">Please rate the book.</string>
 
     <string name="weapon_image_description">Murder Weapon</string>
     <string name="detective_image_description">Detective</string>
@@ -98,8 +101,10 @@
 
     <string name="drawer_hint">Swipe left to right to open the features drawer.</string>
 
-    <string name="title_activity_manager">Test Manager</string>
+    <string name="training_dialog_title">Training the classifier</string>
+    <string name="training_dialog_message">This might take a few seconds.</string>
 
+    <string name="title_activity_manager">Test Manager</string>
     <string name="test_title">Select layouts</string>
     <string name="test_class_label">Class Selection</string>
     <string name="test_class_activity">Activity</string>

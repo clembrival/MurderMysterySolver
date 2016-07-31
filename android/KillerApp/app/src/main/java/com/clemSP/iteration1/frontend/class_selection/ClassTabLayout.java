@@ -5,7 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.view.View;
 
 import com.clemSP.iteration1.R;
-import com.clemSP.iteration1.backend.AppAttribute;
+import com.clemSP.iteration1.backend.AttributeFactory.AppAttribute;
 import com.clemSP.iteration1.frontend.PredictionSettings;
 
 

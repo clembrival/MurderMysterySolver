@@ -1,9 +1,9 @@
 package com.clemSP.iteration1.frontend;
 
-
-import com.clemSP.iteration1.backend.AppAttribute;
+import com.clemSP.iteration1.backend.AttributeFactory.AppAttribute;
 
 import java.io.Serializable;
+
 
 public class ImageFeature implements Serializable
 {

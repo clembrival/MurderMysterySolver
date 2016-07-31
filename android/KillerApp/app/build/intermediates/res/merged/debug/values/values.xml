@@ -41,6 +41,7 @@
         <item>@string/cause_label</item>
         <item>@string/victim_label</item>
         <item>@string/murderer_label</item>
+        <item>@string/rating_label</item>
     </string-array>
     <string-array name="gender_array">
         <item>@string/select_label</item>
@@ -402,6 +403,8 @@
     <string name="prediction_error">Please select the prediction you are interested in.</string>
     <string name="prediction_title">Here is what I think</string>
     <string name="quite_confident">I am quite confident..</string>
+    <string name="rating_error">Please rate the book.</string>
+    <string name="rating_label">Book\'s rating</string>
     <string name="retrain_question">Do you want to teach me the right answer?</string>
     <string name="right_answer_error">Please select the right answer.</string>
     <string name="save_label">Save</string>
@@ -443,6 +446,8 @@
     <string name="title_error">Please enter the title of the novel.</string>
     <string name="title_label">Title</string>
     <string name="tommy_tuppence">Tommy and Tuppence</string>
+    <string name="training_dialog_message">This might take a few seconds.</string>
+    <string name="training_dialog_title">Training the classifier</string>
     <string name="uk_label">UK</string>
     <string name="unknown">Unknown</string>
     <string name="up_image_description">Up button</string>
@@ -467,7 +472,7 @@
 
     </style>
     <style name="AppTheme" parent="AppBaseTheme">
-
+        <item name="colorAccent">@color/firebrick</item>
     </style>
     <style name="Base.AlertDialog.AppCompat" parent="android:Widget">
         <item name="android:layout">@layout/abc_alert_dialog_material</item>
@@ -1893,7 +1898,8 @@
     <style name="numpicker" parent="@android:style/Theme.DeviceDefault.Light">
         <item name="android:textStyle">bold</item>
     </style>
-    <style name="radiobutton">
+    <style name="radiobutton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="buttonTint">@color/moccasin</item>
         <item name="android:background">@color/firebrick</item>
         <item name="android:textColor">@color/moccasin</item>
         <item name="android:textStyle">bold</item>
@@ -1911,8 +1917,6 @@
         <item name="android:prompt">@string/detective_prompt</item>
     </style>
     <style name="tablayout" parent="Base.Widget.Design.TabLayout">
-        <item name="tabIndicatorColor">@color/firebrick</item>
-        <item name="android:textColor">@color/firebrick</item>
         <item name="tabSelectedTextColor">@color/firebrick</item>
     </style>
     <style name="textview">

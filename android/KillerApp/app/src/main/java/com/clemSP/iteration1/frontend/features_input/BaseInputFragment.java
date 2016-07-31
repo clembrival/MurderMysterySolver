@@ -9,13 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.clemSP.iteration1.frontend.InvalidInputException;
 import com.clemSP.iteration1.R;
-import com.clemSP.iteration1.backend.AppAttribute;
+import com.clemSP.iteration1.backend.AttributeFactory.AppAttribute;
 import com.clemSP.iteration1.frontend.PredictionSettings;
 
 
@@ -39,6 +39,7 @@ public abstract class BaseInputFragment extends Fragment
     protected EditText mTitleField;
     protected RadioGroup mPovGroup;
     protected Button mYearButton;
+    protected RatingBar mRatingBar;
 
     protected int mYear;
 
@@ -90,6 +91,21 @@ public abstract class BaseInputFragment extends Fragment
             {
                 povLayout.setVisibility(View.GONE);
                 mPovGroup = null;
+            }
+        }
+
+        RelativeLayout ratingLayout = (RelativeLayout) mView.findViewById(R.id.rating_layout);
+        if(ratingLayout != null)
+        {
+            if(mSettings.getFeatureIsSelected(AppAttribute.Rating.getIndex()))
+            {
+                ratingLayout.setVisibility(View.VISIBLE);
+                mRatingBar = (RatingBar) mView.findViewById(R.id.rating_bar);
+            }
+            else
+            {
+                ratingLayout.setVisibility(View.GONE);
+                mRatingBar = null;
             }
         }
     }
@@ -178,9 +194,16 @@ public abstract class BaseInputFragment extends Fragment
     }
 
 
-    public static void printErrorToast(Context context, String error)
+    public double getInputRating() throws InvalidInputException
     {
-        Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
+        double rating = 0;
+        if(mSettings.getFeatureIsSelected(AppAttribute.Rating.getIndex()))
+        {
+            rating = mRatingBar.getRating();
+            if(rating == 0)
+                throw new InvalidInputException(R.string.rating_error);
+        }
+        return rating;
     }
 
 

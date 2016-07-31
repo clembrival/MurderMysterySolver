@@ -11,11 +11,11 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.clemSP.iteration1.frontend.InvalidInputException;
 import com.clemSP.iteration1.R;
-import com.clemSP.iteration1.backend.AppAttribute;
+import com.clemSP.iteration1.backend.Dataset;
+import com.clemSP.iteration1.frontend.InvalidInputException;
+import com.clemSP.iteration1.backend.AttributeFactory.AppAttribute;
 import com.clemSP.iteration1.backend.Data;
-import com.clemSP.iteration1.backend.VariableDataset;
 
 
 public class TextInputFragment extends BaseInputFragment
@@ -165,10 +165,12 @@ public class TextInputFragment extends BaseInputFragment
                         data.setSetting(getInputFromRadioGroup(AppAttribute.Location,
                                 mSettingGroup, R.string.setting_error));
 
+                        data.setRating("" + getInputRating());
+
                         data.setOthers();
 
-                        VariableDataset.clear();
-                        VariableDataset dataset = VariableDataset.get(mView.getContext());
+                        Dataset.clear();
+                        Dataset dataset = Dataset.get(mView.getContext());
                         dataset.setData(data);
                         mListener.onFeaturesInput(dataset.classify());
                     }

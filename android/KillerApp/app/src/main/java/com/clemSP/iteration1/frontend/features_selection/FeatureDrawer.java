@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.clemSP.iteration1.R;
-import com.clemSP.iteration1.backend.AppAttribute;
+import com.clemSP.iteration1.backend.AttributeFactory.AppAttribute;
 import com.clemSP.iteration1.frontend.PredictionSettings;
 
 import java.util.ArrayList;
@@ -100,14 +100,12 @@ public class FeatureDrawer
         int indexToShow = !predictWeapon ? AppAttribute.Weapon.getIndex()
                 : AppAttribute.Murderer.getIndex();
 
-        int indexToFill = predictWeapon ? indexToShow-1 : indexToShow;
-
         mFeaturesAdapter.remove(activity.getResources()
                 .getStringArray(R.array.features_array)[indexToHide]);
 
         if(mFeaturesAdapter.getCount() < AppAttribute.getNumAttributes() - 1)
             mFeaturesAdapter.insert(activity.getResources()
-                    .getStringArray(R.array.features_array)[indexToShow], indexToFill);
+                    .getStringArray(R.array.features_array)[indexToShow], indexToShow);
 
         mFeaturesAdapter.notifyDataSetChanged();
         int listSize = mFeaturesList.getCount();

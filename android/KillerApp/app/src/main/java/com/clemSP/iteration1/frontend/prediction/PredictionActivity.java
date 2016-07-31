@@ -13,9 +13,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.clemSP.iteration1.R;
+import com.clemSP.iteration1.backend.Dataset;
 import com.clemSP.iteration1.frontend.BaseActivity;
 import com.clemSP.iteration1.frontend.ImageFeature;
-import com.clemSP.iteration1.backend.VariableDataset;
 
 
 public abstract class PredictionActivity extends BaseActivity
@@ -78,7 +78,7 @@ public abstract class PredictionActivity extends BaseActivity
 
     private int getConfidence()
     {
-        int percentage = VariableDataset.get(this).getConfidence();
+        int percentage = Dataset.get(this).getConfidence();
 
         if(percentage < 1 || percentage > 100)
             return R.string.error;
@@ -235,7 +235,7 @@ public abstract class PredictionActivity extends BaseActivity
                     printErrorToast(R.string.right_answer_error);
                     return;
                 }
-                VariableDataset.get(PredictionActivity.this).retrainClassifier();
+                Dataset.get(PredictionActivity.this).retrainClassifier();
                 dialog.dismiss();
                 setResult(RESULT_OK);
                 PredictionActivity.this.finish();

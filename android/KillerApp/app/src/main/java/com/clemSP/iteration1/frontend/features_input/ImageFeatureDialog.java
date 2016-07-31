@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.clemSP.iteration1.R;
-import com.clemSP.iteration1.backend.AppAttribute;
+import com.clemSP.iteration1.backend.AttributeFactory.AppAttribute;
 import com.clemSP.iteration1.frontend.BaseDialog;
 import com.clemSP.iteration1.frontend.ImageFeature;
 

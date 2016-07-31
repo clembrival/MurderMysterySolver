@@ -1,15 +1,17 @@
 package com.clemSP.iteration1.backend;
 
+import com.clemSP.iteration1.backend.AttributeFactory.AppAttribute;
 
 public class Data
 {
     private static final int TITLE = 0, YEAR = AppAttribute.Year.getIndex() + 1,
-            POV = AppAttribute.Pov.getIndex() + 1,
             DETECTIVE = AppAttribute.Detective.getIndex() + 1,
-            VICTIM = AppAttribute.Victim.getIndex() + 1,
+            SETTING = AppAttribute.Location.getIndex() + 1,
+            POV = AppAttribute.Pov.getIndex() + 1,
             WEAPON = AppAttribute.Weapon.getIndex() + 1,
+            VICTIM = AppAttribute.Victim.getIndex() + 1,
             MURDERER = AppAttribute.Murderer.getIndex() + 1,
-            SETTING = AppAttribute.Location.getIndex() + 1;
+            RATING = AppAttribute.Rating.getIndex() + 1;
 
     private String[] mData;
 
@@ -99,19 +101,50 @@ public class Data
         mData[SETTING] = setting;
     }
 
+    public String getRating()
+    {
+        return mData[RATING];
+    }
+
+    public void setRating(String rating)
+    {
+        mData[RATING] = rating;
+    }
+
+
     public void setAttribute(AppAttribute attribute, String value)
     {
         switch (attribute)
         {
-            case Detective: setDetective(value); break;
-            case Victim: setVictim(value); break;
-            case Weapon: setWeapon(value); break;
-            case Murderer: setGender(value); break;
-            case Location: setSetting(value); break;
             case Year: setYear(value);
+            case Detective: setDetective(value); break;
+            case Location: setSetting(value); break;
             case Pov: setPov(value);
+            case Weapon: setWeapon(value); break;
+            case Victim: setVictim(value); break;
+            case Murderer: setGender(value); break;
+            case Rating: setRating(value); break;
         }
     }
+
+
+    public String getValue(int index)
+    {
+        switch (index)
+        {
+            case 0: return getTitle();
+            case 1: return getYear();
+            case 2: return getDetective();
+            case 3: return getSetting();
+            case 4: return getPov();
+            case 5: return getWeapon();
+            case 6: return getVictim();
+            case 7: return getGender();
+            case 8: return getRating();
+        }
+        return null;
+    }
+
 
     public void setOthers()
     {

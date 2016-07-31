@@ -11,7 +11,7 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.clemSP.iteration1.R;
-import com.clemSP.iteration1.backend.AppAttribute;
+import com.clemSP.iteration1.backend.AttributeFactory.AppAttribute;
 import com.clemSP.iteration1.frontend.PredictionSettings;
 
 import java.io.Serializable;

@@ -1,7 +1,7 @@
 package com.clemSP.iteration1.frontend.features_input;
 
 import com.clemSP.iteration1.R;
-import com.clemSP.iteration1.backend.AppAttribute;
+import com.clemSP.iteration1.backend.AttributeFactory.AppAttribute;
 import com.clemSP.iteration1.frontend.ImageFeature;
 
 import java.util.ArrayList;

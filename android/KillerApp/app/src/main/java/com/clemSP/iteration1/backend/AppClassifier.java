@@ -19,6 +19,7 @@ public class AppClassifier
 
     private static String sModel;
 
+
     public static AppClassifier get(Context context, String modelFile)
     {
         if(sClassifier == null || !modelFile.equals(sModel))

@@ -4,12 +4,12 @@
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_btn_radio_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\detective_miss_marple.png",
-        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\drawable\\detective_miss_marple.png"
-    },
-    {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_colored_material.xml",
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\detective_miss_marple.png",
+        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\drawable\\detective_miss_marple.png"
     },
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_check_material.xml",

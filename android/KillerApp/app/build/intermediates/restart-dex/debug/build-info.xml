@@ -4,27 +4,27 @@
     api-level="19"
     density="xhdpi"
     format="7"
-    timestamp="1134962554626039"
+    timestamp="1239630561758460"
     token="5739990220409223586" >
 
     <task
         name="javac"
-        duration="1661" />
+        duration="12720" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="85" />
+        duration="1519" />
     <task
         name="verifier"
-        duration="22" />
+        duration="416" />
 
     <artifact
         location="C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\outputs\apk\app-debug.apk"
         type="MAIN" />
 
-    <build timestamp="1134962554626039" >
+    <build timestamp="1239630561758460" >
         <artifact
             location="C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />

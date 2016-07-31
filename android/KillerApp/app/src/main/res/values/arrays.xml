@@ -43,6 +43,7 @@
         <item>@string/cause_label</item>
         <item>@string/victim_label</item>
         <item>@string/murderer_label</item>
+        <item>@string/rating_label</item>
     </string-array>
 
 </resources>

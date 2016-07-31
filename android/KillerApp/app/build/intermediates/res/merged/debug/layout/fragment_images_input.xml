@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:rowCount="3"
+            android:rowCount="4"
             android:columnCount="1">
 
 
@@ -107,6 +107,32 @@
                                  android:textSize="17sp"/>
 
                 </RadioGroup>
+            </RelativeLayout>
+
+            <RelativeLayout android:id="@+id/rating_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    style="@style/textview"
+                    android:text="@string/rating_label"
+                    android:textSize="17sp"/>
+
+                <RatingBar android:id="@+id/rating_bar"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_alignParentEnd="true"
+                           android:layout_centerVertical="true"
+                           android:stepSize="0.5"
+                           android:isIndicator="false"
+                           style="@style/Base.Widget.AppCompat.RatingBar.Indicator"/>
+
             </RelativeLayout>
         </GridLayout>
 

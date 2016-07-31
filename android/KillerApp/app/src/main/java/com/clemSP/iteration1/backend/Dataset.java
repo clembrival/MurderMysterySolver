@@ -2,45 +2,51 @@ package com.clemSP.iteration1.backend;
 
 import android.content.Context;
 
+import com.clemSP.iteration1.frontend.PredictionSettings;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import weka.core.Attribute;
 import weka.core.DenseInstance;
+import weka.core.Instance;
 import weka.core.Instances;
 
+import com.clemSP.iteration1.backend.AttributeFactory.NominalValues;
+import com.clemSP.iteration1.backend.AttributeFactory.AppAttribute;
 
-public abstract class Dataset
+
+public class Dataset
 {
-    // Values of the nominal attributes
-    protected static final String[] LOCATIONS = {"unknown", "UK", "International"};
-    protected static final String[] POVS = {"unknown", "First", "Third"};
-    protected static final String[] DETECTIVES = {"unknown", "Hercule Poirot", "Tommy and Tuppence",
-            "Colonel Race", "Superintendent Battle", "Miss Marple", "Mystery novel"};
-    protected static final String[] WEAPONS = {"unknown", "Poison", "Stabbing", "Accident", "Shooting",
-            "Strangling", "Concussion", "ThroatSlit", "None", "Drowning"};
-    protected static final String[] VICTIMS = {"unknown", "F", "M", "None"};
-    protected static final String[] MURDERERS = {"unknown", "F", "M", "Lots", "None"};
+    private static Dataset sDataset;
 
-    protected ArrayList<Attribute> mAttributes;
+    private ArrayList<Attribute> mAttributes;
 
-    /* Indices of the attributes of the instances. */
-    protected static final int YEAR = AppAttribute.Year.getIndex(),
-            DETECTIVE = AppAttribute.Detective.getIndex(),
-            LOCATION = AppAttribute.Location.getIndex(), POV = AppAttribute.Pov.getIndex(),
-            WEAPON = AppAttribute.Weapon.getIndex(), VICTIM = AppAttribute.Victim.getIndex(),
-            MURDERER = AppAttribute.Murderer.getIndex();/*, AVG_RATINGS = 7, NUM_RATINGS = 8;*/
+    private Instances mData, mLabelled;
+    private String mTitle, mLabel;
 
-    protected Instances mData, mLabelled;
-    protected String mTitle, mLabel;
+    private AppClassifier mClassifier;
 
-    protected AppClassifier mClassifier;
-
-    protected int mClassIndex;
+    private int mClassIndex;
 
 
-    public Dataset(Context context, String model, int classIndex)
+    public static Dataset get(Context context)
+    {
+        if(sDataset == null)
+        {
+            boolean predictWeapon = PredictionSettings.getSettings().getPredictWeapon();
+            String model = predictWeapon ? "ibk_weapon.model" : "ibk_gender.model";
+            int classIndex = predictWeapon ? AppAttribute.Weapon.getIndex()
+                    : AppAttribute.Murderer.getIndex();
+
+            sDataset = new Dataset(context, model, classIndex);
+        }
+        return sDataset;
+    }
+
+
+    private Dataset(Context context, String model, int classIndex)
     {
         setAttributeList();
 
@@ -52,54 +58,78 @@ public abstract class Dataset
 
     private void setAttributeList()
     {
-        mAttributes = new ArrayList<>(9);
+        mAttributes = new ArrayList<>(AppAttribute.getNumAttributes());
 
         // Setting the numeric attributes
-        mAttributes.add(new Attribute("year"));
+        mAttributes.add(new Attribute(AppAttribute.Year.getLabel()));
 
-        List<String> detectiveValues = new ArrayList<>(DETECTIVES.length - 1);
-        Collections.addAll(detectiveValues, DETECTIVES);
-        mAttributes.add(new Attribute("detective", detectiveValues));
+        List<String> detectiveValues = new ArrayList<>(NominalValues.DETECTIVES.length - 1);
+        Collections.addAll(detectiveValues, NominalValues.DETECTIVES);
+        mAttributes.add(new Attribute(AppAttribute.Detective.getLabel(), detectiveValues));
 
-        List<String> locationValues = new ArrayList<>(LOCATIONS.length - 1);
-        Collections.addAll(locationValues, LOCATIONS);
-        mAttributes.add(new Attribute("location", locationValues));
+        List<String> locationValues = new ArrayList<>(NominalValues.LOCATIONS.length - 1);
+        Collections.addAll(locationValues, NominalValues.LOCATIONS);
+        mAttributes.add(new Attribute(AppAttribute.Location.getLabel(), locationValues));
 
-        List<String> povValues = new ArrayList<>(POVS.length - 1);
-        Collections.addAll(povValues, POVS);
-        mAttributes.add(new Attribute("point_of_view", povValues));
+        List<String> povValues = new ArrayList<>(NominalValues.POVS.length - 1);
+        Collections.addAll(povValues, NominalValues.POVS);
+        mAttributes.add(new Attribute(AppAttribute.Pov.getLabel(), povValues));
 
-        List<String> weaponValues = new ArrayList<>(WEAPONS.length - 1);
-        Collections.addAll(weaponValues, WEAPONS);
-        mAttributes.add(new Attribute("murder_weapon", weaponValues));
+        List<String> weaponValues = new ArrayList<>(NominalValues.WEAPONS.length - 1);
+        Collections.addAll(weaponValues, NominalValues.WEAPONS);
+        mAttributes.add(new Attribute(AppAttribute.Weapon.getLabel(), weaponValues));
 
-        List<String> victimValues = new ArrayList<>(VICTIMS.length - 1);
-        Collections.addAll(victimValues, VICTIMS);
-        mAttributes.add(new Attribute("victim_gender", victimValues));
+        List<String> victimValues = new ArrayList<>(NominalValues.VICTIMS.length - 1);
+        Collections.addAll(victimValues, NominalValues.VICTIMS);
+        mAttributes.add(new Attribute(AppAttribute.Victim.getLabel(), victimValues));
 
-        List<String> murdererValues = new ArrayList<>(MURDERERS.length - 1);
-        Collections.addAll(murdererValues, MURDERERS);
-        mAttributes.add(new Attribute("murderer_gender", murdererValues));
+        List<String> murdererValues = new ArrayList<>(NominalValues.MURDERERS.length - 1);
+        Collections.addAll(murdererValues, NominalValues.MURDERERS);
+        mAttributes.add(new Attribute(AppAttribute.Murderer.getLabel(), murdererValues));
 
         mAttributes.add(new Attribute("average_ratings"));
-        mAttributes.add(new Attribute("number_of_ratings"));
+        //mAttributes.add(new Attribute("number_of_ratings"));
     }
 
 
-    public ArrayList<Attribute> getAttributes(int... indices)
+    public static void clear()
     {
-        ArrayList<Attribute> attributes = new ArrayList<>(indices.length);
-
-        for(int index : indices)
-            attributes.add(mAttributes.get(index));
-
-        return attributes;
+        sDataset = null;
     }
 
 
-    public void setData(double[] values)
+    public void setData(Data data)
     {
-        mData.add(new DenseInstance(1.0, values));
+        mTitle = data.getTitle();
+
+        // 0 = capacity of the dataset
+        mData = new Instances("data", mAttributes, 0);
+
+        double[] values = new double[mData.numAttributes()];
+
+        int index = 0;
+
+        values[index++] = Integer.parseInt(data.getYear());
+        values[index] = mData.attribute(index++).indexOfValue(data.getDetective());
+        values[index] = mData.attribute(index++).indexOfValue(data.getSetting());
+        values[index] = mData.attribute(index++).indexOfValue(data.getPov());
+        values[index] = mData.attribute(index++).indexOfValue(data.getWeapon());
+        values[index] = mData.attribute(index++).indexOfValue(data.getVictim());
+        values[index] = mData.attribute(index++).indexOfValue(data.getGender());
+        values[index] = Double.parseDouble(data.getYear());
+
+        Instance instance = new DenseInstance(1.0, values);
+
+        for(index = 0; index < values.length; index++)
+        {
+            String value = data.getValue(index);
+            if(value.equals("unknown")
+                    || (mData.attribute(index).isNumeric() && instance.value(index) == 0))
+                instance.setMissing(index);
+        }
+
+        // each attribute gets a weight of 1
+        mData.add(instance);
     }
 
 

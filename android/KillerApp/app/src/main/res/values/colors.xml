@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
- 
+
     <item name="navy" type="color">#22375A</item>
     <item name="white" type="color">#FFFFFF</item>
     <item name="white_transp" type="color">#beffffff</item>
