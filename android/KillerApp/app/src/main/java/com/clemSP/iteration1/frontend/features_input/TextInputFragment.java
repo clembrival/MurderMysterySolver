@@ -170,7 +170,7 @@ public class TextInputFragment extends BaseInputFragment
                         data.setOthers();
 
                         Dataset.clear();
-                        Dataset dataset = Dataset.get(mView.getContext());
+                        Dataset dataset = Dataset.get(getActivity());
                         dataset.setData(data);
                         mListener.onFeaturesInput(dataset.classify());
                     }

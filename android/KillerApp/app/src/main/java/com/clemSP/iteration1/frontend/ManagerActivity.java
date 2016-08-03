@@ -91,7 +91,7 @@ public class ManagerActivity extends AppCompatActivity
 
                 editor.apply();
 
-                startActivity(new Intent(ManagerActivity.this, MainActivity.class));
+                startActivity(new Intent(ManagerActivity.this, WelcomeActivity.class));
                 ManagerActivity.this.finish();
             }
         });

@@ -162,8 +162,8 @@ public abstract class PredictionActivity extends BaseActivity
             }
         });
 
-        Dialog yearDialog = builder.create();
-        yearDialog.show();
+        Dialog dialog = builder.create();
+        dialog.show();
     }
 
     private void rightAnswerDialog()
@@ -235,7 +235,7 @@ public abstract class PredictionActivity extends BaseActivity
                     printErrorToast(R.string.right_answer_error);
                     return;
                 }
-                Dataset.get(PredictionActivity.this).retrainClassifier();
+                Dataset.get(PredictionActivity.this).retrainClassifier(PredictionActivity.this);
                 dialog.dismiss();
                 setResult(RESULT_OK);
                 PredictionActivity.this.finish();

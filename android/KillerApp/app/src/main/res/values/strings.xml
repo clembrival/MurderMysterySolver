@@ -15,6 +15,8 @@
     <string name="answer_dialog_title">Select the right answer</string>
     <string name="select_prediction_title">What do you want to know?</string>
     <string name="select_features_title">What do you already know?</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="title_activity_update_dataset">UpdateDatasetActivity</string>
 
     <string name="title_label">Title</string>
     <string name="year_label">Year of publication</string>
@@ -63,8 +65,8 @@
     <string name="strangling">Strangling</string>
     <string name="throatslit">Throat Slit</string>
     <string name="unknown">Unknown</string>
-    <string name="error">Error</string>
 
+    <string name="error">Error</string>
     <string name="title_error">Please enter the title of the novel.</string>
     <string name="year_error">Please select the year of publication.</string>
     <string name="detective_error">Please select the detective of the story.</string>
@@ -73,11 +75,12 @@
     <string name="cause_error">Please select the cause of death of the victim.</string>
     <string name="gender_error">Please select the gender of the murderer.</string>
     <string name="victim_error">Please select the gender of the victim.</string>
+    <string name="rating_error">Please rate the book.</string>
     <string name="right_answer_error">Please select the right answer.</string>
     <string name="prediction_error">Please select the prediction you are interested in.</string>
     <string name="feature_error">Please select at least two different elements.</string>
-    <!--string name="classifier_error">An error has occurred. The app is now going to shut down.</string-->
-    <string name="rating_error">Please rate the book.</string>
+    <!-- string name="classifier_error">An error has occurred. The app is now going to shut down.</string -->
+
 
     <string name="weapon_image_description">Murder Weapon</string>
     <string name="detective_image_description">Detective</string>
@@ -88,6 +91,7 @@
     <string name="down_image_description">Down button</string>
 
     <string name="retrain_question">Do you want to teach me the right answer?</string>
+
     <string name="positive_button">Yes</string>
     <string name="negative_button">No</string>
 
@@ -101,22 +105,36 @@
 
     <string name="drawer_hint">Swipe left to right to open the features drawer.</string>
 
+    <string name="try_again_label">Try again</string>
+
     <string name="training_dialog_title">Training the classifier</string>
     <string name="training_dialog_message">This might take a few seconds.</string>
 
+    <string name="local_length">Calculating the length of the local dataset.</string>
+    <string name="server_length">Calculating the length of the server\'s dataset.</string>
+    <string name="download_file">Updating the local dataset.</string>
+
+    <string name="network_error">Impossible to connect the app to the network.
+        (Verify that your device is connected to the Wi-Fi, or enable mobile data access to the app.)</string>
+    <string name="download_error">An error occurred during the file transfer.</string>
+
     <string name="title_activity_manager">Test Manager</string>
     <string name="test_title">Select layouts</string>
+
     <string name="test_class_label">Class Selection</string>
     <string name="test_class_activity">Activity</string>
     <string name="test_class_dialog">Dialog</string>
     <string name="test_class_tabs">Tabs</string>
     <string name="test_class_menu_item">Menu Item</string>
+
     <string name="test_features_label">Features Selection</string>
     <string name="test_features_dialog">Dialog</string>
     <string name="test_features_drawer">Drawer</string>
+
     <string name="test_input_label">Features Input</string>
     <string name="test_input_text">Text</string>
     <string name="test_input_images">Images</string>
+
     <string name="test_images_label">Images Selection</string>
     <string name="test_images_spinner">Spinner</string>
     <string name="test_images_grid">Grid</string>

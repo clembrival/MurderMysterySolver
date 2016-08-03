@@ -1,6 +1,6 @@
 package com.clemSP.iteration1.backend;
 
-import android.content.Context;
+import android.app.Activity;
 
 import com.clemSP.iteration1.frontend.PredictionSettings;
 
@@ -21,8 +21,7 @@ public class Dataset
 {
     private static Dataset sDataset;
 
-    private ArrayList<Attribute> mAttributes;
-
+    private boolean mPredictWeapon;
     private Instances mData, mLabelled;
     private String mTitle, mLabel;
 
@@ -31,64 +30,65 @@ public class Dataset
     private int mClassIndex;
 
 
-    public static Dataset get(Context context)
+    public static Dataset get(Activity activity)
     {
         if(sDataset == null)
         {
             boolean predictWeapon = PredictionSettings.getSettings().getPredictWeapon();
-            String model = predictWeapon ? "ibk_weapon.model" : "ibk_gender.model";
+
             int classIndex = predictWeapon ? AppAttribute.Weapon.getIndex()
                     : AppAttribute.Murderer.getIndex();
 
-            sDataset = new Dataset(context, model, classIndex);
+            sDataset = new Dataset(activity, classIndex, predictWeapon);
         }
         return sDataset;
     }
 
 
-    private Dataset(Context context, String model, int classIndex)
+    private Dataset(Activity activity, int classIndex, boolean predictWeapon)
     {
-        setAttributeList();
-
-        mClassifier = AppClassifier.get(context, model);
+        mClassifier = AppClassifier.get(activity);
 
         mClassIndex = classIndex;
+
+        mPredictWeapon = predictWeapon;
     }
 
 
-    private void setAttributeList()
+    public static ArrayList<Attribute> getAttributeList()
     {
-        mAttributes = new ArrayList<>(AppAttribute.getNumAttributes());
+        ArrayList<Attribute> attributes = new ArrayList<>(AppAttribute.getNumAttributes());
 
         // Setting the numeric attributes
-        mAttributes.add(new Attribute(AppAttribute.Year.getLabel()));
+        attributes.add(new Attribute(AppAttribute.Year.getLabel()));
 
         List<String> detectiveValues = new ArrayList<>(NominalValues.DETECTIVES.length - 1);
         Collections.addAll(detectiveValues, NominalValues.DETECTIVES);
-        mAttributes.add(new Attribute(AppAttribute.Detective.getLabel(), detectiveValues));
+        attributes.add(new Attribute(AppAttribute.Detective.getLabel(), detectiveValues));
 
         List<String> locationValues = new ArrayList<>(NominalValues.LOCATIONS.length - 1);
         Collections.addAll(locationValues, NominalValues.LOCATIONS);
-        mAttributes.add(new Attribute(AppAttribute.Location.getLabel(), locationValues));
+        attributes.add(new Attribute(AppAttribute.Location.getLabel(), locationValues));
 
         List<String> povValues = new ArrayList<>(NominalValues.POVS.length - 1);
         Collections.addAll(povValues, NominalValues.POVS);
-        mAttributes.add(new Attribute(AppAttribute.Pov.getLabel(), povValues));
+        attributes.add(new Attribute(AppAttribute.Pov.getLabel(), povValues));
 
         List<String> weaponValues = new ArrayList<>(NominalValues.WEAPONS.length - 1);
         Collections.addAll(weaponValues, NominalValues.WEAPONS);
-        mAttributes.add(new Attribute(AppAttribute.Weapon.getLabel(), weaponValues));
+        attributes.add(new Attribute(AppAttribute.Weapon.getLabel(), weaponValues));
 
         List<String> victimValues = new ArrayList<>(NominalValues.VICTIMS.length - 1);
         Collections.addAll(victimValues, NominalValues.VICTIMS);
-        mAttributes.add(new Attribute(AppAttribute.Victim.getLabel(), victimValues));
+        attributes.add(new Attribute(AppAttribute.Victim.getLabel(), victimValues));
 
         List<String> murdererValues = new ArrayList<>(NominalValues.MURDERERS.length - 1);
         Collections.addAll(murdererValues, NominalValues.MURDERERS);
-        mAttributes.add(new Attribute(AppAttribute.Murderer.getLabel(), murdererValues));
+        attributes.add(new Attribute(AppAttribute.Murderer.getLabel(), murdererValues));
 
-        mAttributes.add(new Attribute("average_ratings"));
-        //mAttributes.add(new Attribute("number_of_ratings"));
+        attributes.add(new Attribute("average_ratings"));
+
+        return attributes;
     }
 
 
@@ -103,7 +103,7 @@ public class Dataset
         mTitle = data.getTitle();
 
         // 0 = capacity of the dataset
-        mData = new Instances("data", mAttributes, 0);
+        mData = new Instances("data", getAttributeList(), 0);
 
         double[] values = new double[mData.numAttributes()];
 
@@ -135,7 +135,7 @@ public class Dataset
 
     public String classify()
     {
-        mLabelled = mClassifier.classify(mData, mClassIndex);
+        mLabelled = mClassifier.classify(mPredictWeapon, mData, mClassIndex);
 
         mLabel = mLabelled.instance(mData.numInstances()-1).stringValue(mClassIndex);
 
@@ -145,7 +145,7 @@ public class Dataset
 
     public int getConfidence()
     {
-        double[] prediction = mClassifier.getDistribution(mLabelled, 0);
+        double[] prediction = mClassifier.getDistribution(mPredictWeapon, mLabelled, 0);
 
         int classValueIndex = mLabelled.attribute(mClassIndex).indexOfValue(mLabel);
 
@@ -153,8 +153,8 @@ public class Dataset
     }
 
 
-    public void retrainClassifier()
+    public void retrainClassifier(Activity activity)
     {
-        mClassifier.retrain(mLabelled.instance(0));
+        mClassifier.retrain(mPredictWeapon, activity, mLabelled);
     }
 }

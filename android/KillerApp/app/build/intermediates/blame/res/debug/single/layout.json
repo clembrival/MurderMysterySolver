@@ -68,6 +68,10 @@
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\layout\\dialog_select_prediction.xml"
     },
     {
+        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_welcome.xml",
+        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\layout\\activity_welcome.xml"
+    },
+    {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\layout\\dialog_image_grid.xml",
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\layout\\dialog_image_grid.xml"
     },
@@ -130,6 +134,10 @@
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_class_dialog.xml",
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\layout\\fragment_class_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_update_dataset.xml",
+        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\layout\\activity_update_dataset.xml"
     },
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple.xml",
@@ -208,16 +216,16 @@
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
-        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\notification_template_big_media.xml"
-    },
-    {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_class_menu.xml",
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\layout\\activity_class_menu.xml"
     },
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
+        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\notification_template_big_media.xml"
     },
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_separator.xml",

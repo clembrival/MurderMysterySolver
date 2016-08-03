@@ -1,6 +1,5 @@
 package com.clemSP.iteration1.frontend;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +8,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.TextView;
 
@@ -30,7 +28,7 @@ import com.clemSP.iteration1.frontend.prediction.WeaponPredictionActivity;
  */
 public class MainActivity extends BaseActivity implements BaseInputFragment.OnFeaturesInputListener,
         FeatureFragment.SelectorListener, FeatureDrawer.FeatureDrawerListener,
-        ClassTabLayout.TabLayoutListener, TrainingProcessDialog.TrainingListener
+        ClassTabLayout.TabLayoutListener
 {
     /** Request codes for other activities started by this activity. */
     private static final int CLASS_REQUEST_CODE = 0;
@@ -337,31 +335,5 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
     {
         if(!mIsEmpty)
             layoutActivityFragment();
-    }
-
-    @Override
-    public void onTrainingOver(boolean completed)
-    {
-        if(completed)
-            selectFeatures();
-        else
-        {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            //builder.setMessage(R.string.classifier_error);
-            builder.setCancelable(false);
-
-            builder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener()
-            {
-                @Override
-                public void onClick(DialogInterface dialog, int which)
-                {
-                    dialog.dismiss();
-                    MainActivity.this.finish();
-                }
-            });
-
-            Dialog dialog = builder.create();
-            dialog.show();
-        }
     }
 }

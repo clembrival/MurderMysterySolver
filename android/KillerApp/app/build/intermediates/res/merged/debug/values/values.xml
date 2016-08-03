@@ -374,6 +374,8 @@
     <string name="detective_label">Detective</string>
     <string name="detective_prompt">Select…</string>
     <string name="down_image_description">Down button</string>
+    <string name="download_error">An error occurred during the file transfer.</string>
+    <string name="download_file">Updating the local dataset.</string>
     <string name="drawer_hint">Swipe left to right to open the features drawer.</string>
     <string name="drowning">Drowning</string>
     <string name="error">Error</string>
@@ -385,6 +387,7 @@
     <string name="hercule_poirot">Hercule Poirot</string>
     <string name="incorrect_label">Incorrect</string>
     <string name="international_label">International</string>
+    <string name="local_length">Calculating the length of the local dataset.</string>
     <string name="lots">Lots</string>
     <string name="m_label">Male</string>
     <string name="main_title">Tell me what you know</string>
@@ -394,6 +397,8 @@
     <string name="murderer_label">Murderer\'s gender</string>
     <string name="mystery_novel">Mystery Novel</string>
     <string name="negative_button">No</string>
+    <string name="network_error">Impossible to connect the app to the network.
+        (Verify that your device is connected to the Wi-Fi, or enable mobile data access to the app.)</string>
     <string name="none">None</string>
     <string name="ok_label">OK</string>
     <string name="poison">Poison</string>
@@ -416,6 +421,7 @@
     <string name="select_label">Select…</string>
     <string name="select_prediction_title">What do you want to know?</string>
     <string name="selectall_label">Select all</string>
+    <string name="server_length">Calculating the length of the server\'s dataset.</string>
     <string name="setting_error">Please select the setting of the story.</string>
     <string name="setting_image_description">Setting</string>
     <string name="setting_label">Setting</string>
@@ -443,11 +449,14 @@
     <string name="third_label">Third</string>
     <string name="throatslit">Throat Slit</string>
     <string name="title_activity_manager">Test Manager</string>
+    <string name="title_activity_update_dataset">UpdateDatasetActivity</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="title_error">Please enter the title of the novel.</string>
     <string name="title_label">Title</string>
     <string name="tommy_tuppence">Tommy and Tuppence</string>
     <string name="training_dialog_message">This might take a few seconds.</string>
     <string name="training_dialog_title">Training the classifier</string>
+    <string name="try_again_label">Try again</string>
     <string name="uk_label">UK</string>
     <string name="unknown">Unknown</string>
     <string name="up_image_description">Up button</string>
