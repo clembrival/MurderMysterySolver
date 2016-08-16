@@ -4,7 +4,8 @@ import com.clemSP.iteration1.backend.AttributeFactory.AppAttribute;
 
 public class Data
 {
-    private static final int TITLE = 0, YEAR = AppAttribute.Year.getIndex() + 1,
+    private static final int TITLE = 0, 
+    		YEAR = AppAttribute.Year.getIndex() + 1,
             DETECTIVE = AppAttribute.Detective.getIndex() + 1,
             SETTING = AppAttribute.Location.getIndex() + 1,
             POV = AppAttribute.Pov.getIndex() + 1,
@@ -41,16 +42,6 @@ public class Data
         mData[YEAR] = year;
     }
 
-    public String getPov()
-    {
-        return mData[POV];
-    }
-
-    public void setPov(String pov)
-    {
-        mData[POV] = pov;
-    }
-
     public String getDetective()
     {
         return mData[DETECTIVE];
@@ -59,36 +50,6 @@ public class Data
     public void setDetective(String detective)
     {
         mData[DETECTIVE] = detective;
-    }
-
-    public String getVictim()
-    {
-        return mData[VICTIM];
-    }
-
-    public void setVictim(String victim)
-    {
-        mData[VICTIM] = victim;
-    }
-
-    public String getWeapon()
-    {
-        return mData[WEAPON];
-    }
-
-    public void setWeapon(String weapon)
-    {
-        mData[WEAPON] = weapon;
-    }
-
-    public String getGender()
-    {
-        return mData[MURDERER];
-    }
-
-    public void setGender(String gender)
-    {
-        this.mData[WEAPON] = gender;
     }
 
     public String getSetting()
@@ -101,6 +62,46 @@ public class Data
         mData[SETTING] = setting;
     }
 
+    public String getPov()
+    {
+        return mData[POV];
+    }
+
+    public void setPov(String pov)
+    {
+        mData[POV] = pov;
+    }
+
+    public String getWeapon()
+    {
+        return mData[WEAPON];
+    }
+
+    public void setWeapon(String weapon)
+    {
+        mData[WEAPON] = weapon;
+    }
+
+    public String getVictim()
+    {
+        return mData[VICTIM];
+    }
+
+    public void setVictim(String victim)
+    {
+        mData[VICTIM] = victim;
+    }
+
+    public String getGender()
+    {
+        return mData[MURDERER];
+    }
+
+    public void setGender(String gender)
+    {
+        this.mData[MURDERER] = gender;
+    }
+
     public String getRating()
     {
         return mData[RATING];
@@ -111,6 +112,10 @@ public class Data
         mData[RATING] = rating;
     }
 
+    public String getAttributeValue(int index)
+    {
+    	return mData[index];
+    }
 
     public void setAttribute(AppAttribute attribute, String value)
     {
@@ -151,5 +156,18 @@ public class Data
         for(int index = 0; index < mData.length; index++)
             if(mData[index] == null)
                 mData[index] = "unknown";
+    }
+
+
+    public String toString()
+    {
+        StringBuilder builder = new StringBuilder();
+        for(int index = 0; index < AppAttribute.getNumAttributes()+1; index++)
+        {
+            builder.append(getValue(index));
+            if(index < AppAttribute.getNumAttributes())
+                builder.append(", ");
+        }
+        return builder.toString();
     }
 }

@@ -72,12 +72,12 @@
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\drawable\\setting_international.png"
     },
     {
-        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\cause_poison.png",
-        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\drawable\\cause_poison.png"
-    },
-    {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\border_image.xml",
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\drawable\\border_image.xml"
+    },
+    {
+        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\cause_poison.png",
+        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\drawable\\cause_poison.png"
     },
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
@@ -100,12 +100,12 @@
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_textfield_search_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
-        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_switch_thumb_material.xml"
-    },
-    {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\unknown.png",
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\drawable\\unknown.png"
+    },
+    {
+        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
+        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_switch_thumb_material.xml"
     },
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_track_material.xml",

@@ -1,6 +1,7 @@
 package com.clemSP.iteration1.backend;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.clemSP.iteration1.frontend.PredictionSettings;
 
@@ -94,7 +95,7 @@ public class Dataset
 
     public static void clear()
     {
-        sDataset = null;
+    	sDataset = null;
     }
 
 
@@ -116,15 +117,15 @@ public class Dataset
         values[index] = mData.attribute(index++).indexOfValue(data.getWeapon());
         values[index] = mData.attribute(index++).indexOfValue(data.getVictim());
         values[index] = mData.attribute(index++).indexOfValue(data.getGender());
-        values[index] = Double.parseDouble(data.getYear());
+        values[index] = Double.parseDouble(data.getRating());
 
         Instance instance = new DenseInstance(1.0, values);
 
         for(index = 0; index < values.length; index++)
         {
-            String value = data.getValue(index);
-            if(value.equals("unknown")
-                    || (mData.attribute(index).isNumeric() && instance.value(index) == 0))
+            String value = data.getValue(index+1);
+            if(value.equals("unknown") ||
+                    (mData.attribute(index).isNumeric() && instance.value(index) == 0))
                 instance.setMissing(index);
         }
 
@@ -153,8 +154,39 @@ public class Dataset
     }
 
 
-    public void retrainClassifier(Activity activity)
+    public void retrainClassifier(Activity activity, String rightAnswer)
     {
+    	mLabelled.instance(0).setClassValue(mData.attribute(mClassIndex).indexOfValue(rightAnswer));
+    	
         mClassifier.retrain(mPredictWeapon, activity, mLabelled);
+    }    
+    
+    
+    public Data getLabelledData()
+    {
+    	Data data = new Data();
+    	
+    	data.setTitle(mTitle);
+
+    	Instance labelled = mLabelled.instance(mData.numInstances()-1);
+
+    	for(int index = 0; index < labelled.numAttributes(); index++)
+    	{
+    		String value;
+    		if(labelled.attribute(index).isNumeric())
+            {
+                double numericValue = labelled.value(index);
+                if(index == AppAttribute.Year.getIndex())
+                    value = "" + ((int)numericValue);
+                else
+                    value = "" + numericValue;
+            }
+    		else
+                value = labelled.stringValue(index);
+
+    		data.setAttribute(AppAttribute.getAttributeFromIndex(index), value);
+    	}
+    	
+    	return data;
     }
 }

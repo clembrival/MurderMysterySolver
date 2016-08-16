@@ -365,6 +365,7 @@
     <string name="cause_prompt">Select…</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
     <string name="colonel_race">Colonel Race</string>
+    <string name="compare_datasets">Comparing the local dataset to the server.</string>
     <string name="concussion">Concussion</string>
     <string name="correct_label">Correct</string>
     <string name="deselectall_label">Deselect all</string>
@@ -375,7 +376,6 @@
     <string name="detective_prompt">Select…</string>
     <string name="down_image_description">Down button</string>
     <string name="download_error">An error occurred during the file transfer.</string>
-    <string name="download_file">Updating the local dataset.</string>
     <string name="drawer_hint">Swipe left to right to open the features drawer.</string>
     <string name="drowning">Drowning</string>
     <string name="error">Error</string>
@@ -387,7 +387,7 @@
     <string name="hercule_poirot">Hercule Poirot</string>
     <string name="incorrect_label">Incorrect</string>
     <string name="international_label">International</string>
-    <string name="local_length">Calculating the length of the local dataset.</string>
+    <string name="local_update_error">An error occurred while trying to update the local dataset.</string>
     <string name="lots">Lots</string>
     <string name="m_label">Male</string>
     <string name="main_title">Tell me what you know</string>
@@ -421,7 +421,9 @@
     <string name="select_label">Select…</string>
     <string name="select_prediction_title">What do you want to know?</string>
     <string name="selectall_label">Select all</string>
-    <string name="server_length">Calculating the length of the server\'s dataset.</string>
+    <string name="send_data_question">Do you want to share this information with the other apps to improve my skills?</string>
+    <string name="server_error">An error occurred while trying to reach the server.</string>
+    <string name="server_update_error">An error occurred while trying to update the server.</string>
     <string name="setting_error">Please select the setting of the story.</string>
     <string name="setting_image_description">Setting</string>
     <string name="setting_label">Setting</string>
@@ -454,12 +456,12 @@
     <string name="title_error">Please enter the title of the novel.</string>
     <string name="title_label">Title</string>
     <string name="tommy_tuppence">Tommy and Tuppence</string>
-    <string name="training_dialog_message">This might take a few seconds.</string>
-    <string name="training_dialog_title">Training the classifier</string>
     <string name="try_again_label">Try again</string>
     <string name="uk_label">UK</string>
     <string name="unknown">Unknown</string>
     <string name="up_image_description">Up button</string>
+    <string name="update_local">Updating the local dataset.</string>
+    <string name="update_server">Updating the server\'s dataset.</string>
     <string name="very_confident">I am very confident..</string>
     <string name="victim_error">Please select the gender of the victim.</string>
     <string name="victim_label">Victim\'s gender</string>

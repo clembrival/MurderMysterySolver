@@ -1,152 +1,90 @@
 package com.clemSP.iteration1.frontend.dataset_management;
 
 import android.app.Activity;
-import android.renderscript.ScriptGroup;
 import android.util.Log;
 
 import com.clemSP.iteration1.R;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URL;
-import java.util.Arrays;
-import java.util.Scanner;
 
 import javax.net.ssl.HttpsURLConnection;
 
 
-/** Class implementing a background task to compare the number of instances in the local dataset
-  * and the server's dataset. */
+/** Class implementing a background task to compare the date and time the local dataset
+  * was last updated to the timestamp of the server's last entry. */
 public class CompareDatasetsTask extends DatasetTask
 {
-    private static final String TAG = "UpdateDatasetActivity";
+    private static final String TAG = "CompareDatasetsTask";
 
 
     public CompareDatasetsTask(Activity activity, String url)
     {
-        super(R.string.local_length, activity, url);
+        super(R.string.compare_datasets, activity, url);
     }
 
 
     @Override
-    protected Boolean doInBackground(Void... params)
+    protected Integer doInBackground(Void... params)
     {
-        int localLength = getLocalLength();
-        Log.w(TAG, "Local length: " + localLength);
+        String localTimestamp = getLocalTimestamp();
+        Log.w(TAG, "Local time: " + localTimestamp);
 
-        publishProgress(mActivity.getString(R.string.server_length));
+        String serverTimestamp = getServerTimestamp();
+        Log.w(TAG, "Server time: " + serverTimestamp);
 
-        int serverLength = getServerLength();
-        Log.w(TAG, "Server length: " + serverLength);
+        if(serverTimestamp == null)
+            return ERROR;
 
-        return localLength != 0 && serverLength != 0 && localLength < serverLength;
+        if(localTimestamp.equals("") || localTimestamp.compareTo(serverTimestamp) < 0)
+            return POSITIVE_RESULT;
+
+        return NEGATIVE_RESULT;
     }
 
 
-    @Override
-    protected void onProgressUpdate(String... values)
+    /**
+     * @return the timestamp of the last update of the local dataset, if any.
+     */
+    private String getLocalTimestamp()
     {
-        super.onProgressUpdate(values);
-
-        mProgressDialog.setMessage(values[0]);
+        return mSharedPref.getString("timestamp", "");
     }
 
 
-    private int getLocalLength()
-    {
-        final int HEADER_LINES = 18;
-
-        int lines = 0;
-        FileReader reader = null;
-        Scanner scanner = null;
-
-        try
-        {
-            try
-            {
-                File file = mActivity.getBaseContext().getFileStreamPath(DATASET_FILE);
-
-                reader = new FileReader(file);
-                scanner = new Scanner(reader);
-
-                while (scanner.hasNextLine())
-                {
-                    lines++;
-                    scanner.nextLine();
-                }
-
-                lines -= HEADER_LINES;
-            }
-            finally
-            {
-                if(reader != null)
-                    reader.close();
-                if(scanner != null)
-                    scanner.close();
-            }
-        }
-        catch (IOException ioe)
-        {
-            Log.e(TAG, Arrays.toString(ioe.getStackTrace()));
-        }
-
-        return lines;
-    }
-
-
-    private int getServerLength()
+    /**
+     * Connects to the killerapp/timestamp url of the server.
+     * @return the timestamp of the server's last entry
+     */
+    private String getServerTimestamp()
     {
         HttpsURLConnection connection = null;
         InputStream stream = null;
 
-        final int BUFFER_LENGTH = 5;
+        // Maximum number of characters to read
+        final int BUFFER_LENGTH = 19;
 
         try
         {
             try
             {
-                connection = (HttpsURLConnection) new URL(mUrl).openConnection();
-                connection.setReadTimeout(10000);
-                connection.setConnectTimeout(15000);
-                connection.setRequestMethod("GET");
-                connection.setDoInput(true);
+                connection = getConnection(false, "", 0);
 
                 connection.connect();
 
                 stream = connection.getInputStream();
 
-                return streamToInt(stream, BUFFER_LENGTH);
+                return streamToString(stream, BUFFER_LENGTH);
             }
             finally
             {
-                if(stream != null)
-                    stream.close();
-                if(connection != null)
-                    connection.disconnect();
+                if(stream != null) stream.close();
+                if(connection != null) connection.disconnect();
             }
         }
         catch(Exception e)
         {
-            Log.e(TAG, Arrays.toString(e.getStackTrace()));
+            Log.e(TAG, e.getLocalizedMessage());
         }
-        return 0;
-    }
-
-
-
-
-    /** Reads an InputStream and converts it to a String. */
-    private int streamToInt(InputStream stream, int length) throws IOException
-    {
-        Reader reader = new InputStreamReader(stream, "UTF-8");
-        char[] buffer = new char[length];
-
-        reader.read(buffer);
-
-        return Integer.parseInt(new String(buffer).split("[^0-9]")[0]);
+        return null;
     }
 }

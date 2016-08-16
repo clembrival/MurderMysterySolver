@@ -79,8 +79,6 @@
     <string name="right_answer_error">Please select the right answer.</string>
     <string name="prediction_error">Please select the prediction you are interested in.</string>
     <string name="feature_error">Please select at least two different elements.</string>
-    <!-- string name="classifier_error">An error has occurred. The app is now going to shut down.</string -->
-
 
     <string name="weapon_image_description">Murder Weapon</string>
     <string name="detective_image_description">Detective</string>
@@ -107,16 +105,17 @@
 
     <string name="try_again_label">Try again</string>
 
-    <string name="training_dialog_title">Training the classifier</string>
-    <string name="training_dialog_message">This might take a few seconds.</string>
-
-    <string name="local_length">Calculating the length of the local dataset.</string>
-    <string name="server_length">Calculating the length of the server\'s dataset.</string>
-    <string name="download_file">Updating the local dataset.</string>
+    <string name="compare_datasets">Comparing the local dataset to the server.</string>
+    <string name="update_local">Updating the local dataset.</string>
+    <string name="send_data_question">Do you want to share this information with the other apps to improve my skills?</string>
+    <string name="update_server">Updating the server\'s dataset.</string>
 
     <string name="network_error">Impossible to connect the app to the network.
         (Verify that your device is connected to the Wi-Fi, or enable mobile data access to the app.)</string>
     <string name="download_error">An error occurred during the file transfer.</string>
+    <string name="server_error">An error occurred while trying to reach the server.</string>
+    <string name="server_update_error">An error occurred while trying to update the server.</string>
+    <string name="local_update_error">An error occurred while trying to update the local dataset.</string>
 
     <string name="title_activity_manager">Test Manager</string>
     <string name="test_title">Select layouts</string>

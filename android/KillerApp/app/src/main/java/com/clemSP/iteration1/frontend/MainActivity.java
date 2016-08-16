@@ -26,6 +26,7 @@ import com.clemSP.iteration1.frontend.prediction.WeaponPredictionActivity;
 /**
  * Activity containing the widgets for the features selected to make the prediction.
  */
+@SuppressWarnings("serial")
 public class MainActivity extends BaseActivity implements BaseInputFragment.OnFeaturesInputListener,
         FeatureFragment.SelectorListener, FeatureDrawer.FeatureDrawerListener,
         ClassTabLayout.TabLayoutListener
@@ -105,7 +106,6 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
                 ClassDialog classDialog = (ClassDialog) dialog;
 
                 if(!classDialog.cancelled())
-                    //trainClassifier();
                     selectFeatures();
             }
         });
@@ -119,12 +119,6 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
         selectFeatures();
     }
 
-/*
-    private void trainClassifier()
-    {
-        new TrainingProcessDialog(this).execute();
-    }
-*/
 
     private void selectFeatures()
     {

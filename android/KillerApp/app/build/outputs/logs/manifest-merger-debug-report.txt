@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:2:1-40:12
+ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:2:1-37:12
 	package
 		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:3:5-36
 		INJECTED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml
@@ -57,7 +57,7 @@ ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\Ki
 	android:name
 		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:13:22-76
 application
-ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:15:5-38:19
+ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:15:5-35:19
 MERGED from [com.android.support:appcompat-v7:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-vector-drawable:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\AndroidManifest.xml:7:5-20
 MERGED from [com.android.support:support-v4:23.3.0] C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:22:5-20
@@ -116,9 +116,7 @@ ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\Ki
 		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:32:13-59
 	android:name
 		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:31:13-53
-activity#com.clemSP.iteration1.frontend.dataset_management.UpdateDatasetActivity
-ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:34:9-37:20
-	android:label
-		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:36:13-66
+activity#com.clemSP.iteration1.frontend.dataset_management.ReplaceLocalDatasetActivity
+ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:34:9-93
 	android:name
-		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:35:13-78
+		ADDED from C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\src\main\AndroidManifest.xml:34:19-90

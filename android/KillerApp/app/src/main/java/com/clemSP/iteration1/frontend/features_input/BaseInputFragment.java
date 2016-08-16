@@ -188,7 +188,7 @@ public abstract class BaseInputFragment extends Fragment
             if(R.string.select_label == (int)spinnerView.getId())
                 throw new InvalidInputException(errorRes);
             else
-                return spinner.toString();
+                return spinner.getSelectedItem().toString();
         }
         return "unknown";
     }

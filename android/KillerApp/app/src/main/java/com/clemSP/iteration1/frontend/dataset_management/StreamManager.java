@@ -5,7 +5,6 @@ import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.Arrays;
@@ -16,7 +15,7 @@ import weka.classifiers.Classifier;
 public class StreamManager
 {
     public static boolean printStreamToInternalStorage(Activity activity, InputStream stream,
-                                                       String filename, String tag)
+                                                       String filename, String tag, int mode)
     {
         OutputStreamWriter writer = null;
 
@@ -25,7 +24,7 @@ public class StreamManager
             try
             {
                 writer = new OutputStreamWriter(activity.getBaseContext()
-                        .openFileOutput(filename, Activity.MODE_PRIVATE));
+                        .openFileOutput(filename, mode));
 
                 int nextChar;
                 while((nextChar = stream.read()) != -1)
@@ -49,19 +48,15 @@ public class StreamManager
     }
 
 
-    public static boolean objectToInternalStorage(Activity activity, InputStream stream,
-                                                  String filename, String tag)
+    public static boolean classifierToInternalStorage(Activity activity, Classifier classifier,
+    												  String filename, String tag)
     {
-        ObjectInputStream inputStream = null;
         ObjectOutputStream outputStream = null;
 
         try
         {
             try
             {
-                inputStream = new ObjectInputStream(stream);
-                Classifier classifier = (Classifier) inputStream.readObject();
-
                 outputStream = new ObjectOutputStream(activity.getBaseContext()
                         .openFileOutput(filename, Activity.MODE_PRIVATE));
 
@@ -72,15 +67,13 @@ public class StreamManager
             }
             finally
             {
-                if(inputStream != null)
-                    inputStream.close();
                 if(outputStream != null)
                     outputStream.close();
             }
         }
         catch(Exception e)
         {
-            Log.e(tag, Arrays.toString(e.getStackTrace()));
+            Log.e(tag, e.getLocalizedMessage());
         }
         return false;
     }

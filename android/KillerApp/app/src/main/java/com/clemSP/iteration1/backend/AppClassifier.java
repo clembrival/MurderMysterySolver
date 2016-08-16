@@ -1,12 +1,12 @@
 package com.clemSP.iteration1.backend;
 
 import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Arrays;
+
+import com.clemSP.iteration1.frontend.dataset_management.StreamManager;
 
 import weka.classifiers.Classifier;
 import weka.classifiers.UpdateableClassifier;
@@ -40,20 +40,17 @@ public class AppClassifier
             try
             {
                 // Loading the model
-                /*stream = new ObjectInputStream(activity.getBaseContext()
+                stream = new ObjectInputStream(activity.getBaseContext()
                         .openFileInput(WEAPON_MODEL));
-                        */
-                stream = new ObjectInputStream(activity.getAssets().open(WEAPON_MODEL));
-
+                
                 // Creating the classifier from the model
                 mWeaponClassifier = (Classifier) stream.readObject();
 
                 stream.close();
 
                 // Loading the model
-                /*stream = new ObjectInputStream(activity.getBaseContext()
-                        .openFileInput(GENDER_MODEL));*/
-                stream = new ObjectInputStream(activity.getAssets().open(WEAPON_MODEL));
+                stream = new ObjectInputStream(activity.getBaseContext()
+                        .openFileInput(GENDER_MODEL));
 
                 // Creating the classifier from the model
                 mGenderClassifier = (Classifier) stream.readObject();
@@ -78,18 +75,16 @@ public class AppClassifier
             // Loading the data to be classified
             data.setClassIndex(classIndex);
 
-            Instances labelled = new Instances(data);
             Classifier classifier = predictWeapon ? mWeaponClassifier : mGenderClassifier;
 
             // Classifying each instance
             for(int i = 0; i < data.numInstances(); i++)
             {
-
                 double label = classifier.classifyInstance(data.instance(i));
-                labelled.instance(i).setClassValue(label);
+                data.instance(i).setClassValue(label);
             }
 
-            return labelled;
+            return data;
         }
         catch(Exception e)
         {
@@ -111,7 +106,9 @@ public class AppClassifier
                 newClassifier.updateClassifier(instance);
 
             String modelFile = predictWeapon ? WEAPON_MODEL : GENDER_MODEL;
-            outputModel(activity, (Classifier)newClassifier, modelFile);
+            
+            StreamManager.classifierToInternalStorage(activity, (Classifier) newClassifier, 
+            		modelFile, TAG);
 
             if(predictWeapon)
                 mWeaponClassifier = (Classifier) newClassifier;
@@ -125,16 +122,6 @@ public class AppClassifier
             Log.e(TAG, e.getMessage());
             return false;
         }
-    }
-
-
-    private void outputModel(Activity activity, Classifier classifier, String modelFile) throws Exception
-    {
-        ObjectOutputStream stream = new ObjectOutputStream(activity.getBaseContext()
-                .openFileOutput(modelFile, Context.MODE_APPEND));
-        stream.writeObject(classifier);
-        stream.flush();
-        stream.close();
     }
 
 

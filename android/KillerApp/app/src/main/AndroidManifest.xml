@@ -31,10 +31,7 @@
             android:name=".frontend.WelcomeActivity"
             android:label="@string/title_activity_welcome" >
         </activity>
-        <activity
-            android:name=".frontend.dataset_management.UpdateDatasetActivity"
-            android:label="@string/title_activity_update_dataset" >
-        </activity>
+        <activity android:name=".frontend.dataset_management.ReplaceLocalDatasetActivity" />
     </application>
 
 </manifest>

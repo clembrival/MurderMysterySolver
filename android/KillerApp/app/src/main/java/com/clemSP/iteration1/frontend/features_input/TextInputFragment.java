@@ -1,6 +1,7 @@
 package com.clemSP.iteration1.frontend.features_input;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -153,14 +154,26 @@ public class TextInputFragment extends BaseInputFragment
                         data.setDetective(getInputFromSpinner(AppAttribute.Detective,
                                 mDetectiveSpin, R.string.detective_error));
 
-                        data.setVictim(getInputFromSpinner(AppAttribute.Victim, mVictimSpin,
-                                R.string.victim_error));
+                        String victim = getInputFromSpinner(AppAttribute.Victim, mVictimSpin,
+                                R.string.victim_error);
+                        if(getString(R.string.female).equals(victim))
+                            data.setVictim("F");
+                        else if(getString(R.string.male).equals(victim))
+                            data.setVictim("M");
+                        else
+                            data.setVictim(victim);
 
                         data.setWeapon(getInputFromSpinner(AppAttribute.Weapon, mWeaponSpin,
                                 R.string.cause_error));
 
-                        data.setGender(getInputFromSpinner(AppAttribute.Murderer, mGenderSpin,
-                                R.string.gender_error));
+                        String gender = getInputFromSpinner(AppAttribute.Murderer, mGenderSpin,
+                                R.string.gender_error);
+                        if(getString(R.string.female).equals(gender))
+                            data.setGender("F");
+                        else if(getString(R.string.male).equals(gender))
+                            data.setGender("M");
+                        else
+                            data.setGender(victim);
 
                         data.setSetting(getInputFromRadioGroup(AppAttribute.Location,
                                 mSettingGroup, R.string.setting_error));

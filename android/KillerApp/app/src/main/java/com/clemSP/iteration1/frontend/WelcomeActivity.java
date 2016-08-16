@@ -1,8 +1,8 @@
 package com.clemSP.iteration1.frontend;
 
 import com.clemSP.iteration1.R;
+import com.clemSP.iteration1.frontend.dataset_management.ReplaceLocalDatasetActivity;
 import com.clemSP.iteration1.frontend.dataset_management.StreamManager;
-import com.clemSP.iteration1.frontend.dataset_management.UpdateDatasetActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,16 +12,14 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
-import java.util.Arrays;
 
 import weka.classifiers.Classifier;
 
 
+/** Class which copies the files from the assets folder if necessary,
+  * and shows the app's splash screen.  
+  */
 public class WelcomeActivity extends Activity 
 {	
 	@Override
@@ -37,48 +35,54 @@ public class WelcomeActivity extends Activity
 	}
 
 
+	/** Checks if the assets files are already in internal storage,
+	  * and copies them if not. 
+	  */
 	private void checkInternalFiles()
 	{
 		final String TAG = "WelcomeActivity";
-
-		String[] assets = {"dataset.arff", "ibk_gender.model", "ibk_weapon.model"};
-
-		for(String asset : assets)
+		final String[] ASSETS = {"dataset.arff", "ibk_gender.model", "ibk_weapon.model"};
+		
+		for(int index = 0; index < ASSETS.length; index++)
+		{
+			String asset = ASSETS[index];
+			
+			// Check if the file already exists in internal storage.
 			if(!getBaseContext().getFileStreamPath(asset).exists())
 			{
+				Log.w(TAG, "Copying " + asset + " to internal storage...");
 				try
 				{
-					Log.w(TAG, "Copying assets to internal storage...");
-					StreamManager.printStreamToInternalStorage(this,
-							getAssets().open(asset), asset, TAG);
+					// Output data set as a normal file.
+					if(index == 0)
+						StreamManager.printStreamToInternalStorage(this,
+								getAssets().open(ASSETS[0]), ASSETS[0], TAG, MODE_PRIVATE);
+					else
+					{
+						ObjectInputStream inputStream = null;
+						try
+						{
+							// Convert model files to Classifier objects, and output the objects. 
+							inputStream = new ObjectInputStream(getAssets().open(asset));
+							Classifier classifier = (Classifier) inputStream.readObject();
+							StreamManager.classifierToInternalStorage(this, classifier, asset, TAG);
+						}
+						finally
+						{
+							if(inputStream != null)	inputStream.close();
+						}
+					}
 				}
 				catch (Exception e)
 				{
-					Log.e(TAG, Arrays.toString(e.getStackTrace()));
+					Log.e(TAG, e.getLocalizedMessage());
 				}
 			}
-
-		//if(!getBaseContext().getFileStreamPath(asset).exists())
-		//{
-		/*
-			try
-			{
-				Log.w(TAG, "Copying assets to internal storage...");
-				StreamManager.printStreamToInternalStorage(this,
-						getAssets().open(assets[0]), assets[0], TAG);
-
-				StreamManager.objectToInternalStorage(this, (Classifier) getAssets().open(assets[1]), assets[1], TAG);
-				StreamManager.objectToInternalStorage(this, getAssets().open(assets[2]), assets[2], TAG);
-			}
-			catch (Exception e)
-			{
-				Log.e(TAG, Arrays.toString(e.getStackTrace()));
-			}
-		//}
-		*/
+		}
 	}
 
 
+	/** Hides the app's title after 3 seconds and starts the ReplaceLocalDatasetActivity. */
 	private void startUpdateActivity()
 	{
 		final TextView titleView = (TextView) findViewById(R.id.title_view);
@@ -90,7 +94,7 @@ public class WelcomeActivity extends Activity
 			{
 				titleView.setVisibility(View.GONE);
 				
-				startActivity(new Intent(WelcomeActivity.this, UpdateDatasetActivity.class));
+				startActivity(new Intent(WelcomeActivity.this, ReplaceLocalDatasetActivity.class));
                 WelcomeActivity.this.finish();				
 			}
 		}, 3000);
