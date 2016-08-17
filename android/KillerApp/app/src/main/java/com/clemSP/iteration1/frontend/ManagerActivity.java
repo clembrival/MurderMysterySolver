@@ -20,6 +20,8 @@ public class ManagerActivity extends AppCompatActivity
 {
     private RadioGroup mClassGroup, mFeaturesGroup, mInputGroup, mImagesGroup;
 
+    //private boolean mHasIntent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,7 +29,10 @@ public class ManagerActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager);
 
+        //mHasIntent = getIntent() != null;
+
         inflateWidgets();
+        //preSelectButtons();
         inflateSaveButton();
         inflateCancelButton();
     }
@@ -52,6 +57,30 @@ public class ManagerActivity extends AppCompatActivity
             }
         });
     }
+
+
+    private void preSelectButtons()
+    {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(
+                ManagerActivity.this);
+
+        int selectedClass = sharedPref.getInt(getString(R.string.saved_class_layout), -1);
+        if(mClassGroup != null && selectedClass != -1)
+            mClassGroup.check(selectedClass);
+
+        int selectedFeatures = sharedPref.getInt(getString(R.string.saved_features_layout), -1);
+        if(mFeaturesGroup != null && selectedFeatures != -1)
+            mFeaturesGroup.check(selectedFeatures);
+
+        int selectedInput = sharedPref.getInt(getString(R.string.saved_input_layout), -1);
+        if(mInputGroup != null && selectedInput != -1)
+            mInputGroup.check(selectedInput);
+
+        int selectedImages = sharedPref.getInt(getString(R.string.saved_images_layout), -1);
+        if(mImagesGroup != null && selectedImages != -1)
+            mImagesGroup.check(selectedImages);
+    }
+
 
     private void inflateSaveButton()
     {
@@ -91,7 +120,9 @@ public class ManagerActivity extends AppCompatActivity
 
                 editor.apply();
 
-                startActivity(new Intent(ManagerActivity.this, WelcomeActivity.class));
+                //if(!mHasIntent)
+                    startActivity(new Intent(ManagerActivity.this, WelcomeActivity.class));
+
                 ManagerActivity.this.finish();
             }
         });

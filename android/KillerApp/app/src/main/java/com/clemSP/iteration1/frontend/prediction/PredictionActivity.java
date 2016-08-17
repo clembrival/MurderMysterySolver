@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 
+/** Class which displays the prediction as well as two buttons to (in)validate the prediction. */
 public abstract class PredictionActivity extends BaseActivity implements DatasetTask.DatasetTaskListener
 {
     private static final String URL = "https://murder-mystery-server.herokuapp.com/killerapp/update/";
@@ -250,14 +251,14 @@ public abstract class PredictionActivity extends BaseActivity implements Dataset
             @Override
             public void onClick(View v)
             {
-                View rightAnswer = mRetrainSpinner.getSelectedView();
-                if(R.string.select_label == (int)rightAnswer.getId())
+                String rightAnswer = mRetrainSpinner.getSelectedItem().toString();
+                if(getString(R.string.select_label).equals(rightAnswer))
                 {
                     printErrorToast(R.string.right_answer_error);
                     return;
                 }
                 Dataset.get(PredictionActivity.this).retrainClassifier(PredictionActivity.this,
-                		mRetrainSpinner.getSelectedItem().toString());
+                		rightAnswer);
                 dialog.dismiss();
 
                 mNewInstance = Dataset.get(PredictionActivity.this).getLabelledData();

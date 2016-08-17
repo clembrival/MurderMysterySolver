@@ -9,7 +9,8 @@ import com.clemSP.iteration1.backend.AttributeFactory.AppAttribute;
 import com.clemSP.iteration1.frontend.PredictionSettings;
 
 
-public class ClassTabLayout
+/** Class to set up tabs for selecting the type of prediction to be made. */
+public class ClassTabLayout extends ClassSelector
 {
     private TabLayout mTabLayout;
     private TabLayoutListener mListener;
@@ -22,6 +23,9 @@ public class ClassTabLayout
 
     public ClassTabLayout(Activity activity)
     {
+        if(activity instanceof TabLayoutListener)
+            mListener = (TabLayoutListener) activity;
+
         mTabLayout = (TabLayout) activity.findViewById(R.id.tab_layout);
         if(mTabLayout == null)
             return;
@@ -30,9 +34,6 @@ public class ClassTabLayout
 
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.cause_label));
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.murderer_label));
-
-        if(activity instanceof TabLayoutListener)
-            mListener = (TabLayoutListener) activity;
 
         setTabLayoutListener(mListener);
     }
@@ -45,21 +46,7 @@ public class ClassTabLayout
             @Override
             public void onTabSelected(TabLayout.Tab tab)
             {
-                PredictionSettings settings = PredictionSettings.getSettings();
-
-                int weaponIndex = AppAttribute.Weapon.getIndex();
-                int murdererIndex = AppAttribute.Murderer.getIndex();
-
-                if(settings.getPredictWeapon())
-                {
-                    settings.setFeatureIsSelected(murdererIndex, settings.getFeatureIsSelected(weaponIndex));
-                    settings.setFeatureIsSelected(weaponIndex, false);
-                }
-                else
-                {
-                    settings.setFeatureIsSelected(weaponIndex, settings.getFeatureIsSelected(murdererIndex));
-                    settings.setFeatureIsSelected(murdererIndex, false);
-                }
+                updatePredictionTarget(tab.getPosition() == 0);
                 listener.onTabSelected();
             }
 

@@ -19,12 +19,17 @@ import java.util.Arrays;
 public class FeatureDrawer
 {
     private DrawerLayout mDrawer;
+    private FeatureDrawerListener mListener;
+
+    /** One list for the selectAll/deselectAll buttons, and one for the features radio buttons. */
     private ListView mSelectOptionsList, mFeaturesList;
+
+    /** Adapter for the features, as one of them is hidden every time the drawer is opened,
+      * based on the prediction to be made. */
     private ArrayAdapter<String> mFeaturesAdapter;
 
+    /** Reference to the predictions settings, to update the selected features. */
     private PredictionSettings mSettings;
-
-    private FeatureDrawerListener mListener;
 
 
     public interface FeatureDrawerListener
@@ -44,10 +49,12 @@ public class FeatureDrawer
         mSelectOptionsList = (ListView) activity.findViewById(R.id.select_drawer);
         mFeaturesList = (ListView) activity.findViewById(R.id.features_drawer);
 
+        // Set selectAll/deselectAll options to first list view
         String[] selectOptions = activity.getResources().getStringArray(R.array.select_array);
         mSelectOptionsList.setAdapter(new ArrayAdapter<>(activity,
         		android.R.layout.simple_list_item_single_choice, selectOptions));
 
+        // Set features entries to second list view
         ArrayList<String> features = new ArrayList<>(Arrays.asList(activity.getResources()
                 .getStringArray(R.array.features_array)));
         mFeaturesAdapter = new ArrayAdapter<>(activity,
@@ -69,7 +76,7 @@ public class FeatureDrawer
             @Override
             public void onDrawerOpened(View drawerView)
             {
-                onFeaturesDraweredOpened(activity);
+                onFeaturesDrawerOpened(activity);
             }
 
             @Override
@@ -90,7 +97,8 @@ public class FeatureDrawer
     }
 
 
-    private void onFeaturesDraweredOpened(Activity activity)
+    /** Sets the features radio buttons based on whether the corresponding feature is selected. */
+    private void onFeaturesDrawerOpened(Activity activity)
     {
         boolean predictWeapon = mSettings.getPredictWeapon();
 
@@ -100,53 +108,75 @@ public class FeatureDrawer
         int indexToShow = !predictWeapon ? AppAttribute.Weapon.getIndex()
                 : AppAttribute.Murderer.getIndex();
 
+        // Hide the feature corresponding to the attribute to be predicted.
         mFeaturesAdapter.remove(activity.getResources()
                 .getStringArray(R.array.features_array)[indexToHide]);
 
+        /* If the type of prediction has just changed, show the feature corresponding
+         * to the attribute that was previously the target of the prediction. */
         if(mFeaturesAdapter.getCount() < AppAttribute.getNumAttributes() - 1)
             mFeaturesAdapter.insert(activity.getResources()
                     .getStringArray(R.array.features_array)[indexToShow], indexToShow);
 
+        // Update the list view.
         mFeaturesAdapter.notifyDataSetChanged();
-        int listSize = mFeaturesList.getCount();
 
-        for(int index = 0, arrayIndex = 0; index < listSize; index++, arrayIndex++)
-            mFeaturesList.setItemChecked(index, mSettings.getFeatureIsSelected(arrayIndex));
+        /* listIndex iterates through the list of radio buttons,
+         * whereas featuresIndex iterates through the array of features
+         * (which has one item additional item, the one hidden in the list). */
+        for(int listIndex = 0, featuresIndex = 0; listIndex < mFeaturesList.getCount();
+                listIndex++, featuresIndex++)
+        {
+            // Skip in the features array the element hidden in the list
+            if(listIndex == indexToHide)
+                featuresIndex++;
+            mFeaturesList.setItemChecked(listIndex, mSettings.getFeatureIsSelected(featuresIndex));
+        }
     }
 
-    
+
+    /**
+      * @return a boolean array which element contains true iff
+      * the corresponding feature was selected.  */
     private boolean[] getSelectedFeatures()
     {
     	boolean[] selectedFeatures = new boolean[mSettings.getSelectedFeaturesLength()];
     	int selectedCount = 0;
 
-    	for(int index = 0, arrayIndex = 0; index < mFeaturesList.getCount(); index++, arrayIndex++)
+    	for(int listIndex = 0, featuresIndex = 0; listIndex < mFeaturesList.getCount();
+                listIndex++, featuresIndex++)
     	{
-            if(mSettings.getPredictWeapon() && index == AppAttribute.Weapon.getIndex())
-                arrayIndex++;
+            // Skip in the features array the element hidden in the list
+            if(mSettings.getPredictWeapon() && listIndex == AppAttribute.Weapon.getIndex() ||
+                    !mSettings.getPredictWeapon() && listIndex == AppAttribute.Murderer.getIndex())
+                featuresIndex++;
 
-    		boolean checked = mFeaturesList.isItemChecked(index);
+    		boolean checked = mFeaturesList.isItemChecked(listIndex);
 
-    		selectedFeatures[arrayIndex] = checked;
+    		selectedFeatures[featuresIndex] = checked;
     		
     		if(checked)
                 selectedCount++;
     	}
 
+        // Make sure that the user selected at least two elements.
         if(selectedCount < 2)
             return null;
 
         return selectedFeatures;
     }
 
-    
+
+    /** Listener for the selectAll / deselectAll buttons. */
     private void setDrawerListListener()
     {
     	mSelectOptionsList.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {          	
+            {
+                /* If 'selectAll' was pressed (position 0), set all the radio buttons to selected,
+                 * otherwise, set all the radio buttons to unselected. */
         		for(int index = 0; index < mFeaturesList.getChildCount(); index++)
         			if(mFeaturesList.getChildAt(index).getVisibility() == View.VISIBLE)
         				mFeaturesList.setItemChecked(index, position == 0);

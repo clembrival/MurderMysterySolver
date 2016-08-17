@@ -31,46 +31,104 @@ public class TextInputFragment extends BaseInputFragment
     {
         mView = inflater.inflate(R.layout.fragment_text_input, container, false);
 
-        inflateWidgets();
-        super.inflateYearButton();
+        inflateWidgets(true);
+        super.inflateYearButton(true);
         inflateDetectButton();
+
+        retrieveSavedWidgets(savedInstanceState);
 
         return mView;
     }
 
 
     @Override
-    public void inflateWidgets()
+    public void onSaveInstanceState(Bundle outState)
     {
-        super.inflateWidgets();
+        super.onSaveInstanceState(outState);
+
+        if(mDetectiveSpin != null)
+            outState.putInt("detective", mDetectiveSpin.getSelectedItemPosition());
+
+        if(mWeaponSpin != null)
+            outState.putInt("weapon", mWeaponSpin.getSelectedItemPosition());
+
+        if(mGenderSpin != null)
+            outState.putInt("gender", mGenderSpin.getSelectedItemPosition());
+
+        if(mVictimSpin != null)
+            outState.putInt("victim", mVictimSpin.getSelectedItemPosition());
+
+        if(mSettingGroup != null)
+            outState.putInt("setting", mSettingGroup.getCheckedRadioButtonId());
+    }
+
+
+    @Override
+    public void retrieveSavedWidgets(Bundle savedInstanceState)
+    {
+        super.retrieveSavedWidgets(savedInstanceState);
+
+        int detective = retrieveSavedInt(savedInstanceState, "detective");
+        if(mDetectiveSpin != null && detective != -1)
+            mDetectiveSpin.setSelection(detective);
+
+        int weapon = retrieveSavedInt(savedInstanceState, "weapon");
+        if(mWeaponSpin != null && weapon != -1)
+            mWeaponSpin.setSelection(weapon);
+
+        int gender = retrieveSavedInt(savedInstanceState, "gender");
+        if(mGenderSpin != null && gender != -1)
+            mGenderSpin.setSelection(gender);
+
+        int victim = retrieveSavedInt(savedInstanceState, "victim");
+        if(mVictimSpin != null && victim != -1)
+            mVictimSpin.setSelection(victim);
+
+        int setting = retrieveSavedInt(savedInstanceState, "setting");
+        if(mSettingGroup != null && setting != -1)
+            mSettingGroup.check(setting);
+    }
+
+
+    @Override
+    public void inflateWidgets(boolean clear)
+    {
+        super.inflateWidgets(clear);
 
         mSettingGroup = inflateRadioGroup(AppAttribute.Location, R.id.setting_layout,
-                R.id.setting_group);
+                R.id.setting_group, clear);
 
         mDetectiveSpin = inflateSpinner(AppAttribute.Detective, R.id.detective_layout,
-                R.id.detective_spinner, R.array.detective_array);
+                R.id.detective_spinner, R.array.detective_array, clear);
 
         if(mSettings.getPredictWeapon())
         {
+            mWeaponSpin = inflateSpinner(AppAttribute.Weapon, R.id.weapon_layout,
+                    R.id.weapon_spinner, R.array.cause_array, true);
+
             mGenderSpin = inflateSpinner(AppAttribute.Murderer, R.id.weapon_layout,
-                    R.id.weapon_spinner, R.array.gender_array);
+                    R.id.weapon_spinner, R.array.gender_array, clear);
             if(mGenderSpin != null)
                 inflateLabel(R.id.weapon_textview, R.string.murderer_label);
         }
         else
         {
+            mGenderSpin = inflateSpinner(AppAttribute.Murderer, R.id.weapon_layout,
+                    R.id.weapon_spinner, R.array.gender_array, true);
+
             mWeaponSpin = inflateSpinner(AppAttribute.Weapon, R.id.weapon_layout,
-                    R.id.weapon_spinner, R.array.cause_array);
+                    R.id.weapon_spinner, R.array.cause_array, clear);
             if(mWeaponSpin != null)
                 inflateLabel(R.id.weapon_textview, R.string.cause_label);
         }
 
         mVictimSpin = inflateSpinner(AppAttribute.Victim, R.id.victim_layout,
-                R.id.victim_spinner, R.array.gender_array);
+                R.id.victim_spinner, R.array.gender_array, clear);
     }
 
 
-    private RadioGroup inflateRadioGroup(AppAttribute attribute, int layoutRes, int groupRes)
+    private RadioGroup inflateRadioGroup(AppAttribute attribute, int layoutRes, int groupRes,
+                                         boolean clear)
     {
         RelativeLayout layout = (RelativeLayout) mView.findViewById(layoutRes);
 
@@ -81,7 +139,12 @@ public class TextInputFragment extends BaseInputFragment
             else
             {
                 layout.setVisibility(View.VISIBLE);
-                return (RadioGroup) mView.findViewById(groupRes);
+
+                RadioGroup radioGroup = (RadioGroup) mView.findViewById(groupRes);
+                if(clear && radioGroup != null)
+                    radioGroup.clearCheck();
+
+                return radioGroup;
             }
         }
 
@@ -90,34 +153,39 @@ public class TextInputFragment extends BaseInputFragment
 
 
     private Spinner inflateSpinner(AppAttribute attribute, int layoutRes, int spinnerRes,
-                                   int entriesRes)
+                                   int entriesRes, boolean clear)
     {
         RelativeLayout layout = (RelativeLayout) mView.findViewById(layoutRes);
 
+        // String array containing the different entries
+        String[] entries = getResources().getStringArray(entriesRes);
+
+        // Adding entries and custom layout to spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(mView.getContext(),
+                R.layout.spinner_layout, entries);
+
+        // Setting layout of the drop down menu (appears after touching the spinner)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        Spinner spinner = (Spinner) mView.findViewById(spinnerRes);
+        if (spinner != null)
+        {
+            spinner.setAdapter(adapter);
+            if(clear)
+                spinner.setSelection(0);
+        }
+
         if(layout != null)
             if (!mSettings.getFeatureIsSelected(attribute.getIndex()))
-                layout.setVisibility(View.GONE);
-            else
             {
+                layout.setVisibility(View.GONE);
+                if(spinner != null)
+                    spinner.setSelection(0);
+            }
+            else
                 layout.setVisibility(View.VISIBLE);
 
-                // String array containing the different entries
-                String[] entries = getResources().getStringArray(entriesRes);
-
-                // Adding entries and custom layout to spinner
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(mView.getContext(),
-                        R.layout.spinner_layout, entries);
-
-                // Setting layout of the drop down menu (appears after touching the spinner)
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                Spinner spinner = (Spinner) mView.findViewById(spinnerRes);
-                if (spinner != null)
-                    spinner.setAdapter(adapter);
-
-                return spinner;
-            }
-        return null;
+        return spinner;
     }
 
 
@@ -182,6 +250,7 @@ public class TextInputFragment extends BaseInputFragment
 
                         data.setOthers();
 
+                        Log.w("INPUT", data.toString());
                         Dataset.clear();
                         Dataset dataset = Dataset.get(getActivity());
                         dataset.setData(data);
@@ -196,9 +265,9 @@ public class TextInputFragment extends BaseInputFragment
     }
 
     @Override
-    public void update()
+    public void update(boolean clear)
     {
-    	inflateWidgets();
-        super.inflateYearButton();
+    	inflateWidgets(clear);
+        super.inflateYearButton(clear);
     }
 }

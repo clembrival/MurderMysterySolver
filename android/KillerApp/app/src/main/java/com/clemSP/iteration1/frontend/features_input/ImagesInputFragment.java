@@ -1,5 +1,6 @@
 package com.clemSP.iteration1.frontend.features_input;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import com.clemSP.iteration1.frontend.ImageFeature;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,13 +40,46 @@ public class ImagesInputFragment extends BaseInputFragment
     {
         mView = inflater.inflate(R.layout.fragment_images_input, container, false);
 
-        super.inflateWidgets();
-        super.inflateYearButton();
+        super.inflateWidgets(true);
+        super.inflateYearButton(true);
 
         inflateFeatureGrid();
         inflateDetectButton();
 
         return mView;
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState)
+    {
+        super.onSaveInstanceState(outState);
+
+        if(mFragmentFeatures != null)
+        {
+            for(int index = 0; index < mFragmentFeatures.size(); index++)
+            {
+                if(mFragmentFeatures.get(index) != null)
+                    outState.putSerializable("feature"+index, mFragmentFeatures.get(index));
+            }
+        }
+    }
+
+
+    @Override
+    public void retrieveSavedWidgets(Bundle savedInstanceState)
+    {
+        super.retrieveSavedWidgets(savedInstanceState);
+
+        if(mFragmentFeatures != null)
+        {
+            for(int index = 0; index < mFragmentFeatures.size(); index++)
+            {
+                Serializable feature = retrieveSavedSerializable(savedInstanceState, "feature"+index);
+                if(mFragmentFeatures.get(index) != null && feature != null)
+                    mFragmentFeatures.set(index, (ImageFeature) feature);
+            }
+        }
     }
 
 
@@ -158,6 +193,8 @@ public class ImagesInputFragment extends BaseInputFragment
 
                         data.setOthers();
 
+                        Log.w("INPUT", data.toString());
+
                         Dataset.clear();
                         Dataset dataset = Dataset.get(getActivity());
                         dataset.setData(data);
@@ -180,7 +217,11 @@ public class ImagesInputFragment extends BaseInputFragment
             if(view.getContext().getString(AppAttribute.getLabelRes(attribute)).equals(caption))
                 throw new InvalidInputException(errorRes);
             else
+            {
+                if(caption.equals(getString(R.string.unknown)))
+                    return caption.toLowerCase();
                 return caption;
+            }
         }
 
         return "unknown";
@@ -188,10 +229,10 @@ public class ImagesInputFragment extends BaseInputFragment
 
 
     @Override
-    public void update()
+    public void update(boolean clear)
     {
-        inflateWidgets();
-        inflateYearButton();
+        inflateWidgets(clear);
+        inflateYearButton(clear);
         inflateFeatureGrid();
     }
 }

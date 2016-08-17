@@ -16,6 +16,7 @@ public abstract class BaseDialog extends Dialog
     /* Need this variable so that the activity that holds the dialog knows
        whether the user pressed 'ok' or 'cancel'. */
     protected boolean mCancelled;
+    protected Context mContext;
 
 
     public BaseDialog(Context context, int layoutRes)
@@ -26,6 +27,8 @@ public abstract class BaseDialog extends Dialog
 
         // Pressing the back button won't close the dialog
         setCancelable(false);
+
+        mContext = context;
     }
 
 

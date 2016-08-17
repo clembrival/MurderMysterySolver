@@ -47,12 +47,6 @@
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="@string/test_class_tabs"/>
-
-            <RadioButton android:id="@+id/test_class_menu"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:text="@string/test_class_menu_item" />
-
         </RadioGroup>
 
         <TextView
@@ -102,7 +96,6 @@
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="@string/test_input_images"/>
-
         </RadioGroup>
 
         <TextView

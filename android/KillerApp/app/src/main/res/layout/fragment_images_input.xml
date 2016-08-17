@@ -35,6 +35,7 @@
                       android:layout_marginTop="10dp"
                       android:background="@drawable/textfield"
                       android:maxLines="2"
+                      android:maxLength="98"
                       style="@style/edittext"
                       android:focusable="true"
                       android:nextFocusForward="@+id/year_button"

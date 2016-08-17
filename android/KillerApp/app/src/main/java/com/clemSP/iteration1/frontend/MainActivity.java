@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,8 +19,8 @@ import com.clemSP.iteration1.frontend.class_selection.ClassTabLayout;
 import com.clemSP.iteration1.frontend.features_input.BaseInputFragment;
 import com.clemSP.iteration1.frontend.features_input.ImagesInputFragment;
 import com.clemSP.iteration1.frontend.features_input.TextInputFragment;
+import com.clemSP.iteration1.frontend.features_selection.FeatureDialog;
 import com.clemSP.iteration1.frontend.features_selection.FeatureDrawer;
-import com.clemSP.iteration1.frontend.features_selection.FeatureFragment;
 import com.clemSP.iteration1.frontend.prediction.GenderPredictionActivity;
 import com.clemSP.iteration1.frontend.prediction.WeaponPredictionActivity;
 
@@ -28,8 +30,7 @@ import com.clemSP.iteration1.frontend.prediction.WeaponPredictionActivity;
  */
 @SuppressWarnings("serial")
 public class MainActivity extends BaseActivity implements BaseInputFragment.OnFeaturesInputListener,
-        FeatureFragment.SelectorListener, FeatureDrawer.FeatureDrawerListener,
-        ClassTabLayout.TabLayoutListener
+        FeatureDrawer.FeatureDrawerListener, ClassTabLayout.TabLayoutListener
 {
     /** Request codes for other activities started by this activity. */
     private static final int CLASS_REQUEST_CODE = 0;
@@ -44,10 +45,9 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
 
     private PredictionSettings mSettings;
 
-    private boolean mHasDrawerLayout;
-    private boolean mIsEmpty;
+    private boolean mHasDrawerLayout, mHasTabLayout, mIsEmpty;
 
-    private int mPrediction;
+    private int mPredictionRes;
 
     private TextView mDrawerHintView;
 
@@ -68,7 +68,7 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
 
         mHasDrawerLayout = mSharedPref.getInt(getString(R.string.saved_features_layout),
                 R.id.test_features_drawer) == R.id.test_features_drawer;
-        setContentView(mHasDrawerLayout ? R.layout.activity_main_drawer : R.layout.activity_main_coordinator);
+        setContentView(R.layout.activity_main);
 
         if(findViewById(R.id.fragment_container) == null)
             return;
@@ -96,6 +96,8 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
 
     private void setClassDialog()
     {
+        mHasTabLayout = false;
+
         ClassDialog dialog = new ClassDialog(this);
 
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener()
@@ -106,7 +108,14 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
                 ClassDialog classDialog = (ClassDialog) dialog;
 
                 if(!classDialog.cancelled())
-                    selectFeatures();
+                {
+                    if(mIsEmpty)
+                        selectFeatures();
+                    else
+                        layoutActivityFragment(false);
+                }
+                else
+                    layoutActivity();
             }
         });
     }
@@ -114,9 +123,12 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
 
     private void setClassTabs()
     {
+        mHasTabLayout = true;
+
         new ClassTabLayout(this);
-        //trainClassifier();
-        selectFeatures();
+
+        if(mIsEmpty)
+            selectFeatures();
     }
 
 
@@ -135,13 +147,31 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
     /* Opens a dialog for the user to select the features to be used for the prediction. */
     private void setFeaturesDialog()
     {
-        FeatureFragment selector = FeatureFragment.newInstance(this);
-        selector.show(mFragmentManager, FeatureFragment.TAG);
+        mHasDrawerLayout = false;
+
+        FeatureDialog dialog = new FeatureDialog(this, R.layout.dialog_features,
+                !mHasTabLayout && !mIsEmpty);
+
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener()
+        {
+            @Override
+            public void onDismiss(DialogInterface dialog)
+            {
+                FeatureDialog featureDialog = (FeatureDialog) dialog;
+
+                if(!featureDialog.cancelled())
+                    mIsEmpty = false;
+
+                layoutActivity();
+            }
+        });
     }
 
 
     private void setFeaturesDrawer()
     {
+        mHasDrawerLayout = true;
+
         new FeatureDrawer(this);
 
         mDrawerHintView = (TextView) findViewById(R.id.hint_textview);
@@ -154,12 +184,21 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
 
     private void layoutActivity()
     {
-        FloatingActionButton editButton = (FloatingActionButton) findViewById(R.id.edit_button);
-        if(!mHasDrawerLayout && editButton == null)
-            return;
+        showFloatingButton();
+
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         if(mHasDrawerLayout)
         {
+            if(drawerLayout != null)
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+            if(!mHasTabLayout)
+            {
+                TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+                if(tabLayout != null)
+                    tabLayout.setVisibility(View.GONE);
+            }
+
             if(mIsEmpty)
                 mDrawerHintView.setVisibility(View.VISIBLE);
             else
@@ -167,23 +206,44 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
         }
         else
         {
+            if(drawerLayout != null)
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        }
+
+        if(!mIsEmpty)
+            layoutActivityFragment(false);
+    }
+
+
+    private void showFloatingButton()
+    {
+        FloatingActionButton editButton = (FloatingActionButton) findViewById(R.id.edit_button);
+        if(editButton == null)
+            return;
+
+        if(!mHasTabLayout || !mHasDrawerLayout)
+        {
             editButton.show();
+
             editButton.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
-                    selectFeatures();
+                    if (!mHasDrawerLayout)
+                        selectFeatures();
+                    else
+                        selectClass();
                 }
             });
         }
-        if(!mIsEmpty)
-            layoutActivityFragment();
+        else
+            editButton.hide();
     }
 
 
     /* Gets the input preference and loads the appropriate layout. */
-    private void layoutActivityFragment()
+    private void layoutActivityFragment(boolean clear)
     {
         Fragment inputFragment = mFragmentManager.findFragmentById(R.id.fragment_container);
 
@@ -205,7 +265,7 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
             mIsEmpty = false;
         }
         else
-            ((BaseInputFragment)inputFragment).update();
+            ((BaseInputFragment)inputFragment).update(clear);
     }
 
 
@@ -223,20 +283,20 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
     {
         switch (label)
         {
-            case "Accident": mPrediction = R.string.accident; break;
-            case "Concussion": mPrediction = R.string.concussion; break;
-            case "Drowning": mPrediction = R.string.drowning; break;
-            case "Poison": mPrediction = R.string.poison; break;
-            case "None": mPrediction = R.string.none; break;
-            case "Shooting": mPrediction = R.string.shooting; break;
-            case "Stabbing": mPrediction = R.string.stabbing; break;
-            case "Strangling": mPrediction = R.string.strangling; break;
-            case "ThroatSlit": mPrediction = R.string.throatslit; break;
-            case "unknown": mPrediction = R.string.unknown; break;
+            case "Accident": mPredictionRes = R.string.accident; break;
+            case "Concussion": mPredictionRes = R.string.concussion; break;
+            case "Drowning": mPredictionRes = R.string.drowning; break;
+            case "Poison": mPredictionRes = R.string.poison; break;
+            case "None": mPredictionRes = R.string.none; break;
+            case "Shooting": mPredictionRes = R.string.shooting; break;
+            case "Stabbing": mPredictionRes = R.string.stabbing; break;
+            case "Strangling": mPredictionRes = R.string.strangling; break;
+            case "ThroatSlit": mPredictionRes = R.string.throatslit; break;
+            case "unknown": mPredictionRes = R.string.unknown; break;
         }
 
         Intent intent = new Intent(this, WeaponPredictionActivity.class);
-        intent.putExtra("dataset", mPrediction);
+        intent.putExtra("dataset", mPredictionRes);
 
         startActivityForResult(intent, WEAPON_PREDICTION_REQUEST_CODE);
     }
@@ -246,14 +306,14 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
     {
         switch (label)
         {
-            case "F": mPrediction = R.string.female; break;
-            case "M": mPrediction = R.string.male; break;
-            case "Lots": mPrediction = R.string.lots; break;
-            case "unknown": mPrediction = R.string.unknown; break;
+            case "F": mPredictionRes = R.string.female; break;
+            case "M": mPredictionRes = R.string.male; break;
+            case "Lots": mPredictionRes = R.string.lots; break;
+            case "unknown": mPredictionRes = R.string.unknown; break;
         }
 
         Intent intent = new Intent(this, GenderPredictionActivity.class);
-        intent.putExtra("dataset", mPrediction);
+        intent.putExtra("dataset", mPredictionRes);
 
         startActivityForResult(intent, GENDER_PREDICTION_REQUEST_CODE);
     }
@@ -266,22 +326,26 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
         {
             mReturningActivity = requestCode;
 
-            if(requestCode == CLASS_REQUEST_CODE)
+            switch (requestCode)
             {
-                mSettings.setPredictWeapon(data.getExtras().getBoolean("weapon"));
-            }
-            else if(requestCode == GENDER_PREDICTION_REQUEST_CODE
-                    || requestCode == WEAPON_PREDICTION_REQUEST_CODE)
-            {
-                layoutActivityFragment();
-            }
-            else
-            {
-                mReturningActivity = -1;
+                case CLASS_REQUEST_CODE:
+                    mSettings.setPredictWeapon(data.getExtras().getBoolean("weapon"));
+                    break;
+
+                case GENDER_PREDICTION_REQUEST_CODE:
+                case WEAPON_PREDICTION_REQUEST_CODE:
+                    layoutActivityFragment(true);
+                    break;
+
+                default:
+                    mReturningActivity = -1;
+                    break;
             }
         }
         else
+        {
             mReturningActivity = -1;
+        }
     }
     
     
@@ -292,14 +356,6 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
     	
     	if(mReturningActivity == CLASS_REQUEST_CODE)
     		selectFeatures();
-    }
-
-
-    @Override
-    public void onOkButtonPressed()
-    {
-        mIsEmpty = false;
-        layoutActivity();
     }
 
 
@@ -316,7 +372,7 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
                     .findFragmentById(R.id.fragment_container);
 
             if(inputFragment != null)
-                inputFragment.update();
+                inputFragment.update(false);
             else
                 layoutActivity();
 
@@ -328,6 +384,6 @@ public class MainActivity extends BaseActivity implements BaseInputFragment.OnFe
     public void onTabSelected()
     {
         if(!mIsEmpty)
-            layoutActivityFragment();
+            layoutActivityFragment(false);
     }
 }

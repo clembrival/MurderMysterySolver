@@ -18,6 +18,8 @@ import com.clemSP.iteration1.R;
 import com.clemSP.iteration1.backend.AttributeFactory.AppAttribute;
 import com.clemSP.iteration1.frontend.PredictionSettings;
 
+import java.io.Serializable;
+
 
 /**
  * Class containing the methods shared between multiple fragments.
@@ -70,14 +72,91 @@ public abstract class BaseInputFragment extends Fragment
     }
 
 
+    @Override
+    public void onSaveInstanceState(Bundle outState)
+    {
+        super.onSaveInstanceState(outState);
 
-    public void inflateWidgets()
+        if(mTitleField != null)
+            outState.putString("title", mTitleField.getText().toString());
+
+        if(mPovGroup != null)
+            outState.putInt("pov", mPovGroup.getCheckedRadioButtonId());
+
+        if(mYearButton != null)
+            outState.putString("year", mYearButton.getText().toString());
+
+        if(mRatingBar != null)
+            outState.putFloat("rating", mRatingBar.getRating());
+    }
+
+
+    public String retrieveSavedString(Bundle savedInstanceState, String key)
+    {
+        if(savedInstanceState != null)
+            return savedInstanceState.getString(key);
+
+        return null;
+    }
+
+
+    public int retrieveSavedInt(Bundle savedInstanceState, String key)
+    {
+        if(savedInstanceState != null)
+            return savedInstanceState.getInt(key);
+
+        return -1;
+    }
+
+
+    public float retrieveSavedFloat(Bundle savedInstanceState, String key)
+    {
+        if(savedInstanceState != null)
+            return savedInstanceState.getFloat(key);
+
+        return -1;
+    }
+
+
+    public Serializable retrieveSavedSerializable(Bundle savedInstanceState, String key)
+    {
+        if(savedInstanceState != null)
+            return savedInstanceState.getSerializable(key);
+
+        return null;
+    }
+
+
+    public void retrieveSavedWidgets(Bundle savedInstanceState)
+    {
+        String title = retrieveSavedString(savedInstanceState, "title");
+        if(mTitleField != null && title != null)
+            mTitleField.setText(title);
+
+        int pov = retrieveSavedInt(savedInstanceState, "pov");
+        if(mPovGroup != null && pov != -1)
+            mPovGroup.check(pov);
+
+        String year = retrieveSavedString(savedInstanceState, "year");
+        if(mYearButton != null && year != null)
+            mYearButton.setText(year);
+
+        float rating = retrieveSavedFloat(savedInstanceState, "rating");
+        if(mRatingBar != null && rating != -1)
+            mRatingBar.setRating(rating);
+    }
+
+
+    public void inflateWidgets(boolean clear)
     {
         mTitleField = (EditText) mView.findViewById(R.id.title_textfield);
         if (mTitleField == null)
             return;
 
         mTitleField.setHint(R.string.title_label);
+
+        if(clear)
+            mTitleField.setText("");
 
         RelativeLayout povLayout = (RelativeLayout) mView.findViewById(R.id.pov_layout);
         if (povLayout != null)
@@ -86,6 +165,8 @@ public abstract class BaseInputFragment extends Fragment
             {
                 povLayout.setVisibility(View.VISIBLE);
                 mPovGroup = (RadioGroup) mView.findViewById(R.id.pov_group);
+                if(clear && mPovGroup != null)
+                    mPovGroup.clearCheck();
             }
             else
             {
@@ -101,6 +182,8 @@ public abstract class BaseInputFragment extends Fragment
             {
                 ratingLayout.setVisibility(View.VISIBLE);
                 mRatingBar = (RatingBar) mView.findViewById(R.id.rating_bar);
+                if(clear && mRatingBar != null)
+                    mRatingBar.setRating(0);
             }
             else
             {
@@ -111,7 +194,7 @@ public abstract class BaseInputFragment extends Fragment
     }
 
 
-    public void inflateYearButton()
+    public void inflateYearButton(boolean clear)
     {
         if(!mSettings.getFeatureIsSelected(AppAttribute.Year.getIndex()))
         {
@@ -126,6 +209,13 @@ public abstract class BaseInputFragment extends Fragment
         mYearButton = (Button) mView.findViewById(R.id.year_button);
 
         if (mYearButton != null)
+        {
+            if(clear)
+            {
+                mYearButton.setText(getString(R.string.select_label));
+                mYear = 0;
+            }
+
             mYearButton.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -144,6 +234,7 @@ public abstract class BaseInputFragment extends Fragment
                     });
                 }
             });
+        }
     }
 
 
@@ -184,11 +275,11 @@ public abstract class BaseInputFragment extends Fragment
     {
         if(mSettings.getFeatureIsSelected(attribute.getIndex()))
         {
-            View spinnerView = spinner.getSelectedView();
-            if(R.string.select_label == (int)spinnerView.getId())
+            String selectedSpinnerView = spinner.getSelectedItem().toString();
+            if(getString(R.string.select_label).equals(selectedSpinnerView))
                 throw new InvalidInputException(errorRes);
             else
-                return spinner.getSelectedItem().toString();
+                return selectedSpinnerView;
         }
         return "unknown";
     }
@@ -207,5 +298,5 @@ public abstract class BaseInputFragment extends Fragment
     }
 
 
-    public abstract void update();
+    public abstract void update(boolean clear);
 }

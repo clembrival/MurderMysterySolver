@@ -4,10 +4,10 @@
     <string name="app_name" translatable="false">KillerApp</string>
 
     <string name="action_settings">Settings</string>
-    <string name="action_weapon">Predict weapon</string>
-    <string name="action_gender">Predict gender</string>
-    <string name="action_feature">Choose features</string>
-    <string name="action_prototypes">Choose version</string>
+    <string name="action_weapon" translatable="false">Predict weapon</string>
+    <string name="action_gender" translatable="false">Predict gender</string>
+    <string name="action_feature" translatable="false">Choose features</string>
+    <string name="action_prototypes" translatable="false">Choose version</string>
 
     <string name="main_title">Tell me what you know</string>
     <string name="year_dialog_title">Year of publication</string>
@@ -15,8 +15,8 @@
     <string name="answer_dialog_title">Select the right answer</string>
     <string name="select_prediction_title">What do you want to know?</string>
     <string name="select_features_title">What do you already know?</string>
-    <string name="title_activity_welcome">WelcomeActivity</string>
-    <string name="title_activity_update_dataset">UpdateDatasetActivity</string>
+    <string name="title_activity_welcome" translatable="false">WelcomeActivity</string>
+    <string name="title_activity_update_dataset" translatable="false">UpdateDatasetActivity</string>
 
     <string name="title_label">Title</string>
     <string name="year_label">Year of publication</string>
@@ -44,6 +44,7 @@
     <string name="save_label">Save</string>
     <string name="selectall_label">Select all</string>
     <string name="deselectall_label">Deselect all</string>
+    <string name="prediction_label">Prediction Type</string>
 
     <string name="detective_prompt">Select&#8230;</string>
     <string name="cause_prompt">Select&#8230;</string>
@@ -117,7 +118,7 @@
     <string name="server_update_error">An error occurred while trying to update the server.</string>
     <string name="local_update_error">An error occurred while trying to update the local dataset.</string>
 
-    <string name="title_activity_manager">Test Manager</string>
+    <string name="title_activity_manager" translatable="false">Test Manager</string>
     <string name="test_title">Select layouts</string>
 
     <string name="test_class_label">Class Selection</string>
@@ -139,9 +140,9 @@
     <string name="test_images_grid">Grid</string>
     <string name="test_images_both">Spinner + Grid</string>
 
-    <string name="saved_class_layout">Class Layout</string>
-    <string name="saved_features_layout">Features Layout</string>
-    <string name="saved_input_layout">Input Layout</string>
-    <string name="saved_images_layout">Images Layout</string>
+    <string name="saved_class_layout" translatable="false">Class Layout</string>
+    <string name="saved_features_layout" translatable="false">Features Layout</string>
+    <string name="saved_input_layout" translatable="false">Input Layout</string>
+    <string name="saved_images_layout" translatable="false">Images Layout</string>
 
 </resources>

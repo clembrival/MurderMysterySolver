@@ -349,11 +349,11 @@
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="accident">Accident</string>
-    <string name="action_feature">Choose features</string>
-    <string name="action_gender">Predict gender</string>
-    <string name="action_prototypes">Choose version</string>
+    <string name="action_feature" translatable="false">Choose features</string>
+    <string name="action_gender" translatable="false">Predict gender</string>
+    <string name="action_prototypes" translatable="false">Choose version</string>
     <string name="action_settings">Settings</string>
-    <string name="action_weapon">Predict weapon</string>
+    <string name="action_weapon" translatable="false">Predict weapon</string>
     <string name="answer_dialog_title">Select the right answer</string>
     <string name="app_name" translatable="false">KillerApp</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
@@ -406,6 +406,7 @@
     <string name="pov_error">Please select the point of view of the story.</string>
     <string name="pov_label">Point of view</string>
     <string name="prediction_error">Please select the prediction you are interested in.</string>
+    <string name="prediction_label">Prediction Type</string>
     <string name="prediction_title">Here is what I think</string>
     <string name="quite_confident">I am quite confident..</string>
     <string name="rating_error">Please rate the book.</string>
@@ -413,10 +414,10 @@
     <string name="retrain_question">Do you want to teach me the right answer?</string>
     <string name="right_answer_error">Please select the right answer.</string>
     <string name="save_label">Save</string>
-    <string name="saved_class_layout">Class Layout</string>
-    <string name="saved_features_layout">Features Layout</string>
-    <string name="saved_images_layout">Images Layout</string>
-    <string name="saved_input_layout">Input Layout</string>
+    <string name="saved_class_layout" translatable="false">Class Layout</string>
+    <string name="saved_features_layout" translatable="false">Features Layout</string>
+    <string name="saved_images_layout" translatable="false">Images Layout</string>
+    <string name="saved_input_layout" translatable="false">Input Layout</string>
     <string name="select_features_title">What do you already know?</string>
     <string name="select_label">Select…</string>
     <string name="select_prediction_title">What do you want to know?</string>
@@ -450,9 +451,9 @@
     <string name="test_title">Select layouts</string>
     <string name="third_label">Third</string>
     <string name="throatslit">Throat Slit</string>
-    <string name="title_activity_manager">Test Manager</string>
-    <string name="title_activity_update_dataset">UpdateDatasetActivity</string>
-    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="title_activity_manager" translatable="false">Test Manager</string>
+    <string name="title_activity_update_dataset" translatable="false">UpdateDatasetActivity</string>
+    <string name="title_activity_welcome" translatable="false">WelcomeActivity</string>
     <string name="title_error">Please enter the title of the novel.</string>
     <string name="title_label">Title</string>
     <string name="tommy_tuppence">Tommy and Tuppence</string>
@@ -1951,5 +1952,7 @@
         <item name="android:textAppearance">?android:textAppearanceLarge</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">25sp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:background">@color/moccasin</item>
     </style>
 </resources>
