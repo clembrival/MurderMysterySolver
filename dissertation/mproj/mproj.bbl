@@ -1,0 +1,29 @@
+\begin{thebibliography}{}
+
+\bibitem[Cohn, 2004]{userstoriesbook}
+Cohn, M. (2004).
+\newblock {\em {User stories applied : for agile software development}}.
+\newblock Addison-Wesley.
+
+\bibitem[{Hall Eibe Frank} et~al., 2009]{weka}
+{Hall Eibe Frank}, M., Holmes, G., {Pfahringer Peter Reutemann}, B., and
+  Witten, I.~H. (2009).
+\newblock The weka data mining software: An update.
+\newblock {\em SIGKDD Explorations}, 11(1).
+
+\bibitem[Siddique, 2015]{whodunnitguardian}
+Siddique, H. (2015).
+\newblock {How to spot whodunnit: academics crack Agatha Christie's code |
+  Books | The Guardian}.
+
+\bibitem[Simon, 2013]{quotearthursamuel}
+Simon, P. (2013).
+\newblock {\em {Too big to ignore : the business case for big data}}.
+\newblock John Wiley {\&} Sons.
+
+\bibitem[Witten et~al., 2011]{wekabook}
+Witten, I. H. I.~H., Frank, E., and Hall, M. A. M.~A. (2011).
+\newblock {\em {Data mining practical machine learning tools and techniques}}.
+\newblock Morgan Kaufmann.
+
+\end{thebibliography}
