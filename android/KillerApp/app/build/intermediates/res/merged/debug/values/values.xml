@@ -36,7 +36,7 @@
     <string-array name="features_array">
         <item>@string/year_label</item>
         <item>@string/detective_label</item>
-        <item>@string/setting_label</item>
+        <item>@string/location_label</item>
         <item>@string/pov_label</item>
         <item>@string/cause_label</item>
         <item>@string/victim_label</item>
@@ -376,6 +376,7 @@
     <string name="detective_prompt">Select…</string>
     <string name="down_image_description">Down button</string>
     <string name="download_error">An error occurred during the file transfer.</string>
+    <string name="drawer_close_hint">Swipe right to left to close the drawer.</string>
     <string name="drawer_hint">Swipe left to right to open the features drawer.</string>
     <string name="drowning">Drowning</string>
     <string name="error">Error</string>
@@ -388,6 +389,9 @@
     <string name="incorrect_label">Incorrect</string>
     <string name="international_label">International</string>
     <string name="local_update_error">An error occurred while trying to update the local dataset.</string>
+    <string name="location_error">Please select the location of the story.</string>
+    <string name="location_image_description">Location</string>
+    <string name="location_label">Location</string>
     <string name="lots">Lots</string>
     <string name="m_label">Male</string>
     <string name="main_title">Tell me what you know</string>
@@ -425,9 +429,6 @@
     <string name="send_data_question">Do you want to share this information with the other apps to improve my skills?</string>
     <string name="server_error">An error occurred while trying to reach the server.</string>
     <string name="server_update_error">An error occurred while trying to update the server.</string>
-    <string name="setting_error">Please select the setting of the story.</string>
-    <string name="setting_image_description">Setting</string>
-    <string name="setting_label">Setting</string>
     <string name="shooting">Shooting</string>
     <string name="stabbing">Stabbing</string>
     <string name="status_bar_notification_info_overflow">999+</string>

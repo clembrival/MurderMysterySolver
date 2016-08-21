@@ -52,6 +52,9 @@
     <string name="incorrect_label">Incorrect</string>
     <string name="international_label">International</string>
     <string name="local_update_error">Une erreur s\'est produite en essayant de mettre à jour la base de données locale.</string>
+    <string name="location_error">Entrer le lieu où se déroule l\'histoire (cadre).</string>
+    <string name="location_image_description">Cadre</string>
+    <string name="location_label">Cadre</string>
     <string name="lots">Plusieurs</string>
     <string name="m_label">Masculin</string>
     <string name="main_title">Détails du roman</string>
@@ -84,9 +87,6 @@
     <string name="send_data_question">Voulez-vous partager cette information avec les autres utilisateurs afin d\'améliorer mes compétences?</string>
     <string name="server_error">Une erreur s\'est produite en essayant de me connectecter au serveur.</string>
     <string name="server_update_error">Une erreur s\'est produite lors de la mise à jour du serveur.</string>
-    <string name="setting_error">Entrer le lieu où se déroule l\'histoire (cadre).</string>
-    <string name="setting_image_description">Cadre</string>
-    <string name="setting_label">Cadre</string>
     <string name="shooting">Fusillade</string>
     <string name="stabbing">Poignardage</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">">999"</string>

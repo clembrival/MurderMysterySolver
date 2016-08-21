@@ -1,4 +1,0 @@
-CHANGED,C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\android\tools\fd\runtime\AppPatchesLoaderImpl.class
-CHANGED,C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\clemSP\iteration1\frontend\features_input\TextInputFragment$override.class
-CHANGED,C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\clemSP\iteration1\frontend\features_input\TextInputFragment$1$override.class
-CHANGED,C:\Users\Clem\workspace\summer_project\MurderMysterySolver\android\KillerApp\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\clemSP\iteration1\frontend\features_input\ImagesInputFragment$override.class

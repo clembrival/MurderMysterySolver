@@ -16,12 +16,12 @@
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_btn_check_material.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\setting_uk.png",
-        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\drawable\\setting_uk.png"
-    },
-    {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\cause_strangling.png",
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\drawable\\cause_strangling.png"
+    },
+    {
+        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\location_uk.png",
+        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\drawable\\location_uk.png"
     },
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\cause_accident.png",
@@ -68,16 +68,12 @@
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\drawable\\design_fab_background.xml"
     },
     {
-        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\setting_international.png",
-        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\drawable\\setting_international.png"
+        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\cause_poison.png",
+        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\drawable\\cause_poison.png"
     },
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\border_image.xml",
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\drawable\\border_image.xml"
-    },
-    {
-        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\cause_poison.png",
-        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\drawable\\cause_poison.png"
     },
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
@@ -182,6 +178,10 @@
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background_dark.xml",
         "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_dialog_material_background_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\location_international.png",
+        "source": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\src\\main\\res\\drawable\\location_international.png"
     },
     {
         "merged": "C:\\Users\\Clem\\workspace\\summer_project\\MurderMysterySolver\\android\\KillerApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
