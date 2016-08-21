@@ -1,10 +1,14 @@
 \documentclass{mproj}
-\usepackage{graphicx}
 
-\usepackage{hyperref}
+\usepackage[labelfont=bf]{caption}
+\usepackage{enumitem}
 \usepackage{fancyvrb}
+\usepackage[a4paper]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage[final]{pdfpages}
 \usepackage{times}
+\usepackage{wrapfig}
 
 %% Jeremy's hack to save pages (your limit is 40)
 %% \renewcommand{\baselinestretch}{0.6}
@@ -18,25 +22,25 @@
 % other potentially useful packages
 %\uspackage{amssymb,amsmath}
 %\usepackage{url}
-%\usepackage{fancyvrb}
-%\usepackage[final]{pdfpages}
 
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{A Data Science Approach to Murder Mysteries}
-\author{Clemence Brival}
+\author{Clemence Brival - 2166340}
 \date{7\textsuperscript{th} of September 2016}
 \maketitle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{abstract}
 abstract goes here
 \end{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagenumbering{roman}
 \educationalconsent
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -55,6 +59,7 @@ acknowledgements go here
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Introduction}\label{intro}
+\pagenumbering{arabic}
 
 \section{Problem Motivation}
 
@@ -67,12 +72,12 @@ acknowledgements go here
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Machine Learning}
+\section{Machine Learning}\label{machine_learning}
 ``\textbf{Machine learning} is a field of study that gives computers the ability to learn without being explicitly programmed.'' - Arthur Samuel (1959). \cite{quotearthursamuel} Using algorithmic models and mathematics, it consists in iteratively analysing a set of data, in order to make predictions about similar data. Applications for machine learning are varied: speech and handwriting recognition, medical diagnosis, recommendation systems, advertisements, fraud detection, video games, self-driven cars, robot locomotion, \ldots \par 
 
-A machine learning algorithm is fed a dataset, the \textbf{training set}, made up of one or several \textbf{instances}, which represent the type of data the prediction will be based on. Each instance contains actual values for \textbf{attributes} (or features) the algorithm can analyse and learn from. For example, to predict the gender of the murderer, possible attributes could be the murder weapon, the gender of the victim, the name of the detective and the year of publication of the book. An instance could therefore be ``Poison, Female, Hercule Poirot, 1926''. The attribute to be predicted is the \textbf{concept}, and the predicted value for this attribute is the \textbf{concept description}. \par 
+A machine learning algorithm is fed a dataset, the \textbf{training set}, made up of one or several \textbf{instances}, which represent the type of data the prediction will be based on. Each instance contains actual values for \textbf{attributes} (or features) the algorithm can analyse and learn from. \cite{wekabook} For example, to predict the gender of the murderer, possible attributes could be the murder weapon, the gender of the victim, the name of the detective and the year of publication of the book. An instance could therefore be ``Poison, Female, Hercule Poirot, 1926''. The attribute to be predicted is the \textbf{concept}, and the predicted value for this attribute is the \textbf{concept description}. \par 
 
-The type of machine learning used for this project is \textbf{supervised learning}. This technique involves building the training set and providing it with the correct value for the attribute to be predicted\footnote{http://openclassroom.stanford.edu/MainFolder/CoursePage.php?course=MachineLearning}. The algorithm can therefore base its observations on cases for which it knows the outcome, learn to produce the desired output, and apply the results of its training on instances for which it doesn't know the right value. \par
+The type of machine learning used for this project is \textbf{supervised learning}. This technique involves building the training set and providing it with the correct value for the attribute to be predicted. \cite{machinelearningcourse} The algorithm can therefore base its observations on cases for which it knows the outcome, learn to produce the desired output, and apply the results of its training on instances for which it doesn't know the right value. \par
 
 Supervised learning is divided into two categories of problems, based on the type of attribute to be predicted. In this project's case, the app will attempt to predict discrete valued attributes, for instance the gender of the murderer (male or female): this is a \textbf{classification} problem. 
 
@@ -80,7 +85,7 @@ Supervised learning is divided into two categories of problems, based on the typ
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related Work}
 
-To celebrate the 125th anniversary of Agatha Christie's birth, a team composed of Dr Dominique Jeannerod (researcher at Queen's University Modern Languages department in Belfast\footnote{https://daro.qub.ac.uk/agatha-christie-whodunnit}), Brett Jacob (data analyst) and Dr James Bernthal (researcher in English at the University of Exeter) conducted a study of the author's work. \cite{whodunnitguardian}
+For the celebration of the 125th anniversary of Agatha Christie's birth, a team composed of Dr Dominique Jeannerod (researcher at Queen's University Modern Languages department in Belfast), Brett Jacob (data analyst) and Dr James Bernthal (researcher in English at the University of Exeter) conducted a study of the author's work. \cite{whodunnitbelfast} \cite{whodunnitguardian}
 Commissioned by the UKTV Drama channel, this research is very similar to this project, as it resulted in a mathematical formula that would help readers of Agatha Christie's novels to guess the identity of the killer, before reaching the end of the story. \par
 
 Based on a selection of 27 books, the team analysed the differences in terms of story details, in order to pick up on patterns that might help predicting attributes of the culprit. Their investigation allowed them to select a set of features, later used as parameters in their mathematical formula, such as the relationship to the victim, the main means of transportation of the story, the cause of death of the victim, the detective in charge of the investigation, and the number of the chapter in which the killer was introduced. For instance, according to the analysts, if the story setting is a country house, or if the narrator mentions land vehicles, then the killer is most likely to be female. However, there is a higher probability that the killer is male if the novel involves boats or planes, or if the victim is strangled. \par
@@ -98,9 +103,25 @@ There doesn't seem to be any app that can be used on the side, while reading a d
 
 The Google Play store contains a few apps, in which the user is presented a story, a crime scene and few potential culprits. Impersonating a detective, the player then has to examine the crime scene and interrogate the suspects, so as to identify the killer. Here is a description of two such apps. \par
 
-``Who Is The Killer'' \footnote{http://www.glaznev.com/\#!wtk/c1dmp} was developed by Dmitry Glaznev, Irina Nekrasova, Elena Koroleva and Grigory Chekmasov. The game was first released on iOS in 2013, and now counts four episodes. Playing as Mr. K, the user has to arrest the murderer within seven days, before all the innocent characters are killed, seeing as a new corpse is discovered every day. In order to proceed to the investigation, Mr K. has to solve small puzzles, which allow him to earn cups of coffee. The more coffee the detective has, the more clues he can find during the day, and the more suspects he can interrogate. \par
+\begin{wrapfigure}{r}{0.20\textwidth}
+	\vspace{-10pt}
+	\centering
+	\includegraphics[scale=0.25]{images/whoisthekiller_icon}
+	\caption{Who Is The Killer icon.}
+	\vspace{-25pt}
+\end{wrapfigure}
 
-``Criminal Case'' \footnote{http://www.prettysimplegames.com/games/} is a similar app created by a company called Pretty Simple. First released in 2012 on Facebook, the developers team later launched an iOS version in 2014. The Android version came out about a year after that. In this game, the user becomes a member of a police unit, and takes part of the investigation of several crimes. Each activity requires energy that can be earned by completing the tasks as fast as possible. \par
+``Who Is The Killer'' \cite{whoisthekiller} was developed by Dmitry Glaznev, Irina Nekrasova, Elena Koroleva and Grigory Chekmasov. The game was first released on iOS in 2013, and now counts four episodes. Playing as Mr. K, the user has to arrest the murderer within seven days, before all the innocent characters are killed, seeing as a new corpse is discovered every day. In order to proceed to the investigation, Mr K. has to solve small puzzles, which allow him to earn cups of coffee. The more coffee the detective has, the more clues he can find during the day, and the more suspects he can interrogate. \par
+
+\begin{wrapfigure}{l}{0.20\textwidth}
+	\vspace{-10pt}
+	\centering
+	\includegraphics[scale=0.25]{images/criminalcase_icon}
+	\caption{Criminal Case icon.}
+	\vspace{-30pt}
+\end{wrapfigure}
+
+``Criminal Case'' \cite{criminalcase} is a similar app created by a company called Pretty Simple. First released in 2012 on Facebook, the developers team later launched an iOS version in 2014. The Android version came out about a year after that. In this game, the user becomes a member of a police unit, and takes part of the investigation of several crimes. Each activity requires energy that can be earned by completing the tasks as fast as possible.\\ \par
 
 The inconvenient with this kind of games is that the creators implement a story, that they made up, into the app, which then just leads the user through clues, and lets them accuse the right suspect. The app itself doesn't have any guessing or analysis to do.
 Moreover, although entertaining, the puzzles sometimes tend to be slightly too easy, and the story not captivating enough to remain hooked to the game.
@@ -114,19 +135,19 @@ They do not require input from the user, as the data is collected from online so
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Requirements}
 
-For this project, two main user roles were defined: readers and writers of detective stories. The requirements of the system were gathered during a meeting with the project supervisor, who acted as the main stakeholder, and a proxy for the different types of users. 
-In accordance to the agile methodology used throughout the whole development process, the functional and nonfunctional requirements of the system are listed below, as well as user stories and constraints created based on those requirements.
+For this project, two main user roles were defined: readers and writers of detective stories. The requirements of the system were gathered during several meetings with the project supervisor, who acted as the main stakeholder, and a proxy for the different types of users. 
+In accordance to the agile methodology used throughout the whole development process, the functional and nonfunctional requirements of the system are listed below, as well as user stories\footnote{User stories describe small tasks that a user might want to undertake when using the system. \cite{userstoriesbook}} and constraints\footnote{Constraints are user stories describing nonfunctional requirements. \cite{userstoriesbook}} created based on those requirements. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-\section{Functional Requirements}
+\section{High-level Functional Requirements}
 	
 As a \textbf{reader} of a detective story, I would like to get \textbf{clues} about the identity of the murderer. Incidentally, I would also like to guess the identity of the murderer, and see the probability that my guess is correct. \par
 
 As a \textbf{writer} of detective stories, I would like to get \textbf{ideas} for a story plot. More specifically, I would like to provide elements of a story, and see attributes of the predicted murderer for that story.\par
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-\section{Nonfunctional Requirements}
+\section{High-level Nonfunctional Requirements}
 	
 As a \textbf{reader}, I would like to be able to use the system while I am reading the novel. The system should therefore be light and easily accessible. I also want it to be fast and easy to use, so that I can go back to the book as soon as possible. 
 
@@ -141,12 +162,10 @@ The following functional requirements were added later in the project, after tak
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-\section{User Stories}
-	
-User stories describe small tasks that a user might want to undertake when using the system. \cite{userstoriesbook} Here are the user stories corresponding to the functional requirements, and the constraints corresponding to the nonfunctional requirements. \par
+\section{Low-level Requirements}\label{requirements}
 	
 A user can\ldots
-\begin{enumerate}
+\begin{enumerate}\label{user_stories}
 	\item input details about a story.
 	\item receive a prediction based on the input details.
 	\item input details about a character.
@@ -159,74 +178,134 @@ A user can\ldots
 \end{enumerate}
 
 The system should\ldots
-\begin{enumerate}
+\begin{enumerate}\label{constraints}
 	\item be implemented for hand-held devices.
 	\item require at most 32 Mb on the device.
 	\item output the prediction within 5 seconds.
 	\item send and download data to/from the server within 10 seconds.
 \end{enumerate}
-	
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-\section{Project Development Structure}
-	
-The first few weeks of the project were spent researching Machine Learning and getting used to Weka, then applying the theory on the murder mystery problem, which consisted in choosing the features to analyse, building the training set, and selecting the machine algorithm to be used to make the predictions. (This will be detailed in Chapter 5.) \par
-	
-A week was then spent on creating wireframes for the UI and getting feedback from users on the different interfaces (see Chapter 6). \par
-	
-The implementation section of the project was divided into three iterations. 
-The first iteration aimed at creating a fixed predictor: the user inputs data, and receives a prediction (user stories 1, 2 and 5). 
-The objective of second iteration was to retrain the classifier on the app (user stories 6 and 7). 
-For the last iteration, crowdsourced data gathering and training were implemented (user stories 8 and 9). \par
-	
-Finally, during the last few weeks of the project, a more formal evaluation of the final system took place, which will also be discussed in Chapter 6).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Design}
 
+The first few weeks of the project were spent researching Machine Learning and getting used to Weka, then applying the theory on the murder mystery problem, which consisted in choosing the features to analyse and building the training set. \par
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\section{Data Gathering and Processing}\label{data_process}
+
+The initial dataset contained 66 instances (each one corresponding to an Agatha Christie book), and 5 attributes: the \textbf{title} of the novel, the \textbf{year of publication}, the name of the \textbf{detective}\footnote{If there was no specific detective in a novel, the detective attribute for the corresponding instance was set to ``Mystery novel''.}, the \textbf{point of view} from which the story is told (first or third person) and the \textbf{location} of the story (UK or International). The data stored in the instances was obtained in the books themselves when a paper or digital version was available, and Wikipedia otherwise. \cite{wikipedia} If some information about an attribute could not be found, the attribute's value was set to ``?'' (see section \ref{missing_values}).\par
+
+As a first practice exercise, the concept (the element that had to be predicted) was the \textbf{cause of death} of the victim. A sixth column was therefore added to the dataset to store the murder weapon used for each instance, in accordance to the structure of a classification training set (as mentioned in section \ref{machine_learning}).\par
+
+Secondly, a web scraper was used to extract the \textbf{number of ratings} and the \textbf{average ratings} from goodreads for each book in the training set, which was then updated with the extracted data. \cite{goodreads} (This process is detailed in section \ref{scrapy}.)\par
+
+Finally, the last attributes added to the dataset are the \textbf{gender of the victim} and the \textbf{gender of the murderer}. The latter was meant to replace the cause of death as the main concept handled by the system, however it was set so users could choose between the two attributes when selecting the object of the prediction they want to receive. The complete training set is visible in Appendix \ref{dataset}.\par
+
+In order to process all this information, a Java program was created, to create a classifier object trained on the instances. Taking the dataset file as input, it produces a .model file containing an output classifier for each possible concepts (one for the cause of death, and one for the murderer's gender). The gathering and processing of the data is illustrated in Figure \ref{fig:design}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{images/design_diagram}
+	\caption{Schematic design of the system architecture.}
+	\label{fig:design}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{System Architecture}
+
+Based on constraint 1 described in section \ref{constraints}, it was decided that the part of the system which users interact with is a smartphone application. Once the classifiers are trained and output, the corresponding files are stored in the mobile app so the classifiers can be rebuilt and used to make predictions.\par
+
+To handle user stories 8 and 9 (\ref{user_stories}), the smartphone app connects to a remote server which handles requests to save a new instance or download the latest entries. The server then also communicates with a database, which stores the uploaded data. This three-tiered system architecture is represented on Figure \ref{fig:architecture}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{images/system_architecture}
+	\caption{System's Three-Tiered Architecture.}
+	\label{fig:architecture}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{User Interface Design}
 
+In order to design the application's interface, 5 wireframes were created, using mybalsamiq\footnote{https://www.mybalsamiq.com/}, showing different layouts and types of input:
+\begin{enumerate}[label=\Alph*]\label{wireframes}
+\item a single un-scrollable screen, with images input in a slot machine,
+\item a single un-scrollable screen, with text input,
+\item a single scrollable screen, with images input in a horizontal scrollable frame,
+\item a single screen with a accordion layout, and images input in a carousel,
+\item multiple screens accessed by pressing Next/Previous buttons, with images input in a vertical scrollable frame.
+\end{enumerate}
+
+The aim was to find the interface which appealed to most users before starting the implementation. This was undertaken during the first evaluation, as reported in section \ref{evaluation}.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Implementation}
+\chapter{Implementation}\label{implementation}
 
+The implementation section of the project was divided into three iterations. 
+The first iteration aimed at creating a fixed predictor: the user inputs data, and receives a prediction (user stories 1, 2 and 5). 
+The objective of second iteration was to retrain the classifier on the app (user stories 6 and 7). 
+For the last iteration, crowdsourced data gathering and training were implemented (user stories 8 and 9). \par
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Technologies Used}
 
-\subsection{Android}
-
-\subsubsection*{Difficulties Encountered}
-
-Creating the Android interface itself was not particularly hard. It did require a significant amount of time to browse through all the widgets available in the different Android standard libraries (seven Android packages contain widgets\footnote{https://developer.android.com/reference/packages.html}), then to decide which ones were the most appropriate for the app, and to learn how to customise and control them programmatically. Compatibility was also an issue, for some UI elements or attributes were introduced in more recent Android versions than the app's target version. It was therefore necessary to find alternative solutions. \par
-
-However, none of those obstacles were a surprise; as a matter of fact, they are an integral part of the learning process, and overcoming such difficulties can only have a positive impact on my overall programming experience. \par
-
-The hardest part of the Android development was to try to make the app as reliable and efficient as possible. This includes facing all the possible causes for the app to crash unexpectedly, which involves handling the activity lifecycle of the app\footnote{https://developer.android.com/training/basics/activity-lifecycle/index.html} (what to do when the app is paused, resumed, stopped), the potential memory leaks, loading images efficiently, properly managing the different activities and fragments, and the way they communicate. It also includes monitoring the amount of memory and battery use of the app.
-Unfortunately, although this was one of the main points of concern, not all of these elements were fully handled. \par
-
-Another difficulty arose on a code-level, when trying to reduce the amount of redundancy from one activity or fragment to another, without making the overall code harder to read. Because of the way projects are structured in Android\footnote{https://developer.android.com/studio/projects/index.html}, it is necessary to jump from one file to another in order to follow the flow of the system. This becomes worse when creating extra classes to store the common code shared by multiple elements.
+\begin{wrapfigure}{r}{0.20\textwidth}
+	\vspace{-10pt}
+	\centering
+	\includegraphics[scale=0.60]{images/weka_logo}
+	\caption{Weka Logo.}
+	\vspace{-30pt}
+\end{wrapfigure}
 
 \subsection{Weka}
 
-To make predictions, this app referenced machine learning algorithms implemented in the Weka Java library \cite{weka}, created by Eibe Frank, Mark Hall, Peter Reutemann, and Len Trigg. For consistency, the key-terms used throughout the description of this project will be the same as the ones used in the Data Mining book \cite{wekabook} written by the first two members of the Weka team, in collaboration with Ian Witten. \par 
 
-\subsubsection*{Integrating External Code}
+To make predictions, this app referenced machine learning algorithms implemented in the Weka Java library \cite{weka}, created by Eibe Frank, Mark Hall, Peter Reutemann, and Len Trigg. 
 
-As mentioned previously, the machine learning side of this project was handled using the Weka package. Thus, a large part of the time was spent researching the different functionalities available in the Weka explorer\footnote{http://www.cs.waikato.ac.nz/~ml/weka/gui\_explorer.html}, and understanding how to programmatically get the same information as the one produced using the GUI. As a result, a utility class was created, containing methods to create instances (from user input or from a file), to filter those instances, to create a classifier and train it on the instances, to evaluate the classifier, to classify one or more instances and retrain the classifier on new data. \par
+\subsubsection*{Difficulties Encountered}
+
+As mentioned previously, the machine learning side of this project was handled using the Weka package. Thus, a large part of the time was spent researching the different functionalities available in the Weka explorer \cite{wekaexplorer}, and understanding how to programmatically get the same information as the one produced using the GUI. As a result, a utility class was created, containing methods to create instances (from user input or from a file), to filter those instances, to create a classifier and train it on the instances, to evaluate the classifier, to classify one or more instances and retrain the classifier on new data. \par
 
 This preliminary work was difficult, mainly because it was hard to find explanations in the documentation, for the different exceptions that were thrown when executing some instructions. The exception messages were not descriptive enough, and it took a lot of reading of problems faced by other users of the library to eventually find the causes of the errors. \par
 
-Merging the functionalities implemented in the utility class with the Android code happened without almost any obstacle. The .jar file containing the source code of the library was added as a dependency in the project, and all the needed classes were imported in the standard way: ``\texttt{import weka.}'' followed by the package containing the class to be used, and the name of the class. The only encountered issue came from the fact that, in order to train a classifier, one of the Weka classes uses the Java Graphics class from the awt package\footnote{??}, which is not available in Android. It was therefore not possible to train the classifier on the app. This was fixed by training it externally, outputting the trained object to a .model file, including that file as an asset of the project, and recreating the corresponding Classifier object from the .model file when launching the app.
+Merging the functionalities implemented in the utility class with the Android code happened without almost any obstacle. The .jar file containing the source code of the library was added as a dependency in the project, and all the needed classes were imported in the standard way\footnote{``\texttt{import weka.}'' followed by the package containing the class to be used, and the name of the class.}. The only encountered issue came from the fact that, in order to train a classifier, one of the Weka classes uses the Java Graphics class from the awt package\footnote{??}, which is not available in Android. It was therefore not possible to train the classifier on the app. This was fixed by training it externally, outputting the trained object to a .model file, including that file as an asset of the project (as described previously in section \ref{data_process}), and recreating the corresponding Classifier object from the .model file when launching the app.
+
+
+\begin{wrapfigure}{r}{0.20\textwidth}
+	\vspace{-25pt}
+	\centering
+	\includegraphics[scale=0.15]{images/android_logo}
+	\caption{Android Logo.}
+	\vspace{-1cm}
+\end{wrapfigure}
+
+\subsection{Android}
+
+Android is an operating system for mobile devices (smartphones and tablets), developed by Google and released in 2008.\cite{androidrelease}
+
+
+\subsubsection*{Difficulties Encountered}
+
+Creating the Android interface itself was not particularly hard. It did require a significant amount of time to browse through all the widgets available in the different Android standard libraries (seven Android packages contain widgets \cite{androidpackages}), then to decide which ones were the most appropriate for the app, and to learn how to customise and control them programmatically. Compatibility was also an issue, for some UI elements or attributes were introduced in more recent Android versions than the app's target version. It was therefore necessary to find alternative solutions. \par
+
+However, none of those obstacles were a surprise; as a matter of fact, they are an integral part of the learning process, and overcoming such difficulties can only have a positive impact on my overall programming experience. \par
+
+The hardest part of the Android development was to try to make the app as reliable and efficient as possible. This includes facing all the possible causes for the app to crash unexpectedly, which involves handling the activity lifecycle of the app \cite{androidlifecycle} (what to do when the app is paused, resumed, stopped), the potential memory leaks, loading images efficiently, properly managing the different activities and fragments, and the way they communicate. It also includes monitoring the amount of memory and battery use of the app.
+Unfortunately, although this was one of the main points of concern, not all of these elements were fully handled. \par
+
+Another difficulty arose on a code-level, when trying to reduce the amount of redundancy from one activity or fragment to another, without making the overall code harder to read. Because of the way projects are structured in Android \cite{androidprojects}, it is necessary to jump from one file to another in order to follow the flow of the system. This becomes worse when creating extra classes to store the common code shared by multiple elements.
 
 \subsection{Django}
 
-\subsection{Scrapy}
-
+\subsection{Scrapy}\label{scrapy}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Machine Learning Algorithm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Missing Values}\label{missing_values}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Attributes Selection}
@@ -242,17 +321,31 @@ Merging the functionalities implemented in the utility class with the Android co
 
 In the earliest version of the system during the third iteration, the training dataset was stored on the server-side, in a .txt file which could be downloaded by the clients, or updated by the server when new data was added. \par
 
-When a user launched the app, it had to check whether new entries were added since the last time the app was used. The initial way to do this was to compare the size of the two files: if the server's file was larger than the local one, it meant that the app's dataset had to be updated. This did not work as expected however, because when an application is deployed on heroku, it is assembled into a compressed bundle\footnote{https://devcenter.heroku.com/articles/slug-compiler}. Consequently, the size of the file stored on the server was not accurate. To overcome this issue, the number of entries in the dataset was stored in a database. This integer was incremented for every new instance shared by a user, and used instead to compare the two datasets. If the app's training set had fewer instances, it would then download the content of the server's file, extract the newest entries, and update the classifier on each entry, while also adding it to the local file. When a user invalidated a prediction and agreed to share the details with the other users, the data was sent as a string to the server, which added a new line to the file with that data.\par
+When a user launched the app, it had to check whether new entries were added since the last time the app was used. The initial way to do this was to compare the size of the two files: if the server's file was larger than the local one, it meant that the app's dataset had to be updated. This did not work as expected however, because when an application is deployed on heroku, it is assembled into a compressed bundle \cite{herokuslug}. Consequently, the size of the file stored on the server was not accurate. To overcome this issue, the number of entries in the dataset was stored in a database. This integer was incremented for every new instance shared by a user, and used instead to compare the two datasets. If the app's training set had fewer instances, it would then download the content of the server's file, extract the newest entries, and update the classifier on each entry, while also adding it to the local file. When a user invalidated a prediction and agreed to share the details with the other users, the data was sent as a string to the server, which added a new line to the file with that data.\par
 
-This was easy and convenient, especially for testing, but not optimal in terms of scalability: if several thousands of users were to use the app, and the training set updated regularly, that file would quickly become very large, and having all the users to download it every time they launch the app would not be practical. Alternatively, all the instances of server's training set were stored in the database. , and to make the client-apps fetch the new entries. A new problem would then arise: how to check if an entry is new to a given client? A possible solution could be to timestamp every entry with the date and time they were sent to the server. Each client would also keep the time it last downloaded new data, so that the server can send all the entries that were added after the client's last update. \par
+This was easy and convenient, especially for testing, but not optimal in terms of scalability: if several thousands of users were to use the app, and the training set updated regularly, that file would quickly become very large, and having all the users to download it every time they launch the app would not be practical. Alternatively, all the instances of server's training set were stored in the database. Instead of downloading the whole content of a file, the client-apps now only fetch the new entries when the user starts the app. This is described in Figure \ref{fig:launch}.\par
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{images/app_launching_diagram}
+	\caption{Sequence diagram showing the communication within the system when the user launches the app.}
+	\label{fig:launch}
+\end{figure}
+
+In order to check whether an entry is new to a given client, each entry is given a timestamp with the date and time it was sent to the server. Each client also keeps the time it last downloaded new data, so that the server can send all the entries that were added after the client's last update. Additionally, when the user submits new data, a new entry is created in the database, and the server returns the timestamp for the transaction, as shown in Figure \ref{fig:new_entry}.\par
+\begin{figure}[h]
+	\centering
+	\includegraphics[trim=0cm 0cm 0cm 2cm, width=\textwidth]{images/wrong_prediction_diagram}
+	\caption{Sequence diagram showing the communication within the system when the user invalidates a prediction.}
+	\label{fig:new_entry}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Testing}
 
-
+(Testing)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Evaluation}
+\chapter{Evaluation}\label{evaluation}
 
 \section{User Interface}
 
@@ -261,6 +354,8 @@ This was easy and convenient, especially for testing, but not optimal in terms o
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusion}\label{conclusion}
+
+\section{Summary}
 
 \section{Limitations and Future Work}
 
@@ -281,17 +376,13 @@ It could also be useful to consider features related to the title of the book: f
 	
 \subsection{Scalability}
 
-Another part of the system which could be improved is the server. At the moment, the server uses a .txt file to store shared data between the different clients. This is not optimal in terms of scalability: if several thousands of users were to use the app, and the training set updated regularly, that file would quickly become very large, and having all the users to download it every time they launch the app would not be practical. \par
+In order to reduce the time spent waiting for the different components to exchange information, in the event of having several thousands of users, the system could be to remodelled, so that the training is handled by the server and not the client. The server would not even need to store any data, it would just receive it, retrain the classifier, and send a .model file containing the output classifier, which could then be loaded by the client to retrieve the Classifier object. \par
 
-A first alternative would be to store each entry of the dataset in a database, and to make the client-apps fetch the new entries. A new problem would then arise: how to check if an entry is new to a given client? A possible solution could be to timestamp every entry with the date and time they were sent to the server. Each client would also keep the time it last downloaded new data, so that the server can send all the entries that were added after the client's last update. \par
-
-A second way to increase the scalability of the system could be to remodel it, so that the training is handled by the server and not the client. The server would not even need to store any data, it would just receive it, retrain the classifier, and send a .model file containing the output classifier, which could then be loaded by the client to retrieve the Classifier object. \par
-
-This solution would then require using the Weka library with python, which is only possible to a certain extent, given that none of the different packages and libraries which can be used for this purpose seems to implement all the functionalities found in the Java version of Weka\footnote{https://weka.wikispaces.com/Can+I+use+WEKA+from+Python\%3F}. It might even be necessary to use a completely different library, to be exclusively used with Python\footnote{??}. \par
+This solution would then require using the Weka library with python, which is only possible to a certain extent, given that none of the different packages and libraries which can be used for this purpose seems to implement all the functionalities found in the Java version of Weka \cite{wekapython}. It might even be necessary to use a completely different library, to be exclusively used with Python, such as scikit-learn \cite{scikit-learn} or pybrain \cite{pybrain}. \par
 
 Another approach could be to handle all the machine learning side of the system on the server: the mobile app would just serve as an interface for the users to input data and view the predictions, but the data would be sent to and processed on the server, which would take care of the training, the classification, and the classifier update (as described for the second solution). \par
 
-This solution has several advantages. The first one is that it reduces the client-server communications to the minimum, that is, when the users request a prediction, and when they submit the correct answer after the system made a wrong conjecture. The data sent in those cases would be up to a few hundreds of bytes\footnote{??}, which means that the requests would be sent in a few seconds at most\footnote{??}. \par
+This solution has several advantages. The first one is that it reduces the client-server communications to the minimum, that is, when the users request a prediction, and when they submit the correct answer after the system made a wrong conjecture. The data sent in those cases would be up to a few hundreds of bytes, which means that the requests would be sent in a few seconds at most. \par
 
 Another advantage is that the Android app would not have to store the .jar file containing the Weka source code, or any of the classes which handle the machine learning, and would therefore take much less space in the devices' memory. It would also use less memory, given that it would have fewer processes to handle. \par
 
@@ -299,10 +390,9 @@ Moreover, it would substantially increase the reusability and portability of the
 
 The drawbacks, however, include the restriction caused by using Weka in Python, as well as enforcing the users' devices to be connected to the network for the app to output any prediction. This is not the case with the current version, as the users are asked permission before downloading the updated dataset, or before sending the correct answer to the server. Should they choose to refuse, they would miss out on additional data to make the predictions more accurate, yet their classifier would still be locally updated.
 
-\section{Personal Reflection on the Project}
+\section{Reflection on the Project}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{References}
 
 \bibliographystyle{apalike}
 \bibliography{mproj}
@@ -311,7 +401,93 @@ The drawbacks, however, include the restriction caused by using Weka in Python, 
 \appendix
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{First appendix}
+
+\chapter{Training Set}\label{dataset}
+
+\% 1. Title: Agatha Christie Novels\\
+\% 2. Sources:\\
+\%\hspace{5mm}(a) Creator: Jeremy Singer \& Clemence Brival\\
+\%\hspace{5mm}(b) Date: July, 2016\\
+@relation novel
+
+@attribute title string\\
+@attribute year numeric\\
+@attribute detective \{unknown, `Tommy and Tuppence', `Hercule Poirot', `Colonel Race', `Superintendent Battle', `Miss Marple', `Mystery novel'\}\\
+@attribute location \{unknown, UK, International\}\\
+@attribute point\_of\_view \{unknown, Third, First\}\\
+@attribute murder\_weapon \{unknown, Poison, Stabbing, Accident, Shooting, Strangling, Concussion, ThroatSlit, Drowning, None\}\\
+@attribute average\_ratings numeric\\
+@attribute number\_of\_ratings numeric\\
+@attribute victim\_gender \{unknown, F, M, None\}\\
+@attribute murderer\_gender \{unknown, F, M, Lots, None\}
+
+@data\\
+`The Mysterious Affair at Styles',1920,`Hercule Poirot',UK,First,Poison,3.96,122922,F,M\\
+`The Secret Adversary',1922,`Tommy and Tuppence',UK,Third,Poison,3.82,22649,F,M\\
+`The Murder on the Links',1923,`Hercule Poirot',International,First,Stabbing,3.77,18910,M,F\\
+`The Man in the Brown Suit',1924,`Colonel Race',International,First,Accident,3.95,49495,M,M\\
+`The Secret of Chimneys',1925,`Superintendent Battle',UK,Third,Shooting,3.83,8651,M,F\\
+`The Murder of Roger Ackroyd',1926,`Hercule Poirot',UK,First,Stabbing,4.17,66801,M,M\\
+`The Big Four',1927,`Hercule Poirot',UK,First,Poison,3.61,17901,M,M\\
+`The Mystery of the Blue Train',1928,`Hercule Poirot',International,Third,Strangling,3.75,17262,F,M\\
+`The Seven Dials Mystery',1929,`Superintendent Battle',UK,Third,Poison,3.78,9968,M,M\\
+`The Murder at the Vicarage',1930,`Miss Marple',UK,First,Shooting,4.02,85677,M,F\\
+`The Sittaford Mystery',1931,`Mystery novel',UK,Third,Concussion,3.67,7240,M,M\\
+`Peril at End House',1932,`Hercule Poirot',UK,First,Shooting,3.87,18613,F,F\\
+`Lord Edgware Dies',1933,`Hercule Poirot',UK,First,Stabbing,3.87,15536,M,F\\
+`Why Didn't They Ask Evans?',1934,`Mystery novel',UK,Third,Accident,3.83,11190,M,M\\
+`Murder on the Orient Express',1934,`Hercule Poirot',International,Third,Stabbing,4.13,136560,M,Lots\\
+`Three Act Tragedy',1935,`Hercule Poirot',UK,Third,Poison,3.8,10616,M,M\\
+`Death in the Clouds',1935,`Hercule Poirot',UK,Third,Poison,3.77,17294,F,M\\
+`The A.B.C. Murders',1936,`Hercule Poirot',UK,First,Concussion,3.95,47222,F,M\\
+`Cards on the Table',1936,`Hercule Poirot',UK,Third,Stabbing,3.88,19266,M,M\\
+`Murder in Mesopotamia',1936,`Hercule Poirot',International,First,Concussion,3.84,20756,F,M\\
+`Death on the Nile',1937,`Hercule Poirot',International,Third,Shooting,4.04,62803,F,M\\
+`Dumb Witness',1937,`Hercule Poirot',UK,First,Poison,3.79,11233,F,F\\
+`Appointment with Death',1938,`Hercule Poirot',International,Third,Poison,3.83,20383,F,F\\
+`Hercule Poirot\'s Christmas',1938,`Hercule Poirot',UK,Third,ThroatSlit,3.88,18770,M,M\\
+`Murder Is Easy',1939,`Superintendent Battle',UK,Third,Accident,3.74,9034,F,F\\
+`And then there were none',1940,`Mystery novel',UK,Third,Poison,4.21,364542,M,M\\
+`One Two Buckle My Shoe',1940,`Hercule Poirot',UK,Third,Shooting,3.72,12553,M,M\\
+`Sad Cypress',1940,`Hercule Poirot',UK,Third,Poison,3.81,12699,F,F\\
+`Evil Under the Sun',1941,`Hercule Poirot',UK,Third,Strangling,3.93,27508,F,M\\
+`N or M?',1941,`Tommy and Tuppence',UK,Third,Accident,3.72,11396,M,M\\
+`The Body in the Library',1942,`Miss Marple',UK,Third,Poison,3.83,35267,F,F\\
+`The Moving Finger',1942,`Miss Marple',UK,First,Poison,3.83,15301,F,M\\
+`Five Little Pigs',1942,`Hercule Poirot',UK,Third,Poison,3.93,20068,M,F\\
+`Towards Zero',1944,`Superintendent Battle',UK,Third,Concussion,3.83,7921,M,M\\
+`Death Comes as the End',1945,`Mystery novel',International,Third,Accident,3.83,9681,F,M\\
+`Sparkling Cyanide',1945,`Colonel Race',UK,Third,Poison,3.83,10141,M,F\\
+`The Hollow',1946,`Hercule Poirot',UK,Third,Shooting,3.75,17390,M,F\\
+`Taken at the Flood',1948,`Hercule Poirot',UK,Third,Concussion,3.69,7706,M,M\\
+`Crooked House',1949,`Mystery novel',UK,First,Poison,3.95,15973,M,F\\
+`A Murder Is Announced',1950,`Miss Marple',UK,Third,Shooting,3.94,25476,M,F\\
+`They Came to Baghdad',1951,`Mystery novel',International,Third,Stabbing,3.77,8935,M,M\\
+`They Do It with Mirrors',1952,`Miss Marple',UK,Third,Shooting,3.73,13628,M,M\\
+`Mrs McGinty\'s Dead',1952,`Hercule Poirot',UK,Third,Concussion,3.79,11223,F,M\\
+`After the Funeral',1953,`Hercule Poirot',UK,Third,Concussion,3.82,13957,F,F\\
+`A Pocket Full of Rye',1953,`Miss Marple',UK,Third,Poison,3.82,17224,M,M\\
+`Destination Unknown',1954,`Mystery novel',International,Third,Poison,3.64,5096,F,M\\
+`Hickory Dickory Dock',1955,`Hercule Poirot',UK,Third,Poison,3.73,11438,F,M\\
+`Dead Man\'s Folly',1956,`Hercule Poirot',UK,Third,Strangling,3.76,10723,F,F\\
+`4.50 from Paddington',1957,`Miss Marple',UK,Third,Strangling,3.91,24564,F,M\\
+`Ordeal by Innocence',1958,`Mystery novel',UK,Third,Concussion,3.76,6680,F,F\\
+`Cat Among the Pigeons',1959,`Hercule Poirot',UK,Third,Shooting,3.81,17246,F,F\\
+`The Pale Horse',1961,`Mystery novel',UK,First,Poison,3.73,7917,F,M\\
+`The Mirror Crack\'d from Side to Side',1962,`Miss Marple',UK,Third,Poison,3.87,19898,F,F\\
+`The Clocks',1963,`Hercule Poirot',UK,First,Stabbing,3.69,12905,M,M\\
+`A Caribbean Mystery',1964,`Miss Marple',International,Third,Poison,3.76,14663,M,M\\
+`At Bertram\'s Hotel',1965,`Miss Marple',UK,Third,Shooting,3.69,14716,M,F\\
+`Third Girl',1966,`Hercule Poirot',UK,Third,Accident,3.59,11464,F,F\\
+`Endless Night',1967,`Mystery novel',UK,First,Accident,3.74,9748,F,M\\
+`By the Pricking of My Thumbs',1968,`Tommy and Tuppence',UK,Third,Poison,3.7,8488,F,F\\
+`Hallowe\'en Party',1969,`Hercule Poirot',UK,Third,Drowning,3.66,15341,F,F\\
+`Passenger to Frankfurt',1970,`Mystery novel',International,Third,None,3.05,5140,None,None\\
+Nemesis,1971,`Miss Marple',UK,Third,Poison,3.74,10439,F,F\\
+`Elephants Can Remember',1972,`Hercule Poirot',UK,Third,Shooting,3.62,15546,F,M\\
+`Postern of Fate',1973,`Tommy and Tuppence',UK,Third,Poison,3.26,5358,?,?\\
+Curtain,1975,`Hercule Poirot',UK,First,Poison,4.03,19280,M,M\\
+`Sleeping Murder',1976,`Miss Marple',UK,Third,Strangling,3.9,16477,F,M\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Second appendix}
