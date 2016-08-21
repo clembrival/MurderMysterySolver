@@ -22,7 +22,7 @@ import com.clemSP.iteration1.backend.Data;
 public class TextInputFragment extends BaseInputFragment
 {
     private Spinner mDetectiveSpin, mWeaponSpin, mGenderSpin, mVictimSpin;
-    private RadioGroup mSettingGroup;
+    private RadioGroup mLocationGroup;
 
 
     @Override
@@ -58,8 +58,8 @@ public class TextInputFragment extends BaseInputFragment
         if(mVictimSpin != null)
             outState.putInt("victim", mVictimSpin.getSelectedItemPosition());
 
-        if(mSettingGroup != null)
-            outState.putInt("setting", mSettingGroup.getCheckedRadioButtonId());
+        if(mLocationGroup != null)
+            outState.putInt("location", mLocationGroup.getCheckedRadioButtonId());
     }
 
 
@@ -84,9 +84,9 @@ public class TextInputFragment extends BaseInputFragment
         if(mVictimSpin != null && victim != -1)
             mVictimSpin.setSelection(victim);
 
-        int setting = retrieveSavedInt(savedInstanceState, "setting");
-        if(mSettingGroup != null && setting != -1)
-            mSettingGroup.check(setting);
+        int location = retrieveSavedInt(savedInstanceState, "location");
+        if(mLocationGroup != null && location != -1)
+            mLocationGroup.check(location);
     }
 
 
@@ -95,8 +95,8 @@ public class TextInputFragment extends BaseInputFragment
     {
         super.inflateWidgets(clear);
 
-        mSettingGroup = inflateRadioGroup(AppAttribute.Location, R.id.setting_layout,
-                R.id.setting_group, clear);
+        mLocationGroup = inflateRadioGroup(AppAttribute.Location, R.id.location_layout,
+                R.id.location_group, clear);
 
         mDetectiveSpin = inflateSpinner(AppAttribute.Detective, R.id.detective_layout,
                 R.id.detective_spinner, R.array.detective_array, clear);
@@ -216,20 +216,14 @@ public class TextInputFragment extends BaseInputFragment
 
                         data.setYear("" + getInputYear());
 
-                        data.setPov(getInputFromRadioGroup(AppAttribute.Pov, mPovGroup,
-                                R.string.pov_error));
-
                         data.setDetective(getInputFromSpinner(AppAttribute.Detective,
                                 mDetectiveSpin, R.string.detective_error));
 
-                        String victim = getInputFromSpinner(AppAttribute.Victim, mVictimSpin,
-                                R.string.victim_error);
-                        if(getString(R.string.female).equals(victim))
-                            data.setVictim("F");
-                        else if(getString(R.string.male).equals(victim))
-                            data.setVictim("M");
-                        else
-                            data.setVictim(victim);
+                        data.setLocation(getInputFromRadioGroup(AppAttribute.Location,
+                                mLocationGroup, R.string.location_error));
+
+                        data.setPov(getInputFromRadioGroup(AppAttribute.Pov, mPovGroup,
+                                R.string.pov_error));
 
                         data.setWeapon(getInputFromSpinner(AppAttribute.Weapon, mWeaponSpin,
                                 R.string.cause_error));
@@ -241,10 +235,16 @@ public class TextInputFragment extends BaseInputFragment
                         else if(getString(R.string.male).equals(gender))
                             data.setGender("M");
                         else
-                            data.setGender(victim);
+                            data.setGender(gender);
 
-                        data.setSetting(getInputFromRadioGroup(AppAttribute.Location,
-                                mSettingGroup, R.string.setting_error));
+                        String victim = getInputFromSpinner(AppAttribute.Victim, mVictimSpin,
+                                R.string.victim_error);
+                        if(getString(R.string.female).equals(victim))
+                            data.setVictim("F");
+                        else if(getString(R.string.male).equals(victim))
+                            data.setVictim("M");
+                        else
+                            data.setVictim(victim);
 
                         data.setRating("" + getInputRating());
 

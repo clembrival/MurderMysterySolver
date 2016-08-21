@@ -16,7 +16,7 @@ public class ImageFeatureManager
         {
             case Detective: return getDetectiveImages();
             case Weapon: return getWeaponImages();
-            case Location: return getSettingImages();
+            case Location: return getLocationImages();
             case Murderer: return getMurdererImages();
             case Victim: return getVictimImages();
         }
@@ -68,18 +68,18 @@ public class ImageFeatureManager
     }
 
 
-    private static List<ImageFeature> getSettingImages()
+    private static List<ImageFeature> getLocationImages()
     {
-        List<ImageFeature> settingImages = new ArrayList<>(3);
+        List<ImageFeature> locationImages = new ArrayList<>(3);
 
         AppAttribute attribute = AppAttribute.Location;
 
-        settingImages.add(new ImageFeature(R.drawable.setting_international, R.string.international_label,
+        locationImages.add(new ImageFeature(R.drawable.location_international, R.string.international_label,
                 attribute));
-        settingImages.add(new ImageFeature(R.drawable.setting_uk, R.string.uk_label, attribute));
-        settingImages.add(new ImageFeature(R.drawable.unknown, R.string.unknown, attribute));
+        locationImages.add(new ImageFeature(R.drawable.location_uk, R.string.uk_label, attribute));
+        locationImages.add(new ImageFeature(R.drawable.unknown, R.string.unknown, attribute));
 
-        return settingImages;
+        return locationImages;
     }
 
 
@@ -90,7 +90,7 @@ public class ImageFeatureManager
         AppAttribute attribute = AppAttribute.Murderer;
 
         genderImages.add(new ImageFeature(R.drawable.gender_female, R.string.female, attribute));
-        genderImages.add(new ImageFeature(R.drawable.unknown, R.string.lots, attribute));
+        genderImages.add(new ImageFeature(R.drawable.gender_lots, R.string.lots, attribute));
         genderImages.add(new ImageFeature(R.drawable.gender_male, R.string.male, attribute));
         genderImages.add(new ImageFeature(R.drawable.unknown, R.string.unknown, attribute));
 

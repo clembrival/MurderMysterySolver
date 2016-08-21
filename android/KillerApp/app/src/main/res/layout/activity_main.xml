@@ -30,21 +30,30 @@
 				app:tabGravity="fill"
 				android:visibility="gone" />
 
-			<TextView android:id="@+id/hint_textview"
-					  android:layout_width="200dp"
-					  android:layout_height="wrap_content"
-					  android:layout_gravity="center_horizontal"
-					  android:gravity="center_horizontal"
-					  android:text="@string/drawer_hint"
-					  android:textStyle="bold|italic"
-					  android:textColor="@color/firebrick"
-					  android:textSize="22sp"
-					  android:visibility="gone" />
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
 
-			<LinearLayout android:id="@+id/fragment_container"
-						  android:layout_width="match_parent"
-						  android:layout_height="match_parent"
-						  android:orientation="vertical" />
+				<TextView android:id="@+id/hint_textview"
+						  android:layout_width="200dp"
+						  android:layout_height="wrap_content"
+						  android:layout_centerHorizontal="true"
+						  android:layout_centerVertical="true"
+						  android:gravity="center_horizontal"
+						  android:text="@string/drawer_hint"
+						  android:textStyle="bold|italic"
+						  android:textColor="@color/firebrick"
+						  android:background="@color/moccasin"
+						  android:textSize="22sp"
+						  android:visibility="visible" />
+
+				<LinearLayout android:id="@+id/fragment_container"
+							  android:layout_width="match_parent"
+							  android:layout_height="match_parent"
+							  android:layout_alignParentBottom="true"
+							  android:orientation="vertical" />
+			</RelativeLayout>
+
 		</LinearLayout>
 
 		<android.support.design.widget.FloatingActionButton
@@ -61,31 +70,47 @@
 
 	</android.support.design.widget.CoordinatorLayout>
 
-    <LinearLayout android:id="@+id/listviews_container"
+    <RelativeLayout android:id="@+id/listviews_container"
                   android:layout_width="240dp"
                   android:layout_height="match_parent"
                   android:layout_gravity="start"
                   android:orientation="vertical" >
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+
+			<ListView android:id="@+id/select_drawer"
+					  android:layout_width="match_parent"
+					  android:layout_height="wrap_content"
+					  android:choiceMode="none"
+					  android:divider="@android:color/transparent"
+					  android:dividerHeight="0dp"
+					  android:background="@color/moccasin"
+					  android:textColor="@color/firebrick" />
+
+			<ListView android:id="@+id/features_drawer"
+					  android:layout_width="match_parent"
+					  android:layout_height="match_parent"
+					  android:layout_gravity="start"
+					  android:choiceMode="multipleChoice"
+					  android:divider="@android:color/transparent"
+					  android:dividerHeight="0dp"
+					  android:background="@color/moccasin"
+					  android:textColor="@color/firebrick" />
+
+		</LinearLayout>
                   
-        <ListView android:id="@+id/select_drawer"
-              	  android:layout_width="match_parent"
-	              android:layout_height="wrap_content"
-	              android:choiceMode="none"
-	              android:divider="@android:color/transparent"
-	              android:dividerHeight="0dp"
-	              android:background="@color/moccasin"
-	              android:textColor="@color/firebrick" />
+        <TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			android:textColor="@color/black"
+			android:textStyle="italic"
+			android:textSize="15sp"
+			android:text="@string/drawer_close_hint"/>
 	        
-    	<ListView android:id="@+id/features_drawer"
-              	  android:layout_width="match_parent"
-	              android:layout_height="match_parent"
-	              android:layout_gravity="start"
-	              android:choiceMode="multipleChoice"
-	              android:divider="@android:color/transparent"
-	              android:dividerHeight="0dp"
-	              android:background="@color/moccasin"
-	              android:textColor="@color/firebrick" />
-	        
-    </LinearLayout>
+    </RelativeLayout>
     
 </android.support.v4.widget.DrawerLayout>

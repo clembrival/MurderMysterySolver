@@ -186,9 +186,15 @@ public class ImagesInputFragment extends BaseInputFragment
                         for(ImageFeature feature : mFragmentFeatures)
                         {
                             AppAttribute attribute = feature.getAttribute();
-                            data.setAttribute(attribute, getInputFromImageFeature(mView, attribute,
-                            		mView.getContext().getString(feature.getCaptionRes()),
-                                    AppAttribute.getErrorRes(attribute)));
+                            String attributeValue = getInputFromImageFeature(mView, attribute,
+                                    mView.getContext().getString(feature.getCaptionRes()),
+                                    AppAttribute.getErrorRes(attribute));
+                            Log.w("INPUT", "att: " + attributeValue);
+                            if(getString(R.string.female).equals(attributeValue))
+                                attributeValue = "F";
+                            else if(getString(R.string.male).equals(attributeValue))
+                                attributeValue = "M";
+                            data.setAttribute(attribute, attributeValue);
                         }
 
                         data.setOthers();

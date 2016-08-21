@@ -1,6 +1,7 @@
 package com.clemSP.iteration1.frontend.features_selection;
 
 import android.app.Activity;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.AdapterView;
@@ -46,6 +47,7 @@ public class FeatureDrawer
         mSettings = PredictionSettings.getSettings();
 
         mDrawer = (DrawerLayout) activity.findViewById(R.id.drawer_layout);
+
         mSelectOptionsList = (ListView) activity.findViewById(R.id.select_drawer);
         mFeaturesList = (ListView) activity.findViewById(R.id.features_drawer);
 
@@ -63,6 +65,12 @@ public class FeatureDrawer
 
         setDrawerLayoutListener(activity);
         setDrawerListListener();
+
+        if(mDrawer != null)
+        {
+            mDrawer.openDrawer(GravityCompat.START);
+            onFeaturesDrawerOpened(activity);
+        }
     }
 
 

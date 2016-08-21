@@ -1,7 +1,6 @@
 package com.clemSP.iteration1.backend;
 
 import android.app.Activity;
-import android.util.Log;
 
 import com.clemSP.iteration1.frontend.PredictionSettings;
 
@@ -112,7 +111,7 @@ public class Dataset
 
         values[index++] = Integer.parseInt(data.getYear());
         values[index] = mData.attribute(index++).indexOfValue(data.getDetective());
-        values[index] = mData.attribute(index++).indexOfValue(data.getSetting());
+        values[index] = mData.attribute(index++).indexOfValue(data.getLocation());
         values[index] = mData.attribute(index++).indexOfValue(data.getPov());
         values[index] = mData.attribute(index++).indexOfValue(data.getWeapon());
         values[index] = mData.attribute(index++).indexOfValue(data.getVictim());

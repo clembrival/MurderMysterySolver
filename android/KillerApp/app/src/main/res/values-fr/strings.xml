@@ -7,7 +7,7 @@
     <string name="year_label">Année de publication</string>
     <string name="select_label">Saisir&#8230;</string>
     <string name="detective_label">Détective</string>
-    <string name="setting_label">Cadre</string>
+    <string name="location_label">Cadre</string>
     <string name="cause_label">Cause du décès</string>
     <string name="pov_label">Point de vue de la narration</string>
 
@@ -34,7 +34,7 @@
     <string name="title_error">Entrer le titre du roman.</string>
     <string name="year_error">Entrer l\'année de publication.</string>
     <string name="detective_error">Veuillez entrer le nom du détective.</string>
-    <string name="setting_error">Entrer le lieu où se déroule l\'histoire (cadre).</string>
+    <string name="location_error">Entrer le lieu où se déroule l\'histoire (cadre).</string>
     <string name="pov_error">Veuillez entrer le point de vue de la narration.</string>
 
     <string name="year_dialog_title">Année de publication</string>
@@ -72,7 +72,7 @@
     <string name="right_answer_error">Veuillez sélectionner la bonne réponse.</string>
     <string name="select_features_title">Que savez-vous?</string>
     <string name="select_prediction_title">Que voulez-vous savoir?</string>
-    <string name="setting_image_description">Cadre</string>
+    <string name="location_image_description">Cadre</string>
     <string name="third_label">Troisi&#232;me Personne</string>
     <string name="uk_label">GB</string>
     <string name="up_image_description">Flèche vers le haut</string>

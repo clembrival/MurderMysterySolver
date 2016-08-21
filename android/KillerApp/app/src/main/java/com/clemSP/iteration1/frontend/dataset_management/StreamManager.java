@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
-import java.util.Arrays;
 
 import weka.classifiers.Classifier;
 
@@ -42,7 +41,7 @@ public class StreamManager
         }
         catch(IOException ioe)
         {
-            Log.e(tag, Arrays.toString(ioe.getStackTrace()));
+            Log.e(tag, ioe.getLocalizedMessage());
         }
         return false;
     }

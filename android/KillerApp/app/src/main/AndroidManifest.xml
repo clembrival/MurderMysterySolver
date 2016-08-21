@@ -16,22 +16,31 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".frontend.prediction.WeaponPredictionActivity" />
-        <activity android:name=".frontend.prediction.GenderPredictionActivity" />
-        <activity android:name=".frontend.ManagerActivity" >
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".frontend.prediction.WeaponPredictionActivity"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".frontend.prediction.GenderPredictionActivity"
+                  android:screenOrientation="portrait" />
+
+        <activity android:name=".frontend.ManagerActivity"
+                  android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".frontend.MainActivity" />
-        <activity
-            android:name=".frontend.WelcomeActivity"
-            android:label="@string/title_activity_welcome" >
-        </activity>
-        <activity android:name=".frontend.dataset_management.ReplaceLocalDatasetActivity" />
+
+        <activity android:name=".frontend.MainActivity"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".frontend.WelcomeActivity"
+                  android:label="@string/title_activity_welcome"
+                  android:screenOrientation="portrait" />
+
+        <activity android:name=".frontend.dataset_management.ReplaceLocalDatasetActivity"
+                  android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

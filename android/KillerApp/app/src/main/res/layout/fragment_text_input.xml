@@ -96,7 +96,7 @@
 
             </RelativeLayout>
 
-            <RelativeLayout android:id="@+id/setting_layout"
+            <RelativeLayout android:id="@+id/location_layout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -107,10 +107,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/setting_label"
+                    android:text="@string/location_label"
                     style="@style/textview" />
 
-                <RadioGroup android:id="@+id/setting_group"
+                <RadioGroup android:id="@+id/location_group"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"

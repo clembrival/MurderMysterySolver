@@ -257,6 +257,12 @@ public abstract class PredictionActivity extends BaseActivity implements Dataset
                     printErrorToast(R.string.right_answer_error);
                     return;
                 }
+
+                if(getString(R.string.female).equals(rightAnswer))
+                    rightAnswer = "F";
+                else if(getString(R.string.male).equals(rightAnswer))
+                    rightAnswer = "M";
+
                 Dataset.get(PredictionActivity.this).retrainClassifier(PredictionActivity.this,
                 		rightAnswer);
                 dialog.dismiss();

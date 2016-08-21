@@ -16,7 +16,7 @@ public class GenderPredictionActivity extends PredictionActivity
         switch (predictionRes)
         {
             case R.string.female: imageRes = R.drawable.gender_female; break;
-            case R.string.lots: imageRes = R.drawable.unknown; break;
+            case R.string.lots: imageRes = R.drawable.gender_lots; break;
             case R.string.male: imageRes = R.drawable.gender_male; break;
             case R.string.none: imageRes = R.drawable.unknown; break;
             default:

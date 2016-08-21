@@ -70,11 +70,11 @@
                       android:layout_marginTop="10dp"
                       android:text="@string/detective_label" />
 
-            <CheckBox android:id="@+id/setting_checkbox"
+            <CheckBox android:id="@+id/location_checkbox"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:layout_marginTop="10dp"
-                      android:text="@string/setting_label" />
+                      android:text="@string/location_label" />
 
             <CheckBox android:id="@+id/pov_checkbox"
                       android:layout_width="match_parent"

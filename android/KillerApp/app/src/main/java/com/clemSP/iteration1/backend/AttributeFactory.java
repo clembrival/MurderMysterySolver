@@ -73,7 +73,7 @@ public class AttributeFactory
             {
                 case Year: return R.string.year_label;
                 case Detective: return R.string.detective_label;
-                case Location: return R.string.setting_label;
+                case Location: return R.string.location_label;
                 case Pov: return R.string.pov_label;
                 case Weapon: return R.string.cause_label;
                 case Victim: return R.string.victim_label;
@@ -89,7 +89,7 @@ public class AttributeFactory
             {
                 case Year: return R.string.year_error;
                 case Detective: return R.string.detective_error;
-                case Location: return R.string.setting_error;
+                case Location: return R.string.location_error;
                 case Pov: return R.string.pov_error;
                 case Weapon: return R.string.cause_error;
                 case Victim: return R.string.victim_error;
@@ -105,7 +105,7 @@ public class AttributeFactory
             {
                 case 0: return R.id.year_checkbox;
                 case 1: return R.id.detective_checkbox;
-                case 2: return R.id.setting_checkbox;
+                case 2: return R.id.location_checkbox;
                 case 3: return R.id.pov_checkbox;
                 case 4: return R.id.weapon_checkbox;
                 case 5: return R.id.victim_checkbox;

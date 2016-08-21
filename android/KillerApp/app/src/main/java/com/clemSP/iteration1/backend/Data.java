@@ -7,7 +7,7 @@ public class Data
     private static final int TITLE = 0, 
     		YEAR = AppAttribute.Year.getIndex() + 1,
             DETECTIVE = AppAttribute.Detective.getIndex() + 1,
-            SETTING = AppAttribute.Location.getIndex() + 1,
+            LOCATION = AppAttribute.Location.getIndex() + 1,
             POV = AppAttribute.Pov.getIndex() + 1,
             WEAPON = AppAttribute.Weapon.getIndex() + 1,
             VICTIM = AppAttribute.Victim.getIndex() + 1,
@@ -52,14 +52,14 @@ public class Data
         mData[DETECTIVE] = detective;
     }
 
-    public String getSetting()
+    public String getLocation()
     {
-        return mData[SETTING];
+        return mData[LOCATION];
     }
 
-    public void setSetting(String setting)
+    public void setLocation(String location)
     {
-        mData[SETTING] = setting;
+        mData[LOCATION] = location;
     }
 
     public String getPov()
@@ -123,7 +123,7 @@ public class Data
         {
             case Year: setYear(value);
             case Detective: setDetective(value); break;
-            case Location: setSetting(value); break;
+            case Location: setLocation(value); break;
             case Pov: setPov(value);
             case Weapon: setWeapon(value); break;
             case Victim: setVictim(value); break;
@@ -140,7 +140,7 @@ public class Data
             case 0: return getTitle();
             case 1: return getYear();
             case 2: return getDetective();
-            case 3: return getSetting();
+            case 3: return getLocation();
             case 4: return getPov();
             case 5: return getWeapon();
             case 6: return getVictim();

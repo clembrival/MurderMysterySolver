@@ -21,7 +21,7 @@
     <string name="title_label">Title</string>
     <string name="year_label">Year of publication</string>
     <string name="detective_label">Detective</string>
-    <string name="setting_label">Setting</string>
+    <string name="location_label">Location</string>
     <string name="cause_label">Cause of death</string>
     <string name="pov_label">Point of view</string>
     <string name="victim_label">Victim\'s gender</string>
@@ -71,7 +71,7 @@
     <string name="title_error">Please enter the title of the novel.</string>
     <string name="year_error">Please select the year of publication.</string>
     <string name="detective_error">Please select the detective of the story.</string>
-    <string name="setting_error">Please select the setting of the story.</string>
+    <string name="location_error">Please select the location of the story.</string>
     <string name="pov_error">Please select the point of view of the story.</string>
     <string name="cause_error">Please select the cause of death of the victim.</string>
     <string name="gender_error">Please select the gender of the murderer.</string>
@@ -83,7 +83,7 @@
 
     <string name="weapon_image_description">Murder Weapon</string>
     <string name="detective_image_description">Detective</string>
-    <string name="setting_image_description">Setting</string>
+    <string name="location_image_description">Location</string>
     <string name="victime_image_description">Victim\'s gender</string>
     <string name="murderer_image_description">Murderer\'s gender</string>
     <string name="up_image_description">Up button</string>
@@ -103,6 +103,7 @@
     <string name="very_confident">I am very confident..</string>
 
     <string name="drawer_hint">Swipe left to right to open the features drawer.</string>
+    <string name="drawer_close_hint">Swipe right to left to close the drawer.</string>
 
     <string name="try_again_label">Try again</string>
 
