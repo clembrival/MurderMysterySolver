@@ -100,6 +100,7 @@
 
     <string name="try_again_label">Try again</string>
 
+    <string name="fetch_data_question">Do you want to download any new information from the server?</string>
     <string name="compare_datasets">Comparing the local dataset to the server.</string>
     <string name="update_local">Updating the local dataset.</string>
     <string name="send_data_question">Do you want to share this information with the other apps to improve my skills?</string>

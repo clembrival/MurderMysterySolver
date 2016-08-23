@@ -5,13 +5,16 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 
 import com.clemSP.sourcecode.R;
 import com.clemSP.sourcecode.frontend.MainActivity;
+import com.clemSP.sourcecode.frontend.settings.SettingsFragment;
 
 
 /** Class creating AsyncTasks to compare the local data set to the one on the server,
@@ -21,6 +24,7 @@ public class ReplaceLocalDatasetActivity extends Activity implements DatasetTask
 {
 	private static final String BASE_URL = "https://murder-mystery-server.herokuapp.com/killerapp/";
 
+	private SharedPreferences mPreferences;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -28,7 +32,10 @@ public class ReplaceLocalDatasetActivity extends Activity implements DatasetTask
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_update_dataset);
 
-		checkNetworkConnection();
+		mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+		if(mPreferences.getBoolean(SettingsFragment.KEY_PREF_SHARE_DATA, true))
+			checkNetworkConnection();
 	}
 
 
@@ -42,18 +49,63 @@ public class ReplaceLocalDatasetActivity extends Activity implements DatasetTask
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
 		if (networkInfo != null && networkInfo.isConnected())
-			new CompareDatasetsTask(this, BASE_URL + "timestamp/").execute();
+		{
+			if(!mPreferences.getBoolean(SettingsFragment.KEY_PREF_FETCH_DATA_AUTO, false))
+				showServerDialog();
+			else
+				new CompareDatasetsTask(ReplaceLocalDatasetActivity.this,
+						BASE_URL + "timestamp/").execute();
+		}
 		else
 			showErrorDialog(R.string.network_error);
+	}
+
+
+	private AlertDialog.Builder getDialogBuilder(int messageRes)
+	{
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(messageRes);
+		builder.setCancelable(false);
+
+		return builder;
+	}
+
+
+	/** Shows a pop-up dialog to ask the user if they want to update the server
+	 * with the correct answer they just input. */
+	private void showServerDialog()
+	{
+		AlertDialog.Builder builder = getDialogBuilder(R.string.fetch_data_question);
+
+		builder.setNegativeButton(R.string.negative_button, new DialogInterface.OnClickListener()
+		{
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				dialog.dismiss();
+				startMainActivity();
+			}
+		});
+
+		builder.setPositiveButton(R.string.positive_button, new DialogInterface.OnClickListener()
+		{
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				dialog.dismiss();
+				new CompareDatasetsTask(ReplaceLocalDatasetActivity.this,
+						BASE_URL + "timestamp/").execute();
+			}
+		});
+
+		builder.create().show();
 	}
 
 
 	/** Shows an AlertDialog with an error message and two buttons. */
 	private void showErrorDialog(int message)
 	{
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(message);
-		builder.setCancelable(false);
+		AlertDialog.Builder builder = getDialogBuilder(message);
 
 		// Cancel button
 		builder.setNegativeButton(R.string.cancel_label, new DialogInterface.OnClickListener()
@@ -120,7 +172,6 @@ public class ReplaceLocalDatasetActivity extends Activity implements DatasetTask
 	private void startMainActivity()
 	{
 		startActivity(new Intent(ReplaceLocalDatasetActivity.this, MainActivity.class));
-		ReplaceLocalDatasetActivity.this.finish();
+		finish();
 	}
-
 }

@@ -5,15 +5,22 @@ import com.clemSP.sourcecode.backend.Data;
 import com.clemSP.sourcecode.backend.Dataset;
 import com.clemSP.sourcecode.frontend.ImageFeature;
 import com.clemSP.sourcecode.frontend.MainActivity;
+import com.clemSP.sourcecode.frontend.dataset_management.CompareDatasetsTask;
 import com.clemSP.sourcecode.frontend.dataset_management.DatasetTask;
 import com.clemSP.sourcecode.frontend.dataset_management.UpdateLocalDatasetTask;
 import com.clemSP.sourcecode.frontend.dataset_management.UpdateServerTask;
 import com.clemSP.sourcecode.frontend.settings.SettingsActivity;
+import com.clemSP.sourcecode.frontend.settings.SettingsFragment;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -166,7 +173,11 @@ public abstract class PredictionActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                showRetrainDialog();
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(PredictionActivity.this);
+                if(!preferences.getBoolean(SettingsFragment.KEY_PREF_CORRECT_ANSWER_AUTO, false))
+                    showRetrainDialog();
+                else
+                    showRightAnswerDialog();
             }
         });
 
@@ -322,7 +333,16 @@ public abstract class PredictionActivity extends AppCompatActivity
         if (task instanceof UpdateLocalDatasetTask)
         {
             if(status == DatasetTask.POSITIVE_RESULT)
-                showServerDialog();
+            {
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+                if(preferences.getBoolean(SettingsFragment.KEY_PREF_SHARE_DATA, true))
+                {
+                    if(!preferences.getBoolean(SettingsFragment.KEY_PREF_SEND_DATA_AUTO, false))
+                        showServerDialog();
+                    else
+                        checkNetworkConnection();
+                }
+            }
             else
                 showUpdateLocalErrorDialog();
         }
@@ -334,6 +354,50 @@ public abstract class PredictionActivity extends AppCompatActivity
             else
                 showUpdateServerErrorDialog();
         }
+    }
+
+    /** Checks whether the app has access to an Internet connection
+     * (via WiFi or mobile data). */
+    private void checkNetworkConnection()
+    {
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected())
+            new UpdateServerTask(PredictionActivity.this, URL, mNewInstance).execute();
+        else
+            showNetworkErrorDialog();
+    }
+
+
+    /** Shows an error dialog in case the app failed to connect to the network. */
+    private void showNetworkErrorDialog()
+    {
+        AlertDialog.Builder builder = getDialogBuilder(R.string.network_error);
+
+        builder.setNegativeButton(R.string.negative_button, new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
+                finishThisActivity(RESULT_OK);
+            }
+        });
+
+        builder.setPositiveButton(R.string.try_again_label, new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
+                checkNetworkConnection();
+            }
+        });
+
+        builder.create().show();
     }
 
 
@@ -359,8 +423,7 @@ public abstract class PredictionActivity extends AppCompatActivity
             public void onClick(DialogInterface dialog, int which)
             {
                 dialog.dismiss();
-                //final String URL = "https://murder-mystery-server.herokuapp.com/killerapp/update";
-                new UpdateServerTask(PredictionActivity.this, URL, mNewInstance).execute();
+                checkNetworkConnection();
             }
         });
 

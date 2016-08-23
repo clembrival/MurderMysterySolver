@@ -2,6 +2,7 @@ package com.clemSP.sourcecode.frontend.settings;
 
 
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -11,6 +12,7 @@ import android.preference.PreferenceFragment;
 import com.clemSP.sourcecode.R;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class SettingsFragment extends PreferenceFragment
@@ -108,7 +110,53 @@ public class SettingsFragment extends PreferenceFragment
     {
         Preference preference = findPreference(key);
 
-        setListPreferenceSummary(preference, mKeyPrefMap.get(key));
+        switch (key)
+        {
+            case KEY_PREF_LANGUAGE:
+                if(preference instanceof ListPreference)
+                    setLanguage(((ListPreference)preference).getEntry());
+                break;
+
+            case KEY_PREF_CLASS_LAYOUT:
+            case KEY_PREF_FEATURES_LAYOUT:
+            case KEY_PREF_IMAGES_LAYOUT:
+                setListPreferenceSummary(preference, mKeyPrefMap.get(key));
+                break;
+
+            case KEY_PREF_INPUT_LAYOUT:
+                if(preference instanceof ListPreference)
+                {
+                    enableImagePreference(getString(R.string.input_images)
+                            .equals(((ListPreference)preference).getEntry()));
+
+                    setListPreferenceSummary(preference, mKeyPrefMap.get(key));
+                }
+                break;
+        }
+    }
+
+
+    private void setLanguage(CharSequence entry)
+    {
+        String language;
+        if(getString(R.string.language_french).equals(entry))
+            language = "fr_FR";
+        else
+            language = "en_GB";
+
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getResources().updateConfiguration(config, null);
+    }
+
+
+    private void enableImagePreference(boolean enable)
+    {
+        ListPreference imagePreference = (ListPreference) findPreference(KEY_PREF_IMAGES_LAYOUT);
+        if(imagePreference != null)
+            imagePreference.setEnabled(enable);
     }
 
 
