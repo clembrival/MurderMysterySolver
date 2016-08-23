@@ -118,11 +118,11 @@
 
 
     <string name="pref_language">Language</string>
-    <string name="pref_languageEN">English</string>
-    <string name="pref_languageFR">Français</string>
+    <string name="pref_languageEN" translatable="false">English</string>
+    <string name="pref_languageFR" translatable="false">Français</string>
 
-    <string name="language_english">English</string>
-    <string name="language_french">French</string>
+    <string name="language_english" translatable="false">English</string>
+    <string name="language_french" translatable="false">French</string>
 
 
     <string name="class_label">Class Selection</string>
