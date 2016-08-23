@@ -2,28 +2,12 @@
       xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <item
-        android:id="@+id/action_prototypes"
-        android:title="@string/action_prototypes"
+        android:id="@+id/action_main"
+        android:title="@string/action_prediction"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_settings"
         android:title="@string/action_settings"
         app:showAsAction="never" />
-
-    <!--item
-        android:id="@+id/action_weapon"
-        android:title="@string/action_weapon"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_gender"
-        android:title="@string/action_gender"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_feature"
-        android:title="@string/action_feature"
-        app:showAsAction="never" /-->
-
 </menu>

@@ -4,9 +4,7 @@
     <string name="app_name" translatable="false">KillerApp</string>
 
     <string name="action_settings">Settings</string>
-    <string name="action_weapon" translatable="false">Predict weapon</string>
-    <string name="action_gender" translatable="false">Predict gender</string>
-    <string name="action_feature" translatable="false">Choose features</string>
+    <string name="action_prediction">Make Prediction</string>
     <string name="action_prototypes" translatable="false">Choose version</string>
 
     <string name="main_title">Tell me what you know</string>
@@ -15,8 +13,6 @@
     <string name="answer_dialog_title">Select the right answer</string>
     <string name="select_prediction_title">What do you want to know?</string>
     <string name="select_features_title">What do you already know?</string>
-    <string name="title_activity_welcome" translatable="false">WelcomeActivity</string>
-    <string name="title_activity_update_dataset" translatable="false">UpdateDatasetActivity</string>
 
     <string name="title_label">Title</string>
     <string name="year_label">Year of publication</string>
@@ -45,9 +41,6 @@
     <string name="selectall_label">Select all</string>
     <string name="deselectall_label">Deselect all</string>
     <string name="prediction_label">Prediction Type</string>
-
-    <string name="detective_prompt">Select&#8230;</string>
-    <string name="cause_prompt">Select&#8230;</string>
 
     <string name="colonel_race">Colonel Race</string>
     <string name="hercule_poirot">Hercule Poirot</string>
@@ -84,7 +77,7 @@
     <string name="weapon_image_description">Murder Weapon</string>
     <string name="detective_image_description">Detective</string>
     <string name="location_image_description">Location</string>
-    <string name="victime_image_description">Victim\'s gender</string>
+    <string name="victim_image_description">Victim\'s gender</string>
     <string name="murderer_image_description">Murderer\'s gender</string>
     <string name="up_image_description">Up button</string>
     <string name="down_image_description">Down button</string>
@@ -122,28 +115,76 @@
     <string name="title_activity_manager" translatable="false">Test Manager</string>
     <string name="test_title">Select layouts</string>
 
-    <string name="test_class_label">Class Selection</string>
-    <string name="test_class_activity">Activity</string>
-    <string name="test_class_dialog">Dialog</string>
-    <string name="test_class_tabs">Tabs</string>
-    <string name="test_class_menu_item">Menu Item</string>
 
-    <string name="test_features_label">Features Selection</string>
-    <string name="test_features_dialog">Dialog</string>
-    <string name="test_features_drawer">Drawer</string>
+    <string name="pref_language">Language</string>
+    <string name="pref_languageEN">English</string>
+    <string name="pref_languageFR">Français</string>
 
-    <string name="test_input_label">Features Input</string>
-    <string name="test_input_text">Text</string>
-    <string name="test_input_images">Images</string>
+    <string name="language_english">English</string>
+    <string name="language_french">French</string>
 
-    <string name="test_images_label">Images Selection</string>
-    <string name="test_images_spinner">Spinner</string>
-    <string name="test_images_grid">Grid</string>
-    <string name="test_images_both">Spinner + Grid</string>
 
-    <string name="saved_class_layout" translatable="false">Class Layout</string>
-    <string name="saved_features_layout" translatable="false">Features Layout</string>
-    <string name="saved_input_layout" translatable="false">Input Layout</string>
-    <string name="saved_images_layout" translatable="false">Images Layout</string>
+    <string name="class_label">Class Selection</string>
+    <string name="class_dialog">Dialog</string>
+    <string name="class_tabs">Tabs</string>
 
+    <string name="features_label">Features Selection</string>
+    <string name="features_dialog">Dialog</string>
+    <string name="features_drawer">Drawer</string>
+
+    <string name="input_label">Features Input</string>
+    <string name="input_text">Text</string>
+    <string name="input_images">Images</string>
+
+    <string name="images_label">Images Selection</string>
+    <string name="images_spinner">Spinner</string>
+    <string name="images_grid">Grid</string>
+
+
+    <string name="pref_customInterface">Interface Customization</string>
+
+    <string name="pref_classLayout">Prediction Selection</string>
+
+    <string name="pref_classDialog">Pop-up Window</string>
+    <string name="pref_classDialog_summary">Select type of prediction from pop-up window</string>
+    <string name="pref_classTabs">Menu Bar with Tabs</string>
+    <string name="pref_classTabs_summary">Select type of prediction from menu bar with tabs</string>
+
+    <string name="pref_featuresLayout">Attributes Selection</string>
+
+    <string name="pref_featuresDialog">Pop-up Window</string>
+    <string name="pref_featuresDialog_summary">Select story details from pop-up window</string>
+    <string name="pref_featuresDrawer">Side Drawer</string>
+    <string name="pref_featuresDrawer_summary">Select story details from side drawer</string>
+
+    <string name="pref_inputLayout">Story Details Input</string>
+
+    <string name="pref_inputText">Text</string>
+    <string name="pref_inputText_summary">Use text to enter story details</string>
+    <string name="pref_inputImages">Images</string>
+    <string name="pref_inputImages_summary">Use images to enter story details</string>
+
+    <string name="pref_imagesLayout">Images Display</string>
+
+    <string name="pref_imagesSpinner">Spinner</string>
+    <string name="pref_imagesSpinner_summary">Display story details images in spinner</string>
+    <string name="pref_imagesGrid">Grid</string>
+    <string name="pref_imagesGrid_summary">Display story details images in grid</string>
+
+    <string name="pref_connectionSettings">Connection Settings</string>
+
+    <string name="pref_shareData">Share content</string>
+    <string name="pref_shareData_summary">Share data with other users to improve predictions</string>
+
+    <string name="pref_sendDataAuto">Always send data to server</string>
+    <string name="pref_sendDataAutoOn_summary">Never ask confirmation before sending data to server</string>
+    <string name="pref_sendDataAutoOff_summary">Always ask confirmation before sending data to server</string>
+
+    <string name="pref_fetchDataAuto">Always download data from server</string>
+    <string name="pref_fetchDataAutoOn_summary">Never ask confirmation before downloading data from server</string>
+    <string name="pref_fetchDataAutoOff_summary">Always ask confirmation before downloading data from server</string>
+
+    <string name="pref_correctAnswerAuto">Always correct wrong prediction</string>
+    <string name="pref_correctAnswerAutoOn_summary">Never ask confirmation to correct wrong prediction</string>
+    <string name="pref_correctAnswerAutoOff_summary">Always ask confirmation before downloading data from server</string>
 </resources>

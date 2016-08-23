@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.clemSP.iteration1"
+    package="com.clemSP.sourcecode"
     android:largeHeap="true"
     android:versionCode="1"
     android:versionName="1.0" >
@@ -18,27 +18,29 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".frontend.prediction.WeaponPredictionActivity"
-                  android:screenOrientation="portrait"/>
-
-        <activity android:name=".frontend.prediction.GenderPredictionActivity"
-                  android:screenOrientation="portrait" />
-
-        <activity android:name=".frontend.ManagerActivity"
+        <activity android:name="com.clemSP.sourcecode.frontend.WelcomeActivity"
                   android:screenOrientation="portrait" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
-        <activity android:name=".frontend.MainActivity"
-                  android:screenOrientation="portrait" />
-        <activity android:name=".frontend.WelcomeActivity"
-                  android:label="@string/title_activity_welcome"
+        <activity android:name="com.clemSP.sourcecode.frontend.MainActivity"
                   android:screenOrientation="portrait" />
 
-        <activity android:name=".frontend.dataset_management.ReplaceLocalDatasetActivity"
+        <activity android:name="com.clemSP.sourcecode.frontend.prediction.WeaponPredictionActivity"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name="com.clemSP.sourcecode.frontend.prediction.GenderPredictionActivity"
+                  android:screenOrientation="portrait" />
+
+        <activity android:name="com.clemSP.sourcecode.frontend.dataset_management.ReplaceLocalDatasetActivity"
+                  android:screenOrientation="portrait" />
+
+        <activity android:name="com.clemSP.sourcecode.frontend.settings.SettingsActivity"
                   android:screenOrientation="portrait" />
 
     </application>

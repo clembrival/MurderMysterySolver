@@ -45,7 +45,7 @@
 						  android:textColor="@color/firebrick"
 						  android:background="@color/moccasin"
 						  android:textSize="22sp"
-						  android:visibility="visible" />
+						  android:visibility="gone" />
 
 				<LinearLayout android:id="@+id/fragment_container"
 							  android:layout_width="match_parent"

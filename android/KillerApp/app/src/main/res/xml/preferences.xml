@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:key="pref_language"
+        android:title="@string/pref_language"
+        android:dialogTitle="@string/pref_language"
+        android:entries="@array/pref_language_entries"
+        android:entryValues="@array/pref_language_values"
+        android:defaultValue="@string/pref_languageEN" />
+
+    <PreferenceCategory
+        android:key="pref_customInterface"
+        android:title="@string/pref_customInterface" >
+
+        <ListPreference
+            android:key="pref_classLayout"
+            android:title="@string/pref_classLayout"
+            android:dialogTitle="@string/pref_classLayout"
+            android:entries="@array/pref_classLayout_entries"
+            android:entryValues="@array/pref_classLayout_values"
+            android:defaultValue="@string/pref_classDialog" />
+
+        <ListPreference
+            android:key="pref_featuresLayout"
+            android:title="@string/pref_featuresLayout"
+            android:dialogTitle="@string/pref_featuresLayout"
+            android:entries="@array/pref_featuresLayout_entries"
+            android:entryValues="@array/pref_featuresLayout_values"
+            android:defaultValue="@string/pref_featuresDialog" />
+
+        <ListPreference
+            android:key="pref_inputLayout"
+            android:title="@string/pref_inputLayout"
+            android:dialogTitle="@string/pref_inputLayout"
+            android:entries="@array/pref_inputLayout_entries"
+            android:entryValues="@array/pref_inputLayout_values"
+            android:defaultValue="@string/pref_inputText" />
+
+        <ListPreference
+            android:key="pref_imagesLayout"
+            android:dependency="pref_inputLayout"
+            android:title="@string/pref_imagesLayout"
+            android:dialogTitle="@string/pref_imagesLayout"
+            android:entries="@array/pref_imagesLayout_entries"
+            android:entryValues="@array/pref_imagesLayout_values"
+            android:defaultValue="@string/pref_imagesGrid" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="pref_connectionSettings"
+        android:title="@string/pref_connectionSettings" >
+
+        <CheckBoxPreference
+            android:key="pref_shareData"
+            android:title="@string/pref_shareData"
+            android:defaultValue="true"
+            android:summary="@string/pref_shareData_summary" />
+
+        <CheckBoxPreference
+            android:key="pref_sendDataAuto"
+            android:dependency="pref_shareData"
+            android:title="@string/pref_sendDataAuto"
+            android:defaultValue="false"
+            android:summaryOn="@string/pref_sendDataAutoOn_summary"
+            android:summaryOff="@string/pref_sendDataAutoOff_summary" />
+
+        <CheckBoxPreference
+            android:key="pref_fetchDataAuto"
+            android:dependency="pref_shareData"
+            android:title="@string/pref_fetchDataAuto"
+            android:defaultValue="false"
+            android:summaryOn="@string/pref_fetchDataAutoOn_summary"
+            android:summaryOff="@string/pref_fetchDataAutoOff_summary" />
+    </PreferenceCategory>
+
+    <CheckBoxPreference
+        android:key="pref_correctAnswerAuto"
+        android:title="@string/pref_correctAnswerAuto"
+        android:defaultValue="false"
+        android:summaryOn="@string/pref_correctAnswerAutoOn_summary"
+        android:summaryOff="@string/pref_correctAnswerAutoOff_summary" />
+
+</PreferenceScreen>

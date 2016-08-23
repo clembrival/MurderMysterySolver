@@ -227,8 +227,7 @@
                          android:layout_height="wrap_content"
                          android:layout_alignParentEnd="true"
                          android:layout_centerVertical="true"
-                         style="@style/spinner"
-                         android:entries="@array/gender_array" />
+                         style="@style/spinner" />
             </RelativeLayout>
 
             <RelativeLayout android:id="@+id/rating_layout"

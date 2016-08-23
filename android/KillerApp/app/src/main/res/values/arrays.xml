@@ -24,17 +24,26 @@
         <item>@string/throatslit</item>
     </string-array>
 
-    <string-array name="gender_array">
+    <string-array name="victim_array">
         <item>@string/select_label</item>
         <item>@string/female</item>
         <item>@string/male</item>
+        <item>@string/none</item>
+    </string-array>
+
+    <string-array name="murderer_array">
+        <item>@string/select_label</item>
+        <item>@string/female</item>
         <item>@string/lots</item>
+        <item>@string/male</item>
+        <item>@string/none</item>
     </string-array>
 
     <string-array name="select_array">
         <item>@string/selectall_label</item>
         <item>@string/deselectall_label</item>
     </string-array>
+
     <string-array name="features_array">
         <item>@string/year_label</item>
         <item>@string/detective_label</item>
@@ -44,6 +53,57 @@
         <item>@string/victim_label</item>
         <item>@string/murderer_label</item>
         <item>@string/rating_label</item>
+    </string-array>
+
+
+    <string-array name="pref_language_entries">
+        <item>@string/language_english</item>
+        <item>@string/language_french</item>
+    </string-array>
+
+    <string-array name="pref_language_values">
+        <item>@string/pref_languageEN</item>
+        <item>@string/pref_languageFR</item>
+    </string-array>
+
+    <string-array name="pref_classLayout_entries">
+        <item>@string/class_dialog</item>
+        <item>@string/class_tabs</item>
+    </string-array>
+
+    <string-array name="pref_classLayout_values">
+        <item>@string/pref_classDialog</item>
+        <item>@string/pref_classTabs</item>
+    </string-array>
+
+    <string-array name="pref_featuresLayout_entries">
+        <item>@string/features_dialog</item>
+        <item>@string/features_drawer</item>
+    </string-array>
+
+    <string-array name="pref_featuresLayout_values">
+        <item>@string/pref_featuresDialog</item>
+        <item>@string/pref_featuresDrawer</item>
+    </string-array>
+
+    <string-array name="pref_inputLayout_entries">
+        <item>@string/input_text</item>
+        <item>@string/input_images</item>
+    </string-array>
+
+    <string-array name="pref_inputLayout_values">
+        <item>@string/pref_inputText</item>
+        <item>@string/pref_inputImages</item>
+    </string-array>
+
+    <string-array name="pref_imagesLayout_entries">
+        <item>@string/images_grid</item>
+        <item>@string/images_spinner</item>
+    </string-array>
+
+    <string-array name="pref_imagesLayout_values">
+        <item>@string/pref_imagesGrid</item>
+        <item>@string/pref_imagesSpinner</item>
     </string-array>
 
 </resources>

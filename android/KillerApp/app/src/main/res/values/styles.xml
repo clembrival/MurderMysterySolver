@@ -60,7 +60,6 @@
     <style name="spinner">
         <item name="android:background">@color/firebrick</item>
         <item name="android:spinnerMode">dropdown</item>
-        <item name="android:prompt">@string/detective_prompt</item>
     </style>
 
 
