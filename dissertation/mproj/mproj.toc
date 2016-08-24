@@ -31,13 +31,15 @@
 \contentsline {section}{\numberline {5.8}Testing}{14}{section.5.8}
 \contentsline {chapter}{\numberline {6}Evaluation}{15}{chapter.6}
 \contentsline {section}{\numberline {6.1}User Interface}{15}{section.6.1}
-\contentsline {section}{\numberline {6.2}Final App}{15}{section.6.2}
-\contentsline {chapter}{\numberline {7}Conclusion}{16}{chapter.7}
-\contentsline {section}{\numberline {7.1}Summary}{16}{section.7.1}
-\contentsline {section}{\numberline {7.2}Limitations and Future Work}{16}{section.7.2}
-\contentsline {subsection}{\numberline {7.2.1}Additional functionalities}{16}{subsection.7.2.1}
-\contentsline {subsection}{\numberline {7.2.2}Accuracy}{17}{subsection.7.2.2}
-\contentsline {subsection}{\numberline {7.2.3}Scalability}{17}{subsection.7.2.3}
-\contentsline {section}{\numberline {7.3}Reflection on the Project}{18}{section.7.3}
-\contentsline {chapter}{\numberline {A}Training Set}{21}{appendix.A}
-\contentsline {chapter}{\numberline {B}Second appendix}{24}{appendix.B}
+\contentsline {subsection}{\numberline {6.1.1}Layouts}{15}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}selector}{16}{subsection.6.1.2}
+\contentsline {section}{\numberline {6.2}Final App}{18}{section.6.2}
+\contentsline {chapter}{\numberline {7}Conclusion}{19}{chapter.7}
+\contentsline {section}{\numberline {7.1}Summary}{19}{section.7.1}
+\contentsline {section}{\numberline {7.2}Limitations and Future Work}{19}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Additional functionalities}{19}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Accuracy}{20}{subsection.7.2.2}
+\contentsline {subsection}{\numberline {7.2.3}Scalability}{20}{subsection.7.2.3}
+\contentsline {section}{\numberline {7.3}Reflection on the Project}{21}{section.7.3}
+\contentsline {chapter}{\numberline {A}Training Set}{24}{appendix.A}
+\contentsline {chapter}{\numberline {B}Second appendix}{27}{appendix.B}

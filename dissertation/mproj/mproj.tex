@@ -77,7 +77,7 @@ acknowledgements go here
 
 A machine learning algorithm is fed a dataset, the \textbf{training set}, made up of one or several \textbf{instances}, which represent the type of data the prediction will be based on. Each instance contains actual values for \textbf{attributes} (or features) the algorithm can analyse and learn from. \cite{wekabook} For example, to predict the gender of the murderer, possible attributes could be the murder weapon, the gender of the victim, the name of the detective and the year of publication of the book. An instance could therefore be ``Poison, Female, Hercule Poirot, 1926''. The attribute to be predicted is the \textbf{concept}, and the predicted value for this attribute is the \textbf{concept description}. \par 
 
-The type of machine learning used for this project is \textbf{supervised learning}. This technique involves building the training set and providing it with the correct value for the attribute to be predicted. \cite{machinelearningcourse} The algorithm can therefore base its observations on cases for which it knows the outcome, learn to produce the desired output, and apply the results of its training on instances for which it doesn't know the right value. \par
+The type of machine learning used for this project is \textbf{supervised learning}. This technique involves building the training set and providing it with the correct value for the attribute to be predicted. \cite{machinelearningcourse} The algorithm can therefore base its observations on cases for which it knows the outcome, learn to produce the desired output, and apply the results of its training on instances for which it does not know the right value. \par
 
 Supervised learning is divided into two categories of problems, based on the type of attribute to be predicted. In this project's case, the app will attempt to predict discrete valued attributes, for instance the gender of the murderer (male or female): this is a \textbf{classification} problem. 
 
@@ -97,7 +97,7 @@ Even though this study was handled from a mathematical view, and only contains l
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Existing apps}
 
-There doesn't seem to be any app that can be used on the side, while reading a detective novel. Nor is there any app that can be fed key elements of a story, which can help it solve a murder. However, it is possible to find apps related to detective stories, and apps that make predictions.
+There does not seem to be any app that can be used on the side, while reading a detective novel. Nor is there any app that can be fed key elements of a story, which can help it solve a murder. However, it is possible to find apps related to detective stories, and apps that make predictions.
 
 \subsection{Detective apps}
 
@@ -123,7 +123,7 @@ The Google Play store contains a few apps, in which the user is presented a stor
 
 ``Criminal Case'' \cite{criminalcase} is a similar app created by a company called Pretty Simple. First released in 2012 on Facebook, the developers team later launched an iOS version in 2014. The Android version came out about a year after that. In this game, the user becomes a member of a police unit, and takes part of the investigation of several crimes. Each activity requires energy that can be earned by completing the tasks as fast as possible.\\ \par
 
-The inconvenient with this kind of games is that the creators implement a story, that they made up, into the app, which then just leads the user through clues, and lets them accuse the right suspect. The app itself doesn't have any guessing or analysis to do.
+The inconvenient with this kind of games is that the creators implement a story, that they made up, into the app, which then just leads the user through clues, and lets them accuse the right suspect. The app itself does not have any guessing or analysis to do.
 Moreover, although entertaining, the puzzles sometimes tend to be slightly too easy, and the story not captivating enough to remain hooked to the game.
 
 \subsection{Predictive apps}
@@ -226,10 +226,10 @@ To handle user stories 8 and 9 (\ref{user_stories}), the smartphone app connects
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{User Interface Design}
+\section{User Interface Design}\label{wireframes}
 
 In order to design the application's interface, 5 wireframes were created, using mybalsamiq\footnote{https://www.mybalsamiq.com/}, showing different layouts and types of input:
-\begin{enumerate}[label=\Alph*]\label{wireframes}
+\begin{enumerate}[label=\Alph*]
 \item a single un-scrollable screen, with images input in a slot machine,
 \item a single un-scrollable screen, with text input,
 \item a single scrollable screen, with images input in a horizontal scrollable frame,
@@ -347,7 +347,95 @@ In order to check whether an entry is new to a given client, each entry is given
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Evaluation}\label{evaluation}
 
+Two evaluation sessions were organised one on the wireframes, and one on the final application. 
+
 \section{User Interface}
+
+For the evaluation of the interface, 10 users were asked to have a look at the 5 different wireframes described in section \ref{wireframes}. They then had to give their thoughts about the layout and the feature selector they liked the least, as well as the ones they liked the most, and to explain their choices.
+
+\subsection{Layouts}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[trim=0cm 0cm 0cm 2cm, width=\textwidth]{images/layout_feedback}
+	\caption{Column chart showing the number of positive, negative and cumulative votes for each layout.}
+	\label{fig:layout_feedback}
+\end{figure}
+
+\ref{fig:layout_feedback} shows the number of votes each layout received (positive when the wireframe was the participant's favourite layout, negative when it was the least liked). A summary of the most recurring comments about each interface is listed below.
+
+\begin{enumerate}[label=\Alph*]
+	\item 
+	\begin{itemize}
+		\item[+] The interface is simple and clear. 
+		\item[-] It is not descriptive enough, it is hard to know what each element corresponds to.
+	\end{itemize}
+	
+	\item 
+	\begin{itemize}
+		\item[+] All the elements are visible on the screen without asking any effort to understand them.
+		\item[-] The lack of images makes the interface less attractive.
+	\end{itemize} 
+	
+	\item
+	\begin{itemize}
+		\item[+] Everything is kept together, on one screen.
+		\item[-] The amount of information on the screen is too large, therefore there will be too much scrolling involved.
+	\end{itemize} 
+	
+	\item
+	\begin{itemize}
+		\item[+] The accordion makes the navigation smoother: it keeps a good overview of all the information that has to be input, while giving the impression that the amount of input is not too big. It also keeps everything on the same screen, but does not require too much scrolling.
+		\item[-] The interface seems more complex, therefore less engaging. Moreover, it is slightly harder to see what is going on and what to do.
+	\end{itemize} 
+	
+	\item
+	\begin{itemize}
+		\item[+] The simplicity and clarity of the design makes it more engaging: there is less information on the screen, which makes it easier to focus on one thing at a time.
+		\item[-] The fact that it is necessary to press a button to move from one step to another makes the whole process too long.
+	\end{itemize} 
+\end{enumerate}
+
+\subsection{selector}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[trim=0cm 0cm 0cm 2cm, width=\textwidth]{images/selector_feedback}
+	\caption{Column chart showing the number of positive, negative and cumulative votes for each feature selector.}
+	\label{fig:selector_feedback}
+\end{figure}
+
+\ref{fig:selector_feedback} shows the number of votes each feature input type received. Again, a summary of the most recurring comments about each interface is listed below.
+
+\begin{enumerate}[label=\Alph*]
+	\item 
+	\begin{itemize}
+		\item[+] The images and the slot machine make the interface attractive and fun to use.
+		\item[-] Although one user enjoyed the idea of having to guess which feature had to be input, based only on the image, most participants would prefer to have captions below the images.
+	\end{itemize}
+	
+	\item 
+	\begin{itemize}
+		\item[-] Most participants either did not say anything about this attribute selection type, or mentioned that they did not like the lack of images, because it did not catch their attention.
+	\end{itemize} 
+	
+	\item
+	\begin{itemize}
+		\item[+] One participant liked the basic idea of going through the images horizontally, but suggested the use of swiping cards rather than scrollable areas.
+		\item[-] Similarly to interface B, most participants did not have anything to say about this selector. Two of them reiterated their dislike of scrollbars.
+	\end{itemize} 
+	
+	\item
+	\begin{itemize}
+		\item[+] A few participants enjoyed the carousel because if shows several options in the same view. They suggested that it showed a preview of the other images, as well as the currently displayed one. 
+	\end{itemize} 
+	
+	\item
+	\begin{itemize}
+		\item[+] One participant liked this selector because it allowed the users to see multiple images at the same time.
+		\item[-] This time again, most participants did not have any particularly strong view about this last selector, other than the scrolling involved, which they dislike.
+	\end{itemize} 
+\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Final App}
