@@ -1,6 +1,7 @@
 package com.clemSP.sourcecode.frontend.dataset_management;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.clemSP.sourcecode.R;
@@ -35,10 +36,19 @@ public class CompareDatasetsTask extends DatasetTask
         if(serverTimestamp == null)
             return ERROR;
 
-        if(localTimestamp.equals("") || localTimestamp.compareTo(serverTimestamp) < 0)
-            return POSITIVE_RESULT;
+        int status = NEGATIVE_RESULT;
 
-        return NEGATIVE_RESULT;
+        if(localTimestamp.equals("") || localTimestamp.compareTo(serverTimestamp) < 0)
+            status = POSITIVE_RESULT;
+
+        if(serverTimestamp.charAt(0) != '0')
+        {
+            SharedPreferences.Editor editor = mSharedPref.edit();
+            editor.putString("timestamp", serverTimestamp);
+            editor.apply();
+        }
+
+        return status;
     }
 
 

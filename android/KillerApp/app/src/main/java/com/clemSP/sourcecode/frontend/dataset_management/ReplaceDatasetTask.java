@@ -172,7 +172,7 @@ public class ReplaceDatasetTask extends DatasetTask
                 "@attribute victim_gender {unknown, F, M, None}\n" +
                 "@attribute murderer_gender {unknown, F, M, Lots, None}\n" +
                 "@attribute average_ratings numeric\n\n" +
-                "@data";
+                "@data\n";
 
         File outputFile;
         PrintWriter writer = null;
