@@ -5,7 +5,7 @@
 \usepackage{fancyvrb}
 \usepackage[a4paper]{geometry}
 \usepackage{graphicx}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage[final]{pdfpages}
 \usepackage{times}
 \usepackage{wrapfig}
@@ -251,18 +251,32 @@ For the last iteration, crowdsourced data gathering and training were implemente
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Technologies Used}
 
-\begin{wrapfigure}{r}{0.20\textwidth}
-	\vspace{-10pt}
-	\centering
-	\includegraphics[scale=0.60]{images/weka_logo}
-	\caption{Weka Logo.}
-	\vspace{-30pt}
-\end{wrapfigure}
+\subsection{Android}
+
+The mobile application was implemented using Android, which is an open source operating system for mobile devices (smartphones and tablets), developed by Google and released in 2008.\cite{androidrelease}
+
+\subsubsection*{Justification}
+
+It was chosen because I became familiar with Java during the past couple of years, as it is the main programming language used in the Masters courses. It was also an occasion for me to get some experience in Android development, which I was interested in. Furthermore, there is a vast amount of documentation and tutorials available for developing with the Android SDK. \cite{androidtutorials} \cite{thebignerdranchguide}
+
+\subsubsection*{Difficulties Encountered}
+
+Creating the Android interface itself was not particularly hard. It did require a significant amount of time to browse through all the widgets available in the different Android standard libraries (seven Android packages contain widgets \cite{androidpackages}), then to decide which ones were the most appropriate for the app, and to learn how to customise and control them programmatically. Compatibility was also an issue, for some UI elements or attributes were introduced in more recent Android versions than the app's target version. It was therefore necessary to find alternative solutions. \par
+
+However, none of those obstacles were a surprise; as a matter of fact, they are an integral part of the learning process, and overcoming such difficulties can only have a positive impact on my overall programming experience. \par
+
+The hardest part of the Android development was to try to make the app as reliable and efficient as possible. This includes facing all the possible causes for the app to crash unexpectedly, which involves handling the activity lifecycle of the app \cite{androidlifecycle} (what to do when the app is paused, resumed, stopped), properly managing the different activities and fragments, as well as the way they communicate. It also includes monitoring the amount of memory and battery use of the app.
+Unfortunately, although this was one of the main points of concern, not all of these elements were fully handled. \par
+
+Another difficulty arose on a code-level, when trying to reduce the amount of redundancy from one activity or fragment to another, without making the overall code harder to read. Because of the way projects are structured in Android \cite{androidprojects}, it is necessary to jump from one file to another in order to follow the flow of the system. This becomes worse when creating extra classes to store the common code shared by multiple elements.
 
 \subsection{Weka}
 
+To make predictions, this app referenced machine learning algorithms implemented in the Weka workbench \cite{weka}, created by Eibe Frank, Mark Hall, Peter Reutemann, and Len Trigg.
 
-To make predictions, this app referenced machine learning algorithms implemented in the Weka Java library \cite{weka}, created by Eibe Frank, Mark Hall, Peter Reutemann, and Len Trigg. 
+\subsubsection*{Justification}
+
+This is the machine learning library used for the project because it is written in Java, which means it should be possible to use it with an Android application. It is also open source, and is documented in a book about Data Mining and Machine Learning, written by some of the Weka developers. \cite{wekabook}
 
 \subsubsection*{Difficulties Encountered}
 
@@ -272,32 +286,9 @@ This preliminary work was difficult, mainly because it was hard to find explanat
 
 Merging the functionalities implemented in the utility class with the Android code happened without almost any obstacle. The .jar file containing the source code of the library was added as a dependency in the project, and all the needed classes were imported in the standard way\footnote{``\texttt{import weka.}'' followed by the package containing the class to be used, and the name of the class.}. The only encountered issue came from the fact that, in order to train a classifier, one of the Weka classes uses the Java Graphics class from the awt package\footnote{??}, which is not available in Android. It was therefore not possible to train the classifier on the app. This was fixed by training it externally, outputting the trained object to a .model file, including that file as an asset of the project (as described previously in section \ref{data_process}), and recreating the corresponding Classifier object from the .model file when launching the app.
 
-
-\begin{wrapfigure}{r}{0.20\textwidth}
-	\vspace{-25pt}
-	\centering
-	\includegraphics[scale=0.15]{images/android_logo}
-	\caption{Android Logo.}
-	\vspace{-1cm}
-\end{wrapfigure}
-
-\subsection{Android}
-
-Android is an operating system for mobile devices (smartphones and tablets), developed by Google and released in 2008.\cite{androidrelease}
-
-
-\subsubsection*{Difficulties Encountered}
-
-Creating the Android interface itself was not particularly hard. It did require a significant amount of time to browse through all the widgets available in the different Android standard libraries (seven Android packages contain widgets \cite{androidpackages}), then to decide which ones were the most appropriate for the app, and to learn how to customise and control them programmatically. Compatibility was also an issue, for some UI elements or attributes were introduced in more recent Android versions than the app's target version. It was therefore necessary to find alternative solutions. \par
-
-However, none of those obstacles were a surprise; as a matter of fact, they are an integral part of the learning process, and overcoming such difficulties can only have a positive impact on my overall programming experience. \par
-
-The hardest part of the Android development was to try to make the app as reliable and efficient as possible. This includes facing all the possible causes for the app to crash unexpectedly, which involves handling the activity lifecycle of the app \cite{androidlifecycle} (what to do when the app is paused, resumed, stopped), the potential memory leaks, loading images efficiently, properly managing the different activities and fragments, and the way they communicate. It also includes monitoring the amount of memory and battery use of the app.
-Unfortunately, although this was one of the main points of concern, not all of these elements were fully handled. \par
-
-Another difficulty arose on a code-level, when trying to reduce the amount of redundancy from one activity or fragment to another, without making the overall code harder to read. Because of the way projects are structured in Android \cite{androidprojects}, it is necessary to jump from one file to another in order to follow the flow of the system. This becomes worse when creating extra classes to store the common code shared by multiple elements.
-
 \subsection{Django}
+
+Django is a Web application framework written in Python \cite{django}. 
 
 \subsection{Scrapy}\label{scrapy}
 
@@ -323,7 +314,7 @@ In the earliest version of the system during the third iteration, the training d
 
 When a user launched the app, it had to check whether new entries were added since the last time the app was used. The initial way to do this was to compare the size of the two files: if the server's file was larger than the local one, it meant that the app's dataset had to be updated. This did not work as expected however, because when an application is deployed on heroku, it is assembled into a compressed bundle \cite{herokuslug}. Consequently, the size of the file stored on the server was not accurate. To overcome this issue, the number of entries in the dataset was stored in a database. This integer was incremented for every new instance shared by a user, and used instead to compare the two datasets. If the app's training set had fewer instances, it would then download the content of the server's file, extract the newest entries, and update the classifier on each entry, while also adding it to the local file. When a user invalidated a prediction and agreed to share the details with the other users, the data was sent as a string to the server, which added a new line to the file with that data.\par
 
-This was easy and convenient, especially for testing, but not optimal in terms of scalability: if several thousands of users were to use the app, and the training set updated regularly, that file would quickly become very large, and having all the users to download it every time they launch the app would not be practical. Alternatively, all the instances of server's training set were stored in the database. Instead of downloading the whole content of a file, the client-apps now only fetch the new entries when the user starts the app. This is described in Figure \ref{fig:launch}.\par
+This was easy and convenient, especially for testing, but not optimal in terms of scalability: if several thousands of users were to use the app, and the training set updated regularly, that file would quickly become very large, and having all the users to download it every time they launch the app would not be practical. Alternatively, all the instances of server's training set were stored in the database. Instead of downloading the whole content of a file, the client-apps now only fetch the new entries when the user starts the app. This is described in Figure \ref{fig:launch}.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{images/app_launching_diagram}
@@ -331,10 +322,10 @@ This was easy and convenient, especially for testing, but not optimal in terms o
 	\label{fig:launch}
 \end{figure}
 
-In order to check whether an entry is new to a given client, each entry is given a timestamp with the date and time it was sent to the server. Each client also keeps the time it last downloaded new data, so that the server can send all the entries that were added after the client's last update. Additionally, when the user submits new data, a new entry is created in the database, and the server returns the timestamp for the transaction, as shown in Figure \ref{fig:new_entry}.\par
+In order to check whether an entry is new to a given client, each entry is given a timestamp with the date and time it was sent to the server. Each client also keeps the time it last downloaded new data, so that the server can send all the entries that were added after the client's last update. Additionally, when the user submits new data, a new entry is created in the database, and the server returns the timestamp for the transaction, as shown in Figure \ref{fig:new_entry}.
 \begin{figure}[h]
 	\centering
-	\includegraphics[trim=0cm 0cm 0cm 2cm, width=\textwidth]{images/wrong_prediction_diagram}
+	\includegraphics[width=\textwidth]{images/wrong_prediction_diagram}
 	\caption{Sequence diagram showing the communication within the system when the user invalidates a prediction.}
 	\label{fig:new_entry}
 \end{figure}
@@ -442,7 +433,7 @@ For the evaluation of the interface, 10 users were asked to have a look at the 5
 
 For the final product evaluation, users were first asked to list the possible attributes (year of publication, point of view, location, detective, murder weapon, victim's gender, murderer's gender and ratings) in a random order. They were then given access to the training set, and were asked to pick 5 different titles from the dataset. \par
 
-Based on the order in which they had listed the features, they were had to produce predictions for each one of the 5 novels they picked, leaving out between 0 and 5 attributes. The idea was to show them that the instances were selected randomly, so that, in case they received the right answers, it did not look like I had chosen novels for which I knew the predictions would be correct. They were also given the choice to use any other novel, as long as they were certain that \par 
+Based on the order in which they had listed the features, they were had to produce predictions for each one of the 5 novels they picked, leaving out between 0 and 5 attributes. The idea was to show them that the instances were selected randomly, so that, in case they received the right answers, it did not look like I had chosen novels for which I knew the predictions would be correct. They were also given the choice to use any other novel, as long as they were certain of the correctness of the details of the story, which would impact the accuracy of the predictions. \par 
 
 Once the prediction was obtained, they had to decide whether or not to retrain the classifier or to send data to the server. They were also required to modify the settings of the app (related to the interface and the data sharing) after each prediction. \par
 

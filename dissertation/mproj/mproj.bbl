@@ -1,19 +1,25 @@
 \begin{thebibliography}{}
 
-\bibitem[Android, a]{androidlifecycle}
+\bibitem[Android, a]{androidtutorials}
+Android.
+\newblock Getting started.
+\newblock \url{https://developer.android.com/training/index.html}.
+\newblock [Accessed on 25 August 2016].
+
+\bibitem[Android, b]{androidlifecycle}
 Android.
 \newblock Managing the activity lifecycle.
 \newblock
   \url{https://developer.android.com/training/basics/activity-lifecycle/index.html}.
 \newblock [Accessed on 16 August 2016].
 
-\bibitem[Android, b]{androidpackages}
+\bibitem[Android, c]{androidpackages}
 Android.
 \newblock Package index.
 \newblock \url{https://developer.android.com/reference/packages.html}.
 \newblock [Accessed on 16 August 2016].
 
-\bibitem[Android, c]{androidprojects}
+\bibitem[Android, d]{androidprojects}
 Android.
 \newblock Projects overview.
 \newblock \url{https://developer.android.com/studio/projects/index.html}.
@@ -25,6 +31,11 @@ Bergstrom, J.~R. (2013).
 \newblock
   \url{https://www.usability.gov/get-involved/blog/2013/04/moderating-usability-tests.html}.
 \newblock [Accessed on 24 August 2016].
+
+\bibitem[Bill~Phillips, 2013]{thebignerdranchguide}
+Bill~Phillips, B.~H. (2013).
+\newblock {\em {Android Programming: The Big Nerd Ranch Guide}}.
+\newblock Big Nerd Ranch Guides.
 
 \bibitem[Cohn, 2004]{userstoriesbook}
 Cohn, M. (2004).

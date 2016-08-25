@@ -18,8 +18,8 @@
 \BOOKMARK [1][-]{section.4.3}{User Interface Design}{chapter.4}% 18
 \BOOKMARK [0][-]{chapter.5}{Implementation}{}% 19
 \BOOKMARK [1][-]{section.5.1}{Technologies Used}{chapter.5}% 20
-\BOOKMARK [2][-]{subsection.5.1.1}{Weka}{section.5.1}% 21
-\BOOKMARK [2][-]{subsection.5.1.2}{Android}{section.5.1}% 22
+\BOOKMARK [2][-]{subsection.5.1.1}{Android}{section.5.1}% 21
+\BOOKMARK [2][-]{subsection.5.1.2}{Weka}{section.5.1}% 22
 \BOOKMARK [2][-]{subsection.5.1.3}{Django}{section.5.1}% 23
 \BOOKMARK [2][-]{subsection.5.1.4}{Scrapy}{section.5.1}% 24
 \BOOKMARK [1][-]{section.5.2}{Machine Learning Algorithm}{chapter.5}% 25
