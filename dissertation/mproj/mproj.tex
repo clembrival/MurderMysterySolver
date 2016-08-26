@@ -6,7 +6,9 @@
 \usepackage[a4paper]{geometry}
 \usepackage{graphicx}
 \usepackage[hidelinks]{hyperref}
+\usepackage{lscape}
 \usepackage[final]{pdfpages}
+\usepackage{subcaption}
 \usepackage{times}
 \usepackage{wrapfig}
 
@@ -216,7 +218,7 @@ In order to process all this information, a Java program was created, to create 
 
 Based on constraint 1 described in section \ref{constraints}, it was decided that the part of the system which users interact with is a smartphone application. Once the classifiers are trained and output, the corresponding files are stored in the mobile app so the classifiers can be rebuilt and used to make predictions.\par
 
-To handle user stories 8 and 9 (\ref{user_stories}), the smartphone app connects to a remote server which handles requests to save a new instance or download the latest entries. The server then also communicates with a database, which stores the uploaded data. This three-tiered system architecture is represented on Figure \ref{fig:architecture}.
+To handle user stories 8 and 9 (section \ref{user_stories}), the smartphone app connects to a remote server which handles requests to save a new instance or download the latest entries. The server then also communicates with a database, which stores the uploaded data. This three-tiered system architecture is represented on Figure \ref{fig:architecture}.
 
 \begin{figure}[h]
 	\centering
@@ -229,15 +231,138 @@ To handle user stories 8 and 9 (\ref{user_stories}), the smartphone app connects
 \section{User Interface Design}\label{wireframes}
 
 In order to design the application's interface, 5 wireframes were created, using mybalsamiq\footnote{https://www.mybalsamiq.com/}, showing different layouts and types of input:
-\begin{enumerate}[label=\Alph*]
-\item a single un-scrollable screen, with images input in a slot machine,
-\item a single un-scrollable screen, with text input,
-\item a single scrollable screen, with images input in a horizontal scrollable frame,
-\item a single screen with a accordion layout, and images input in a carousel,
-\item multiple screens accessed by pressing Next/Previous buttons, with images input in a vertical scrollable frame.
+\begin{enumerate}[label=\Alph*.]
+	\item a single un-scrollable screen, with images input in a slot machine (Figure \ref{fig:wireframeA}),
+	\item a single un-scrollable screen, with text input (Figure \ref{fig:wireframeB}),
+	\item a single scrollable screen, with images input in a horizontal scrollable frame (Figure \ref{fig:wireframeC}),
+	\item a single screen with an accordion layout, and images in a carousel (Figure \ref{fig:wireframeD}),
+	\item multiple screens accessed by pressing Next/Previous buttons, with images in a vertical scrollable frame (Figure \ref{fig:wireframeE}).
 \end{enumerate}
 
-The aim was to find the interface which appealed to most users before starting the implementation. This was undertaken during the first evaluation, as reported in section \ref{evaluation}.
+\begin{figure}
+	\centering
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{images/single_fruit_machine}
+		\caption{Wireframe A.}
+		\label{fig:wireframeA}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{images/single_text_only}
+		\caption{Wireframe B.}
+		\label{fig:wireframeB}		
+	\end{subfigure}
+
+	\begin{subfigure}{\textwidth}
+		\includegraphics[width=\textwidth]{images/single_list}
+		\caption{Wireframe C.}
+		\label{fig:wireframeC}		
+	\end{subfigure}
+	\caption{Wireframes A, B and C.}
+\end{figure}
+
+\begin{figure}
+	\centering
+	
+	\begin{subfigure}{\textwidth}
+		\includegraphics[width=\textwidth]{images/single_accordion}
+		\caption{Wireframe D.}
+		\label{fig:wireframeD}		
+	\end{subfigure}		
+	
+	\begin{subfigure}{\textwidth}
+		\includegraphics[width=\textwidth]{images/multiple_list}
+		\caption{Wireframe E.}
+		\label{fig:wireframeE}		
+	\end{subfigure}			
+	\caption{Wireframes D and E.}
+\end{figure}
+	
+The aim was to find the interface which appealed to most users before starting the implementation. This was undertaken during a first evaluation, for which 10 users were asked to examine the 5 different wireframes described previously. They then had to give their thoughts about the layout and the feature selector they liked the least, as well as the ones they liked the most, and to explain their choices.
+
+\subsection*{Layouts}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[trim=0cm 0cm 0cm 2cm, width=\textwidth]{images/layout_feedback}
+	\caption{Column chart showing the number of positive, negative and cumulative votes for each layout.}
+	\label{fig:layout_feedback}
+\end{figure}
+
+Figure \ref{fig:layout_feedback} shows the number of votes each layout received: each wireframe was given a positive vote when the wireframe was the participant's favourite layout ("Like" blue bar), and a negative vote when it was the least liked ("Dislike" red bar). The numbers of positive and negative votes were added up, which resulted in the ???  A summary of the most recurring comments about each interface is listed below.
+
+\begin{enumerate}[label=\Alph*]
+	\item 
+	\begin{itemize} 
+		\item[+] The interface is simple and clear. 
+		\item[-] It is not descriptive enough, it is hard to know what each element corresponds to.
+	\end{itemize}
+	
+	\item 
+	\begin{itemize}
+		\item[+] All the elements are visible on the screen without asking any effort to understand them.
+		\item[-] The lack of images makes the interface less attractive.
+	\end{itemize} 
+	
+	\item
+	\begin{itemize}
+		\item[+] Everything is kept together, on one screen.
+		\item[-] The amount of information on the screen is too large, therefore there will be too much scrolling involved.
+	\end{itemize} 
+	
+	\item
+	\begin{itemize}
+		\item[+] The accordion makes the navigation smoother: it keeps a good overview of all the information that has to be input, while giving the impression that the amount of input is not too big. It also keeps everything on the same screen, but does not require too much scrolling.
+		\item[-] The interface seems more complex, therefore less engaging. Moreover, it is slightly harder to see what is going on and what to do.
+	\end{itemize} 
+	
+	\item
+	\begin{itemize}
+		\item[+] The simplicity and clarity of the design makes it more engaging: there is less information on the screen, which makes it easier to focus on one thing at a time.
+		\item[-] The fact that it is necessary to press a button to move from one step to another makes the whole process too long.
+	\end{itemize} 
+\end{enumerate}
+
+\subsection*{Selectors}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[trim=0cm 0cm 0cm 2cm, width=\textwidth]{images/selector_feedback}
+	\caption{Column chart showing the number of positive, negative and cumulative votes for each feature selector.}
+	\label{fig:selector_feedback}
+\end{figure}
+
+Figure \ref{fig:selector_feedback} shows the number of votes each feature input type received. Again, a summary of the most recurring comments about each interface is listed below.
+
+\begin{enumerate}[label=\Alph*]
+	\item 
+	\begin{itemize}
+		\item[+] The images and the slot machine make the interface attractive and fun to use.
+		\item[-] Although one user enjoyed the idea of having to guess which feature had to be input, based only on the image, most participants would prefer to have captions below the images.
+	\end{itemize}
+	
+	\item 
+	\begin{itemize}
+		\item[-] Most participants either did not say anything about this attribute selection type, or mentioned that they did not like the lack of images, because it did not catch their attention.
+	\end{itemize} 
+	
+	\item
+	\begin{itemize}
+		\item[+] One participant liked the basic idea of going through the images horizontally, but suggested the use of swiping cards rather than scrollable areas.
+		\item[-] Similarly to interface B, most participants did not have anything to say about this selector. Two of them reiterated their dislike of scrollbars.
+	\end{itemize} 
+	
+	\item
+	\begin{itemize}
+		\item[+] A few participants enjoyed the carousel because if shows several options in the same view. They suggested that it showed a preview of the other images, as well as the currently displayed one. 
+	\end{itemize} 
+	
+	\item
+	\begin{itemize}
+		\item[+] One participant liked this selector because it allowed the users to see multiple images at the same time.
+		\item[-] This time again, most participants did not have any particularly strong view about this last selector, other than the scrolling involved, which they dislike.
+	\end{itemize} 
+\end{enumerate}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -251,6 +376,10 @@ For the last iteration, crowdsourced data gathering and training were implemente
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Technologies Used}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Scrapy}\label{scrapy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Android}
 
 The mobile application was implemented using Android, which is an open source operating system for mobile devices (smartphones and tablets), developed by Google and released in 2008.\cite{androidrelease}
@@ -270,6 +399,7 @@ Unfortunately, although this was one of the main points of concern, not all of t
 
 Another difficulty arose on a code-level, when trying to reduce the amount of redundancy from one activity or fragment to another, without making the overall code harder to read. Because of the way projects are structured in Android \cite{androidprojects}, it is necessary to jump from one file to another in order to follow the flow of the system. This becomes worse when creating extra classes to store the common code shared by multiple elements.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Weka}
 
 To make predictions, this app referenced machine learning algorithms implemented in the Weka workbench \cite{weka}, created by Eibe Frank, Mark Hall, Peter Reutemann, and Len Trigg.
@@ -286,11 +416,29 @@ This preliminary work was difficult, mainly because it was hard to find explanat
 
 Merging the functionalities implemented in the utility class with the Android code happened without almost any obstacle. The .jar file containing the source code of the library was added as a dependency in the project, and all the needed classes were imported in the standard way\footnote{``\texttt{import weka.}'' followed by the package containing the class to be used, and the name of the class.}. The only encountered issue came from the fact that, in order to train a classifier, one of the Weka classes uses the Java Graphics class from the awt package\footnote{??}, which is not available in Android. It was therefore not possible to train the classifier on the app. This was fixed by training it externally, outputting the trained object to a .model file, including that file as an asset of the project (as described previously in section \ref{data_process}), and recreating the corresponding Classifier object from the .model file when launching the app.
 
-\subsection{Django}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Django \& Heroku}
 
-Django is a Web application framework written in Python \cite{django}. 
+\subsubsection*{Django}
 
-\subsection{Scrapy}\label{scrapy}
+Django is a Web application framework written in Python \cite{django}. It facilitates Web development, by providing "high-level abstractions of common patterns, shortcuts for frequent programming tasks, and clear conventions for how to solve problems." \cite{djangobook}
+
+\subsubsection*{Justification}
+
+Choosing Django was mainly due to the fact that I had used it for a project in one of the Masters courses. It also has the advantage of being well documented and having an active user community.\par
+
+\subsubsection*{Heroku}
+
+Heroku is a cloud platform which allows users to deploy Web applications and their databases. It aims at speeding up the development process by handling the server management, the deployment and the scaling of the applications. \cite{heroku}
+
+\subsubsection*{Justification}
+
+
+
+\subsubsection*{Difficulties Encountered}
+
+Using Django did not cause any particular problem. Deploying the app once developed was, however, trickier than expected when following the official documentation only. I was getting confused about all the different components that had to be installed, and how they all related to one another. It was however easier to understand the process, using the Django Girls tutorial. \cite{djangogirls}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Machine Learning Algorithm}
@@ -340,93 +488,7 @@ In order to check whether an entry is new to a given client, each entry is given
 
 Two evaluation sessions were organised one on the wireframes, and one on the final application. 
 
-\section{User Interface}
 
-For the evaluation of the interface, 10 users were asked to have a look at the 5 different wireframes described in section \ref{wireframes}. They then had to give their thoughts about the layout and the feature selector they liked the least, as well as the ones they liked the most, and to explain their choices.
-
-\subsection{Layouts}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[trim=0cm 0cm 0cm 2cm, width=\textwidth]{images/layout_feedback}
-	\caption{Column chart showing the number of positive, negative and cumulative votes for each layout.}
-	\label{fig:layout_feedback}
-\end{figure}
-
-\ref{fig:layout_feedback} shows the number of votes each layout received (positive when the wireframe was the participant's favourite layout, negative when it was the least liked). A summary of the most recurring comments about each interface is listed below.
-
-\begin{enumerate}[label=\Alph*]
-	\item 
-	\begin{itemize}
-		\item[+] The interface is simple and clear. 
-		\item[-] It is not descriptive enough, it is hard to know what each element corresponds to.
-	\end{itemize}
-	
-	\item 
-	\begin{itemize}
-		\item[+] All the elements are visible on the screen without asking any effort to understand them.
-		\item[-] The lack of images makes the interface less attractive.
-	\end{itemize} 
-	
-	\item
-	\begin{itemize}
-		\item[+] Everything is kept together, on one screen.
-		\item[-] The amount of information on the screen is too large, therefore there will be too much scrolling involved.
-	\end{itemize} 
-	
-	\item
-	\begin{itemize}
-		\item[+] The accordion makes the navigation smoother: it keeps a good overview of all the information that has to be input, while giving the impression that the amount of input is not too big. It also keeps everything on the same screen, but does not require too much scrolling.
-		\item[-] The interface seems more complex, therefore less engaging. Moreover, it is slightly harder to see what is going on and what to do.
-	\end{itemize} 
-	
-	\item
-	\begin{itemize}
-		\item[+] The simplicity and clarity of the design makes it more engaging: there is less information on the screen, which makes it easier to focus on one thing at a time.
-		\item[-] The fact that it is necessary to press a button to move from one step to another makes the whole process too long.
-	\end{itemize} 
-\end{enumerate}
-
-\subsection{selector}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[trim=0cm 0cm 0cm 2cm, width=\textwidth]{images/selector_feedback}
-	\caption{Column chart showing the number of positive, negative and cumulative votes for each feature selector.}
-	\label{fig:selector_feedback}
-\end{figure}
-
-\ref{fig:selector_feedback} shows the number of votes each feature input type received. Again, a summary of the most recurring comments about each interface is listed below.
-
-\begin{enumerate}[label=\Alph*]
-	\item 
-	\begin{itemize}
-		\item[+] The images and the slot machine make the interface attractive and fun to use.
-		\item[-] Although one user enjoyed the idea of having to guess which feature had to be input, based only on the image, most participants would prefer to have captions below the images.
-	\end{itemize}
-	
-	\item 
-	\begin{itemize}
-		\item[-] Most participants either did not say anything about this attribute selection type, or mentioned that they did not like the lack of images, because it did not catch their attention.
-	\end{itemize} 
-	
-	\item
-	\begin{itemize}
-		\item[+] One participant liked the basic idea of going through the images horizontally, but suggested the use of swiping cards rather than scrollable areas.
-		\item[-] Similarly to interface B, most participants did not have anything to say about this selector. Two of them reiterated their dislike of scrollbars.
-	\end{itemize} 
-	
-	\item
-	\begin{itemize}
-		\item[+] A few participants enjoyed the carousel because if shows several options in the same view. They suggested that it showed a preview of the other images, as well as the currently displayed one. 
-	\end{itemize} 
-	
-	\item
-	\begin{itemize}
-		\item[+] One participant liked this selector because it allowed the users to see multiple images at the same time.
-		\item[-] This time again, most participants did not have any particularly strong view about this last selector, other than the scrolling involved, which they dislike.
-	\end{itemize} 
-\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Final App}
