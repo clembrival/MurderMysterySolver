@@ -26,9 +26,14 @@ import weka.core.converters.ConverterUtils;
   * with the server's new entries and retrain the classifiers with the new data. */
 public class ReplaceDatasetTask extends DatasetTask
 {
+    /** Tag for log output. */
     private static final String TAG = "ReplaceDatasetTask";
 
 
+    /**
+     * @param activity the activity starting the task.
+     * @param url the url though which the server should be reached.
+     */
     public ReplaceDatasetTask(Activity activity, String url)
     {
         super(R.string.update_local, activity, url);
@@ -80,9 +85,10 @@ public class ReplaceDatasetTask extends DatasetTask
         {
             try
             {
+                // Send the local dataset to the server
                 String query = String.format("timestamp=%s", URLEncoder.encode(timestamp, "UTF-8"));
 
-                connection = getConnection(false, "?" + query, 0);
+                connection = super.getConnection(false, "?" + query, 0);
                 connection.connect();
 
                 inputStream = connection.getInputStream();
@@ -112,7 +118,7 @@ public class ReplaceDatasetTask extends DatasetTask
 
 
     /**
-     * @param entries: String containing the new entries
+     * @param entries a String containing the new entries
      * @return an Instances object with the new entries
      */
     private Instances getInstances(String entries)
@@ -136,7 +142,7 @@ public class ReplaceDatasetTask extends DatasetTask
                 for(Instance instance : ConverterUtils.DataSource.read(tempInputStream))
                     newEntries.add(instance);
 
-                // Copy the content of the file to
+                // Copy the content of the file to the local dataset file
                 StreamManager.printStreamToInternalStorage(mActivity, tempInputStream, DATASET_FILE,
                         TAG, Activity.MODE_APPEND);
 
@@ -156,6 +162,12 @@ public class ReplaceDatasetTask extends DatasetTask
     }
 
 
+    /**
+     * Creates a temporary file in the cache directory to host the server's new entries
+     * (so that all the entries can be turned into Instances)
+     * @param entries the server's new entries
+     * @return a File object corresponding to the temporary file
+     */
     private File createTempFile(String entries)
     {
         final String TEMP_FILENAME = "tempDataset.arff";
@@ -203,6 +215,11 @@ public class ReplaceDatasetTask extends DatasetTask
     }
 
 
+    /**
+     * Retrains the two classifiers with the server's new entries.
+     * @param serverDataset the Instances created from the server's new entries.
+     * @return true if both classifiers were updated, false otherwise.
+     */
     private boolean retrainClassifiers(Instances serverDataset)
     {
         serverDataset.setClassIndex(AppAttribute.Weapon.getIndex());

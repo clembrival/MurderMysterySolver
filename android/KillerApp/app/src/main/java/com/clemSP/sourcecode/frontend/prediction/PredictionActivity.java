@@ -1,6 +1,7 @@
 package com.clemSP.sourcecode.frontend.prediction;
 
 import com.clemSP.sourcecode.R;
+import com.clemSP.sourcecode.backend.AttributeFactory.AppAttribute;
 import com.clemSP.sourcecode.backend.Data;
 import com.clemSP.sourcecode.backend.Dataset;
 import com.clemSP.sourcecode.frontend.ImageFeature;
@@ -141,7 +142,9 @@ public abstract class PredictionActivity extends AppCompatActivity
 
     private int getConfidence()
     {
-        int percentage = Dataset.get(this).getConfidence();
+        Dataset dataset = Dataset.get(this);
+        int inputAttributes = AppAttribute.getNumAttributes() - dataset.getMissingCount();
+        int percentage = dataset.getConfidence() * inputAttributes / AppAttribute.getNumAttributes();
 
         if(percentage < 1 || percentage > 100)
             return R.string.error;

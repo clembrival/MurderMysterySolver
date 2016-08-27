@@ -11,13 +11,18 @@ import java.io.InputStream;
 import javax.net.ssl.HttpsURLConnection;
 
 
-/** Class implementing a background task to compare the date and time the local dataset
-  * was last updated to the timestamp of the server's last entry. */
+/** Class implementing a background task to compare the date and time at which the local dataset
+  * was last updated, to the timestamp of the server's last entry. */
 public class CompareDatasetsTask extends DatasetTask
 {
+    /** Tag for log output. */
     private static final String TAG = "CompareDatasetsTask";
 
 
+    /**
+     * @param activity the activity starting the task.
+     * @param url the url though which the server should be reached.
+     */
     public CompareDatasetsTask(Activity activity, String url)
     {
         super(R.string.compare_datasets, activity, url);
@@ -41,6 +46,7 @@ public class CompareDatasetsTask extends DatasetTask
         if(localTimestamp.equals("") || localTimestamp.compareTo(serverTimestamp) < 0)
             status = POSITIVE_RESULT;
 
+        // Set the local timestamp to the server's in the SharedPreferences
         if(serverTimestamp.charAt(0) != '0')
         {
             SharedPreferences.Editor editor = mSharedPref.edit();
@@ -77,7 +83,7 @@ public class CompareDatasetsTask extends DatasetTask
         {
             try
             {
-                connection = getConnection(false, "", 0);
+                connection = super.getConnection(false, "", 0);
 
                 connection.connect();
 

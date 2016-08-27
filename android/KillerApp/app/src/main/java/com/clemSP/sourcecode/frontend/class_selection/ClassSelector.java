@@ -14,9 +14,8 @@ public abstract class ClassSelector
         int weaponIndex = AttributeFactory.AppAttribute.Weapon.getIndex();
         int murdererIndex = AttributeFactory.AppAttribute.Murderer.getIndex();
 
-        /* If the attribute that was not the target of the prediction was (de)selected, and
-         * (de)select the current prediction target. Then update the attribute to be predicted. */
-
+        /* If the attribute which was not the target of the prediction was (de)selected,
+         * then update the attribute to be predicted accordingly. */
 
         if(predictWeapon && !settings.getPredictWeapon())
         {

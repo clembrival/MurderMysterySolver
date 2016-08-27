@@ -3,6 +3,7 @@ package com.clemSP.sourcecode.backend;
 import com.clemSP.sourcecode.R;
 
 
+/** Utility class for the attributes of the dataset. */
 public class AttributeFactory
 {
     /** Values of the nominal attributes. */
@@ -19,6 +20,7 @@ public class AttributeFactory
     }
 
 
+    /** Enumeration of the attributes, their label and their index. */
     public enum AppAttribute
     {
         Year("year", 0),
@@ -32,6 +34,8 @@ public class AttributeFactory
 
         private String mLabel;
         private int mIndex;
+
+        /** Total number of attributes. */
         private static final int NUM_ATTRIBUTES = 8;
 
 
@@ -41,16 +45,27 @@ public class AttributeFactory
             mIndex = index;
         }
 
+
+        /**
+         * @return the label of the attribute.
+         */
         public String getLabel()
         {
             return mLabel;
         }
 
+        /**
+         * @return the index of the attribute.
+         */
         public int getIndex()
         {
             return mIndex;
         }
 
+        /**
+         * @return the attribute with the given index.
+         * @param index the index of the sought attribute.
+         */
         public static AppAttribute getAttributeFromIndex(int index)
         {
             switch(index)
@@ -67,6 +82,10 @@ public class AttributeFactory
             return null;
         }
 
+        /**
+         * @return the string resource containing the label of the given attribute.
+         * @param attribute the attribute of interest.
+         */
         public static int getLabelRes(AppAttribute attribute)
         {
             switch(attribute)
@@ -83,6 +102,10 @@ public class AttributeFactory
             return -1;
         }
 
+        /**
+         * @return the string resource containing the error message for the given attribute.
+         * @param attribute the attribute of interest.
+         */
         public static int getErrorRes(AppAttribute attribute)
         {
             switch(attribute)
@@ -99,6 +122,10 @@ public class AttributeFactory
             return -1;
         }
 
+        /**
+         * @return the id resource of the feature checkbox for the given attribute.
+         * @param index the index of the attribute of interest.
+         */
         public static int getCheckboxRes(int index)
         {
             switch(index)
@@ -115,10 +142,12 @@ public class AttributeFactory
             return -1;
         }
 
+        /**
+         * @return the total number of attributes.
+         */
         public static int getNumAttributes()
         {
             return NUM_ATTRIBUTES;
         }
     }
 }
-

@@ -21,6 +21,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class UpdateServerTask extends DatasetTask
 {
+    /** Tag for log output. */
     private static final String TAG = "UpdateServerTask";
 
     private Data mData;

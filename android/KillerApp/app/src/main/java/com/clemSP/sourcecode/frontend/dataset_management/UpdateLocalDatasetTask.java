@@ -13,6 +13,9 @@ import java.io.PrintWriter;
 
 public class UpdateLocalDatasetTask extends DatasetTask
 {
+    /** Tag for log output. */
+    private static final String TAG = "UpdateLocalDataset";
+
     private Data mData;
 
 
@@ -30,7 +33,7 @@ public class UpdateLocalDatasetTask extends DatasetTask
         boolean status = updateLocalDataset();
 
         if(status)
-            Log.w("UpdateLocalDataset", "Updated the local dataset.");
+            Log.w(TAG, "Updated the local dataset.");
 
         return status ? POSITIVE_RESULT : ERROR;
     }
@@ -59,7 +62,7 @@ public class UpdateLocalDatasetTask extends DatasetTask
         }
         catch (IOException ioe)
         {
-            Log.w("UpdateLocalDatasetTask", ioe.getLocalizedMessage());
+            Log.w(TAG, ioe.getLocalizedMessage());
             return false;
         }
     }

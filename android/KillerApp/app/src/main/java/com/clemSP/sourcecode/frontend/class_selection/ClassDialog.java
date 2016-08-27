@@ -16,9 +16,13 @@ import com.clemSP.sourcecode.frontend.PredictionSettings;
  */
 public class ClassDialog extends BaseDialog
 {
+    /** The RadioGroup containing Radio Buttons for each one of the attributes which can be predicted. */
     private RadioGroup mPredictionGroup;
 
 
+    /**
+     * @param context the Context in which the dialog should appear.
+     */
     public ClassDialog(Context context)
     {
         super(context, R.layout.dialog_select_prediction);
@@ -26,22 +30,30 @@ public class ClassDialog extends BaseDialog
         mPredictionGroup = (RadioGroup) findViewById(R.id.prediction_group);
 
         preSelectButton();
-        inflateCancelButton(R.id.prediction_cancel_button);
+        super.inflateCancelButton(R.id.prediction_cancel_button);
         inflateOkButton(context);
 
         show();
     }
 
 
+    /**
+     * Checks the radio button corresponding to the pre-selected attribute to be predicted.
+     */
     private void preSelectButton()
     {
         PredictionSettings settings = PredictionSettings.getSettings();
 
         int checkedButtonId = settings.getPredictWeapon() ? R.id.weapon_button : R.id.gender_button;
+
         ((RadioButton) findViewById(checkedButtonId)).setChecked(true);
     }
 
 
+    /**
+     * Inflates the OK button and adds a ClickListener to it.
+     * @param context the Context in which the dialog should appear.
+     */
     private void inflateOkButton(final Context context)
     {
         Button okButton = (Button) findViewById(R.id.prediction_ok_button);
@@ -53,6 +65,8 @@ public class ClassDialog extends BaseDialog
             {
                 // Using Adapter design pattern because ClassDialog already has a superclass
                 ClassSelector.Adaptee classSelector = new ClassSelector.Adaptee();
+
+                // Get the id of the radio button checked, if any
                 int selectedId = mPredictionGroup.getCheckedRadioButtonId();
 
                 if(selectedId == R.id.weapon_button)
@@ -61,6 +75,7 @@ public class ClassDialog extends BaseDialog
                 else if(selectedId == R.id.gender_button)
                     classSelector.updatePredictionTarget(false);
 
+                // The user pressed OK before any attribute was selected
                 else
                 {
                     printErrorToast(context, R.string.prediction_error);
