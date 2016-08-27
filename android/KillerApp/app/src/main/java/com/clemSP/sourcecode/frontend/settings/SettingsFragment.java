@@ -1,43 +1,49 @@
 package com.clemSP.sourcecode.frontend.settings;
 
-
+import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
+
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.clemSP.sourcecode.R;
+import com.clemSP.sourcecode.frontend.settings.PreferencesMap.EntryValue;
 
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
+
 
 public class SettingsFragment extends PreferenceFragment
     implements SharedPreferences.OnSharedPreferenceChangeListener
 {
-    public static final String KEY_PREF_LANGUAGE = "pref_language";
-    public static final String KEY_PREF_CLASS_LAYOUT = "pref_classLayout";
-    public static final String KEY_PREF_FEATURES_LAYOUT = "pref_featuresLayout";
-    public static final String KEY_PREF_INPUT_LAYOUT = "pref_inputLayout";
-    public static final String KEY_PREF_IMAGES_LAYOUT = "pref_imagesLayout";
-    public static final String KEY_PREF_SHARE_DATA = "pref_shareData";
-    public static final String KEY_PREF_SEND_DATA_AUTO = "pref_sendDataAuto";
-    public static final String KEY_PREF_FETCH_DATA_AUTO = "pref_fetchDataAuto";
-    public static final String KEY_PREF_CORRECT_ANSWER_AUTO = "pref_correctAnswerAuto";
+    private OnLanguageChangeListener mListener;
 
-    private Map<String, EntryValue[]> mKeyPrefMap;
-
-    private class EntryValue
+    public interface OnLanguageChangeListener
     {
-        String entry, value;
+        void refresh();
+    }
 
-        public EntryValue(String entry, String value)
+    private PreferencesMap mPrefMap;
+
+
+    @Override
+    public void onAttach(Activity activity)
+    {
+        super.onAttach(activity);
+
+        try
         {
-            this.entry = entry;
-            this.value = value;
+            mListener = (OnLanguageChangeListener) activity;
+        }
+        catch (ClassCastException e)
+        {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnLanguageChangeListener");
         }
     }
 
@@ -49,39 +55,10 @@ public class SettingsFragment extends PreferenceFragment
 
         addPreferencesFromResource(R.xml.preferences);
 
-        Resources resources = getResources();
+        mPrefMap = PreferencesMap.getPreferencesMap(getActivity());
 
-        mKeyPrefMap = new HashMap<>(4);
-
-        mKeyPrefMap.put(KEY_PREF_CLASS_LAYOUT, makeEntryValues(
-                resources.getStringArray(R.array.pref_classLayout_entries),
-                resources.getStringArray(R.array.pref_classLayout_values)));
-
-        mKeyPrefMap.put(KEY_PREF_FEATURES_LAYOUT, makeEntryValues(
-                resources.getStringArray(R.array.pref_featuresLayout_entries),
-                resources.getStringArray(R.array.pref_featuresLayout_values)));
-
-        mKeyPrefMap.put(KEY_PREF_INPUT_LAYOUT, makeEntryValues(
-                resources.getStringArray(R.array.pref_inputLayout_entries),
-                resources.getStringArray(R.array.pref_inputLayout_values)));
-
-        mKeyPrefMap.put(KEY_PREF_IMAGES_LAYOUT, makeEntryValues(
-                resources.getStringArray(R.array.pref_imagesLayout_entries),
-                resources.getStringArray(R.array.pref_imagesLayout_values)));
-
-        for(String key : mKeyPrefMap.keySet())
-            setListPreferenceSummary(key, mKeyPrefMap.get(key));
-    }
-
-
-    private EntryValue[] makeEntryValues(String[] entries, String[] values)
-    {
-        EntryValue[] entryValues = new EntryValue[entries.length];
-
-        for(int index = 0; index < entryValues.length; index++)
-            entryValues[index] = new EntryValue(entries[index], values[index]);
-
-        return entryValues;
+        for(String key : mPrefMap.getKeySet())
+            setListPreferenceSummary(key, mPrefMap.getEntryValues(key));
     }
 
 
@@ -112,31 +89,31 @@ public class SettingsFragment extends PreferenceFragment
 
         switch (key)
         {
-            case KEY_PREF_LANGUAGE:
+            case PreferencesMap.KEY_PREF_LANGUAGE:
                 if(preference instanceof ListPreference)
-                    setLanguage(((ListPreference)preference).getEntry());
+                    setLanguage(((ListPreference)preference).getEntry(), sharedPreferences);
                 break;
 
-            case KEY_PREF_CLASS_LAYOUT:
-            case KEY_PREF_FEATURES_LAYOUT:
-            case KEY_PREF_IMAGES_LAYOUT:
-                setListPreferenceSummary(preference, mKeyPrefMap.get(key));
+            case PreferencesMap.KEY_PREF_CLASS_LAYOUT:
+            case PreferencesMap.KEY_PREF_FEATURES_LAYOUT:
+            case PreferencesMap.KEY_PREF_IMAGES_LAYOUT:
+                setListPreferenceSummary(preference, mPrefMap.getEntryValues(key));
                 break;
 
-            case KEY_PREF_INPUT_LAYOUT:
+            case PreferencesMap.KEY_PREF_INPUT_LAYOUT:
                 if(preference instanceof ListPreference)
                 {
                     enableImagePreference(getString(R.string.input_images)
                             .equals(((ListPreference)preference).getEntry()));
 
-                    setListPreferenceSummary(preference, mKeyPrefMap.get(key));
+                    setListPreferenceSummary(preference, mPrefMap.getEntryValues(key));
                 }
                 break;
         }
     }
 
 
-    private void setLanguage(CharSequence entry)
+    private void setLanguage(CharSequence entry, SharedPreferences sharedPreferences)
     {
         String language;
         if(getString(R.string.language_french).equals(entry))
@@ -148,13 +125,18 @@ public class SettingsFragment extends PreferenceFragment
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
-        getResources().updateConfiguration(config, null);
+        getResources().updateConfiguration(config, getActivity().getResources().getDisplayMetrics());
+
+        for(String key : mPrefMap.getKeySet())
+            setListPreferenceSummary(key, mPrefMap.getEntryValues(key));
+
+        mListener.refresh();
     }
 
 
     private void enableImagePreference(boolean enable)
     {
-        ListPreference imagePreference = (ListPreference) findPreference(KEY_PREF_IMAGES_LAYOUT);
+        ListPreference imagePreference = (ListPreference) findPreference(PreferencesMap.KEY_PREF_IMAGES_LAYOUT);
         if(imagePreference != null)
             imagePreference.setEnabled(enable);
     }
@@ -173,5 +155,13 @@ public class SettingsFragment extends PreferenceFragment
     {
         super.onPause();
         getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+
+    @Override
+    public void onDetach()
+    {
+        super.onDetach();
+        mListener = null;
     }
 }

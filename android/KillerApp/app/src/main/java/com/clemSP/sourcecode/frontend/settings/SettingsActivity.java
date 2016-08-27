@@ -1,8 +1,12 @@
 package com.clemSP.sourcecode.frontend.settings;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,14 +16,22 @@ import com.clemSP.sourcecode.frontend.MainActivity;
 
 
 public class SettingsActivity extends AppCompatActivity
+        implements SettingsFragment.OnLanguageChangeListener
 {
+    private static final String FRAGMENT_TAG = "settingsFrag";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
+
         getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new SettingsFragment()).commit();
+                .replace(android.R.id.content, new SettingsFragment(), FRAGMENT_TAG).commit();
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
     }
@@ -30,9 +42,13 @@ public class SettingsActivity extends AppCompatActivity
     {
         getMenuInflater().inflate(R.menu.main, menu);
 
-        MenuItem item = menu.findItem(R.id.action_main);
-        if(item != null)
-            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        MenuItem mainItem = menu.findItem(R.id.action_main);
+        if(mainItem != null)
+            mainItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
+        MenuItem settingsItem = menu.findItem(R.id.action_settings);
+        if(settingsItem != null)
+            settingsItem.setVisible(false);
 
         return true;
     }
@@ -45,11 +61,29 @@ public class SettingsActivity extends AppCompatActivity
 
         switch(id)
         {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+
             case R.id.action_main:
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void refresh()
+    {
+        /*
+        Fragment settingsFragment = getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+        FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
+        fragTransaction.detach(settingsFragment);
+        fragTransaction.attach(settingsFragment);
+        fragTransaction.commit();
+        */
+        getFragmentManager().beginTransaction()
+                .replace(android.R.id.content, new SettingsFragment(), FRAGMENT_TAG).commit();
     }
 }

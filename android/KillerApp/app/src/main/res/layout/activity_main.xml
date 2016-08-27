@@ -62,7 +62,7 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="bottom|end"
 			android:layout_margin="10dp"
-			android:src="@android:drawable/ic_menu_edit"
+			android:src="@android:drawable/ic_menu_preferences"
 			app:layout_anchor="@id/fragment_container"
 			app:layout_anchorGravity="bottom|right|end"
 			android:tint="@color/firebrick"

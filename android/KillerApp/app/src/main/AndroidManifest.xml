@@ -28,20 +28,46 @@
 
         </activity>
 
+
+        <activity android:name="com.clemSP.sourcecode.frontend.dataset_management.ReplaceLocalDatasetActivity"
+                  android:screenOrientation="portrait"/>
+
+
         <activity android:name="com.clemSP.sourcecode.frontend.MainActivity"
                   android:screenOrientation="portrait" />
 
+
         <activity android:name="com.clemSP.sourcecode.frontend.prediction.WeaponPredictionActivity"
-                  android:screenOrientation="portrait"/>
+                  android:screenOrientation="portrait"
+                  android:parentActivityName=".frontend.MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".frontend.MainActivity" />
+
+        </activity>
+
 
         <activity android:name="com.clemSP.sourcecode.frontend.prediction.GenderPredictionActivity"
-                  android:screenOrientation="portrait" />
+                  android:screenOrientation="portrait"
+                  android:parentActivityName=".frontend.MainActivity">
 
-        <activity android:name="com.clemSP.sourcecode.frontend.dataset_management.ReplaceLocalDatasetActivity"
-                  android:screenOrientation="portrait" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".frontend.MainActivity" />
+
+        </activity>
+
 
         <activity android:name="com.clemSP.sourcecode.frontend.settings.SettingsActivity"
-                  android:screenOrientation="portrait" />
+                  android:screenOrientation="portrait"
+                  android:parentActivityName=".frontend.MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".frontend.MainActivity" />
+
+        </activity>
 
     </application>
 

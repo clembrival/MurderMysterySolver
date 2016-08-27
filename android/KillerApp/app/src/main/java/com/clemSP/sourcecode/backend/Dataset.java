@@ -1,6 +1,7 @@
 package com.clemSP.sourcecode.backend;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.clemSP.sourcecode.frontend.PredictionSettings;
 
@@ -124,7 +125,7 @@ public class Dataset
         {
             String value = data.getValue(index+1);
             if(value.equals("unknown") ||
-                    (mData.attribute(index).isNumeric() && instance.value(index) == 0))
+                    (mData.attribute(index).isNumeric() && instance.value(index) < 0.5))
                 instance.setMissing(index);
         }
 
@@ -172,16 +173,21 @@ public class Dataset
     	for(int index = 0; index < labelled.numAttributes(); index++)
     	{
     		String value;
-    		if(labelled.attribute(index).isNumeric())
+            if(labelled.isMissing(index))
+                value = "?";
+            else
             {
-                double numericValue = labelled.value(index);
-                if(index == AppAttribute.Year.getIndex())
-                    value = "" + ((int)numericValue);
+                if(labelled.attribute(index).isNumeric())
+                {
+                    double numericValue = labelled.value(index);
+                    if(index == AppAttribute.Year.getIndex())
+                        value = "" + ((int)numericValue);
+                    else
+                        value = "" + numericValue;
+                }
                 else
-                    value = "" + numericValue;
+                    value = labelled.stringValue(index);
             }
-    		else
-                value = labelled.stringValue(index);
 
     		data.setAttribute(AppAttribute.getAttributeFromIndex(index), value);
     	}

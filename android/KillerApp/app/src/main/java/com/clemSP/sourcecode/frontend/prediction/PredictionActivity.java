@@ -5,12 +5,11 @@ import com.clemSP.sourcecode.backend.Data;
 import com.clemSP.sourcecode.backend.Dataset;
 import com.clemSP.sourcecode.frontend.ImageFeature;
 import com.clemSP.sourcecode.frontend.MainActivity;
-import com.clemSP.sourcecode.frontend.dataset_management.CompareDatasetsTask;
 import com.clemSP.sourcecode.frontend.dataset_management.DatasetTask;
 import com.clemSP.sourcecode.frontend.dataset_management.UpdateLocalDatasetTask;
 import com.clemSP.sourcecode.frontend.dataset_management.UpdateServerTask;
+import com.clemSP.sourcecode.frontend.settings.PreferencesMap;
 import com.clemSP.sourcecode.frontend.settings.SettingsActivity;
-import com.clemSP.sourcecode.frontend.settings.SettingsFragment;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -21,6 +20,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -53,10 +54,6 @@ public abstract class PredictionActivity extends AppCompatActivity
     {
         getMenuInflater().inflate(R.menu.main, menu);
 
-        MenuItem item = menu.findItem(R.id.action_settings);
-        if(item != null)
-            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-
         return true;
     }
 
@@ -67,6 +64,10 @@ public abstract class PredictionActivity extends AppCompatActivity
         int id = item.getItemId();
         switch(id)
         {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+
             case R.id.action_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 finish();
@@ -87,6 +88,10 @@ public abstract class PredictionActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prediction);
+
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
         retrievePrediction();
 
@@ -174,7 +179,7 @@ public abstract class PredictionActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(PredictionActivity.this);
-                if(!preferences.getBoolean(SettingsFragment.KEY_PREF_CORRECT_ANSWER_AUTO, false))
+                if(!preferences.getBoolean(PreferencesMap.KEY_PREF_CORRECT_ANSWER_AUTO, false))
                     showRetrainDialog();
                 else
                     showRightAnswerDialog();
@@ -335,9 +340,9 @@ public abstract class PredictionActivity extends AppCompatActivity
             if(status == DatasetTask.POSITIVE_RESULT)
             {
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-                if(preferences.getBoolean(SettingsFragment.KEY_PREF_SHARE_DATA, true))
+                if(preferences.getBoolean(PreferencesMap.KEY_PREF_SHARE_DATA, true))
                 {
-                    if(!preferences.getBoolean(SettingsFragment.KEY_PREF_SEND_DATA_AUTO, false))
+                    if(!preferences.getBoolean(PreferencesMap.KEY_PREF_SEND_DATA_AUTO, false))
                         showServerDialog();
                     else
                         checkNetworkConnection();

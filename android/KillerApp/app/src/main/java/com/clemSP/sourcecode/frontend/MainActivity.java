@@ -27,8 +27,8 @@ import com.clemSP.sourcecode.frontend.features_selection.FeatureDialog;
 import com.clemSP.sourcecode.frontend.features_selection.FeatureDrawer;
 import com.clemSP.sourcecode.frontend.prediction.GenderPredictionActivity;
 import com.clemSP.sourcecode.frontend.prediction.WeaponPredictionActivity;
+import com.clemSP.sourcecode.frontend.settings.PreferencesMap;
 import com.clemSP.sourcecode.frontend.settings.SettingsActivity;
-import com.clemSP.sourcecode.frontend.settings.SettingsFragment;
 
 
 /**
@@ -61,10 +61,13 @@ public class MainActivity extends AppCompatActivity implements BaseInputFragment
     {
         getMenuInflater().inflate(R.menu.main, menu);
 
-        MenuItem item = menu.findItem(R.id.action_settings);
-        if(item != null)
-            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        MenuItem settingsItem = menu.findItem(R.id.action_settings);
+        if(settingsItem != null)
+            settingsItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
+        MenuItem mainItem = menu.findItem(R.id.action_main);
+        if(mainItem != null)
+            mainItem.setVisible(false);
         return true;
     }
 
@@ -77,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements BaseInputFragment
         {
             case R.id.action_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
-                finish();
         }
 
         return super.onOptionsItemSelected(item);
@@ -113,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements BaseInputFragment
     /* Gets the class preference and loads the appropriate layout. */
     private void selectClass()
     {
-        String classLayout = mSharedPref.getString(SettingsFragment.KEY_PREF_CLASS_LAYOUT,
+        String classLayout = mSharedPref.getString(PreferencesMap.KEY_PREF_CLASS_LAYOUT,
                 getString(R.string.pref_classDialog));
 
         if(getString(R.string.pref_classDialog).equals(classLayout))
@@ -163,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements BaseInputFragment
 
     private void selectFeatures()
     {
-        String featuresLayout = mSharedPref.getString(SettingsFragment.KEY_PREF_FEATURES_LAYOUT,
+        String featuresLayout = mSharedPref.getString(PreferencesMap.KEY_PREF_FEATURES_LAYOUT,
                 getString(R.string.pref_featuresDialog));
 
         if(getString(R.string.pref_featuresDialog).equals(featuresLayout))
@@ -281,7 +283,7 @@ public class MainActivity extends AppCompatActivity implements BaseInputFragment
 
         if(inputFragment == null)
         {
-            String inputType = mSharedPref.getString(SettingsFragment.KEY_PREF_INPUT_LAYOUT,
+            String inputType = mSharedPref.getString(PreferencesMap.KEY_PREF_INPUT_LAYOUT,
                     getString(R.string.pref_inputText));
 
             if(getString(R.string.pref_inputText).equals(inputType))
@@ -379,16 +381,6 @@ public class MainActivity extends AppCompatActivity implements BaseInputFragment
             mReturningActivity = -1;
         }
     }
-    
-    
-    @Override
-    public void onResume() 
-    {
-    	super.onResume();
-    	
-    	if(mReturningActivity == CLASS_REQUEST_CODE)
-    		selectFeatures();
-    }
 
 
     @Override
@@ -417,5 +409,15 @@ public class MainActivity extends AppCompatActivity implements BaseInputFragment
     {
         if(!mIsEmpty)
             layoutActivityFragment(false);
+    }
+
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+
+        if(mReturningActivity == CLASS_REQUEST_CODE)
+            selectFeatures();
     }
 }

@@ -10,7 +10,7 @@ import com.clemSP.sourcecode.R;
 import com.clemSP.sourcecode.backend.AttributeFactory.AppAttribute;
 import com.clemSP.sourcecode.backend.Data;
 import com.clemSP.sourcecode.frontend.ImageFeature;
-import com.clemSP.sourcecode.frontend.settings.SettingsFragment;
+import com.clemSP.sourcecode.frontend.settings.PreferencesMap;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -119,7 +119,7 @@ public class ImagesInputFragment extends BaseInputFragment
     private void selectImage(final AppAttribute attribute)
     {
         String layoutPref = PreferenceManager.getDefaultSharedPreferences(mView.getContext())
-                .getString(SettingsFragment.KEY_PREF_IMAGES_LAYOUT,
+                .getString(PreferencesMap.KEY_PREF_IMAGES_LAYOUT,
                         getString(R.string.pref_imagesGrid));
 
         int layout;
@@ -192,7 +192,6 @@ public class ImagesInputFragment extends BaseInputFragment
                             String attributeValue = getInputFromImageFeature(mView, attribute,
                                     mView.getContext().getString(feature.getCaptionRes()),
                                     AppAttribute.getErrorRes(attribute));
-                            Log.w("INPUT", "att: " + attributeValue);
                             if(getString(R.string.female).equals(attributeValue))
                                 attributeValue = "F";
                             else if(getString(R.string.male).equals(attributeValue))

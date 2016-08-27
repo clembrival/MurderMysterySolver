@@ -3,27 +3,29 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ListPreference
-        android:key="pref_language"
+        android:key="@string/pref_language_key"
         android:title="@string/pref_language"
         android:dialogTitle="@string/pref_language"
         android:entries="@array/pref_language_entries"
         android:entryValues="@array/pref_language_values"
-        android:defaultValue="@string/pref_languageEN" />
+        android:defaultValue="@string/pref_languageEN"
+        android:persistent="true" />
 
     <PreferenceCategory
         android:key="pref_customInterface"
         android:title="@string/pref_customInterface" >
 
         <ListPreference
-            android:key="pref_classLayout"
+            android:key="@string/pref_classLayout_key"
             android:title="@string/pref_classLayout"
             android:dialogTitle="@string/pref_classLayout"
             android:entries="@array/pref_classLayout_entries"
             android:entryValues="@array/pref_classLayout_values"
-            android:defaultValue="@string/pref_classDialog" />
+            android:defaultValue="@string/pref_classDialog"
+            android:persistent="true"/>
 
         <ListPreference
-            android:key="pref_featuresLayout"
+            android:key="@string/pref_featuresLayout_key"
             android:title="@string/pref_featuresLayout"
             android:dialogTitle="@string/pref_featuresLayout"
             android:entries="@array/pref_featuresLayout_entries"
@@ -31,21 +33,23 @@
             android:defaultValue="@string/pref_featuresDialog" />
 
         <ListPreference
-            android:key="pref_inputLayout"
+            android:key="@string/pref_inputLayout_key"
             android:title="@string/pref_inputLayout"
             android:dialogTitle="@string/pref_inputLayout"
             android:entries="@array/pref_inputLayout_entries"
             android:entryValues="@array/pref_inputLayout_values"
-            android:defaultValue="@string/pref_inputText" />
+            android:defaultValue="@string/pref_inputText"
+            android:persistent="true" />
 
         <ListPreference
-            android:key="pref_imagesLayout"
+            android:key="@string/pref_imagesLayout_key"
             android:dependency="pref_inputLayout"
             android:title="@string/pref_imagesLayout"
             android:dialogTitle="@string/pref_imagesLayout"
             android:entries="@array/pref_imagesLayout_entries"
             android:entryValues="@array/pref_imagesLayout_values"
-            android:defaultValue="@string/pref_imagesGrid" />
+            android:defaultValue="@string/pref_imagesGrid"
+            android:persistent="true" />
     </PreferenceCategory>
 
     <PreferenceCategory

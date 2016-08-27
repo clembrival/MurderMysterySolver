@@ -117,6 +117,7 @@
     <string name="test_title">Select layouts</string>
 
 
+    <string name="pref_language_key" translatable="false">pref_language</string>
     <string name="pref_language">Language</string>
     <string name="pref_languageEN" translatable="false">English</string>
     <string name="pref_languageFR" translatable="false">Français</string>
@@ -144,6 +145,7 @@
 
     <string name="pref_customInterface">Interface Customization</string>
 
+    <string name="pref_classLayout_key" translatable="false">pref_classLayout</string>
     <string name="pref_classLayout">Prediction Selection</string>
 
     <string name="pref_classDialog">Pop-up Window</string>
@@ -151,6 +153,7 @@
     <string name="pref_classTabs">Menu Bar with Tabs</string>
     <string name="pref_classTabs_summary">Select type of prediction from menu bar with tabs</string>
 
+    <string name="pref_featuresLayout_key" translatable="false">pref_featuresLayout</string>
     <string name="pref_featuresLayout">Attributes Selection</string>
 
     <string name="pref_featuresDialog">Pop-up Window</string>
@@ -158,6 +161,7 @@
     <string name="pref_featuresDrawer">Side Drawer</string>
     <string name="pref_featuresDrawer_summary">Select story details from side drawer</string>
 
+    <string name="pref_inputLayout_key" translatable="false">pref_inputLayout</string>
     <string name="pref_inputLayout">Story Details Input</string>
 
     <string name="pref_inputText">Text</string>
@@ -165,6 +169,7 @@
     <string name="pref_inputImages">Images</string>
     <string name="pref_inputImages_summary">Use images to enter story details</string>
 
+    <string name="pref_imagesLayout_key" translatable="false">pref_imagesLayout</string>
     <string name="pref_imagesLayout">Images Display</string>
 
     <string name="pref_imagesSpinner">Spinner</string>

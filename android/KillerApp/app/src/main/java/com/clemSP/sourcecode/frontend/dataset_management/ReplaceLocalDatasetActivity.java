@@ -14,12 +14,12 @@ import android.support.v7.app.AlertDialog;
 
 import com.clemSP.sourcecode.R;
 import com.clemSP.sourcecode.frontend.MainActivity;
-import com.clemSP.sourcecode.frontend.settings.SettingsFragment;
+import com.clemSP.sourcecode.frontend.settings.PreferencesMap;
 
 
 /** Class creating AsyncTasks to compare the local data set to the one on the server,
- * and update the local one if needed.
- */
+  * and update the local one if needed.
+  */
 public class ReplaceLocalDatasetActivity extends Activity implements DatasetTask.DatasetTaskListener
 {
 	private static final String BASE_URL = "https://murder-mystery-server.herokuapp.com/killerapp/";
@@ -34,8 +34,10 @@ public class ReplaceLocalDatasetActivity extends Activity implements DatasetTask
 
 		mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-		if(mPreferences.getBoolean(SettingsFragment.KEY_PREF_SHARE_DATA, true))
+		if(mPreferences.getBoolean(PreferencesMap.KEY_PREF_SHARE_DATA, true))
 			checkNetworkConnection();
+		else
+			startMainActivity();
 	}
 
 
@@ -50,7 +52,7 @@ public class ReplaceLocalDatasetActivity extends Activity implements DatasetTask
 
 		if (networkInfo != null && networkInfo.isConnected())
 		{
-			if(!mPreferences.getBoolean(SettingsFragment.KEY_PREF_FETCH_DATA_AUTO, false))
+			if(!mPreferences.getBoolean(PreferencesMap.KEY_PREF_FETCH_DATA_AUTO, false))
 				showServerDialog();
 			else
 				new CompareDatasetsTask(ReplaceLocalDatasetActivity.this,

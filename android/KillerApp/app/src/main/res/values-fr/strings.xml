@@ -5,13 +5,12 @@
     <string name="main_title">Détails du roman</string>
     <string name="title_label">Titre</string>
     <string name="year_label">Année de publication</string>
-    <string name="select_label">Saisir&#8230;</string>
+    <string name="select_label">Choisir&#8230;</string>
     <string name="detective_label">Détective</string>
     <string name="location_label">Cadre</string>
     <string name="cause_label">Cause du décès</string>
     <string name="pov_label">Point de vue de la narration</string>
 
-    <string name="detective_prompt">Choisir&#8230;</string>
     <string name="mystery_novel">Aucun</string>
     <string name="colonel_race">Colonel Race</string>
     <string name="hercule_poirot">Hercule Poirot</string>
@@ -19,7 +18,6 @@
     <string name="superintendent_battle">Superintendent Battle</string>
     <string name="tommy_tuppence">Tommy et Tuppence</string>
 
-    <string name="cause_prompt">Choisir&#8230;</string>
     <string name="accident">Accident</string>
     <string name="none">Aucun</string>
     <string name="concussion">Commotion</string>
@@ -79,7 +77,6 @@
     <string name="very_confident">Je suis très confiant..</string>
     <string name="victim_error">Veuillez sélectionner le sexe de la victime.</string>
     <string name="victim_label">Sexe de la victime</string>
-    <string name="victime_image_description">Sexe de la victime</string>
     <string name="weapon_image_description">Arme du crime</string>
     <string name="wild_guess">C\'est une idée au hasard..</string>
     <string name="update_server">Mise à jour de la base de données du serveur.</string>
@@ -98,7 +95,6 @@
     <string name="class_tabs">Onglet</string>
     <string name="class_label">Sélection de la classe</string>
     <string name="class_dialog">Dialogue</string>
-    <string name="test_class_activity">Activité</string>
     <string name="server_update_error">Une erreur s\'est produite lors de la mise à jour du serveur.</string>
     <string name="server_error">Une erreur s\'est produite en essayant de me connectecter au serveur.</string>
     <string name="send_data_question">Voulez-vous partager cette information avec les autres utilisateurs afin d\'améliorer mes compétences?</string>
