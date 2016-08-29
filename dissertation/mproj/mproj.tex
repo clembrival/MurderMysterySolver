@@ -158,7 +158,7 @@ As a \textbf{reader}, I would like to be able to use the system while I am readi
 	
 The following functional requirements were added later in the project, after taking the machine learning side of the system into consideration.
 \begin{itemize}
-\item Users should be able to leave out details they don't know about or don't want to input.
+\item Users should be able to leave out details they do not know about or do not want to input.
 \item A user should be able to invalidate an incorrect prediction and provide the right answer to the system. 
 \item All users should be able to share the details of the stories they read, if they want to.
 \end{itemize}
@@ -200,7 +200,7 @@ The initial dataset contained 66 instances (each one corresponding to an Agatha 
 
 As a first practice exercise, the concept (the element that had to be predicted) was the \textbf{cause of death} of the victim. A sixth column was therefore added to the dataset to store the murder weapon used for each instance, in accordance to the structure of a classification training set (as mentioned in section \ref{machine_learning}).\par
 
-Secondly, a web scraper was used to extract the \textbf{number of ratings} and the \textbf{average ratings} from Goodreads \cite{goodreads} for each book in the training set, which was then updated with the extracted data. (This process is detailed in section \ref{scrapy}.)\par
+Secondly, a Web scraper was used to extract the \textbf{number of ratings} and the \textbf{average ratings} from Goodreads \cite{goodreads} for each book in the training set, which was then updated with the extracted data. (This process is detailed in section \ref{scrapy}.)\par
 
 Finally, the last attributes added to the dataset are the \textbf{gender of the victim} and the \textbf{gender of the murderer}. The latter was meant to replace the cause of death as the main concept handled by the system, however it was set so users could choose between the two attributes when selecting the object of the prediction they want to receive. The complete training set is visible in Appendix \ref{dataset}.\par
 
@@ -238,51 +238,12 @@ When designing the application's interface, 5 wireframes were created, using myb
 	\item a single screen with an accordion layout, and images in a carousel (Figure \ref{fig:wireframeD}),
 	\item multiple screens accessed by pressing Next/Previous buttons, with images in a vertical scrollable frame (Figure \ref{fig:wireframeE}).
 \end{enumerate}
-
-\begin{figure}
-	\centering
-	\begin{subfigure}{0.3\textwidth}
-		\includegraphics[width=\textwidth]{images/single_fruit_machine}
-		\caption{Wireframe A.}
-		\label{fig:wireframeA}		
-	\end{subfigure}
-	\quad
-	\begin{subfigure}{0.3\textwidth}
-		\includegraphics[width=\textwidth]{images/single_text_only}
-		\caption{Wireframe B.}
-		\label{fig:wireframeB}		
-	\end{subfigure}
-
-	\begin{subfigure}{\textwidth}
-		\includegraphics[width=\textwidth]{images/single_list}
-		\caption{Wireframe C.}
-		\label{fig:wireframeC}		
-	\end{subfigure}
-	\caption{Wireframes A, B and C.}
-\end{figure}
-
-\begin{figure}
-	\centering
-	
-	\begin{subfigure}{\textwidth}
-		\includegraphics[width=\textwidth]{images/single_accordion}
-		\caption{Wireframe D.}
-		\label{fig:wireframeD}		
-	\end{subfigure}		
-	
-	\begin{subfigure}{\textwidth}
-		\includegraphics[width=\textwidth]{images/multiple_list}
-		\caption{Wireframe E.}
-		\label{fig:wireframeE}		
-	\end{subfigure}			
-	\caption{Wireframes D and E.}
-\end{figure}
 	
 In order to find the interface which appealed to most users before starting the implementation, a first evaluation was undertaken, for which 10 users were asked to examine the 5 different wireframes described previously. They then had to give their thoughts about the layout and the feature selector they liked the least, as well as the ones they liked the most, and to explain their choices.
 
 \subsection*{Layouts}
 
-Figure \ref{fig:layout_feedback} shows the number of votes each layout received: each wireframe was given a positive vote when the wireframe was the participant's favourite layout (represented by "Like" blue bars), and a negative vote when it was the least liked (represented by "Dislike" red bars). The numbers of positive and negative votes were added up, which resulted in the "Total" orange bars. 
+Figure \ref{fig:layout_feedback} shows the number of votes each layout received: each wireframe was given a positive vote when the wireframe was the participant's favourite layout (represented by ``Like'' blue bars), and a negative vote when it was the least liked (represented by ``Dislike'' red bars). The numbers of positive and negative votes were added up, which resulted in the ``Total'' orange bars. 
 
 \begin{figure}[h]
 	\centering
@@ -368,6 +329,45 @@ Again, a summary of the most recurring comments about each interface is listed b
 	\end{itemize} 
 \end{enumerate}
 
+\begin{figure}
+	\centering
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{images/single_fruit_machine}
+		\caption{Wireframe A.}
+		\label{fig:wireframeA}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{images/single_text_only}
+		\caption{Wireframe B.}
+		\label{fig:wireframeB}		
+	\end{subfigure}
+	
+	\begin{subfigure}{\textwidth}
+		\includegraphics[width=\textwidth]{images/single_list}
+		\caption{Wireframe C.}
+		\label{fig:wireframeC}		
+	\end{subfigure}
+	\caption{Wireframes A, B and C.}
+\end{figure}
+
+\begin{figure}
+	\centering
+	
+	\begin{subfigure}{\textwidth}
+		\includegraphics[width=\textwidth]{images/single_accordion}
+		\caption{Wireframe D.}
+		\label{fig:wireframeD}		
+	\end{subfigure}		
+	
+	\begin{subfigure}{\textwidth}
+		\includegraphics[width=\textwidth]{images/multiple_list}
+		\caption{Wireframe E.}
+		\label{fig:wireframeE}		
+	\end{subfigure}			
+	\caption{Wireframes D and E.}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Implementation}\label{implementation}
@@ -382,6 +382,16 @@ For the last iteration, crowdsourced data gathering and training were implemente
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Scrapy}\label{scrapy}
+
+Scrapy is an application framework written in Python, which can be used to extract data from Web sites \cite{scrapy}, created by Scrapinghub's co-founders Pablo Hoffman and Shane Evans. \cite{scrapinghub}
+
+\subsubsection*{Justification}
+
+Scrapy is free and open source. It also provides a lot of support, as it comes with a tutorial in addition to a detailed documentation. \cite{scrapydoc}
+
+\subsubsection*{Difficulties Encountered}
+
+Scrapy was not hard to learn or use, thanks to the documentation. It was used in conjunction with the Goodreads API \cite{goodreadsapi} to extract the number of ratings and the ratings average for each novel in the training set. The main and only problem with the web scraping process was faced because the books were searched using their titles only, which resulted in a few instances assigned to the data of a novel with the same title, but a different author. I therefore verified the extracted values ``by hand'', by comparing them to the data visible on the Agatha Christie's books page. \cite{goodreads}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Android}
@@ -425,7 +435,7 @@ Merging the functionalities implemented in the utility class with the Android co
 
 \subsubsection*{Django}
 
-Django is a Web application framework written in Python \cite{django}. It facilitates Web development, by providing "high-level abstractions of common patterns, shortcuts for frequent programming tasks, and clear conventions for how to solve problems." \cite{djangobook}
+Django is a Web application framework written in Python \cite{django}. It facilitates Web development, by providing ``high-level abstractions of common patterns, shortcuts for frequent programming tasks, and clear conventions for how to solve problems.'' \cite{djangobook}
 
 \subsubsection*{Justification}
 
@@ -443,7 +453,7 @@ Heroku is free for low traffic sites, it is easy to scale and allows to easily c
 
 Using Django did not cause any particular problem. Deploying the app once developed was, however, trickier than expected when following the official documentation only. I was getting confused about all the different components that had to be installed, and how they all related to one another. It was however easier to understand the process, using the Django Girls tutorial. \cite{djangogirls}
 
-\subsection{Updated System Architecture}
+\subsection*{Updated System Architecture}
 
 The following figure \ref{fig:architecture_updated} shows the system's architecture with updated labels according to the technologies used for the different components.
 
@@ -457,7 +467,7 @@ The following figure \ref{fig:architecture_updated} shows the system's architect
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Machine Learning Algorithm}
 
-Weka contains over 50 implementations of classifiers. \cite[Table~11.5]{wekabook} However, only 10 of them can be updated without having to retrain them completely (which, as mentioned in previous section \ref{wekadiff}, cannot be done on Android), implementing the \verb|UpdateableClassifier| interface. \cite{wekaupdateable} 7 of these classifiers were applied on the training set : table \ref{tab:updateable} shows the percentages of correctly classified instances of the training set, using those classifiers, when predicting the cause of death of the victim, and the gender of the murderer. The 3 missing classifiers were not used because they either only handle numeric attributes (\verb|NaiveBayesMultinomialUpdateable|), string attributes (\verb|text|) or binary classes (\verb|SGD|).
+Weka contains over 50 implementations of classifiers. \cite[Table~11.5]{wekabook} However, only 10 of them can be updated without having to retrain them completely (which, as mentioned in previous section \ref{wekadiff}, cannot be done on Android), implementing the \verb|UpdateableClassifier| interface. \cite{wekaupdateable} 7 of these classifiers were applied on the training set : table \ref{tab:updateable} shows the percentages of correctly classified instances of the training set, using those classifiers, when predicting the cause of death of the victim, and the gender of the murderer. The 3 missing classifiers were not used because they either only handle numeric attributes (\verb|NaiveBayesMultinomialUpdateable|), string attributes (\verb|SGDText|) or binary classes (\verb|SGD|).
 
 \begin{table}[h]
 	\centering
@@ -478,18 +488,25 @@ Weka contains over 50 implementations of classifiers. \cite[Table~11.5]{wekabook
 	\label{tab:updateable}
 \end{table}
 
-The two most accurate classifiers are IBk and KStar. Both are instance-based learning algorithms using k-nearest-neighbour classification, which consists in comparing each new instance to existing ones by calculating the distance separating the new instance to known instances.
+The two most accurate classifiers are IBk and KStar. Both algorithms use \textbf{nearest-neighbour classification}, which consists in comparing each new instance to existing ones, by calculating the distance separating the new instance to known instances, and predicts the same class as the training instance which is the closest to the new instance. \cite[Chapter~3]{wekabook} \par 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Missing Values}\label{missing_values}
+While KStar looks for the closest training example using the ``complexity of transforming one instance into another'' as a distance measure, \cite{kstar}, IBk uses by default the Euclidean distance. \cite[Chapter~11]{wekabook}\par
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Attributes Selection}
+Since both classifiers seemed to have similar performances, IBk was arbitrarily chosen. As mentioned in section \ref{data_process}, a new instance of the \verb|IBk| class was created, trained on the initial dataset, and output to a .model file. This file was then stored in the Android project as an asset, so the classifier object could be retreived within the app.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Story Details Input}
 
-This experiment showed two main groups of users: those who favoured a clear, simple interface, which did not require much effort to read or understand, and those who enjoyed an interactive interface with images better. 
+The user experiment described in section \ref{wireframes} showed two main groups of users: those who favoured a clear, simple interface, which did not require much effort to read or understand, and those who enjoyed an interactive interface with images better. Because it did not seem possible to create one interface which could satisfy all the users, several layouts were implemented, so users could customize their own application by changing the settings.
+
+[Screen shot of settings screen]
+
+By 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Missing Values}\label{missing_values}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Prediction Output}
