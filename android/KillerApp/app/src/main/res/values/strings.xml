@@ -174,11 +174,11 @@
     <string name="pref_sendDataAutoOn_summary">Never ask confirmation before sending data to server</string>
     <string name="pref_sendDataAutoOff_summary">Always ask confirmation before sending data to server</string>
 
-    <string name="pref_fetchDataAuto">Always download data from server</string>
+    <string name="pref_fetchDataAuto">Always download server data</string>
     <string name="pref_fetchDataAutoOn_summary">Never ask confirmation before downloading data from server</string>
     <string name="pref_fetchDataAutoOff_summary">Always ask confirmation before downloading data from server</string>
 
-    <string name="pref_correctAnswerAuto">Always correct wrong prediction</string>
+    <string name="pref_correctAnswerAuto">Always rectify predictions</string>
     <string name="pref_correctAnswerAutoOn_summary">Never ask confirmation to correct wrong prediction</string>
     <string name="pref_correctAnswerAutoOff_summary">Always ask confirmation before downloading data from server</string>
 </resources>

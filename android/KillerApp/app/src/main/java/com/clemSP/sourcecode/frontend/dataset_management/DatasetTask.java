@@ -18,8 +18,6 @@ import javax.net.ssl.HttpsURLConnection;
 
 public abstract class DatasetTask extends AsyncTask<Void, String, Integer>
 {
-    protected static final String DATASET_FILE = "dataset.arff";
-
     public static final int POSITIVE_RESULT = 1, NEGATIVE_RESULT = 0, ERROR = -1;
 
     protected ProgressDialog mProgressDialog;

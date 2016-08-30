@@ -41,36 +41,27 @@ public class WelcomeActivity extends Activity
 	private void checkInternalFiles()
 	{
 		final String TAG = "WelcomeActivity";
-		final String[] ASSETS = {"dataset.arff", "ibk_gender.model", "ibk_weapon.model"};
+		final String[] ASSETS = {"ibk_gender.model", "ibk_weapon.model"};
 		
-		for(int index = 0; index < ASSETS.length; index++)
+		for(String asset : ASSETS)
 		{
-			String asset = ASSETS[index];
-			
 			// Check if the file already exists in internal storage.
 			if(!getBaseContext().getFileStreamPath(asset).exists())
 			{
 				Log.w(TAG, "Copying " + asset + " to internal storage...");
 				try
 				{
-					// Output data set as a normal file.
-					if(index == 0)
-						StreamManager.printStreamToInternalStorage(this,
-								getAssets().open(ASSETS[0]), ASSETS[0], TAG, MODE_PRIVATE);
-					else
+					ObjectInputStream inputStream = null;
+					try
 					{
-						ObjectInputStream inputStream = null;
-						try
-						{
-							// Convert model files to Classifier objects, and output the objects. 
-							inputStream = new ObjectInputStream(getAssets().open(asset));
-							Classifier classifier = (Classifier) inputStream.readObject();
-							StreamManager.classifierToInternalStorage(this, classifier, asset, TAG);
-						}
-						finally
-						{
-							if(inputStream != null)	inputStream.close();
-						}
+						// Convert model files to Classifier objects, and output the objects.
+						inputStream = new ObjectInputStream(getAssets().open(asset));
+						Classifier classifier = (Classifier) inputStream.readObject();
+						StreamManager.classifierToInternalStorage(this, classifier, asset, TAG);
+					}
+					finally
+					{
+						if(inputStream != null)	inputStream.close();
 					}
 				}
 				catch (Exception e)

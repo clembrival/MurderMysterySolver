@@ -7,7 +7,6 @@ import com.clemSP.sourcecode.backend.Dataset;
 import com.clemSP.sourcecode.frontend.ImageFeature;
 import com.clemSP.sourcecode.frontend.MainActivity;
 import com.clemSP.sourcecode.frontend.dataset_management.DatasetTask;
-import com.clemSP.sourcecode.frontend.dataset_management.UpdateLocalDatasetTask;
 import com.clemSP.sourcecode.frontend.dataset_management.UpdateServerTask;
 import com.clemSP.sourcecode.frontend.settings.PreferencesMap;
 import com.clemSP.sourcecode.frontend.settings.SettingsActivity;
@@ -331,38 +330,21 @@ public abstract class PredictionActivity extends AppCompatActivity
                 dialog.dismiss();
 
                 mNewInstance = Dataset.get(PredictionActivity.this).getLabelledData();
-                new UpdateLocalDatasetTask(PredictionActivity.this, null, mNewInstance).execute();
+                startUpdateServerTask();
             }
         });
     }
 
 
-    @Override
-    public void onTaskCompleted(DatasetTask task, int status)
+    private void startUpdateServerTask()
     {
-        if (task instanceof UpdateLocalDatasetTask)
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if(preferences.getBoolean(PreferencesMap.KEY_PREF_SHARE_DATA, true))
         {
-            if(status == DatasetTask.POSITIVE_RESULT)
-            {
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-                if(preferences.getBoolean(PreferencesMap.KEY_PREF_SHARE_DATA, true))
-                {
-                    if(!preferences.getBoolean(PreferencesMap.KEY_PREF_SEND_DATA_AUTO, false))
-                        showServerDialog();
-                    else
-                        checkNetworkConnection();
-                }
-            }
+            if(!preferences.getBoolean(PreferencesMap.KEY_PREF_SEND_DATA_AUTO, false))
+                showServerDialog();
             else
-                showUpdateLocalErrorDialog();
-        }
-        else if (task instanceof UpdateServerTask)
-        {
-            // status is true if the local dataset is different from the server's
-            if (status == DatasetTask.POSITIVE_RESULT)
-                finishThisActivity(RESULT_OK);
-            else
-                showUpdateServerErrorDialog();
+                checkNetworkConnection();
         }
     }
 
@@ -379,6 +361,20 @@ public abstract class PredictionActivity extends AppCompatActivity
             new UpdateServerTask(PredictionActivity.this, URL, mNewInstance).execute();
         else
             showNetworkErrorDialog();
+    }
+
+
+    @Override
+    public void onTaskCompleted(DatasetTask task, int status)
+    {
+        if (task instanceof UpdateServerTask)
+        {
+            // status is true if the local dataset is different from the server's
+            if (status == DatasetTask.POSITIVE_RESULT)
+                finishThisActivity(RESULT_OK);
+            else
+                showUpdateServerErrorDialog();
+        }
     }
 
 
@@ -434,35 +430,6 @@ public abstract class PredictionActivity extends AppCompatActivity
             {
                 dialog.dismiss();
                 checkNetworkConnection();
-            }
-        });
-
-        builder.create().show();
-    }
-
-
-    /** Shows an error dialog in case the app failed to update the local dataset. */
-    private void showUpdateLocalErrorDialog()
-    {
-        AlertDialog.Builder builder = getDialogBuilder(R.string.local_update_error);
-
-        builder.setNegativeButton(R.string.negative_button, new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
-                dialog.dismiss();
-                showServerDialog();
-            }
-        });
-
-        builder.setPositiveButton(R.string.try_again_label, new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
-                dialog.dismiss();
-                new UpdateLocalDatasetTask(PredictionActivity.this, null, mNewInstance).execute();
             }
         });
 

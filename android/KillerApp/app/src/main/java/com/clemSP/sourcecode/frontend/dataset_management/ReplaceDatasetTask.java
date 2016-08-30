@@ -142,10 +142,6 @@ public class ReplaceDatasetTask extends DatasetTask
                 for(Instance instance : ConverterUtils.DataSource.read(tempInputStream))
                     newEntries.add(instance);
 
-                // Copy the content of the file to the local dataset file
-                StreamManager.printStreamToInternalStorage(mActivity, tempInputStream, DATASET_FILE,
-                        TAG, Activity.MODE_APPEND);
-
                 return newEntries;
             }
             finally
