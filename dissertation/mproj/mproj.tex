@@ -29,7 +29,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{A Data Science Approach to Murder Mysteries}
-\author{Clemence Brival - 2166340}
+\author{Cl\'{e}mence Brival - 2166340}
 \date{7\textsuperscript{th} of September 2016}
 \maketitle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -75,9 +75,9 @@ acknowledgements go here
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Machine Learning}\label{machine_learning}
-``\textbf{Machine learning} is a field of study that gives computers the ability to learn without being explicitly programmed.'' - Arthur Samuel (1959). \cite{quotearthursamuel} Using algorithmic models and mathematics, it consists in iteratively analysing a set of data, in order to make predictions about similar data. Applications for machine learning are varied: speech and handwriting recognition, medical diagnosis, recommendation systems, advertisements, fraud detection, video games, self-driven cars, robot locomotion, \ldots \par 
+``\textbf{Machine learning} is a field of study that gives computers the ability to learn without being explicitly programmed.'' - Arthur Samuel (1959). \cite[Chapter~3]{quotearthursamuel} Using algorithmic models and mathematics, it consists in iteratively analysing a set of data, in order to make predictions about similar data. Applications for machine learning are varied: speech and handwriting recognition, medical diagnosis, recommendation systems, advertisements, fraud detection, video games, self-driven cars, robot locomotion, \ldots \par 
 
-A machine learning algorithm is fed a dataset, the \textbf{training set}, made up of one or several \textbf{instances}, which represent the type of data the prediction will be based on. Each instance contains actual values for \textbf{attributes} (or features) the algorithm can analyse and learn from. \cite{wekabook} For example, to predict the gender of the murderer, possible attributes could be the murder weapon, the gender of the victim, the name of the detective and the year of publication of the book. An instance could therefore be ``Poison, Female, Hercule Poirot, 1926''. The attribute to be predicted is the \textbf{concept}, and the predicted value for this attribute is the \textbf{concept description}. \par 
+A machine learning algorithm is fed a dataset, the \textbf{training set}, made up of one or several \textbf{instances}, which represent the type of data the prediction will be based on. Each instance contains actual values for \textbf{attributes} (or features) the algorithm can analyse and learn from. \cite[Chapter~2]{wekabook} For example, to predict the gender of the murderer, possible attributes could be the murder weapon, the gender of the victim, the name of the detective and the year of publication of the book. An instance could therefore be ``Poison, Female, Hercule Poirot, 1926''. The attribute to be predicted is the \textbf{concept}, and the predicted value for this attribute is the \textbf{concept description}. \par 
 
 The type of machine learning used for this project is \textbf{supervised learning}. This technique involves building the training set and providing it with the correct value for the attribute to be predicted. \cite{machinelearningcourse} The algorithm can therefore base its observations on cases for which it knows the outcome, learn to produce the desired output, and apply the results of its training on instances for which it does not know the right value. \par
 
@@ -138,7 +138,7 @@ They do not require input from the user, as the data is collected from online so
 \chapter{Requirements}
 
 For this project, two main user roles were defined: readers and writers of detective stories. The requirements of the system were gathered during several meetings with the project supervisor, who acted as the main stakeholder, and a proxy for the different types of users. 
-In accordance to the agile methodology used throughout the whole development process, the functional and nonfunctional requirements of the system are listed below, as well as user stories\footnote{User stories describe small tasks that a user might want to undertake when using the system. \cite{userstoriesbook}} and constraints\footnote{Constraints are user stories describing nonfunctional requirements. \cite{userstoriesbook}} created based on those requirements. 
+In accordance to the agile methodology used throughout the whole development process, the functional and nonfunctional requirements of the system are listed below, as well as user stories\footnote{User stories describe small tasks that a user might want to undertake when using the system. \cite[Chapter~1]{userstoriesbook}} and constraints\footnote{Constraints are user stories describing nonfunctional requirements. \cite{userstoriesbook}} created based on those requirements. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
@@ -158,7 +158,7 @@ As a \textbf{reader}, I would like to be able to use the system while I am readi
 	
 The following functional requirements were added later in the project, after taking the machine learning side of the system into consideration.
 \begin{itemize}
-\item Users should be able to leave out details they don't know about or don't want to input.
+\item Users should be able to leave out details they do not know about or do not want to input.
 \item A user should be able to invalidate an incorrect prediction and provide the right answer to the system. 
 \item All users should be able to share the details of the stories they read, if they want to.
 \end{itemize}
@@ -196,11 +196,11 @@ The first few weeks of the project were spent researching Machine Learning and g
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \section{Data Gathering and Processing}\label{data_process}
 
-The initial dataset contained 66 instances (each one corresponding to an Agatha Christie book), and 5 attributes: the \textbf{title} of the novel, the \textbf{year of publication}, the name of the \textbf{detective}\footnote{If there was no specific detective in a novel, the detective attribute for the corresponding instance was set to ``Mystery novel''.}, the \textbf{point of view} from which the story is told (first or third person) and the \textbf{location} of the story (UK or International). The data stored in the instances was obtained in the books themselves when a paper or digital version was available, and Wikipedia otherwise. \cite{wikipedia} If some information about an attribute could not be found, the attribute's value was set to ``?'' (see section \ref{missing_values}).\par
+The initial dataset contained 66 instances (each one corresponding to an Agatha Christie book), and 5 attributes: the \textbf{title} of the novel, the \textbf{year of publication}, the name of the \textbf{detective}\footnote{If there was no specific detective in a novel, the detective attribute for the corresponding instance was set to ``Mystery novel''.}, the \textbf{point of view} from which the story is told (first or third person) and the \textbf{location} of the story (UK or International). The data stored in the instances was obtained in the books themselves when a paper or digital version was available, and Wikipedia otherwise. \cite{wikipedia} If some information about an attribute could not be found, the attribute's value was set to ``?'', which denotes an unknown value (see section \ref{missing_values}).\par
 
 As a first practice exercise, the concept (the element that had to be predicted) was the \textbf{cause of death} of the victim. A sixth column was therefore added to the dataset to store the murder weapon used for each instance, in accordance to the structure of a classification training set (as mentioned in section \ref{machine_learning}).\par
 
-Secondly, a web scraper was used to extract the \textbf{number of ratings} and the \textbf{average ratings} from goodreads for each book in the training set, which was then updated with the extracted data. \cite{goodreads} (This process is detailed in section \ref{scrapy}.)\par
+Secondly, a Web scraper was used to extract the \textbf{number of ratings} and the \textbf{average ratings} from Goodreads \cite{goodreads} for each book in the training set, which was then updated with the extracted data. (This process is detailed in section \ref{scrapy}.)\par
 
 Finally, the last attributes added to the dataset are the \textbf{gender of the victim} and the \textbf{gender of the murderer}. The latter was meant to replace the cause of death as the main concept handled by the system, however it was set so users could choose between the two attributes when selecting the object of the prediction they want to receive. The complete training set is visible in Appendix \ref{dataset}.\par
 
@@ -230,7 +230,7 @@ To handle user stories 8 and 9 (section \ref{user_stories}), the smartphone app 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{User Interface Design}\label{wireframes}
 
-In order to design the application's interface, 5 wireframes were created, using mybalsamiq\footnote{https://www.mybalsamiq.com/}, showing different layouts and types of input:
+When designing the application's interface, 5 wireframes were created, using mybalsamiq\footnote{https://www.mybalsamiq.com/}, showing different layouts and types of input:
 \begin{enumerate}[label=\Alph*.]
 	\item a single un-scrollable screen, with images input in a slot machine (Figure \ref{fig:wireframeA}),
 	\item a single un-scrollable screen, with text input (Figure \ref{fig:wireframeB}),
@@ -238,58 +238,21 @@ In order to design the application's interface, 5 wireframes were created, using
 	\item a single screen with an accordion layout, and images in a carousel (Figure \ref{fig:wireframeD}),
 	\item multiple screens accessed by pressing Next/Previous buttons, with images in a vertical scrollable frame (Figure \ref{fig:wireframeE}).
 \end{enumerate}
-
-\begin{figure}
-	\centering
-	\begin{subfigure}{0.3\textwidth}
-		\includegraphics[width=\textwidth]{images/single_fruit_machine}
-		\caption{Wireframe A.}
-		\label{fig:wireframeA}		
-	\end{subfigure}
-	\quad
-	\begin{subfigure}{0.3\textwidth}
-		\includegraphics[width=\textwidth]{images/single_text_only}
-		\caption{Wireframe B.}
-		\label{fig:wireframeB}		
-	\end{subfigure}
-
-	\begin{subfigure}{\textwidth}
-		\includegraphics[width=\textwidth]{images/single_list}
-		\caption{Wireframe C.}
-		\label{fig:wireframeC}		
-	\end{subfigure}
-	\caption{Wireframes A, B and C.}
-\end{figure}
-
-\begin{figure}
-	\centering
 	
-	\begin{subfigure}{\textwidth}
-		\includegraphics[width=\textwidth]{images/single_accordion}
-		\caption{Wireframe D.}
-		\label{fig:wireframeD}		
-	\end{subfigure}		
-	
-	\begin{subfigure}{\textwidth}
-		\includegraphics[width=\textwidth]{images/multiple_list}
-		\caption{Wireframe E.}
-		\label{fig:wireframeE}		
-	\end{subfigure}			
-	\caption{Wireframes D and E.}
-\end{figure}
-	
-The aim was to find the interface which appealed to most users before starting the implementation. This was undertaken during a first evaluation, for which 10 users were asked to examine the 5 different wireframes described previously. They then had to give their thoughts about the layout and the feature selector they liked the least, as well as the ones they liked the most, and to explain their choices.
+In order to find the interface which appealed to most users before starting the implementation, a first evaluation was undertaken, for which 10 users were asked to examine the 5 different wireframes described previously. They then had to give their thoughts about the layout and the feature selector they liked the least, as well as the ones they liked the most, and to explain their choices.
 
 \subsection*{Layouts}
 
+Figure \ref{fig:layout_feedback} shows the number of votes each layout received: each wireframe was given a positive vote when the wireframe was the participant's favourite layout (represented by ``Like'' blue bars), and a negative vote when it was the least liked (represented by ``Dislike'' red bars). The numbers of positive and negative votes were added up, which resulted in the ``Total'' orange bars. 
+
 \begin{figure}[h]
 	\centering
-	\includegraphics[trim=0cm 0cm 0cm 2cm, width=\textwidth]{images/layout_feedback}
+	\includegraphics[width=\textwidth]{images/layout_feedback}
 	\caption{Column chart showing the number of positive, negative and cumulative votes for each layout.}
 	\label{fig:layout_feedback}
 \end{figure}
 
-Figure \ref{fig:layout_feedback} shows the number of votes each layout received: each wireframe was given a positive vote when the wireframe was the participant's favourite layout ("Like" blue bar), and a negative vote when it was the least liked ("Dislike" red bar). The numbers of positive and negative votes were added up, which resulted in the ???  A summary of the most recurring comments about each interface is listed below.
+A summary of the most recurring comments about each interface is listed below.
 
 \begin{enumerate}[label=\Alph*]
 	\item 
@@ -325,14 +288,16 @@ Figure \ref{fig:layout_feedback} shows the number of votes each layout received:
 
 \subsection*{Selectors}
 
+Figure \ref{fig:selector_feedback} shows the number of votes each feature input type received, with the same format as figure \ref{fig:layout_feedback}. 
+
 \begin{figure}[h]
 	\centering
-	\includegraphics[trim=0cm 0cm 0cm 2cm, width=\textwidth]{images/selector_feedback}
+	\includegraphics[width=\textwidth]{images/selector_feedback}
 	\caption{Column chart showing the number of positive, negative and cumulative votes for each feature selector.}
 	\label{fig:selector_feedback}
 \end{figure}
 
-Figure \ref{fig:selector_feedback} shows the number of votes each feature input type received. Again, a summary of the most recurring comments about each interface is listed below.
+Again, a summary of the most recurring comments about each interface is listed below.
 
 \begin{enumerate}[label=\Alph*]
 	\item 
@@ -364,6 +329,45 @@ Figure \ref{fig:selector_feedback} shows the number of votes each feature input 
 	\end{itemize} 
 \end{enumerate}
 
+\begin{figure}
+	\centering
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{images/single_fruit_machine}
+		\caption{Wireframe A.}
+		\label{fig:wireframeA}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{images/single_text_only}
+		\caption{Wireframe B.}
+		\label{fig:wireframeB}		
+	\end{subfigure}
+	
+	\begin{subfigure}{\textwidth}
+		\includegraphics[width=\textwidth]{images/single_list}
+		\caption{Wireframe C.}
+		\label{fig:wireframeC}		
+	\end{subfigure}
+	\caption{Wireframes A, B and C.}
+\end{figure}
+
+\begin{figure}
+	\centering
+	
+	\begin{subfigure}{\textwidth}
+		\includegraphics[width=\textwidth]{images/single_accordion}
+		\caption{Wireframe D.}
+		\label{fig:wireframeD}		
+	\end{subfigure}		
+	
+	\begin{subfigure}{\textwidth}
+		\includegraphics[width=\textwidth]{images/multiple_list}
+		\caption{Wireframe E.}
+		\label{fig:wireframeE}		
+	\end{subfigure}			
+	\caption{Wireframes D and E.}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Implementation}\label{implementation}
@@ -379,14 +383,24 @@ For the last iteration, crowdsourced data gathering and training were implemente
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Scrapy}\label{scrapy}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Android}
-
-The mobile application was implemented using Android, which is an open source operating system for mobile devices (smartphones and tablets), developed by Google and released in 2008.\cite{androidrelease}
+Scrapy is an application framework written in Python, which can be used to extract data from Web sites \cite{scrapy}, created by Scrapinghub's co-founders Pablo Hoffman and Shane Evans. \cite{scrapinghub}
 
 \subsubsection*{Justification}
 
-It was chosen because I became familiar with Java during the past couple of years, as it is the main programming language used in the Masters courses. It was also an occasion for me to get some experience in Android development, which I was interested in. Furthermore, there is a vast amount of documentation and tutorials available for developing with the Android SDK. \cite{androidtutorials} \cite{thebignerdranchguide}
+Scrapy is free and open source. It also provides a lot of support, as it comes with a tutorial in addition to a detailed documentation. \cite{scrapydoc}
+
+\subsubsection*{Difficulties Encountered}
+
+Scrapy was not hard to learn or use, thanks to the documentation. It was used in conjunction with the Goodreads API \cite{goodreadsapi} to extract the number of ratings and the ratings average for each novel in the training set. The main and only problem with the web scraping process was faced because the books were searched using their titles only, which resulted in a few instances assigned to the data of a novel with the same title, but a different author. I therefore verified the extracted values ``by hand'', by comparing them to the data visible on the Agatha Christie's books page. \cite{goodreads}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Android}
+
+The mobile application was implemented using Android, which is an open source operating system for mobile devices (smartphones and tablets), developed by Google and released in 2008.\cite{androidrelease} 
+
+\subsubsection*{Justification}
+
+It was chosen because I became familiar with Java during the past couple of years, as it is the main programming language used in the Masters courses. It was also an occasion for me to get some experience in Android development, which I was interested in. In addition, Android is the most used mobile operating system worldwide. \cite{androidsales} Furthermore, the Android SDK offers a lot of flexibility, as it can be downloaded on Windows, Mac OS, or Linux, and used with the Android's free IDE Android Studio. \cite{androidstudio} Lastly, there is a vast amount of documentation and tutorials available for developing with the Android SDK. \cite{androidtutorials} \cite{thebignerdranchguide}
 
 \subsubsection*{Difficulties Encountered}
 
@@ -408,7 +422,7 @@ To make predictions, this app referenced machine learning algorithms implemented
 
 This is the machine learning library used for the project because it is written in Java, which means it should be possible to use it with an Android application. It is also open source, and is documented in a book about Data Mining and Machine Learning, written by some of the Weka developers. \cite{wekabook}
 
-\subsubsection*{Difficulties Encountered}
+\subsubsection*{Difficulties Encountered}\label{wekadiff}
 
 As mentioned previously, the machine learning side of this project was handled using the Weka package. Thus, a large part of the time was spent researching the different functionalities available in the Weka explorer \cite{wekaexplorer}, and understanding how to programmatically get the same information as the one produced using the GUI. As a result, a utility class was created, containing methods to create instances (from user input or from a file), to filter those instances, to create a classifier and train it on the instances, to evaluate the classifier, to classify one or more instances and retrain the classifier on new data. \par
 
@@ -421,7 +435,7 @@ Merging the functionalities implemented in the utility class with the Android co
 
 \subsubsection*{Django}
 
-Django is a Web application framework written in Python \cite{django}. It facilitates Web development, by providing "high-level abstractions of common patterns, shortcuts for frequent programming tasks, and clear conventions for how to solve problems." \cite{djangobook}
+Django is a Web application framework written in Python \cite{django}. It facilitates Web development, by providing ``high-level abstractions of common patterns, shortcuts for frequent programming tasks, and clear conventions for how to solve problems.'' \cite{djangobook}
 
 \subsubsection*{Justification}
 
@@ -433,24 +447,66 @@ Heroku is a cloud platform which allows users to deploy Web applications and the
 
 \subsubsection*{Justification}
 
-
+Heroku is free for low traffic sites, it is easy to scale and allows to easily create a PostgreSQL database. It is also possible to link the deployed application to a Github repository, such that any pushed change is automatically applied to the Heroku application. \cite[Chapter~1]{herokubook}
 
 \subsubsection*{Difficulties Encountered}
 
 Using Django did not cause any particular problem. Deploying the app once developed was, however, trickier than expected when following the official documentation only. I was getting confused about all the different components that had to be installed, and how they all related to one another. It was however easier to understand the process, using the Django Girls tutorial. \cite{djangogirls}
 
+\subsection*{Updated System Architecture}
+
+The following figure \ref{fig:architecture_updated} shows the system's architecture with updated labels according to the technologies used for the different components.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{images/system_architecture_updated}
+	\caption{System's Three-Tiered Architecture.}
+	\label{fig:architecture_updated}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Machine Learning Algorithm}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Missing Values}\label{missing_values}
+Weka contains over 50 implementations of classifiers. \cite[Table~11.5]{wekabook} However, only 10 of them can be updated without having to retrain them completely (which, as mentioned in previous section \ref{wekadiff}, cannot be done on Android), implementing the \verb|UpdateableClassifier| interface. \cite{wekaupdateable} 7 of these classifiers were applied on the training set : table \ref{tab:updateable} shows the percentages of correctly classified instances of the training set, using those classifiers, when predicting the cause of death of the victim, and the gender of the murderer. The 3 missing classifiers were not used because they either only handle numeric attributes (\verb|NaiveBayesMultinomialUpdateable|), string attributes (\verb|SGDText|) or binary classes (\verb|SGD|).
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Attributes Selection}
+\begin{table}[h]
+	\centering
+	\begin{tabular}{ |l|c|c| }
+		\hline
+		\textbf{Classifier}            & \textbf{Cause of death} 					 & \textbf{Murderer's gender} 					  \\
+		\hline		
+		HoeffdingTree                  & 37                                          & 58                                             \\
+		\textbf{IBk}                   & \textbf{100}                                & \textbf{100}                                   \\
+		\textbf{KStar}                 & \textbf{100}                                & \textbf{100}                                   \\
+		LWL                            & 46                                          & 73                                             \\
+		MultiClassClassifierUpdateable & 48                                          & 73                                             \\
+		NaiveBayesMultinomialText      & 37                                          & 58                                             \\
+		NaiveBayesUpdateable           & 42                                          & 60                                             \\
+		\hline
+	\end{tabular}
+	\caption{Percentages of correctly classified instances of the training dataset, for the victim's cause of death and the murderer's gender, using Updateable Classifiers.}
+	\label{tab:updateable}
+\end{table}
+
+The two most accurate classifiers are IBk and KStar. Both algorithms use \textbf{nearest-neighbour classification}, which consists in comparing each new instance to existing ones, by calculating the distance separating the new instance to known instances, and predicts the same class as the training instance which is the closest to the new instance. \cite[Chapter~3]{wekabook} \par 
+
+While KStar looks for the closest training example using the ``complexity of transforming one instance into another'' as a distance measure, \cite{kstar}, IBk uses by default the Euclidean distance. \cite[Chapter~11]{wekabook}\par
+
+Since both classifiers seemed to have similar performances, IBk was arbitrarily chosen. As mentioned in section \ref{data_process}, a new instance of the \verb|IBk| class was created, trained on the initial dataset, and output to a .model file. This file was then stored in the Android project as an asset, so the classifier object could be retreived within the app.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Story Details Input}
+
+The user experiment described in section \ref{wireframes} showed two main groups of users: those who favoured a clear, simple interface, which did not require much effort to read or understand, and those who enjoyed an interactive interface with images better. Because it did not seem possible to create one interface which could satisfy all the users, several layouts were implemented, so users could customize their own application by changing the settings.
+
+[Screen shot of settings screen]
+
+By 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Missing Values}\label{missing_values}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Prediction Output}
@@ -460,7 +516,7 @@ Using Django did not cause any particular problem. Deploying the app once develo
 
 In the earliest version of the system during the third iteration, the training dataset was stored on the server-side, in a .txt file which could be downloaded by the clients, or updated by the server when new data was added. \par
 
-When a user launched the app, it had to check whether new entries were added since the last time the app was used. The initial way to do this was to compare the size of the two files: if the server's file was larger than the local one, it meant that the app's dataset had to be updated. This did not work as expected however, because when an application is deployed on heroku, it is assembled into a compressed bundle \cite{herokuslug}. Consequently, the size of the file stored on the server was not accurate. To overcome this issue, the number of entries in the dataset was stored in a database. This integer was incremented for every new instance shared by a user, and used instead to compare the two datasets. If the app's training set had fewer instances, it would then download the content of the server's file, extract the newest entries, and update the classifier on each entry, while also adding it to the local file. When a user invalidated a prediction and agreed to share the details with the other users, the data was sent as a string to the server, which added a new line to the file with that data.\par
+When a user launched the app, it had to check whether new entries were added since the last time the app was used. The initial way to do this was to compare the size of the two files: if the server's file was larger than the local one, it meant that the app's dataset had to be updated. This did not work as expected however, because when an application is deployed on Heroku, it is assembled into a compressed bundle \cite{herokuslug}. Consequently, the size of the file stored on the server was not accurate. To overcome this issue, the number of entries in the dataset was stored in a database. This integer was incremented for every new instance shared by a user, and used instead to compare the two datasets. If the app's training set had fewer instances, it would then download the content of the server's file, extract the newest entries, and update the classifier on each entry, while also adding it to the local file. When a user invalidated a prediction and agreed to share the details with the other users, the data was sent as a string to the server, which added a new line to the file with that data.\par
 
 This was easy and convenient, especially for testing, but not optimal in terms of scalability: if several thousands of users were to use the app, and the training set updated regularly, that file would quickly become very large, and having all the users to download it every time they launch the app would not be practical. Alternatively, all the instances of server's training set were stored in the database. Instead of downloading the whole content of a file, the client-apps now only fetch the new entries when the user starts the app. This is described in Figure \ref{fig:launch}.
 \begin{figure}[h]
