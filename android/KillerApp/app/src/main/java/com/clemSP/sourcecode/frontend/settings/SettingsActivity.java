@@ -1,7 +1,5 @@
 package com.clemSP.sourcecode.frontend.settings;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -16,7 +14,6 @@ import com.clemSP.sourcecode.frontend.MainActivity;
 
 
 public class SettingsActivity extends AppCompatActivity
-        implements SettingsFragment.OnLanguageChangeListener
 {
     private static final String FRAGMENT_TAG = "settingsFrag";
 
@@ -71,19 +68,5 @@ public class SettingsActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void refresh()
-    {
-        /*
-        Fragment settingsFragment = getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
-        FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
-        fragTransaction.detach(settingsFragment);
-        fragTransaction.attach(settingsFragment);
-        fragTransaction.commit();
-        */
-        getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new SettingsFragment(), FRAGMENT_TAG).commit();
     }
 }

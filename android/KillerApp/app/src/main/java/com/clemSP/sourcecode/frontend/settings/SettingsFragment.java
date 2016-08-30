@@ -1,51 +1,20 @@
 package com.clemSP.sourcecode.frontend.settings;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.clemSP.sourcecode.R;
 import com.clemSP.sourcecode.frontend.settings.PreferencesMap.EntryValue;
-
-import java.util.Locale;
 
 
 public class SettingsFragment extends PreferenceFragment
     implements SharedPreferences.OnSharedPreferenceChangeListener
 {
-    private OnLanguageChangeListener mListener;
-
-    public interface OnLanguageChangeListener
-    {
-        void refresh();
-    }
-
     private PreferencesMap mPrefMap;
-
-
-    @Override
-    public void onAttach(Activity activity)
-    {
-        super.onAttach(activity);
-
-        try
-        {
-            mListener = (OnLanguageChangeListener) activity;
-        }
-        catch (ClassCastException e)
-        {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnLanguageChangeListener");
-        }
-    }
 
 
     @Override
@@ -89,11 +58,6 @@ public class SettingsFragment extends PreferenceFragment
 
         switch (key)
         {
-            case PreferencesMap.KEY_PREF_LANGUAGE:
-                if(preference instanceof ListPreference)
-                    setLanguage(((ListPreference)preference).getEntry(), sharedPreferences);
-                break;
-
             case PreferencesMap.KEY_PREF_CLASS_LAYOUT:
             case PreferencesMap.KEY_PREF_FEATURES_LAYOUT:
             case PreferencesMap.KEY_PREF_IMAGES_LAYOUT:
@@ -110,27 +74,6 @@ public class SettingsFragment extends PreferenceFragment
                 }
                 break;
         }
-    }
-
-
-    private void setLanguage(CharSequence entry, SharedPreferences sharedPreferences)
-    {
-        String language;
-        if(getString(R.string.language_french).equals(entry))
-            language = "fr_FR";
-        else
-            language = "en_GB";
-
-        Locale locale = new Locale(language);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getResources().updateConfiguration(config, getActivity().getResources().getDisplayMetrics());
-
-        for(String key : mPrefMap.getKeySet())
-            setListPreferenceSummary(key, mPrefMap.getEntryValues(key));
-
-        mListener.refresh();
     }
 
 
@@ -155,13 +98,5 @@ public class SettingsFragment extends PreferenceFragment
     {
         super.onPause();
         getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
-    }
-
-
-    @Override
-    public void onDetach()
-    {
-        super.onDetach();
-        mListener = null;
     }
 }

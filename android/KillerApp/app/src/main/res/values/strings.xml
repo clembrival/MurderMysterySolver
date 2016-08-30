@@ -113,18 +113,6 @@
     <string name="server_update_error">An error occurred while trying to update the server.</string>
     <string name="local_update_error">An error occurred while trying to update the local dataset.</string>
 
-    <string name="title_activity_manager" translatable="false">Test Manager</string>
-    <string name="test_title">Select layouts</string>
-
-
-    <string name="pref_language_key" translatable="false">pref_language</string>
-    <string name="pref_language">Language</string>
-    <string name="pref_languageEN" translatable="false">English</string>
-    <string name="pref_languageFR" translatable="false">Français</string>
-
-    <string name="language_english" translatable="false">English</string>
-    <string name="language_french" translatable="false">French</string>
-
 
     <string name="class_label">Class Selection</string>
     <string name="class_dialog">Dialog</string>

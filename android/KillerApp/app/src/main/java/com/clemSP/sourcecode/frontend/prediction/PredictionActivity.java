@@ -323,6 +323,8 @@ public abstract class PredictionActivity extends AppCompatActivity
                     rightAnswer = "F";
                 else if(getString(R.string.male).equals(rightAnswer))
                     rightAnswer = "M";
+                else if(getString(R.string.throatslit).equals(rightAnswer))
+                    rightAnswer = rightAnswer.replaceAll(" ","");
 
                 Dataset.get(PredictionActivity.this).retrainClassifier(PredictionActivity.this,
                         rightAnswer);

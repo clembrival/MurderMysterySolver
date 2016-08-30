@@ -12,7 +12,6 @@ import java.util.Set;
 
 public class PreferencesMap
 {
-    public static final String KEY_PREF_LANGUAGE = "pref_language";
     public static final String KEY_PREF_CLASS_LAYOUT = "pref_classLayout";
     public static final String KEY_PREF_FEATURES_LAYOUT = "pref_featuresLayout";
     public static final String KEY_PREF_INPUT_LAYOUT = "pref_inputLayout";

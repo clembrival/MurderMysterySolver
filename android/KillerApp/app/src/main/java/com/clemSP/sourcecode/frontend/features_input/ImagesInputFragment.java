@@ -196,6 +196,10 @@ public class ImagesInputFragment extends BaseInputFragment
                                 attributeValue = "F";
                             else if(getString(R.string.male).equals(attributeValue))
                                 attributeValue = "M";
+
+                            if(attribute == AppAttribute.Weapon)
+                                attributeValue = attributeValue.replaceAll(" ","");
+
                             data.setAttribute(attribute, attributeValue);
                         }
 

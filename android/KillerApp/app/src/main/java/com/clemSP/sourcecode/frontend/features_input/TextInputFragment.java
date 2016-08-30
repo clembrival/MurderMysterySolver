@@ -226,7 +226,7 @@ public class TextInputFragment extends BaseInputFragment
                                 R.string.pov_error));
 
                         data.setWeapon(getInputFromSpinner(AppAttribute.Weapon, mWeaponSpin,
-                                R.string.cause_error));
+                                R.string.cause_error).replaceAll(" ",""));
 
                         String gender = getInputFromSpinner(AppAttribute.Murderer, mGenderSpin,
                                 R.string.gender_error);

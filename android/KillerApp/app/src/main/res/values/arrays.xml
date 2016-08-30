@@ -56,16 +56,6 @@
     </string-array>
 
 
-    <string-array name="pref_language_entries">
-        <item>@string/language_english</item>
-        <item>@string/language_french</item>
-    </string-array>
-
-    <string-array name="pref_language_values">
-        <item>@string/pref_languageEN</item>
-        <item>@string/pref_languageFR</item>
-    </string-array>
-
     <string-array name="pref_classLayout_entries">
         <item>@string/class_dialog</item>
         <item>@string/class_tabs</item>
