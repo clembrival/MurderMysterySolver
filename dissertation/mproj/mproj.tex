@@ -1,16 +1,18 @@
 \documentclass{mproj}
 
+\usepackage{amsmath}
 \usepackage[labelfont=bf]{caption}
 \usepackage{enumitem}
 \usepackage{fancyvrb}
 \usepackage[a4paper]{geometry}
 \usepackage{graphicx}
-\usepackage[hidelinks]{hyperref}
 \usepackage{lscape}
 \usepackage[final]{pdfpages}
 \usepackage{subcaption}
 \usepackage{times}
 \usepackage{wrapfig}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink]{cleveref}
 
 %% Jeremy's hack to save pages (your limit is 40)
 %% \renewcommand{\baselinestretch}{0.6}
@@ -101,7 +103,7 @@ Even though this study was handled from a mathematical view, and only contains l
 
 There does not seem to be any app that can be used on the side, while reading a detective novel. Nor is there any app that can be fed key elements of a story, which can help it solve a murder. However, it is possible to find apps related to detective stories, and apps that make predictions.
 
-\subsection{Detective apps}
+\subsection*{Detective apps}
 
 The Google Play store contains a few apps, in which the user is presented a story, a crime scene and few potential culprits. Impersonating a detective, the player then has to examine the crime scene and interrogate the suspects, so as to identify the killer. Here is a description of two such apps. \par
 
@@ -128,7 +130,7 @@ The Google Play store contains a few apps, in which the user is presented a stor
 The inconvenient with this kind of games is that the creators implement a story, that they made up, into the app, which then just leads the user through clues, and lets them accuse the right suspect. The app itself does not have any guessing or analysis to do.
 Moreover, although entertaining, the puzzles sometimes tend to be slightly too easy, and the story not captivating enough to remain hooked to the game.
 
-\subsection{Predictive apps}
+\subsection*{Predictive apps}
 
 Most Android predictive apps are sport-related. Analysing statistics from several games (or years even), those apps aim to forecast the outcome of matches. 
 They do not require input from the user, as the data is collected from online sources, so there is no real interaction between the app and the user (there is no feeling of contributing to making the predictions better).
@@ -196,15 +198,15 @@ The first few weeks of the project were spent researching Machine Learning and g
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \section{Data Gathering and Processing}\label{data_process}
 
-The initial dataset contained 66 instances (each one corresponding to an Agatha Christie book), and 5 attributes: the \textbf{title} of the novel, the \textbf{year of publication}, the name of the \textbf{detective}\footnote{If there was no specific detective in a novel, the detective attribute for the corresponding instance was set to ``Mystery novel''.}, the \textbf{point of view} from which the story is told (first or third person) and the \textbf{location} of the story (UK or International). The data stored in the instances was obtained in the books themselves when a paper or digital version was available, and Wikipedia otherwise. \cite{wikipedia} If some information about an attribute could not be found, the attribute's value was set to ``?'', which denotes an unknown value (see section \ref{missing_values}).\par
+The initial dataset contained 66 instances (each one corresponding to an Agatha Christie book), and 5 attributes: the \textbf{title} of the novel, the \textbf{year of publication}, the name of the \textbf{detective}\footnote{If there was no specific detective in a novel, the detective attribute for the corresponding instance was set to ``Mystery novel''.}, the \textbf{point of view} from which the story is told (first or third person) and the \textbf{location} of the story (UK or International). The data stored in the instances was obtained in the books themselves when a paper or digital version was available, and Wikipedia otherwise. \cite{wikipedia} If some information about an attribute could not be found, the attribute's value was set to ``?'', which denotes an unknown value (see \Cref{missing_values}).\par
 
-As a first practice exercise, the concept (the element that had to be predicted) was the \textbf{cause of death} of the victim. A sixth column was therefore added to the dataset to store the murder weapon used for each instance, in accordance to the structure of a classification training set (as mentioned in section \ref{machine_learning}).\par
+As a first practice exercise, the concept (the element that had to be predicted) was the \textbf{cause of death} of the victim. A sixth column was therefore added to the dataset to store the murder weapon used for each instance, in accordance to the structure of a classification training set (as mentioned in \Cref{machine_learning}).\par
 
-Secondly, a Web scraper was used to extract the \textbf{number of ratings} and the \textbf{average ratings} from Goodreads \cite{goodreads} for each book in the training set, which was then updated with the extracted data. (This process is detailed in section \ref{scrapy}.)\par
+Secondly, a Web scraper was used to extract the \textbf{number of ratings} and the \textbf{average ratings} from Goodreads \cite{goodreads} for each book in the training set, which was then updated with the extracted data. (This process is detailed in \Cref{scrapy}.)\par
 
-Finally, the last attributes added to the dataset are the \textbf{gender of the victim} and the \textbf{gender of the murderer}. The latter was meant to replace the cause of death as the main concept handled by the system, however it was set so users could choose between the two attributes when selecting the object of the prediction they want to receive. The complete training set is visible in Appendix \ref{dataset}.\par
+Finally, the last attributes added to the dataset are the \textbf{gender of the victim} and the \textbf{gender of the murderer}. The latter was meant to replace the cause of death as the main concept handled by the system, however it was set so users could choose between the two attributes when selecting the object of the prediction they want to receive. The complete training set is visible in \Cref{dataset}.\par
 
-In order to process all this information, a Java program was created, to create a classifier object trained on the instances. Taking the dataset file as input, it produces a .model file containing an output classifier for each possible concepts (one for the cause of death, and one for the murderer's gender). The gathering and processing of the data is illustrated in Figure \ref{fig:design}.
+In order to process all this information, a Java program was created, to create a classifier object trained on the instances. Taking the dataset file as input, it produces a .model file containing an output classifier for each possible concepts (one for the cause of death, and one for the murderer's gender). The gathering and processing of the data is illustrated in \Cref{fig:design}.
 
 \begin{figure}[h]
 	\centering
@@ -216,9 +218,9 @@ In order to process all this information, a Java program was created, to create 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{System Architecture}
 
-Based on constraint 1 described in section \ref{constraints}, it was decided that the part of the system which users interact with is a smartphone application. Once the classifiers are trained and output, the corresponding files are stored in the mobile app so the classifiers can be rebuilt and used to make predictions.\par
+Based on constraint 1 described in \Cref{constraints}, it was decided that the part of the system which users interact with is a smartphone application. Once the classifiers are trained and output, the corresponding files are stored in the mobile app so the classifiers can be rebuilt and used to make predictions.\par
 
-To handle user stories 8 and 9 (section \ref{user_stories}), the smartphone app connects to a remote server which handles requests to save a new instance or download the latest entries. The server then also communicates with a database, which stores the uploaded data. This three-tiered system architecture is represented on Figure \ref{fig:architecture}.
+To handle user stories 8 and 9 (\Cref{user_stories}), the smartphone app connects to a remote server which handles requests to save a new instance or download the latest entries. The server then also communicates with a database, which stores the uploaded data. This three-tiered system architecture is represented on \Cref{fig:architecture}.
 
 \begin{figure}[h]
 	\centering
@@ -232,18 +234,18 @@ To handle user stories 8 and 9 (section \ref{user_stories}), the smartphone app 
 
 When designing the application's interface, 5 wireframes were created, using mybalsamiq\footnote{https://www.mybalsamiq.com/}, showing different layouts and types of input:
 \begin{enumerate}[label=\Alph*.]
-	\item a single un-scrollable screen, with images input in a slot machine (Figure \ref{fig:wireframeA}),
-	\item a single un-scrollable screen, with text input (Figure \ref{fig:wireframeB}),
-	\item a single scrollable screen, with images input in a horizontal scrollable frame (Figure \ref{fig:wireframeC}),
-	\item a single screen with an accordion layout, and images in a carousel (Figure \ref{fig:wireframeD}),
-	\item multiple screens accessed by pressing Next/Previous buttons, with images in a vertical scrollable frame (Figure \ref{fig:wireframeE}).
+	\item a single un-scrollable screen, with images input in a slot machine (\Cref{fig:wireframeA}),
+	\item a single un-scrollable screen, with text input (\Cref{fig:wireframeB}),
+	\item a single scrollable screen, with images input in a horizontal scrollable frame (\Cref{fig:wireframeC}),
+	\item a single screen with an accordion layout, and images in a carousel (\Cref{fig:wireframeD}),
+	\item multiple screens accessed by pressing Next/Previous buttons, with images in a vertical scrollable frame (\Cref{fig:wireframeE}).
 \end{enumerate}
 	
 In order to find the interface which appealed to most users before starting the implementation, a first evaluation was undertaken, for which 10 users were asked to examine the 5 different wireframes described previously. They then had to give their thoughts about the layout and the feature selector they liked the least, as well as the ones they liked the most, and to explain their choices.
 
 \subsection*{Layouts}
 
-Figure \ref{fig:layout_feedback} shows the number of votes each layout received: each wireframe was given a positive vote when the wireframe was the participant's favourite layout (represented by ``Like'' blue bars), and a negative vote when it was the least liked (represented by ``Dislike'' red bars). The numbers of positive and negative votes were added up, which resulted in the ``Total'' orange bars. 
+\Cref{fig:layout_feedback} shows the number of votes each layout received: each wireframe was given a positive vote when the wireframe was the participant's favourite layout (represented by ``Like'' blue bars), and a negative vote when it was the least liked (represented by ``Dislike'' red bars). The numbers of positive and negative votes were added up, which resulted in the ``Total'' orange bars. 
 
 \begin{figure}[h]
 	\centering
@@ -288,7 +290,7 @@ A summary of the most recurring comments about each interface is listed below.
 
 \subsection*{Selectors}
 
-Figure \ref{fig:selector_feedback} shows the number of votes each feature input type received, with the same format as figure \ref{fig:layout_feedback}. 
+\Cref{fig:selector_feedback} shows the number of votes each feature input type received, with the same format as \Cref{fig:layout_feedback}. 
 
 \begin{figure}[h]
 	\centering
@@ -428,7 +430,7 @@ As mentioned previously, the machine learning side of this project was handled u
 
 This preliminary work was difficult, mainly because it was hard to find explanations in the documentation, for the different exceptions that were thrown when executing some instructions. The exception messages were not descriptive enough, and it took a lot of reading of problems faced by other users of the library to eventually find the causes of the errors. \par
 
-Merging the functionalities implemented in the utility class with the Android code happened without almost any obstacle. The .jar file containing the source code of the library was added as a dependency in the project, and all the needed classes were imported in the standard way\footnote{``\texttt{import weka.}'' followed by the package containing the class to be used, and the name of the class.}. The only encountered issue came from the fact that, in order to train a classifier, one of the Weka classes uses the Java Graphics class from the awt package\footnote{??}, which is not available in Android. It was therefore not possible to train the classifier on the app. This was fixed by training it externally, outputting the trained object to a .model file, including that file as an asset of the project (as described previously in section \ref{data_process}), and recreating the corresponding Classifier object from the .model file when launching the app.
+Merging the functionalities implemented in the utility class with the Android code happened without almost any obstacle. The .jar file containing the source code of the library was added as a dependency in the project, and all the needed classes were imported in the standard way\footnote{``\texttt{import weka.}'' followed by the package containing the class to be used, and the name of the class.}. The only encountered issue came from the fact that, in order to train a classifier, one of the Weka classes uses the Java GraphicsEnvironment class from the awt package\footnote{http://grepcode.com/file/repo1.maven.org/maven2/org.pentaho.pentaho-commons/pentaho-package-manager/1.0.8/org/pentaho/packageManagement/PackageManager.java\#PackageManager.setProxyAuthentication\%28java.net.URL\%29}, which is not available in Android. It was therefore not possible to train the classifier on the app. This was fixed by training it externally, outputting the trained object to a .model file, including that file as an asset of the project (as described previously in \Cref{data_process}), and recreating the corresponding Classifier object from the .model file when launching the app.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Django \& Heroku}
@@ -455,7 +457,7 @@ Using Django did not cause any particular problem. Deploying the app once develo
 
 \subsection*{Updated System Architecture}
 
-The following figure \ref{fig:architecture_updated} shows the system's architecture with updated labels according to the technologies used for the different components.
+The following \Cref{fig:architecture_updated} shows the system's architecture with updated labels according to the technologies used for the different components.
 
 \begin{figure}[h]
 	\centering
@@ -467,10 +469,11 @@ The following figure \ref{fig:architecture_updated} shows the system's architect
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Machine Learning Algorithm}
 
-Weka contains over 50 implementations of classifiers. \cite[Table~11.5]{wekabook} However, only 10 of them can be updated without having to retrain them completely (which, as mentioned in previous section \ref{wekadiff}, cannot be done on Android), implementing the \verb|UpdateableClassifier| interface. \cite{wekaupdateable} 7 of these classifiers were applied on the training set : table \ref{tab:updateable} shows the percentages of correctly classified instances of the training set, using those classifiers, when predicting the cause of death of the victim, and the gender of the murderer. The 3 missing classifiers were not used because they either only handle numeric attributes (\verb|NaiveBayesMultinomialUpdateable|), string attributes (\verb|SGDText|) or binary classes (\verb|SGD|).
+Weka contains over 50 implementations of classifiers. \cite[Table~11.5]{wekabook} However, only 10 of them can be updated without having to retrain them completely (which, as mentioned in previous \Cref{wekadiff}, cannot be done on Android), implementing the \verb|UpdateableClassifier| interface. \cite{wekaupdateable} 7 of these classifiers were applied on the training set : \Cref{tab:updateable} shows the percentages of correctly classified instances of the training set, using those classifiers, when predicting the cause of death of the victim, and the gender of the murderer. The 3 missing classifiers were not used because they either only handle numeric attributes (\verb|NaiveBayesMultinomialUpdateable|), string attributes (\verb|SGDText|) or binary classes (\verb|SGD|).
 
 \begin{table}[h]
 	\centering
+	\caption{Percentages of correctly classified instances of the training dataset, for the victim's cause of death and the murderer's gender, using Updateable Classifiers.}
 	\begin{tabular}{ |l|c|c| }
 		\hline
 		\textbf{Classifier}            & \textbf{Cause of death} 					 & \textbf{Murderer's gender} 					  \\
@@ -484,41 +487,101 @@ Weka contains over 50 implementations of classifiers. \cite[Table~11.5]{wekabook
 		NaiveBayesUpdateable           & 42                                          & 60                                             \\
 		\hline
 	\end{tabular}
-	\caption{Percentages of correctly classified instances of the training dataset, for the victim's cause of death and the murderer's gender, using Updateable Classifiers.}
 	\label{tab:updateable}
 \end{table}
 
 The two most accurate classifiers are IBk and KStar. Both algorithms use \textbf{nearest-neighbour classification}, which consists in comparing each new instance to existing ones, by calculating the distance separating the new instance to known instances, and predicts the same class as the training instance which is the closest to the new instance. \cite[Chapter~3]{wekabook} \par 
 
-While KStar looks for the closest training example using the ``complexity of transforming one instance into another'' as a distance measure, \cite{kstar}, IBk uses by default the Euclidean distance. \cite[Chapter~11]{wekabook}\par
+Since both classifiers seemed to have similar performances, IBk was arbitrarily chosen. IBk looks for the closest training example using the \textbf{Euclidean distance} \cite[Chapter~11]{wekabook}. To compute the distance between two instances $A^{(1)}$ with $k$ attributes $a_1^{(1)}, a_2^{(1)}, ..., a_k^{(1)}$ and $A^{(2)}$ with $k$ attributes $a_1^{(2)}, a_2^{(2)}, ..., a_k^{(2)}$, it is first necessary to define the \textbf{difference between two attributes} $a_i^{(1)}$ and $a_i^{(2)}$. \cite[Chapter~4]{wekabook}
 
-Since both classifiers seemed to have similar performances, IBk was arbitrarily chosen. As mentioned in section \ref{data_process}, a new instance of the \verb|IBk| class was created, trained on the initial dataset, and output to a .model file. This file was then stored in the Android project as an asset, so the classifier object could be retreived within the app.
+If the attributes are numeric, then the difference between them is 
+\begin{center}
+	$(a_i^{(1)} - a_i^{(2)})$.
+\end{center}
 
+However, numeric attributes have to be normalized, as two different attributes could have different scales (for example, the year of publication is greater than 1800, whereas the average ratings is less or equal to 5). Given $v_i$ the actual value of attribute $i$, $a_i$ becomes:
+\begin{center}
+	$a_i = \frac{v_i - \text{min } v_i}{\text{max } v_i - \text{min } v_i}$
+\end{center}
+with min $v_i$ and max $v_i$ being respectively the minimum and the maximum values of attribute $i$ in the entire training set. 
+
+If the attributes are nominal, the difference between them is
+\begin{equation}
+	\begin{cases}
+		0, & \text{if the attributes are the same}\\
+		1, & \text{otherwise}\\
+	\end{cases}
+\end{equation}
+
+The Euclidean distance between two instances $A^{(1)}$ and $A^{(2)}$ is therefore
+\begin{center}
+	$\sqrt{(a_1^{(1)} - a_1^{(2)})^2 + (a_2^{(1)} - a_2^{(2)})^2 + ... + (a_k^{(1)} - a_k^{(2)})^2}$.
+\end{center}
+
+As mentioned in \Cref{data_process}, a new instance of the \verb|IBk| class was created, trained on the initial dataset, and output to a .model file. This file was then stored in the Android project as an asset, so the classifier object could be retreived within the app.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Story Details Input}
 
-The user experiment described in section \ref{wireframes} showed two main groups of users: those who favoured a clear, simple interface, which did not require much effort to read or understand, and those who enjoyed an interactive interface with images better. Because it did not seem possible to create one interface which could satisfy all the users, several layouts were implemented, so users could customize their own application by changing the settings.
+\subsection*{Customization of the User Interface}
+
+The user experiment described in \Cref{wireframes} showed two main groups of users: those who favoured a clear, simple interface, which did not require much effort to read or understand, and those who enjoyed an interactive interface with images better. Because it did not seem possible to create one interface which could satisfy all the users, several layouts were implemented, so users could customize their own application by changing the settings, as shows figure ....
 
 [Screen shot of settings screen]
 
-By 
+\textbf{??} and \textbf{??} show two different interfaces, displaying the same information.
+
+[Screen shots of main activity using text and using images]
+
+Users can also choose to select the concept to be predicted using a pop-up window, or tabs on the main screen, as can be seen on \textbf{??} and \textbf{??}.
+
+[Screen shots of class dialog and class tabs]
+
+Finally, when the ``Story details Input'' is set to ``Images'', users can choose to browse through the images of the attributes they have to input using a spinner (\textbf{??}) or view all of them in a grid (\textbf{??}).
+
+[Screen shots of grid view and spinner view]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Missing Values}\label{missing_values}
+\subsection*{Attributes Selection}
 
+In order to select the features they want to input, users can press check boxes for all the attributes they are interested in, displayed in a pop-up window (\textbf{??}) or a navigation drawer (\textbf{??}): this is also customizable in the settings.
+
+[Screen shots of dialog and drawer]
+
+As visible on \textbf{??} and \textbf{??}, the number of ratings, extracted from Goodreads, was not included after all, since users cannot know this information about the book they are interested in, unless they are able to access the website themselves, which is not assumed to be true (as the system should be usable off-line). For the same reason, no attempt was made to get the app to fetch the information itself.
+
+\subsubsection*{Missing Values}
+The unselected attributes are handled as missing. In Weka, missing values are treated differently for each classifiers. When two attributes $a_i^{(1)}$ and $a_i^{(2)}$are compared with IBk, if one of them (say $a_i^{(1)}$) has a missing value, then:
+\begin{itemize}
+	\item if it is a numeric attribute, the difference between the attributes is
+	\begin{equation}
+		\begin{cases}
+			1, & \text{if } a_i^{(2)} \text{also has a missing value} \\
+			\text{max( }a_i^{(2)} , 1 - a_i^{(2)} \text{)}, & \text{otherwise.} \\
+		\end{cases}
+	\end{equation}
+	\item if it is a nominal attribute, the difference between the attributes is 1.	
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Prediction Output}
+
+Once all the fields corresponding to the selected attributes have been populated, users can press the ``Go Detect'' button, and generate a prediction based on their input (\textbf{??}). 
+
+[Screen shots of prediction activity]
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Communication with the Server}
 
 In the earliest version of the system during the third iteration, the training dataset was stored on the server-side, in a .txt file which could be downloaded by the clients, or updated by the server when new data was added. \par
 
-When a user launched the app, it had to check whether new entries were added since the last time the app was used. The initial way to do this was to compare the size of the two files: if the server's file was larger than the local one, it meant that the app's dataset had to be updated. This did not work as expected however, because when an application is deployed on Heroku, it is assembled into a compressed bundle \cite{herokuslug}. Consequently, the size of the file stored on the server was not accurate. To overcome this issue, the number of entries in the dataset was stored in a database. This integer was incremented for every new instance shared by a user, and used instead to compare the two datasets. If the app's training set had fewer instances, it would then download the content of the server's file, extract the newest entries, and update the classifier on each entry, while also adding it to the local file. When a user invalidated a prediction and agreed to share the details with the other users, the data was sent as a string to the server, which added a new line to the file with that data.\par
+When a user launched the app, it had to check whether new entries were added since the last time the app was used. The initial way to do this was to compare the size of the two files: if the server's file was larger than the local one, it meant that the app's dataset had to be updated. This did not work as expected however, because when an application is deployed on Heroku, it is assembled into a compressed bundle \cite{herokuslug}. Consequently, the size of the file stored on the server was not accurate. \par 
 
-This was easy and convenient, especially for testing, but not optimal in terms of scalability: if several thousands of users were to use the app, and the training set updated regularly, that file would quickly become very large, and having all the users to download it every time they launch the app would not be practical. Alternatively, all the instances of server's training set were stored in the database. Instead of downloading the whole content of a file, the client-apps now only fetch the new entries when the user starts the app. This is described in Figure \ref{fig:launch}.
+To overcome this issue, the number of entries in the dataset was stored in a database. This integer was incremented for every new instance shared by a user, and used instead to compare the two datasets. If the app's training set had fewer instances, it would then download the content of the server's file, extract the newest entries, and update the classifier on each entry, while also adding it to the local file. When a user invalidated a prediction and agreed to share the details with the other users, the data was sent as a string to the server, which added a new line to the file with that data.\par
+
+This was easy and convenient, especially for testing, but not optimal in terms of scalability: if several thousands of users were to use the app, and the training set updated regularly, that file would quickly become very large, and having all the users to download it every time they launch the app would not be practical. Alternatively, all the instances of server's training set were stored in the database. Instead of downloading the whole content of a file, the client-apps now only fetch the new entries when the user starts the app. This is described in \Cref{fig:launch}.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{images/app_launching_diagram}
@@ -526,7 +589,7 @@ This was easy and convenient, especially for testing, but not optimal in terms o
 	\label{fig:launch}
 \end{figure}
 
-In order to check whether an entry is new to a given client, each entry is given a timestamp with the date and time it was sent to the server. Each client also keeps the time it last downloaded new data, so that the server can send all the entries that were added after the client's last update. Additionally, when the user submits new data, a new entry is created in the database, and the server returns the timestamp for the transaction, as shown in Figure \ref{fig:new_entry}.
+In order to check whether an entry is new to a given client, each entry is assigned a timestamp with the date and time it was sent to the server. Each client also keeps the time it last downloaded new data, so that the server can send all the entries that were added after the client's last update. Additionally, when the user submits new data, a new entry is created in the database, and the server returns the timestamp for the transaction, as shown in \Cref{fig:new_entry}.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{images/wrong_prediction_diagram}
@@ -567,7 +630,7 @@ During the whole process, I observed the participants while they used the system
 
 \section{Limitations and Future Work}
 
-\subsection{Additional functionalities}
+\subsection*{Additional functionalities}
 
 \hspace{5mm} Mostly due to a lack of time, two functionalities were not implemented.\par
 
@@ -575,14 +638,14 @@ The first one corresponds to the user stories number 3 and 4 mentioned in the Re
 
 Another potential functionality is related to the context of the user-interaction with the system. The idea is for detective novels fans to be able to use the app, while reading a book. If they get a clue on the murderer before the end of the story, they cannot know whether or not the prediction is right, as the identity of the culprit has not been revealed yet. It could therefore be made possible for the users to save the prediction they received, and go back to it later to confirm it or input the correct data if it was wrong.
 
-\subsection{Accuracy}
+\subsection*{Accuracy}
 
 The accuracy of the predictions could be increased by improving the dataset, so that the algorithm can handle much more details about the story. It would therefore be necessary to try and find extra attributes that have an impact on the prediction. Such additional features could be the profession of the murderer, the relationship between the murderer and the victim or the chapter in which the murderer is first introduced. \par
 
 Once such attributes were found, the interface of the app could then be updated, so that it can handle more concepts, other than the murder weapon and the gender of the murderer. Thus any attribute directly related to the murderer could be the possible target of the predictions.
 It could also be useful to consider features related to the title of the book: for example checking if the title contains a reference to a location, to a person, to a mean of transport, or to a weapon, and whether such reference helps to infer anything about the murderer.
 	
-\subsection{Scalability}
+\subsection*{Scalability}
 
 In order to reduce the time spent waiting for the different components to exchange information, in the event of having several thousands of users, the system could be to remodelled, so that the training is handled by the server and not the client. The server would not even need to store any data, it would just receive it, retrain the classifier, and send a .model file containing the output classifier, which could then be loaded by the client to retrieve the Classifier object. \par
 
