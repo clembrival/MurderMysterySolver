@@ -27,6 +27,7 @@
 %\uspackage{amssymb,amsmath}
 %\usepackage{url}
 
+
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -140,7 +141,7 @@ They do not require input from the user, as the data is collected from online so
 \chapter{Requirements}
 
 For this project, two main user roles were defined: readers and writers of detective stories. The requirements of the system were gathered during several meetings with the project supervisor, who acted as the main stakeholder, and a proxy for the different types of users. 
-In accordance to the agile methodology used throughout the whole development process, the functional and nonfunctional requirements of the system are listed below, as well as user stories\footnote{User stories describe small tasks that a user might want to undertake when using the system. \cite[Chapter~1]{userstoriesbook}} and constraints\footnote{Constraints are user stories describing nonfunctional requirements. \cite{userstoriesbook}} created based on those requirements. 
+In accordance with the agile methodology used throughout the whole development process, the functional and nonfunctional requirements of the system are listed below, as well as user stories\footnote{User stories describe small tasks that a user might want to undertake when using the system. \cite[Chapter~1]{userstoriesbook}} and constraints\footnote{Constraints are user stories describing nonfunctional requirements. \cite{userstoriesbook}} created based on those requirements. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
@@ -159,7 +160,7 @@ As a \textbf{reader}, I would like to be able to use the system while I am readi
 \section{Additional Requirements}
 	
 The following functional requirements were added later in the project, after taking the machine learning side of the system into consideration.
-\begin{itemize}
+\begin{itemize}[topsep=0pt]
 \item Users should be able to leave out details they do not know about or do not want to input.
 \item A user should be able to invalidate an incorrect prediction and provide the right answer to the system. 
 \item All users should be able to share the details of the stories they read, if they want to.
@@ -169,7 +170,7 @@ The following functional requirements were added later in the project, after tak
 \section{Low-level Requirements}\label{requirements}
 	
 A user can\ldots
-\begin{enumerate}\label{user_stories}
+\begin{enumerate}[topsep=0pt]\label{user_stories}
 	\item input details about a story.
 	\item receive a prediction based on the input details.
 	\item input details about a character.
@@ -182,7 +183,7 @@ A user can\ldots
 \end{enumerate}
 
 The system should\ldots
-\begin{enumerate}\label{constraints}
+\begin{enumerate}[topsep=0pt]\label{constraints}
 	\item be implemented for hand-held devices.
 	\item require at most 32 Mb on the device.
 	\item output the prediction within 5 seconds.
@@ -200,13 +201,13 @@ The first few weeks of the project were spent researching Machine Learning and g
 
 The initial dataset contained 66 instances (each one corresponding to an Agatha Christie book), and 5 attributes: the \textbf{title} of the novel, the \textbf{year of publication}, the name of the \textbf{detective}\footnote{If there was no specific detective in a novel, the detective attribute for the corresponding instance was set to ``Mystery novel''.}, the \textbf{point of view} from which the story is told (first or third person) and the \textbf{location} of the story (UK or International). The data stored in the instances was obtained in the books themselves when a paper or digital version was available, and Wikipedia otherwise. \cite{wikipedia} If some information about an attribute could not be found, the attribute's value was set to ``?'', which denotes an unknown value (see \Cref{missing_values}).\par
 
-As a first practice exercise, the concept (the element that had to be predicted) was the \textbf{cause of death} of the victim. A sixth column was therefore added to the dataset to store the murder weapon used for each instance, in accordance to the structure of a classification training set (as mentioned in \Cref{machine_learning}).\par
+As a first practice exercise, the concept (the element that had to be predicted) was the \textbf{cause of death} of the victim. A sixth column was therefore added to the dataset to store the murder weapon used for each instance, in accordance with the structure of a classification training set (as mentioned in \Cref{machine_learning}).\par
 
 Secondly, a Web scraper was used to extract the \textbf{number of ratings} and the \textbf{average ratings} from Goodreads \cite{goodreads} for each book in the training set, which was then updated with the extracted data. (This process is detailed in \Cref{scrapy}.)\par
 
 Finally, the last attributes added to the dataset are the \textbf{gender of the victim} and the \textbf{gender of the murderer}. The latter was meant to replace the cause of death as the main concept handled by the system, however it was set so users could choose between the two attributes when selecting the object of the prediction they want to receive. The complete training set is visible in \Cref{dataset}.\par
 
-In order to process all this information, a Java program was created, to create a classifier object trained on the instances. Taking the dataset file as input, it produces a .model file containing an output classifier for each possible concepts (one for the cause of death, and one for the murderer's gender). The gathering and processing of the data is illustrated in \Cref{fig:design}.
+In order to process all this information, a Java program was created, to create a classifier object trained on the instances. Taking the dataset file as input, it produces a .model file containing an output classifier for each possible concept (one for the cause of death, and one for the murderer's gender). The gathering and processing of the data is illustrated in \Cref{fig:design}.
 
 \begin{figure}[h]
 	\centering
@@ -233,7 +234,7 @@ To handle user stories 8 and 9 (\Cref{user_stories}), the smartphone app connect
 \section{User Interface Design}\label{wireframes}
 
 When designing the application's interface, 5 wireframes were created, using mybalsamiq\footnote{https://www.mybalsamiq.com/}, showing different layouts and types of input:
-\begin{enumerate}[label=\Alph*.]
+\begin{enumerate}[label=\Alph*.,topsep=0pt]
 	\item a single un-scrollable screen, with images input in a slot machine (\Cref{fig:wireframeA}),
 	\item a single un-scrollable screen, with text input (\Cref{fig:wireframeB}),
 	\item a single scrollable screen, with images input in a horizontal scrollable frame (\Cref{fig:wireframeC}),
@@ -256,7 +257,7 @@ In order to find the interface which appealed to most users before starting the 
 
 A summary of the most recurring comments about each interface is listed below.
 
-\begin{enumerate}[label=\Alph*]
+\begin{enumerate}[label=\Alph*,topsep=0pt]
 	\item 
 	\begin{itemize} 
 		\item[+] The interface is simple and clear. 
@@ -301,7 +302,7 @@ A summary of the most recurring comments about each interface is listed below.
 
 Again, a summary of the most recurring comments about each interface is listed below.
 
-\begin{enumerate}[label=\Alph*]
+\begin{enumerate}[label=\Alph*,topsep=0pt]
 	\item 
 	\begin{itemize}
 		\item[+] The images and the slot machine make the interface attractive and fun to use.
@@ -382,12 +383,9 @@ For the last iteration, crowdsourced data gathering and training were implemente
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Technologies Used}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Scrapy}\label{scrapy}
 
 Scrapy is an application framework written in Python, which can be used to extract data from Web sites \cite{scrapy}, created by Scrapinghub's co-founders Pablo Hoffman and Shane Evans. \cite{scrapinghub}
-
-\subsubsection*{Justification}
 
 Scrapy is free and open source. It also provides a lot of support, as it comes with a tutorial in addition to a detailed documentation. \cite{scrapydoc}
 
@@ -398,9 +396,7 @@ Scrapy was not hard to learn or use, thanks to the documentation. It was used in
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Android}
 
-The mobile application was implemented using Android, which is an open source operating system for mobile devices (smartphones and tablets), developed by Google and released in 2008.\cite{androidrelease} 
-
-\subsubsection*{Justification}
+The mobile application was implemented using Android, which is an open source operating system for mobile devices (smartphones and tablets), developed by Google and released in 2008.\cite{androidrelease} The phone used for this project is a Samsung Galaxy S3 LTE, running on Android 4.4.4 (KitKat platform).
 
 It was chosen because I became familiar with Java during the past couple of years, as it is the main programming language used in the Masters courses. It was also an occasion for me to get some experience in Android development, which I was interested in. In addition, Android is the most used mobile operating system worldwide. \cite{androidsales} Furthermore, the Android SDK offers a lot of flexibility, as it can be downloaded on Windows, Mac OS, or Linux, and used with the Android's free IDE Android Studio. \cite{androidstudio} Lastly, there is a vast amount of documentation and tutorials available for developing with the Android SDK. \cite{androidtutorials} \cite{thebignerdranchguide}
 
@@ -420,8 +416,6 @@ Another difficulty arose on a code-level, when trying to reduce the amount of re
 
 To make predictions, this app referenced machine learning algorithms implemented in the Weka workbench \cite{weka}, created by Eibe Frank, Mark Hall, Peter Reutemann, and Len Trigg.
 
-\subsubsection*{Justification}
-
 This is the machine learning library used for the project because it is written in Java, which means it should be possible to use it with an Android application. It is also open source, and is documented in a book about Data Mining and Machine Learning, written by some of the Weka developers. \cite{wekabook}
 
 \subsubsection*{Difficulties Encountered}\label{wekadiff}
@@ -430,7 +424,7 @@ As mentioned previously, the machine learning side of this project was handled u
 
 This preliminary work was difficult, mainly because it was hard to find explanations in the documentation, for the different exceptions that were thrown when executing some instructions. The exception messages were not descriptive enough, and it took a lot of reading of problems faced by other users of the library to eventually find the causes of the errors. \par
 
-Merging the functionalities implemented in the utility class with the Android code happened without almost any obstacle. The .jar file containing the source code of the library was added as a dependency in the project, and all the needed classes were imported in the standard way\footnote{``\texttt{import weka.}'' followed by the package containing the class to be used, and the name of the class.}. The only encountered issue came from the fact that, in order to train a classifier, one of the Weka classes uses the Java GraphicsEnvironment class from the awt package\footnote{http://grepcode.com/file/repo1.maven.org/maven2/org.pentaho.pentaho-commons/pentaho-package-manager/1.0.8/org/pentaho/packageManagement/PackageManager.java\#PackageManager.setProxyAuthentication\%28java.net.URL\%29}, which is not available in Android. It was therefore not possible to train the classifier on the app. This was fixed by training it externally, outputting the trained object to a .model file, including that file as an asset of the project (as described previously in \Cref{data_process}), and recreating the corresponding Classifier object from the .model file when launching the app.
+Merging the functionalities implemented in the utility class with the Android code happened without almost any obstacle. The .jar file containing the source code of the library was added as a dependency in the project, and all the needed classes were imported in the standard way\footnote{``\texttt{import weka.}'' followed by the package containing the class to be used, and the name of the class.}. The only encountered issue came from the fact that, in order to train a classifier, one of the Weka classes uses the Java \verb|GraphicsEnvironment class| from the \verb|awt| package\footnote{http://grepcode.com/file/repo1.maven.org/maven2/org.pentaho.pentaho-commons/pentaho-package-manager/1.0.8/org/pentaho/packageManagement/PackageManager.java\#PackageManager.setProxyAuthentication\%28java.net.URL\%29}, which is not available in Android. It was therefore not possible to train the classifier on the app. This was fixed by training it externally, outputting the trained object to a .model file, including that file as an asset of the project (as described previously in \Cref{data_process}), and recreating the corresponding Classifier object from the .model file when launching the app.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Django \& Heroku}
@@ -439,15 +433,11 @@ Merging the functionalities implemented in the utility class with the Android co
 
 Django is a Web application framework written in Python \cite{django}. It facilitates Web development, by providing ``high-level abstractions of common patterns, shortcuts for frequent programming tasks, and clear conventions for how to solve problems.'' \cite{djangobook}
 
-\subsubsection*{Justification}
-
 Choosing Django was mainly due to the fact that I had used it for a project in one of the Masters courses. It also has the advantage of being well documented and having an active user community.\par
 
 \subsubsection*{Heroku}
 
 Heroku is a cloud platform which allows users to deploy Web applications and their databases. It aims at speeding up the development process by handling the server management, the deployment and the scaling of the applications. \cite{heroku}
-
-\subsubsection*{Justification}
 
 Heroku is free for low traffic sites, it is easy to scale and allows to easily create a PostgreSQL database. It is also possible to link the deployed application to a Github repository, such that any pushed change is automatically applied to the Heroku application. \cite[Chapter~1]{herokubook}
 
@@ -455,6 +445,7 @@ Heroku is free for low traffic sites, it is easy to scale and allows to easily c
 
 Using Django did not cause any particular problem. Deploying the app once developed was, however, trickier than expected when following the official documentation only. I was getting confused about all the different components that had to be installed, and how they all related to one another. It was however easier to understand the process, using the Django Girls tutorial. \cite{djangogirls}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Updated System Architecture}
 
 The following \Cref{fig:architecture_updated} shows the system's architecture with updated labels according to the technologies used for the different components.
@@ -473,7 +464,7 @@ Weka contains over 50 implementations of classifiers. \cite[Table~11.5]{wekabook
 
 \begin{table}[h]
 	\centering
-	\caption{Percentages of correctly classified instances of the training dataset, for the victim's cause of death and the murderer's gender, using Updateable Classifiers.}
+	\caption{Percentages of correctly classified instances of the initial dataset, for the victim's cause of death and the murderer's gender, using Updateable Classifiers, after training.}
 	\begin{tabular}{ |l|c|c| }
 		\hline
 		\textbf{Classifier}            & \textbf{Cause of death} 					 & \textbf{Murderer's gender} 					  \\
@@ -518,7 +509,19 @@ The Euclidean distance between two instances $A^{(1)}$ and $A^{(2)}$ is therefor
 	$\sqrt{(a_1^{(1)} - a_1^{(2)})^2 + (a_2^{(1)} - a_2^{(2)})^2 + ... + (a_k^{(1)} - a_k^{(2)})^2}$.
 \end{center}
 
-As mentioned in \Cref{data_process}, a new instance of the \verb|IBk| class was created, trained on the initial dataset, and output to a .model file. This file was then stored in the Android project as an asset, so the classifier object could be retreived within the app.
+As mentioned in \Cref{data_process}, a new instance of the \verb|IBk| class was created, trained on the initial dataset, using 5-folds \textbf{cross-validation}: this technique consists in splitting the dataset in 5 partitions, and in turn, using each partition for testing the result of training on the other partitions. \cite[Chapter~5]{wekabook} The trained classifier was then output to a .model file, which was stored in the Android project as an asset, so the classifier object could be retreived within the app.
+
+\subsection*{ARFF Files}
+
+Weka requires datasets to be provided in ARFF format (which stands for attribute-relation file format). \cite{arff} ARFF files consist in two parts:
+\begin{itemize}[topsep=0pt]
+	\item the header, which contains 
+	\begin{itemize}
+		\item the name of the relation (typically what each instance of the dataset represents --- in our case, ``novel''), preceded by \verb|@RELATION|,
+		\item the list of attributes with the following format: \verb|@ATTRIBUTE name type|,
+	\end{itemize}
+	\item the data, preceded by \verb|@DATA|, with each instance on a different line, and the values for each instance separated by commas.
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Story Details Input}
@@ -548,16 +551,19 @@ In order to select the features they want to input, users can press check boxes 
 
 [Screen shots of dialog and drawer]
 
-As visible on \textbf{??} and \textbf{??}, the number of ratings, extracted from Goodreads, was not included after all, since users cannot know this information about the book they are interested in, unless they are able to access the website themselves, which is not assumed to be true (as the system should be usable off-line). For the same reason, no attempt was made to get the app to fetch the information itself.
+As visible on \textbf{??} and \textbf{??}, the number of ratings, extracted from Goodreads, was not included after all, since users cannot know this information about the book they are interested in, unless they are able to access the website themselves, which is not assumed to be true (as the system should be usable off-line). For the same reason, no attempt was made to get the app to fetch the information itself. \par
 
+Furthermore, the title of the novel is ignored by the classifier, and only used to keep track of the novel of interest. The reason for this is that the IBk classifier cannot handle string attributes. It is therefore necessary to filter the title so it is converted into a nominal attribute (using the \verb|StringToNominal| filter) or into a ``set of nominal attributes representing word occurrence information from the text contained in the string'' (using the \verb|StringToWordVector| filter). However, filters cannot be applied to attributes in the app's code because they also use a class from the \verb|java.awt| package, which is, as mentioned in \Cref{wekadiff}, not available in Android.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{Missing Values}
-The unselected attributes are handled as missing. In Weka, missing values are treated differently for each classifiers. When two attributes $a_i^{(1)}$ and $a_i^{(2)}$are compared with IBk, if one of them (say $a_i^{(1)}$) has a missing value, then:
-\begin{itemize}
+The unselected attributes are handled as missing. In Weka, missing values are treated differently for each classifier. When two attributes $a_i^{(1)}$ and $a_i^{(2)}$are compared with IBk, if one of them (say $a_i^{(1)}$) has a missing value, then:
+\begin{itemize}[topsep=0pt]
 	\item if it is a numeric attribute, the difference between the attributes is
 	\begin{equation}
 		\begin{cases}
 			1, & \text{if } a_i^{(2)} \text{also has a missing value} \\
-			\text{max( }a_i^{(2)} , 1 - a_i^{(2)} \text{)}, & \text{otherwise.} \\
+			\text{max( }a_i^{(2)} , 1 - a_i^{(2)} \text{)}, & \text{otherwise;} \\
 		\end{cases}
 	\end{equation}
 	\item if it is a nominal attribute, the difference between the attributes is 1.	
@@ -568,9 +574,18 @@ The unselected attributes are handled as missing. In Weka, missing values are tr
 
 Once all the fields corresponding to the selected attributes have been populated, users can press the ``Go Detect'' button, and generate a prediction based on their input (\textbf{??}). 
 
-[Screen shots of prediction activity]
+[Screen shot of prediction activity]
 
+Based on the probability distribution of the predicted value, and on the number of input attributes, the prediction is followed by a sentence simulating the system expressing how confident it is about its guess (this seemed more user-friendly than simply outputting a percentage).\par
 
+Users can then press
+\begin{itemize}[topsep=0pt]
+	\item ``Back'' to return to verify or rectify their input,
+	\item the ``Correct'' button to validate the prediction, and go back to the reset details input screen,
+	\item the ``Incorrect'' button and be prompted to submit the value that should have been predicted.
+\end{itemize}
+
+[Screen shots of dialogs]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Communication with the Server}
@@ -612,7 +627,7 @@ Two evaluation sessions were organised one on the wireframes, and one on the fin
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Final App}
 
-For the final product evaluation, users were first asked to list the possible attributes (year of publication, point of view, location, detective, murder weapon, victim's gender, murderer's gender and ratings) in a random order. They were then given access to the training set, and were asked to pick 5 different titles from the dataset. \par
+For the final product evaluation,  were first asked to list the possible attributes (year of publication, point of view, location, detective, murder weapon, victim's gender, murderer's gender and ratings) in a random order. They were then given access to the training set, and were asked to pick 5 different titles from the dataset. \par
 
 Based on the order in which they had listed the features, they were had to produce predictions for each one of the 5 novels they picked, leaving out between 0 and 5 attributes. The idea was to show them that the instances were selected randomly, so that, in case they received the right answers, it did not look like I had chosen novels for which I knew the predictions would be correct. They were also given the choice to use any other novel, as long as they were certain of the correctness of the details of the story, which would impact the accuracy of the predictions. \par 
 
