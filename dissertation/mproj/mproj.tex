@@ -7,8 +7,10 @@
 \usepackage[a4paper]{geometry}
 \usepackage{graphicx}
 \usepackage{lscape}
+\usepackage{mathdesign}
 \usepackage[final]{pdfpages}
 \usepackage{subcaption}
+
 \usepackage{times}
 \usepackage{wrapfig}
 \usepackage[hidelinks]{hyperref}
@@ -78,13 +80,13 @@ acknowledgements go here
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Machine Learning}\label{machine_learning}
-``\textbf{Machine learning} is a field of study that gives computers the ability to learn without being explicitly programmed.'' - Arthur Samuel (1959). \cite[Chapter~3]{quotearthursamuel} Using algorithmic models and mathematics, it consists in iteratively analysing a set of data, in order to make predictions about similar data. Applications for machine learning are varied: speech and handwriting recognition, medical diagnosis, recommendation systems, advertisements, fraud detection, video games, self-driven cars, robot locomotion, \ldots \par 
+``\textbf{Machine learning} is a field of study that gives computers the ability to learn without being explicitly programmed.'' - Arthur Samuel (1959). \cite[Chapter~3]{quotearthursamuel} Using algorithmic models and mathematics, it consists in iteratively analysing a set of data, in order to make predictions about similar data. Applications for machine learning are varied, including: speech and handwriting recognition, medical diagnosis, recommendation systems, advertisements, fraud detection, video games, self-driven cars, and robot locomotion. \par 
 
-A machine learning algorithm is fed a dataset, the \textbf{training set}, made up of one or several \textbf{instances}, which represent the type of data the prediction will be based on. Each instance contains actual values for \textbf{attributes} (or features) the algorithm can analyse and learn from. \cite[Chapter~2]{wekabook} For example, to predict the gender of the murderer, possible attributes could be the murder weapon, the gender of the victim, the name of the detective and the year of publication of the book. An instance could therefore be ``Poison, Female, Hercule Poirot, 1926''. The attribute to be predicted is the \textbf{concept}, and the predicted value for this attribute is the \textbf{concept description}. \par 
+A machine learning algorithm is supplied with a dataset, the \textbf{training set}, made up of one or several \textbf{instances}, which represent the type of data the prediction will be based on. Each instance contains actual values for \textbf{attributes} (or features) the algorithm can analyse and learn from. \cite[Chapter~2]{wekabook} For example, to predict the gender of the murderer, possible attributes could be the murder weapon, the gender of the victim, the name of the detective and the year of publication of the book. An instance could therefore be ``Poison, Female, Hercule Poirot, 1926''. The attribute to be predicted is the \textbf{concept}, and the predicted value for this attribute is the \textbf{concept description}. \par 
 
 The type of machine learning used for this project is \textbf{supervised learning}. This technique involves building the training set and providing it with the correct value for the attribute to be predicted. \cite{machinelearningcourse} The algorithm can therefore base its observations on cases for which it knows the outcome, learn to produce the desired output, and apply the results of its training on instances for which it does not know the right value. \par
 
-Supervised learning is divided into two categories of problems, based on the type of attribute to be predicted. In this project's case, the app will attempt to predict discrete valued attributes, for instance the gender of the murderer (male or female): this is a \textbf{classification} problem. 
+Supervised learning is divided into two categories of problems, based on the type of attribute to be predicted. In this project's case, the app will attempt to predict discrete valued attributes, for instance the gender of the murderer (male or female): this is a \textbf{classification} problem. The second category involves \textbf{regression} problems, which will not be considered in this dissertation.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -185,7 +187,7 @@ A user can\ldots
 The system should\ldots
 \begin{enumerate}[topsep=0pt]\label{constraints}
 	\item be implemented for hand-held devices.
-	\item require at most 32 Mb on the device.
+	\item require at most 32 MB on the device.
 	\item output the prediction within 5 seconds.
 	\item send and download data to/from the server within 10 seconds.
 \end{enumerate}
@@ -199,15 +201,15 @@ The first few weeks of the project were spent researching Machine Learning and g
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \section{Data Gathering and Processing}\label{data_process}
 
-The initial dataset contained 66 instances (each one corresponding to an Agatha Christie book), and 5 attributes: the \textbf{title} of the novel, the \textbf{year of publication}, the name of the \textbf{detective}\footnote{If there was no specific detective in a novel, the detective attribute for the corresponding instance was set to ``Mystery novel''.}, the \textbf{point of view} from which the story is told (first or third person) and the \textbf{location} of the story (UK or International). The data stored in the instances was obtained in the books themselves when a paper or digital version was available, and Wikipedia otherwise. \cite{wikipedia} If some information about an attribute could not be found, the attribute's value was set to ``?'', which denotes an unknown value (see \Cref{missing_values}).\par
+The initial dataset contained 66 instances (each one corresponding to an Agatha Christie book), and 5 attributes: the \textbf{title} of the novel, the \textbf{year of publication}, the name of the \textbf{detective}\footnote{If there was no specific detective in a novel, the detective attribute for the corresponding instance was set to ``Mystery novel''.}, the \textbf{point of view} from which the story is told (first or third person) and the \textbf{location} of the story (UK or International). The data stored in the instances was obtained from the books themselves when a paper or digital version was available, and Wikipedia otherwise. \cite{wikipedia} If some information about an attribute could not be found, the attribute's value was set to ``?'', which denotes an unknown value (see \Cref{missing_values}).\par
 
-As a first practice exercise, the concept (the element that had to be predicted) was the \textbf{cause of death} of the victim. A sixth column was therefore added to the dataset to store the murder weapon used for each instance, in accordance with the structure of a classification training set (as mentioned in \Cref{machine_learning}).\par
+As a first prototype, the concept (the element that had to be predicted) was the \textbf{cause of death} of the victim. A sixth column was therefore added to the dataset to store the murder weapon used for each instance, in accordance with the structure of a classification training set (as mentioned in \Cref{machine_learning}).\par
 
 Secondly, a Web scraper was used to extract the \textbf{number of ratings} and the \textbf{average ratings} from Goodreads \cite{goodreads} for each book in the training set, which was then updated with the extracted data. (This process is detailed in \Cref{scrapy}.)\par
 
-Finally, the last attributes added to the dataset are the \textbf{gender of the victim} and the \textbf{gender of the murderer}. The latter was meant to replace the cause of death as the main concept handled by the system, however it was set so users could choose between the two attributes when selecting the object of the prediction they want to receive. The complete training set is visible in \Cref{dataset}.\par
+Finally, the last attributes added to the dataset are the \textbf{gender of the victim} and the \textbf{gender of the murderer}. The latter was meant to replace the cause of death as the main concept handled by the system, however the system was configured so users could choose between the two attributes when selecting the object of the prediction they want to receive. The complete training set is visible in \Cref{dataset}.\par
 
-In order to process all this information, a Java program was created, to create a classifier object trained on the instances. Taking the dataset file as input, it produces a .model file containing an output classifier for each possible concept (one for the cause of death, and one for the murderer's gender). The gathering and processing of the data is illustrated in \Cref{fig:design}.
+In order to process all this information, a Java program was created, to create a classifier object trained on the instances. Taking the dataset file as input, it produces a \textit{.model} file containing an output classifier for each possible concept (one for the cause of death, and one for the murderer's gender). The gathering and processing of the data is illustrated in \Cref{fig:design}.
 
 \begin{figure}[h]
 	\centering
@@ -260,32 +262,32 @@ A summary of the most recurring comments about each interface is listed below.
 \begin{enumerate}[label=\Alph*,topsep=0pt]
 	\item 
 	\begin{itemize} 
-		\item[+] The interface is simple and clear. 
-		\item[-] It is not descriptive enough, it is hard to know what each element corresponds to.
+		\item[\textcircled{+}] The interface is simple and clear. 
+		\item[\textcircled{-}] It is not descriptive enough, it is hard to know what each element corresponds to.
 	\end{itemize}
 	
 	\item 
 	\begin{itemize}
-		\item[+] All the elements are visible on the screen without asking any effort to understand them.
-		\item[-] The lack of images makes the interface less attractive.
+		\item[\textcircled{+}] All the elements are visible on the screen without asking any effort to understand them.
+		\item[\textcircled{-}] The lack of images makes the interface less attractive.
 	\end{itemize} 
 	
 	\item
 	\begin{itemize}
-		\item[+] Everything is kept together, on one screen.
-		\item[-] The amount of information on the screen is too large, therefore there will be too much scrolling involved.
+		\item[\textcircled{+}] Everything is kept together, on one screen.
+		\item[\textcircled{-}] The amount of information on the screen is too large, therefore there will be too much scrolling involved.
 	\end{itemize} 
 	
 	\item
 	\begin{itemize}
-		\item[+] The accordion makes the navigation smoother: it keeps a good overview of all the information that has to be input, while giving the impression that the amount of input is not too big. It also keeps everything on the same screen, but does not require too much scrolling.
-		\item[-] The interface seems more complex, therefore less engaging. Moreover, it is slightly harder to see what is going on and what to do.
+		\item[\textcircled{+}] The accordion makes the navigation smoother: it keeps a good overview of all the information that has to be input, while giving the impression that the amount of input is not too big. It also keeps everything on the same screen, but does not require too much scrolling.
+		\item[\textcircled{-}] The interface seems more complex, therefore less engaging. Moreover, it is slightly harder to see what is going on and what to do.
 	\end{itemize} 
 	
 	\item
 	\begin{itemize}
-		\item[+] The simplicity and clarity of the design makes it more engaging: there is less information on the screen, which makes it easier to focus on one thing at a time.
-		\item[-] The fact that it is necessary to press a button to move from one step to another makes the whole process too long.
+		\item[\textcircled{+}] The simplicity and clarity of the design makes it more engaging: there is less information on the screen, which makes it easier to focus on one thing at a time.
+		\item[\textcircled{-}] The fact that it is necessary to press a button to move from one step to another makes the whole process too long.
 	\end{itemize} 
 \end{enumerate}
 
@@ -305,30 +307,30 @@ Again, a summary of the most recurring comments about each interface is listed b
 \begin{enumerate}[label=\Alph*,topsep=0pt]
 	\item 
 	\begin{itemize}
-		\item[+] The images and the slot machine make the interface attractive and fun to use.
-		\item[-] Although one user enjoyed the idea of having to guess which feature had to be input, based only on the image, most participants would prefer to have captions below the images.
+		\item[\textcircled{+}] The images and the slot machine make the interface attractive and fun to use.
+		\item[\textcircled{-}] Although one user enjoyed the idea of having to guess which feature had to be input, based only on the image, most participants would prefer to have captions below the images.
 	\end{itemize}
 	
 	\item 
 	\begin{itemize}
-		\item[-] Most participants either did not say anything about this attribute selection type, or mentioned that they did not like the lack of images, because it did not catch their attention.
+		\item[\textcircled{-}] Most participants either did not say anything about this attribute selection type, or mentioned that they did not like the lack of images, because it did not catch their attention.
 	\end{itemize} 
 	
 	\item
 	\begin{itemize}
-		\item[+] One participant liked the basic idea of going through the images horizontally, but suggested the use of swiping cards rather than scrollable areas.
-		\item[-] Similarly to interface B, most participants did not have anything to say about this selector. Two of them reiterated their dislike of scrollbars.
+		\item[\textcircled{+}] One participant liked the basic idea of going through the images horizontally, but suggested the use of swiping cards rather than scrollable areas.
+		\item[\textcircled{-}] Similarly to interface B, most participants did not have anything to say about this selector. Two of them reiterated their dislike of scrollbars.
 	\end{itemize} 
 	
 	\item
 	\begin{itemize}
-		\item[+] A few participants enjoyed the carousel because if shows several options in the same view. They suggested that it showed a preview of the other images, as well as the currently displayed one. 
+		\item[\textcircled{+}] A few participants enjoyed the carousel because if shows several options in the same view. They suggested that it showed a preview of the other images, as well as the currently displayed one. 
 	\end{itemize} 
 	
 	\item
 	\begin{itemize}
-		\item[+] One participant liked this selector because it allowed the users to see multiple images at the same time.
-		\item[-] This time again, most participants did not have any particularly strong view about this last selector, other than the scrolling involved, which they dislike.
+		\item[\textcircled{+}] One participant liked this selector because it allowed the users to see multiple images at the same time.
+		\item[\textcircled{-}] This time again, most participants did not have any particularly strong view about this last selector, other than the scrolling involved, which they dislike.
 	\end{itemize} 
 \end{enumerate}
 
@@ -377,7 +379,7 @@ Again, a summary of the most recurring comments about each interface is listed b
 
 The implementation section of the project was divided into three iterations. 
 The first iteration aimed at creating a fixed predictor: the user inputs data, and receives a prediction (user stories 1, 2 and 5). 
-The objective of second iteration was to retrain the classifier on the app (user stories 6 and 7). 
+The objective of second iteration was to retrain the classifier on-the-fly, within the application (user stories 6 and 7). 
 For the last iteration, crowdsourced data gathering and training were implemented (user stories 8 and 9). \par
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -414,9 +416,9 @@ Another difficulty arose on a code-level, when trying to reduce the amount of re
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Weka}
 
-To make predictions, this app referenced machine learning algorithms implemented in the Weka workbench \cite{weka}, created by Eibe Frank, Mark Hall, Peter Reutemann, and Len Trigg.
+To make predictions, this app made use of machine learning algorithms implemented in the Weka workbench \cite{weka}, created by Eibe Frank, Mark Hall, Peter Reutemann, and Len Trigg.
 
-This is the machine learning library used for the project because it is written in Java, which means it should be possible to use it with an Android application. It is also open source, and is documented in a book about Data Mining and Machine Learning, written by some of the Weka developers. \cite{wekabook}
+This is the machine learning library used for the project because it is written in Java, which means it should be possible to integrate it in an Android application. It is also open source, and is documented in a book about Data Mining and Machine Learning, written by some of the Weka developers. \cite{wekabook}
 
 \subsubsection*{Difficulties Encountered}\label{wekadiff}
 
@@ -424,7 +426,7 @@ As mentioned previously, the machine learning side of this project was handled u
 
 This preliminary work was difficult, mainly because it was hard to find explanations in the documentation, for the different exceptions that were thrown when executing some instructions. The exception messages were not descriptive enough, and it took a lot of reading of problems faced by other users of the library to eventually find the causes of the errors. \par
 
-Merging the functionalities implemented in the utility class with the Android code happened without almost any obstacle. The .jar file containing the source code of the library was added as a dependency in the project, and all the needed classes were imported in the standard way\footnote{``\texttt{import weka.}'' followed by the package containing the class to be used, and the name of the class.}. The only encountered issue came from the fact that, in order to train a classifier, one of the Weka classes uses the Java \verb|GraphicsEnvironment class| from the \verb|awt| package\footnote{http://grepcode.com/file/repo1.maven.org/maven2/org.pentaho.pentaho-commons/pentaho-package-manager/1.0.8/org/pentaho/packageManagement/PackageManager.java\#PackageManager.setProxyAuthentication\%28java.net.URL\%29}, which is not available in Android. It was therefore not possible to train the classifier on the app. This was fixed by training it externally, outputting the trained object to a .model file, including that file as an asset of the project (as described previously in \Cref{data_process}), and recreating the corresponding Classifier object from the .model file when launching the app.
+Merging the functionalities implemented in the utility class with the Android code happened without almost any obstacle. The \textit{.jar} file containing the source code of the library was added as a dependency in the project, and all the needed classes were imported in the standard way\footnote{``\texttt{import weka.}'' followed by the package containing the class to be used, and the name of the class.}. The only encountered issue came from the fact that, in order to train a classifier, one of the Weka classes uses the Java \verb|GraphicsEnvironment class| from the \verb|awt| package\footnote{http://grepcode.com/file/repo1.maven.org/maven2/org.pentaho.pentaho-commons/pentaho-package-manager/1.0.8/org/pentaho/packageManagement/PackageManager.java\#PackageManager.setProxyAuthentication\%28java.net.URL\%29}, which is not available in Android. It was therefore not possible to train the classifier on the app. This was fixed by training it externally, outputting the trained object to a \textit{.model} file, including that file as an asset of the project (as described previously in \Cref{data_process}), and recreating the corresponding Classifier object from the \textit{.model} file when launching the app.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Django \& Heroku}
@@ -433,7 +435,7 @@ Merging the functionalities implemented in the utility class with the Android co
 
 Django is a Web application framework written in Python \cite{django}. It facilitates Web development, by providing ``high-level abstractions of common patterns, shortcuts for frequent programming tasks, and clear conventions for how to solve problems.'' \cite{djangobook}
 
-Choosing Django was mainly due to the fact that I had used it for a project in one of the Masters courses. It also has the advantage of being well documented and having an active user community.\par
+Choosing Django was mainly due to the fact that I had used it for a project in one of the Masters courses (Internet Technology (M) COMPSCI5012). It also has the advantage of being well documented and having an active user community.\par
 
 \subsubsection*{Heroku}
 
@@ -509,7 +511,7 @@ The Euclidean distance between two instances $A^{(1)}$ and $A^{(2)}$ is therefor
 	$\sqrt{(a_1^{(1)} - a_1^{(2)})^2 + (a_2^{(1)} - a_2^{(2)})^2 + ... + (a_k^{(1)} - a_k^{(2)})^2}$.
 \end{center}
 
-As mentioned in \Cref{data_process}, a new instance of the \verb|IBk| class was created, trained on the initial dataset, using 5-folds \textbf{cross-validation}: this technique consists in splitting the dataset in 5 partitions, and in turn, using each partition for testing the result of training on the other partitions. \cite[Chapter~5]{wekabook} The trained classifier was then output to a .model file, which was stored in the Android project as an asset, so the classifier object could be retreived within the app.
+As mentioned in \Cref{data_process}, a new instance of the \verb|IBk| class was created, trained on the initial dataset, using 5-folds \textbf{cross-validation}: this technique consists in splitting the dataset in 5 partitions, and in turn, using each partition for testing the result of training on the other partitions. \cite[Chapter~5]{wekabook} The trained classifier was then output to a \textit{.model} file, which was stored in the Android project as an asset, so the classifier object could be retrieved within the app.
 
 \subsection*{ARFF Files}
 
@@ -528,36 +530,94 @@ Weka requires datasets to be provided in ARFF format (which stands for attribute
 
 \subsection*{Customization of the User Interface}
 
-The user experiment described in \Cref{wireframes} showed two main groups of users: those who favoured a clear, simple interface, which did not require much effort to read or understand, and those who enjoyed an interactive interface with images better. Because it did not seem possible to create one interface which could satisfy all the users, several layouts were implemented, so users could customize their own application by changing the settings, as shows figure ....
+\begin{figure}[h]
+	\centering
+	\minipage{0.3\textwidth}
+		\includegraphics[width=\linewidth]{images/settings_interface}
+		\caption{Interface Settings.}
+		\label{fig:settings_interface}		
+	\endminipage\hfill
+	\minipage{0.3\textwidth}
+		\includegraphics[width=\linewidth]{images/text_input}	
+		\caption{Main screen: Text input.}	
+		\label{fig:text_input}
+	\endminipage\hfill
+	\minipage{0.3\textwidth}
+		\includegraphics[width=\linewidth]{images/image_input}
+		\caption{Main screen: Image input.}	
+		\label{fig:image_input}
+	\endminipage
+\end{figure}
+The user experiment described in \Cref{wireframes} showed two main groups of users: those who favoured a clear, simple interface, which did not require much effort to read or understand, and those who enjoyed an interactive interface with images better. Because it did not seem possible to create one interface which could satisfy all the users, several layouts were implemented, so users could customize their own application by changing the settings, as shows \Cref{fig:settings_interface}.
 
-[Screen shot of settings screen]
+\Cref{fig:text_input} and \ref{fig:image_input} shows two different interfaces, one using text input, the other using image input,  displaying the same information.
 
-\textbf{??} and \textbf{??} show two different interfaces, displaying the same information.
+\begin{figure}[h]
+	\centering
+	
+\end{figure}
 
-[Screen shots of main activity using text and using images]
+Users can also choose to select the concept to be predicted using a pop-up window, or tabs on the main screen, as can be seen on \Cref{fig:concept_selection}.
 
-Users can also choose to select the concept to be predicted using a pop-up window, or tabs on the main screen, as can be seen on \textbf{??} and \textbf{??}.
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{images/class_dialog}		
+		\subcaption{Pop-up dialog.}
+	\end{subfigure}		
+	\quad
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{images/class_tabs}
+		\subcaption{Tabs.}
+	\end{subfigure}			
+	\caption{Concept selection.}
+	\label{fig:concept_selection}
+\end{figure}
 
-[Screen shots of class dialog and class tabs]
+Finally, when the ``Story details Input'' is set to ``Images'', users can choose to browse through the images of the attributes they have to input using a spinner or view all of them in a grid (\Cref{fig:images_selection}).
 
-Finally, when the ``Story details Input'' is set to ``Images'', users can choose to browse through the images of the attributes they have to input using a spinner (\textbf{??}) or view all of them in a grid (\textbf{??}).
-
-[Screen shots of grid view and spinner view]
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{images/spinner_selector}		
+		\subcaption{Spinner.}
+	\end{subfigure}		
+	\quad
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{images/grid_selector}
+		\subcaption{Grid.}
+	\end{subfigure}			
+	\caption{Images selection.}
+	\label{fig:images_selection}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Attributes Selection}
 
-In order to select the features they want to input, users can press check boxes for all the attributes they are interested in, displayed in a pop-up window (\textbf{??}) or a navigation drawer (\textbf{??}): this is also customizable in the settings.
+In order to select the features they want to input, users can press check boxes for all the attributes they are interested in, displayed in a pop-up window or a navigation drawer (\Cref{fig:attributes_selection}): this is also customizable in the settings.
 
-[Screen shots of dialog and drawer]
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{images/attributes_dialog}		
+		\subcaption{Pop-up dialog.}
+	\end{subfigure}		
+	\quad
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{images/attributes_drawer}
+		\subcaption{Navigation drawer.}
+	\end{subfigure}			
+	\caption{Attributes selection.}
+	\label{fig:attributes_selection}
+\end{figure}
 
-As visible on \textbf{??} and \textbf{??}, the number of ratings, extracted from Goodreads, was not included after all, since users cannot know this information about the book they are interested in, unless they are able to access the website themselves, which is not assumed to be true (as the system should be usable off-line). For the same reason, no attempt was made to get the app to fetch the information itself. \par
+As visible on \Cref{fig:attributes_selection}, the number of ratings, extracted from Goodreads, was not included after all, since users cannot know this information about the book they are interested in, unless they are able to access the website themselves, which is not assumed to be true (as the system should be usable off-line). For the same reason, no attempt was made to get the app to fetch the information itself. \par
 
 Furthermore, the title of the novel is ignored by the classifier, and only used to keep track of the novel of interest. The reason for this is that the IBk classifier cannot handle string attributes. It is therefore necessary to filter the title so it is converted into a nominal attribute (using the \verb|StringToNominal| filter) or into a ``set of nominal attributes representing word occurrence information from the text contained in the string'' (using the \verb|StringToWordVector| filter). However, filters cannot be applied to attributes in the app's code because they also use a class from the \verb|java.awt| package, which is, as mentioned in \Cref{wekadiff}, not available in Android.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Missing Values}
-The unselected attributes are handled as missing. In Weka, missing values are treated differently for each classifier. When two attributes $a_i^{(1)}$ and $a_i^{(2)}$are compared with IBk, if one of them (say $a_i^{(1)}$) has a missing value, then:
+\subsubsection*{Missing Values}\label{missing_values}
+The unselected attributes are handled as missing. In Weka, missing values are treated differently for each classifier. When two attributes $a_i^{(1)}$ and $a_i^{(2)}$are compared with IBk, if one of them (say $a_i^{(1)}$) has a missing value, then (after normalization):
 \begin{itemize}[topsep=0pt]
 	\item if it is a numeric attribute, the difference between the attributes is
 	\begin{equation}
@@ -572,9 +632,21 @@ The unselected attributes are handled as missing. In Weka, missing values are tr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Prediction Output}
 
-Once all the fields corresponding to the selected attributes have been populated, users can press the ``Go Detect'' button, and generate a prediction based on their input (\textbf{??}). 
+Once all the fields corresponding to the selected attributes have been populated, users can press the ``Go Detect'' button, and generate a prediction based on their input (\Cref{fig:prediction_screen}). 
 
-[Screen shot of prediction activity]
+\begin{figure}[h]
+	\centering
+	\minipage{0.3\textwidth}
+		\includegraphics[width=\linewidth]{images/prediction_screen}
+		\caption{Prediction Screen.}
+		\label{fig:prediction_screen}		
+	\endminipage\quad
+	\minipage{0.3\textwidth}
+		\includegraphics[width=\linewidth]{images/right_answer_dialog}
+		\caption{Dialog to submit the right value.}
+		\label{fig:right_answer_dialog}		
+	\endminipage
+\end{figure}
 
 Based on the probability distribution of the predicted value, and on the number of input attributes, the prediction is followed by a sentence simulating the system expressing how confident it is about its guess (this seemed more user-friendly than simply outputting a percentage).\par
 
@@ -582,15 +654,18 @@ Users can then press
 \begin{itemize}[topsep=0pt]
 	\item ``Back'' to return to verify or rectify their input,
 	\item the ``Correct'' button to validate the prediction, and go back to the reset details input screen,
-	\item the ``Incorrect'' button and be prompted to submit the value that should have been predicted.
+	\item the ``Incorrect'' button and be prompted to submit the value that should have been predicted (\Cref{fig:right_answer_dialog}).
 \end{itemize}
 
-[Screen shots of dialogs]
+\begin{figure}[h]
+	\centering
+	
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Communication with the Server}
 
-In the earliest version of the system during the third iteration, the training dataset was stored on the server-side, in a .txt file which could be downloaded by the clients, or updated by the server when new data was added. \par
+In the earliest version of the system during the third iteration, the training dataset was stored on the server-side, in a \textit{.txt} file which could be downloaded by the clients, or updated by the server when new data was added. \par
 
 When a user launched the app, it had to check whether new entries were added since the last time the app was used. The initial way to do this was to compare the size of the two files: if the server's file was larger than the local one, it meant that the app's dataset had to be updated. This did not work as expected however, because when an application is deployed on Heroku, it is assembled into a compressed bundle \cite{herokuslug}. Consequently, the size of the file stored on the server was not accurate. \par 
 
@@ -615,14 +690,13 @@ In order to check whether an entry is new to a given client, each entry is assig
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Evaluation}\label{evaluation}
 
-Two evaluation sessions were organised one on the wireframes, and one on the final application. 
-
+\section{Accuracy}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Final App}
+\section{Usability}
 
-For the final product evaluation,  were first asked to list the possible attributes (year of publication, point of view, location, detective, murder weapon, victim's gender, murderer's gender and ratings) in a random order. They were then given access to the training set, and were asked to pick 5 different titles from the dataset. \par
+For the final product evaluation, users were first asked to list the possible attributes (year of publication, point of view, location, detective, murder weapon, victim's gender, murderer's gender and ratings) in a random order. They were then given access to the training set, and were asked to pick 5 different titles from the dataset. \par
 
 Based on the order in which they had listed the features, they were had to produce predictions for each one of the 5 novels they picked, leaving out between 0 and 5 attributes. The idea was to show them that the instances were selected randomly, so that, in case they received the right answers, it did not look like I had chosen novels for which I knew the predictions would be correct. They were also given the choice to use any other novel, as long as they were certain of the correctness of the details of the story, which would impact the accuracy of the predictions. \par 
 
@@ -646,7 +720,7 @@ During the whole process, I observed the participants while they used the system
 
 The first one corresponds to the user stories number 3 and 4 mentioned in the Requirements section, to allow the users to make a guess on the identity of the killer, and receive the likelihood of their supposition to be correct. The users would have to input details about the character they suspect, and the app would compare those elements to its own prediction. Based on the number of matching attributes, the app could output a percentage notifying the users how close they are of finding the culprit. \par
 
-Another potential functionality is related to the context of the user-interaction with the system. The idea is for detective novels fans to be able to use the app, while reading a book. If they get a clue on the murderer before the end of the story, they cannot know whether or not the prediction is right, as the identity of the culprit has not been revealed yet. It could therefore be made possible for the users to save the prediction they received, and go back to it later to confirm it or input the correct data if it was wrong.
+Another potential functionality is related to the context of the user-interaction with the system. The idea is for detective novels fans to be able to use the app, while reading a book. If they receive a clue on the murderer before the end of the story, they cannot know whether or not the prediction is right, as the identity of the culprit has not been revealed yet. It could therefore be made possible for the users to save the prediction they received, and go back to it later to confirm it or input the correct data if it was wrong.
 
 \subsection*{Accuracy}
 
@@ -655,9 +729,15 @@ The accuracy of the predictions could be increased by improving the dataset, so 
 Once such attributes were found, the interface of the app could then be updated, so that it can handle more concepts, other than the murder weapon and the gender of the murderer. Thus any attribute directly related to the murderer could be the possible target of the predictions.
 It could also be useful to consider features related to the title of the book: for example checking if the title contains a reference to a location, to a person, to a mean of transport, or to a weapon, and whether such reference helps to infer anything about the murderer.
 	
+\subsection*{Data Sharing}
+
+The system could be updated by implementing a verification system, to ensure the veracity of the user input. Currently, if two users send two different causes of death for the same novel, the existing entry in the database will be overwritten by the most recent one. Instead, it could be better to store the input data in a temporary location, and compare the different values sent, using a voting mechanism to only retain the most popular value.
+
+Further improvement could involve modifying the web scraping script to find a novel with the title entered by the user if it exists, or the closest novel to it if the title does not match any book in the Goodreads table.
+
 \subsection*{Scalability}
 
-In order to reduce the time spent waiting for the different components to exchange information, in the event of having several thousands of users, the system could be to remodelled, so that the training is handled by the server and not the client. The server would not even need to store any data, it would just receive it, retrain the classifier, and send a .model file containing the output classifier, which could then be loaded by the client to retrieve the Classifier object. \par
+In order to reduce the time spent waiting for the different components to exchange information, in the event of having several thousands of users, the system could be remodelled, so that the training is handled by the server and not the client. The server would not even need to store any data, it would just receive it, retrain the classifier, and send a \textit{.model} file containing the output classifier, which could then be loaded by the client to retrieve the Classifier object. \par
 
 This solution would then require using the Weka library with python, which is only possible to a certain extent, given that none of the different packages and libraries which can be used for this purpose seems to implement all the functionalities found in the Java version of Weka \cite{wekapython}. It might even be necessary to use a completely different library, to be exclusively used with Python, such as scikit-learn \cite{scikit-learn} or pybrain \cite{pybrain}. \par
 
@@ -665,13 +745,17 @@ Another approach could be to handle all the machine learning side of the system 
 
 This solution has several advantages. The first one is that it reduces the client-server communications to the minimum, that is, when the users request a prediction, and when they submit the correct answer after the system made a wrong conjecture. The data sent in those cases would be up to a few hundreds of bytes, which means that the requests would be sent in a few seconds at most. \par
 
-Another advantage is that the Android app would not have to store the .jar file containing the Weka source code, or any of the classes which handle the machine learning, and would therefore take much less space in the devices' memory. It would also use less memory, given that it would have fewer processes to handle. \par
+Another advantage is that the Android app would not have to store the \textit{.jar} file containing the Weka source code, or any of the classes which handle the machine learning, and would therefore take much less space in the devices' memory. It would also use less memory, given that it would have fewer processes to handle. \par
 
 Moreover, it would substantially increase the reusability and portability of the system. Indeed, this structure would allow a better separation of concerns, making the system responsible for the backend, and the device for the frontend. As a result, it would be much easier for another developer to implement the system for other Operating Systems, by only having to modify the code for the interface. \par
 
 The drawbacks, however, include the restriction caused by using Weka in Python, as well as enforcing the users' devices to be connected to the network for the app to output any prediction. This is not the case with the current version, as the users are asked permission before downloading the updated dataset, or before sending the correct answer to the server. Should they choose to refuse, they would miss out on additional data to make the predictions more accurate, yet their classifier would still be locally updated.
 
 \section{Reflection on the Project}
+
+This project was an enriching experience. It allowed me to both discover two computer science field and technique I was not familiar with -- web scraping and machine learning -- and reinforce my knowledge of some of the different topics we covered during the Masters courses. In particular, it gave me the opportunity to apply the theory behind the software development process and have an insight of all the phases and the amount of work they require.
+
+Overall, I enjoyed most parts of this project, but more specifically working autonomously on a fun subject, in collaboration with my supervisor, and finding solutions to the problems I faced. Even though it could be improved, the fact that I continuously felt challenged makes me appreciate the end result even more.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
