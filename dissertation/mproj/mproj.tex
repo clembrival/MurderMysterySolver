@@ -74,7 +74,6 @@ acknowledgements go here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Background Survey}\label{survey}
 
-
 \section{Detective Stories}
 
 
@@ -142,7 +141,10 @@ They do not require input from the user, as the data is collected from online so
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Requirements}
 
-For this project, two main user roles were defined: readers and writers of detective stories. The requirements of the system were gathered during several meetings with the project supervisor, who acted as the main stakeholder, and a proxy for the different types of users. 
+Having discussed the related study and applications, the following chapter recounts the first phase of the development: the requirements definition. \par
+
+For this project, two main user roles were defined: readers and writers of detective stories. The requirements of the system were gathered during several meetings with the project supervisor, who acted as the main stakeholder, and a proxy for the different types of users. \par 
+
 In accordance with the agile methodology used throughout the whole development process, the functional and nonfunctional requirements of the system are listed below, as well as user stories\footnote{User stories describe small tasks that a user might want to undertake when using the system. \cite[Chapter~1]{userstoriesbook}} and constraints\footnote{Constraints are user stories describing nonfunctional requirements. \cite{userstoriesbook}} created based on those requirements. 
 
 
@@ -181,7 +183,7 @@ A user can\ldots
 	\item specify whether a prediction is correct or not.
 	\item input the the correct value in case of a wrong prediction.
 	\item send the rectified prediction to a server.
-	\item download the rectified predictions added to the server by other users. \par
+	\item download the rectified predictions added to the server by other users. \\\\
 \end{enumerate}
 
 The system should\ldots
@@ -196,7 +198,7 @@ The system should\ldots
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Design}
 
-The first few weeks of the project were spent researching Machine Learning and getting used to Weka, then applying the theory on the murder mystery problem, which consisted in choosing the features to analyse and building the training set. \par
+This chapter follows on from the previous chapter, which laid out the systems requirements, and covers the initial tasks undertaken for this project: gathering data and processing it, determining the different components of the system, and designing the graphical user interface. \par
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \section{Data Gathering and Processing}\label{data_process}
@@ -377,10 +379,12 @@ Again, a summary of the most recurring comments about each interface is listed b
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Implementation}\label{implementation}
 
+This chapter describes the system in more details, discussing the choices for the different technologies and algorithms used to implement it, as well as defining the key functionalities, and the techniques used to test them. \par 
+
 The implementation section of the project was divided into three iterations. 
 The first iteration aimed at creating a fixed predictor: the user inputs data, and receives a prediction (user stories 1, 2 and 5). 
 The objective of second iteration was to retrain the classifier on-the-fly, within the application (user stories 6 and 7). 
-For the last iteration, crowdsourced data gathering and training were implemented (user stories 8 and 9). \par
+For the last iteration, crowdsourced data gathering and training were implemented (user stories 8 and 9).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Technologies Used}
@@ -552,11 +556,6 @@ The user experiment described in \Cref{wireframes} showed two main groups of use
 
 \Cref{fig:text_input} and \ref{fig:image_input} shows two different interfaces, one using text input, the other using image input,  displaying the same information.
 
-\begin{figure}[h]
-	\centering
-	
-\end{figure}
-
 Users can also choose to select the concept to be predicted using a pop-up window, or tabs on the main screen, as can be seen on \Cref{fig:concept_selection}.
 
 \begin{figure}[h]
@@ -592,7 +591,7 @@ Finally, when the ``Story details Input'' is set to ``Images'', users can choose
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Attributes Selection}
+\subsection*{Attributes Selection}\label{attributes}
 
 In order to select the features they want to input, users can press check boxes for all the attributes they are interested in, displayed in a pop-up window or a navigation drawer (\Cref{fig:attributes_selection}): this is also customizable in the settings.
 
@@ -610,6 +609,8 @@ In order to select the features they want to input, users can press check boxes 
 	\caption{Attributes selection.}
 	\label{fig:attributes_selection}
 \end{figure}
+
+It should be mentioned that users are required to select at least two different attributes before generating a prediction. The reason for this decision is that it was considered that any prediction with only one attribute would not narrow down the range of possible outcomes enough for the prediction to be regarded as anything but random. \par
 
 As visible on \Cref{fig:attributes_selection}, the number of ratings, extracted from Goodreads, was not included after all, since users cannot know this information about the book they are interested in, unless they are able to access the website themselves, which is not assumed to be true (as the system should be usable off-line). For the same reason, no attempt was made to get the app to fetch the information itself. \par
 
@@ -672,6 +673,7 @@ When a user launched the app, it had to check whether new entries were added sin
 To overcome this issue, the number of entries in the dataset was stored in a database. This integer was incremented for every new instance shared by a user, and used instead to compare the two datasets. If the app's training set had fewer instances, it would then download the content of the server's file, extract the newest entries, and update the classifier on each entry, while also adding it to the local file. When a user invalidated a prediction and agreed to share the details with the other users, the data was sent as a string to the server, which added a new line to the file with that data.\par
 
 This was easy and convenient, especially for testing, but not optimal in terms of scalability: if several thousands of users were to use the app, and the training set updated regularly, that file would quickly become very large, and having all the users to download it every time they launch the app would not be practical. Alternatively, all the instances of server's training set were stored in the database. Instead of downloading the whole content of a file, the client-apps now only fetch the new entries when the user starts the app. This is described in \Cref{fig:launch}.
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{images/app_launching_diagram}
@@ -680,6 +682,7 @@ This was easy and convenient, especially for testing, but not optimal in terms o
 \end{figure}
 
 In order to check whether an entry is new to a given client, each entry is assigned a timestamp with the date and time it was sent to the server. Each client also keeps the time it last downloaded new data, so that the server can send all the entries that were added after the client's last update. Additionally, when the user submits new data, a new entry is created in the database, and the server returns the timestamp for the transaction, as shown in \Cref{fig:new_entry}.
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{images/wrong_prediction_diagram}
@@ -687,10 +690,53 @@ In order to check whether an entry is new to a given client, each entry is assig
 	\label{fig:new_entry}
 \end{figure}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Testing}
+
+The UI of the application was manually tested for every change made to the code. More specifically, incorrect input was regularly simulated to ensure that error messages were displayed and therefore avoid as many unexpected behaviours of the application as possible.
+
+The integrity of the input data was tested by printing Log messages, before and after it was sent to the server. This technique turned out to be much more invaluable than expected, as it made me realise how the predictions were influenced by the use of improper capital letters or spaces in some values: for instance, the application would crash when a user selected ``Throat Slit'' as the murder weapon, because this value was declared as ``ThroatSlit'' in the description of the attributes used to train the classifier: it was therefore not recognised as a valid value. 
+
+Finally, the predictions themselves were tested externally, by creating a Java program which reproduced the same tasks as the ones executed by the application, and outputting the results in a console. 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Evaluation}\label{evaluation}
 
 \section{Accuracy}
+
+An experiment was conducted with two aims: assessing the accuracy of the system, and identifying the attributes which had the biggest impact on the predictions. 
+
+For this purpose, a Java program was created, generating all the possible combinations of attributes which could be selected by users, to predict the cause of death of the victim and the gender of the murderer, for all 66 instances of the training set.
+
+The different attributes were assigned the following numbers:
+\begin{enumerate}[topsep=0pt]
+	\item year of publication
+	\item detective
+	\item location
+	\item point of view
+	\item cause of death
+	\item victim's gender
+	\item murderer's gender
+	\item book's rating,
+\end{enumerate}
+Combinations of attributes were then expressed as strings of numbers: for example ``125'' means that the selected attributes are the year of publication, the detective and the gender of the victim. (The title of the novel is not included as it is ignored by the classifier, as explained in \Cref{attributes}.)
+
+Because users can select between 2 and 7 attributes --- 2 being the minimum number of attributes that have to be selected to generate a prediction (also mentioned in \Cref{attributes}), and 7 the maximum, as either the cause of death or the murderer's gender will be predicted, which means they cannot be used to predict their own value ---, only the combinations of 2 to 7 numbers were considered, ignoring either number 5 or number 7 based on the attribute to be predicted.
+
+For every combination generated, a temporary testing set was created, containing 66 instances, which values were either the same as the ones in the training set for the selected attributes (i.e. the attributes which corresponding number was included in the combination), or ``?'' for the unselected attributes.
+
+Moreover, to reproduce the fact that users can only assign a whole or half value between 0.5 and 5 to the book's rating, the training set's ratings were rounded to the nearest half point.
+
+The program then classified each instance, and compared the predicted values to the ones saved in the training instances, counting the number of correct values and expressing them as percentages. The results were added to two lists (one for the cause of death, one for the murderer's gender), which were ordered by descending combination length and ascending percentage, then output to two files with the following format: 
+\begin{center}
+	\vspace{-5mm}
+	\verb|combination, percentage_of_correct_predictions|
+\end{center}
+
+Based on the values contained in those files (which can be viewed in \textbf{??}), the system is able to predict the correct cause of death for \textbf{89\%} of the training instances, and the murderer's gender for \textbf{93\%} of the instances. The difference between the two results is not surprising, as there are fewer possible values for the murderer's gender, which means that there is a lesser margin for error.
+
+Given that the created temporary instances were assigned the same values as the training instances for all the attributes but the books ratings, the experiment program was updated so the incorrect instances were saved, and reclassified with all the ratings between 0.5 and 5
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
