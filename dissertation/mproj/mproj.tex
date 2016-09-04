@@ -42,7 +42,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{abstract}
-abstract goes here
+This project aimed to develop a system which would help readers of detective stories to identify the culprit. Detective fiction is a very popular genre, and counts numerous authors, including ``The Queen of Crime'' Agatha Christie. This dissertation describes the process of creating a mobile application, which analyses Agatha Christie's novels, and uses machine learning to output a prediction on the murderer of a story, which details were input by a user. To mitigate the production of incorrect predictions, the application communicates with a server hosting a database, so users can, after rectifying invalid predictions, share their data with other users and retrain their application on uploaded information.
 \end{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -71,11 +71,21 @@ acknowledgements go here
 \section{Problem Motivation}
 
 
+\section{Outline}
+
+This dissertation includes the following chapters: 
+\begin{itemize}
+	\item \textbf{Background Survey}, which reviews similar research and mobile applications,
+	\item \textbf{Requirements}, which recounts the gathering of high level requirements, and their equivalent in terms of user stories,
+	\item \textbf{Design}, which details the system's architecture and interface, along with the collection of the data which was used in the system,
+	\item \textbf{Implementation}, which outlines the choices for the technologies and algorithms used to build the system, as well as the functionalities handled by the application, and the techniques employed to test it,
+	\item \textbf{Evaluation}, which describes two experiments, one aiming at estimating the accuracy of the predictions, and the other assessing the usability of the application.
+\end{itemize}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Background Survey}\label{survey}
 
 \section{Detective Stories}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Machine Learning}\label{machine_learning}
@@ -134,9 +144,25 @@ Moreover, although entertaining, the puzzles sometimes tend to be slightly too e
 
 \subsection*{Predictive apps}
 
-Most Android predictive apps are sport-related. Analysing statistics from several games (or years even), those apps aim to forecast the outcome of matches. 
-They do not require input from the user, as the data is collected from online sources, so there is no real interaction between the app and the user (there is no feeling of contributing to making the predictions better).
+\begin{wrapfigure}{r}{0.20\textwidth}
+	\vspace{-10pt}
+	\centering
+	\includegraphics[scale=0.25]{images/football_prediction}
+	\caption{Football Prediction icon.}
+	\vspace{-25pt}
+\end{wrapfigure}
 
+Most Android predictive apps are sport-related. This is the case of  ``Football Prediction'' \cite{footballprediction}, created by Sauzanaprod, which analyses statistics from several games (or years even), and aims to forecast the outcome of matches. Such apps do not require input from the user, as the data is collected from online sources, so there is no real interaction between the app and the user (there is no feeling of contributing to making the predictions better).
+
+\begin{wrapfigure}{l}{0.20\textwidth}
+	\vspace{-10pt}
+	\centering
+	\includegraphics[scale=0.25]{images/prediction_guru}
+	\caption{Prediction Guru icon.}
+	\vspace{-30pt}
+\end{wrapfigure}
+
+Conversely, apps such as ``Prediction Guru'' \cite{predictionguru}, created by the company of the same name, allows users to make predictions about games, so they can earn coins as a reward and compete with their friends to be the most accurate possible. In this instance, the application itself does not handle any of the predictions, but only provides useful information to the users to help them guess the outcome of matches.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Requirements}
@@ -215,7 +241,7 @@ In order to process all this information, a Java program was created, to create 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=\textwidth]{images/design_diagram}
+	\includegraphics[width=0.8\textwidth]{images/design_diagram}
 	\caption{Schematic design of the system architecture.}
 	\label{fig:design}
 \end{figure}
@@ -229,7 +255,7 @@ To handle user stories 8 and 9 (\Cref{user_stories}), the smartphone app connect
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=\textwidth]{images/system_architecture}
+	\includegraphics[width=0.8\textwidth]{images/system_architecture}
 	\caption{System's Three-Tiered Architecture.}
 	\label{fig:architecture}
 \end{figure}
@@ -246,7 +272,7 @@ When designing the application's interface, 5 wireframes were created, using myb
 	\item multiple screens accessed by pressing Next/Previous buttons, with images in a vertical scrollable frame (\Cref{fig:wireframeE}).
 \end{enumerate}
 	
-In order to find the interface which appealed to most users before starting the implementation, a first evaluation was undertaken, for which 10 users were asked to examine the 5 different wireframes described previously. They then had to give their thoughts about the layout and the feature selector they liked the least, as well as the ones they liked the most, and to explain their choices.
+In order to find the interface which appealed to most users before starting the implementation, a first evaluation was undertaken, for which 10 users were asked to examine the 5 different wireframes described previously. They then had to give their thoughts about the \textbf{layout} (the way the elements are displayed on the screen) and the feature \textbf{selector} (the widget used to select the attributes) they liked the least, as well as the ones they liked the most, and to explain their choices.
 
 \subsection*{Layouts}
 
@@ -254,7 +280,7 @@ In order to find the interface which appealed to most users before starting the 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=\textwidth]{images/layout_feedback}
+	\includegraphics[width=0.8\textwidth]{images/layout_feedback}
 	\caption{Column chart showing the number of positive, negative and cumulative votes for each layout.}
 	\label{fig:layout_feedback}
 \end{figure}
@@ -299,7 +325,7 @@ A summary of the most recurring comments about each interface is listed below.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=\textwidth]{images/selector_feedback}
+	\includegraphics[width=0.8\textwidth]{images/selector_feedback}
 	\caption{Column chart showing the number of positive, negative and cumulative votes for each feature selector.}
 	\label{fig:selector_feedback}
 \end{figure}
@@ -487,17 +513,21 @@ Weka contains over 50 implementations of classifiers. \cite[Table~11.5]{wekabook
 	\label{tab:updateable}
 \end{table}
 
-The two most accurate classifiers are IBk and KStar. Both algorithms use \textbf{nearest-neighbour classification}, which consists in comparing each new instance to existing ones, by calculating the distance separating the new instance to known instances, and predicts the same class as the training instance which is the closest to the new instance. \cite[Chapter~3]{wekabook} \par 
+The two most accurate classifiers are IBk and KStar. Both algorithms use \textbf{nearest-neighbour classification}, which consists in comparing each new instance to existing ones, by calculating the distance separating the new instance to known instances, and predicts the same class as the training instance which is the closest to the new instance. \cite[Chapter~3]{wekabook} 
+
+Consequently, the fact that these algorithms managed to classify all the instances correctly is not surprising, as the predicted instances simply overlap with the training ones. This is not the case for the other algorithms, which use probabilities to make predictions. The reason why their performance is so low is related to the training set which is not well-balanced: indeed, the most recurring cause of death and murderer's gender is 'Poison' and 'Male'. Most instances were therefore classified with those labels.
 
 Since both classifiers seemed to have similar performances, IBk was arbitrarily chosen. IBk looks for the closest training example using the \textbf{Euclidean distance} \cite[Chapter~11]{wekabook}. To compute the distance between two instances $A^{(1)}$ with $k$ attributes $a_1^{(1)}, a_2^{(1)}, ..., a_k^{(1)}$ and $A^{(2)}$ with $k$ attributes $a_1^{(2)}, a_2^{(2)}, ..., a_k^{(2)}$, it is first necessary to define the \textbf{difference between two attributes} $a_i^{(1)}$ and $a_i^{(2)}$. \cite[Chapter~4]{wekabook}
 
 If the attributes are numeric, then the difference between them is 
 \begin{center}
+	\vspace{-5mm}
 	$(a_i^{(1)} - a_i^{(2)})$.
 \end{center}
 
 However, numeric attributes have to be normalized, as two different attributes could have different scales (for example, the year of publication is greater than 1800, whereas the average ratings is less or equal to 5). Given $v_i$ the actual value of attribute $i$, $a_i$ becomes:
 \begin{center}
+	\vspace{-5mm}
 	$a_i = \frac{v_i - \text{min } v_i}{\text{max } v_i - \text{min } v_i}$
 \end{center}
 with min $v_i$ and max $v_i$ being respectively the minimum and the maximum values of attribute $i$ in the entire training set. 
@@ -524,7 +554,7 @@ Weka requires datasets to be provided in ARFF format (which stands for attribute
 	\item the header, which contains 
 	\begin{itemize}
 		\item the name of the relation (typically what each instance of the dataset represents --- in our case, ``novel''), preceded by \verb|@RELATION|,
-		\item the list of attributes with the following format: \verb|@ATTRIBUTE name type|,
+		\item the list of attributes with the following format: \verb|@ATTRIBUTE name type| --- possible types include: string, numeric, nominal, date;
 	\end{itemize}
 	\item the data, preceded by \verb|@DATA|, with each instance on a different line, and the values for each instance separated by commas.
 \end{itemize}
@@ -536,53 +566,55 @@ Weka requires datasets to be provided in ARFF format (which stands for attribute
 
 \begin{figure}[h]
 	\centering
-	\minipage{0.3\textwidth}
+	\minipage{0.205\textwidth}
 		\includegraphics[width=\linewidth]{images/settings_interface}
 		\caption{Interface Settings.}
 		\label{fig:settings_interface}		
-	\endminipage\hfill
-	\minipage{0.3\textwidth}
-		\includegraphics[width=\linewidth]{images/text_input}	
-		\caption{Main screen: Text input.}	
-		\label{fig:text_input}
-	\endminipage\hfill
-	\minipage{0.3\textwidth}
-		\includegraphics[width=\linewidth]{images/image_input}
-		\caption{Main screen: Image input.}	
-		\label{fig:image_input}
+	\endminipage\quad
+	\minipage{0.5\textwidth}
+		\centering
+		\begin{subfigure}{0.4\linewidth}
+			\includegraphics[width=\linewidth]{images/text_input}	
+			\subcaption{Text input.}	
+		\end{subfigure}
+		\quad
+		\begin{subfigure}{0.4\linewidth}
+			\includegraphics[width=\linewidth]{images/image_input}
+			\subcaption{Image input.}	
+		\end{subfigure}
+		\caption{Main Screen.}
+		\label{fig:main_screen}
 	\endminipage
 \end{figure}
 The user experiment described in \Cref{wireframes} showed two main groups of users: those who favoured a clear, simple interface, which did not require much effort to read or understand, and those who enjoyed an interactive interface with images better. Because it did not seem possible to create one interface which could satisfy all the users, several layouts were implemented, so users could customize their own application by changing the settings, as shows \Cref{fig:settings_interface}.
 
-\Cref{fig:text_input} and \ref{fig:image_input} shows two different interfaces, one using text input, the other using image input,  displaying the same information.
-
-Users can also choose to select the concept to be predicted using a pop-up window, or tabs on the main screen, as can be seen on \Cref{fig:concept_selection}.
+\Cref{fig:main_screen} shows two different interfaces, one using text input, the other using image input,  displaying the same information.
 
 \begin{figure}[h]
 	\centering
-	\begin{subfigure}{0.3\textwidth}
+	\begin{subfigure}{0.25\textwidth}
 		\includegraphics[width=\textwidth]{images/class_dialog}		
 		\subcaption{Pop-up dialog.}
 	\end{subfigure}		
 	\quad
-	\begin{subfigure}{0.3\textwidth}
+	\begin{subfigure}{0.25\textwidth}
 		\includegraphics[width=\textwidth]{images/class_tabs}
-		\subcaption{Tabs.}
+		\subcaption{Menu bar with tabs.}
 	\end{subfigure}			
 	\caption{Concept selection.}
 	\label{fig:concept_selection}
 \end{figure}
 
-Finally, when the ``Story details Input'' is set to ``Images'', users can choose to browse through the images of the attributes they have to input using a spinner or view all of them in a grid (\Cref{fig:images_selection}).
+Users can also choose to select the concept to be predicted using a pop-up window, or tabs on the main screen, as can be seen on \Cref{fig:concept_selection}.
 
 \begin{figure}[h]
 	\centering
-	\begin{subfigure}{0.3\textwidth}
+	\begin{subfigure}{0.25\textwidth}
 		\includegraphics[width=\textwidth]{images/spinner_selector}		
 		\subcaption{Spinner.}
 	\end{subfigure}		
 	\quad
-	\begin{subfigure}{0.3\textwidth}
+	\begin{subfigure}{0.25\textwidth}
 		\includegraphics[width=\textwidth]{images/grid_selector}
 		\subcaption{Grid.}
 	\end{subfigure}			
@@ -590,25 +622,27 @@ Finally, when the ``Story details Input'' is set to ``Images'', users can choose
 	\label{fig:images_selection}
 \end{figure}
 
+Finally, when the ``Story details Input'' is set to ``Images'', users can choose to browse through the images of the attributes they have to input using a spinner, or view all of them in a grid (\Cref{fig:images_selection}).
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Attributes Selection}\label{attributes}
 
-In order to select the features they want to input, users can press check boxes for all the attributes they are interested in, displayed in a pop-up window or a navigation drawer (\Cref{fig:attributes_selection}): this is also customizable in the settings.
-
 \begin{figure}[h]
 	\centering
-	\begin{subfigure}{0.3\textwidth}
+	\begin{subfigure}{0.25\textwidth}
 		\includegraphics[width=\textwidth]{images/attributes_dialog}		
 		\subcaption{Pop-up dialog.}
 	\end{subfigure}		
 	\quad
-	\begin{subfigure}{0.3\textwidth}
+	\begin{subfigure}{0.25\textwidth}
 		\includegraphics[width=\textwidth]{images/attributes_drawer}
 		\subcaption{Navigation drawer.}
 	\end{subfigure}			
 	\caption{Attributes selection.}
 	\label{fig:attributes_selection}
 \end{figure}
+
+In order to select the features they want to input, users can press check boxes for all the attributes they are interested in, displayed in a pop-up window or a navigation drawer (\Cref{fig:attributes_selection}): this is also customizable in the settings.
 
 It should be mentioned that users are required to select at least two different attributes before generating a prediction. The reason for this decision is that it was considered that any prediction with only one attribute would not narrow down the range of possible outcomes enough for the prediction to be regarded as anything but random. \par
 
@@ -637,12 +671,12 @@ Once all the fields corresponding to the selected attributes have been populated
 
 \begin{figure}[h]
 	\centering
-	\minipage{0.3\textwidth}
+	\minipage{0.25\textwidth}
 		\includegraphics[width=\linewidth]{images/prediction_screen}
 		\caption{Prediction Screen.}
 		\label{fig:prediction_screen}		
 	\endminipage\quad
-	\minipage{0.3\textwidth}
+	\minipage{0.25\textwidth}
 		\includegraphics[width=\linewidth]{images/right_answer_dialog}
 		\caption{Dialog to submit the right value.}
 		\label{fig:right_answer_dialog}		
@@ -705,24 +739,34 @@ Finally, the predictions themselves were tested externally, by creating a Java p
 
 \section{Accuracy}
 
+\subsection*{Description of the experiment}
+
 An experiment was conducted with two aims: assessing the accuracy of the system, and identifying the attributes which had the biggest impact on the predictions. 
 
 For this purpose, a Java program was created, generating all the possible combinations of attributes which could be selected by users, to predict the cause of death of the victim and the gender of the murderer, for all 66 instances of the training set.
 
-The different attributes were assigned the following numbers:
-\begin{enumerate}[topsep=0pt]
-	\item year of publication
-	\item detective
-	\item location
-	\item point of view
-	\item cause of death
-	\item victim's gender
-	\item murderer's gender
-	\item book's rating,
-\end{enumerate}
-Combinations of attributes were then expressed as strings of numbers: for example ``125'' means that the selected attributes are the year of publication, the detective and the gender of the victim. (The title of the novel is not included as it is ignored by the classifier, as explained in \Cref{attributes}.)
+\begin{wraptable}{r}{0.4\textwidth}
+	\centering
+	\caption{Attributes indexing.}
+	\begin{tabular}{ |l|c| }
+		\hline
+		\textbf{Attribute}   		& \textbf{Index}\\
+		\hline		
+		Year of publication         & 1    			\\ 
+		Detective                   & 2				\\ Location                  	& 3				\\
+		Point of view               & 4				\\
+		Cause of death              & 5				\\
+		Victim's gender             & 6				\\
+		Murderer's gender           & 7				\\
+		Book's rating               & 8				\\
+		\hline
+	\end{tabular}
+	\label{tab:attribute}
+\end{wraptable}
 
-Because users can select between 2 and 7 attributes --- 2 being the minimum number of attributes that have to be selected to generate a prediction (also mentioned in \Cref{attributes}), and 7 the maximum, as either the cause of death or the murderer's gender will be predicted, which means they cannot be used to predict their own value ---, only the combinations of 2 to 7 numbers were considered, ignoring either number 5 or number 7 based on the attribute to be predicted.
+The different attributes were indexed as visible in \Cref{tab:attribute}. Combinations of attributes were then expressed as strings of numbers: for example ``125'' means that the selected attributes are the year of publication, the detective and the gender of the victim. (The title of the novel is not included as it is ignored by the classifier, as explained in \Cref{attributes}.)
+
+Because users can select between 2 and 7 attributes --- 2 being the minimum number of attributes that have to be selected to generate a prediction (also mentioned in \Cref{attributes}), and 7 the maximum, as either the cause of death or the murderer's gender will be predicted, which means they cannot be used to predict their own value --- only the combinations of 2 to 7 numbers were considered, ignoring either number 5 or number 7 based on the attribute to be predicted.
 
 For every combination generated, a temporary testing set was created, containing 66 instances, which values were either the same as the ones in the training set for the selected attributes (i.e. the attributes which corresponding number was included in the combination), or ``?'' for the unselected attributes.
 
@@ -734,9 +778,42 @@ The program then classified each instance, and compared the predicted values to 
 	\verb|combination, percentage_of_correct_predictions|
 \end{center}
 
-Based on the values contained in those files (which can be viewed in \textbf{??}), the system is able to predict the correct cause of death for \textbf{89\%} of the training instances, and the murderer's gender for \textbf{93\%} of the instances. The difference between the two results is not surprising, as there are fewer possible values for the murderer's gender, which means that there is a lesser margin for error.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Analysis of the results}
 
-Given that the created temporary instances were assigned the same values as the training instances for all the attributes but the books ratings, the experiment program was updated so the incorrect instances were saved, and reclassified with all the ratings between 0.5 and 5
+Based on the values contained in those files (which can be viewed in \textbf{??}), the system is able to predict the correct cause of death for \textbf{89\%} of the training instances (7 incorrect predictions), and the murderer's gender for \textbf{95\%} of the instances (3 incorrect predictions). The difference between the two results is not surprising, as there are fewer possible values for the murderer's gender, which means that there is a lesser margin for error.
+
+Those results also permitted to rank the attributes in the following order:
+\begin{itemize}[topsep=0pt]
+	\item predicting the cause of death:
+	\begin{center}
+		year of publication, book's rating, detective, \\
+		murderer's gender, victim's gender, point of view, location
+	\end{center}
+	\item predicting the murderer's gender:
+	\begin{center}
+		year of publication, book's rating, cause of death, \\
+		detective, location, point of view, victim's gender
+	\end{center}	
+\end{itemize}
+
+Additionally, it should be noted that, although the input of both the year of publication and the book's ratings plays an important role in the classification, setting both attributes as missing has a less substantial impact than expected, as the combination ``23467'' was only ranked $11^{th}$ when ordering the sequences of 5 selected attributes by descending percentage of incorrect predictions.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Further experimentation}
+
+Given that the created temporary instances were assigned the same values as the training instances for all the attributes except the books ratings, the experiment program was updated so the incorrect instances were saved, and reclassified with all the ratings between 0.5 and 5, in an attempt to produce the correct prediction, with a different rating.
+
+The results of this experiment showed that all the incorrect predictions but one were made on instances for which the Goodreads rating average was between 3.7 and 3.8 (this was the case for 6 of the 7 wrongly classified instances for the cause of death, and all 3 instances for the murderer's gender, which sums up to 9 instances, both concepts included). Moreover, it was possible to correctly classify 7 of the 9 instances by assigning them a rating less or equal to 3.5. This is consistent with the impact of the ratings established previously.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Threats to validity}
+
+The book's rating is not a good attribute to prompt the users for, as it is subjective, depending on the user's appraisal of the novel. Consequently, predictions could differ from an application to another. It would be better to fetch the rating average from Goodreads for the book of interest, as it would consider a much wider amount of users. However, this forces the application to require an internet connection and denies users from the possibility to interact with the app offline.
+
+Furthermore, the fact that the detective is also pretty high in the attribute rankings makes it difficult to expand the system so it can be used with any author of detective story, unless it is expanded so it includes the names of all the possible detectives.
+
+The accuracy of the user input, which cannot be verified if the application is used offline --- unless a list of all the possible novels was stored, which would affect the application's size in memory and its efficiency --- is also a threat to the validity, as it could be easy for users to select a wrong value for an attribute by mistake, and receive an incorrect prediction. They would then enter the answer that they had originally expected, but with the wrong data, and retrain the classifier: one small mistake could invalidate several predictions following the incident.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
