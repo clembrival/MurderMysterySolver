@@ -42,8 +42,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{abstract}
-This project aimed to develop a system which would help readers of detective stories to identify the culprit. Detective fiction is a very popular genre, and counts numerous authors, including ``The Queen of Crime'' Agatha Christie. This dissertation describes the process of creating a mobile application, which analyses Agatha Christie's novels, and uses machine learning to output a prediction on the murderer of a story, which details were input by a user. To mitigate the production of incorrect predictions, the application communicates with a server hosting a database, so users can, after rectifying invalid predictions, share their data with other users and retrain their application on uploaded information.
+This project aimed to develop a system which would help readers of detective stories to identify the culprit. Detective fiction is a very popular genre, and counts numerous authors, including ``The Queen of Crime'' Agatha Christie. 
+
+This dissertation describes the process of creating a mobile application, which analyses Agatha Christie's novels, and uses machine learning to output a prediction on the murderer of a story, which details were input by a user. 
+
+To mitigate the production of incorrect predictions, the application communicates with a server hosting a database, so users can, after rectifying invalid predictions, share their data with other users and retrain their application on uploaded information.
 \end{abstract}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -70,12 +75,18 @@ acknowledgements go here
 
 \section{Problem Motivation}
 
+``Excuse me, M. Poirot, you claim that you know who killed three people. And why?'' --- Agatha Christie, \textit{The Clocks}.\\ 
+This sentence is one of the many by which detective novelists introduce the turning point of story: the revelation of the murderer's identity. This passage of detective books reminds readers that the end of the book is close, but also signals them that their curiosity is about to be satisfied. From this point forward, some readers only have one goal in mind: to verify whether their supposition was correct.
+
+The objective of this project is to attempt to create a system which could help readers of such stories to make more accurate conjectures on the culprit, without going through the whole book itself. 
+
+A possible way to tackle this is by trying to find patterns in the story details of a set of novels: for instance, is it feasible to deduce a piece of information on the murderer, based on the murder weapon? To determine whether it is possible to answer such questions, this project made use of machine learning techniques, in order to find, if any, which story elements could be good candidates to help the reader find which character is most likely to be the killer.
 
 \section{Outline}
 
 This dissertation includes the following chapters: 
 \begin{itemize}
-	\item \textbf{Background Survey}, which reviews similar research and mobile applications,
+	\item \textbf{Background Survey}, which reviews similar research and mobile applications, after an overview of detective stories and machine learning,
 	\item \textbf{Requirements}, which recounts the gathering of high level requirements, and their equivalent in terms of user stories,
 	\item \textbf{Design}, which details the system's architecture and interface, along with the collection of the data which was used in the system,
 	\item \textbf{Implementation}, which outlines the choices for the technologies and algorithms used to build the system, as well as the functionalities handled by the application, and the techniques employed to test it,
@@ -85,7 +96,13 @@ This dissertation includes the following chapters:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Background Survey}\label{survey}
 
+As was mentioned in the outline, this chapter gives a brief presentation of detective fiction and machine learning, and reviews previous related research, as well as existing mobile applications.
+
 \section{Detective Stories}
+
+According to Regis Messac, a detective novel is a story dedicated to the methodical and gradual discovery, through rational means, of the exact circumstances of a mysterious event. \cite{detectivenovel} This very popular genre thrived between 1920 and 1939, a period called the ``Golden Age'' of detective fiction, with renowned writers such as John Dickson Carr, Margery Allingham, Dorothy L Sayers or Anthony Berkeley. \cite{detectiveauthors}
+
+None of the authors mentioned, however, were as famous and successful as the ``Queen of Crime'' Agatha Christie (1890-1976), the second best-selling fiction author. \cite{bestseller} Because of her popularity and the large number of novels she wrote (85 in total), this project focuses on finding similarities within her work, rather than correlations between several authors.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Machine Learning}\label{machine_learning}
@@ -144,20 +161,20 @@ Moreover, although entertaining, the puzzles sometimes tend to be slightly too e
 
 \subsection*{Predictive apps}
 
-\begin{wrapfigure}{r}{0.20\textwidth}
+\begin{wrapfigure}{r}{0.25\textwidth}
 	\vspace{-10pt}
 	\centering
-	\includegraphics[scale=0.25]{images/football_prediction}
+	\includegraphics[width=0.15\textwidth]{images/football_prediction}
 	\caption{Football Prediction icon.}
-	\vspace{-25pt}
+	\vspace{-20pt}
 \end{wrapfigure}
 
-Most Android predictive apps are sport-related. This is the case of  ``Football Prediction'' \cite{footballprediction}, created by Sauzanaprod, which analyses statistics from several games (or years even), and aims to forecast the outcome of matches. Such apps do not require input from the user, as the data is collected from online sources, so there is no real interaction between the app and the user (there is no feeling of contributing to making the predictions better).
+Most Android predictive apps are sport-related. This is the case of  ``Football Prediction'' \cite{footballprediction}, created by Sauzanaprod, which analyses statistics from several games (or years even), and aims to forecast the outcome of matches. Such apps do not require input from the user, as the data is collected from online sources, so there is no real interaction between the app and the user (there is no feeling of contributing to making the predictions better).\\
 
-\begin{wrapfigure}{l}{0.20\textwidth}
+\begin{wrapfigure}{l}{0.25\textwidth}
 	\vspace{-10pt}
 	\centering
-	\includegraphics[scale=0.25]{images/prediction_guru}
+	\includegraphics[width=0.15\textwidth]{images/prediction_guru}
 	\caption{Prediction Guru icon.}
 	\vspace{-30pt}
 \end{wrapfigure}
@@ -737,6 +754,8 @@ Finally, the predictions themselves were tested externally, by creating a Java p
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Evaluation}\label{evaluation}
 
+Following the recount of the implementation of the system, this chapter describes two experiments, which were ran to evaluate the predictions produced by the application, and its usability.
+
 \section{Accuracy}
 
 \subsection*{Description of the experiment}
@@ -819,21 +838,49 @@ The accuracy of the user input, which cannot be verified if the application is u
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Usability}
 
-For the final product evaluation, users were first asked to list the possible attributes (year of publication, point of view, location, detective, murder weapon, victim's gender, murderer's gender and ratings) in a random order. They were then given access to the training set, and were asked to pick 5 different titles from the dataset. \par
+For the final product evaluation, 7 users were first asked to list the possible attributes (year of publication, point of view, location, detective, murder weapon, victim's gender, murderer's gender and ratings) in a random order. They were then given access to the training set, and were asked to pick 5 different titles from the dataset. \par
 
 Based on the order in which they had listed the features, they were had to produce predictions for each one of the 5 novels they picked, leaving out between 0 and 5 attributes. The idea was to show them that the instances were selected randomly, so that, in case they received the right answers, it did not look like I had chosen novels for which I knew the predictions would be correct. They were also given the choice to use any other novel, as long as they were certain of the correctness of the details of the story, which would impact the accuracy of the predictions. \par 
 
 Once the prediction was obtained, they had to decide whether or not to retrain the classifier or to send data to the server. They were also required to modify the settings of the app (related to the interface and the data sharing) after each prediction. \par
 
-For the last part of the evaluation, they were given the possibility to play with the system as they wished.\par
+For the last part of the evaluation, they were given the possibility to play with the system as they wished. (The complete tasks sheet can be seen in \textbf{??})\par
 
 During the whole process, I observed the participants while they used the system, and recorded the time it took them to execute the tasks. I also used the Concurrent Think Aloud method \cite{usabilitytest} which consisted in encouraging them to comment on their actions, taking notes of their observations.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{User feedback}
+
+All the users seemed enthusiastic about the application and its purpose. Most participants preferred the same settings:
+\begin{itemize}[topsep=0pt]
+	\item selecting the concept to be predicted with tabs (represented in \Cref{fig:concept_selection}b), because it allows to switch from a concept to the other faster than with dialog; moreover, it is not hidden, so it does not require any particular effort to find,
+	\item selecting the attributes with the navigation drawer (visible in \Cref{fig:attributes_selection}b), because it seems to be more part of the app and is more interactive,
+	\item inputting the story details with images (\Cref{fig:main_screen}b), which seemed to attract their attention a lot more, and make the app funnier to use,
+	\item displaying the images in a grid (\Cref{fig:images_selection}b), because it allowed to find the required element faster than the spinner.
+\end{itemize}
+
+One of the participants who preferred to use dialogs thought the reason why was related to being an iPhone user, and being more used to ``simple'' widgets.
+
+Some participants who had selected the wireframe B (\Cref{fig:wireframeB}) as their favourite surprisingly enjoyed the images more, when using the implemented system, than on paper.
+
+One recurring comment on the interface was related to the navigation drawer, which, to be opened, requires to swipe the screen from the left edge of to the center of the screen: some participants did not think the hint ``\textit{Swipe left to right to open the features drawer}'' was clear enough. To ensure that users knew where to find the drawer, the application was updated so the drawer opens automatically when accessing the main screen for the first time.
+
+Finally, a few participants seemed to instinctively want to swipe (when interacting with a spinner), which was not implemented for lack of time.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusion}\label{conclusion}
 
 \section{Summary}
+
+This project attempted to create a mobile application which was able to produce predictions on the cause of death of a victim, or the gender of the murderer, of a story which details had be selected by the user.
+
+Based on the feedback from users, obtained during an experiment, it is thought that an enjoyable application was created, although it could be made even more interactive.
+
+In terms of the predictions produced by the application, the experiment conducted showed that, while attempting to give users enough flexibility to provide information only about \textit{some} attributes, this was ``dangerous'' as the missing attributes could impact dramatically on the accuracy of the prediction: indeed, while some attributes have a negligible effect on the classification (such as the victim's gender or the location of the story), other attributes (like the year of publication and the name of the detective) reduce significantly the number of correct predictions when they are missing.
+
+Moreover, this study was only based on the novels of one author, Agatha Christie, so it is not possible to assess whether some common elements can be found in several different authors. What can be said, however, is that it would be necessary to include expand the application, so it includes details about all the possible attributes for all the authors considered, so that users could select them, rather than just ignoring all the attributes which are author-dependent. This is, for instance, the case of the detective of the story, which, as mentioned previously, plays an important role in the classification.
+
+Finally, it was noted that the predictions could be unreliable, as depending on the accuracy of the user input, which could not be verified in an offline version of the application: again, it seems that a choice between flexibility and accuracy should have been made, as both could not be achieved at the same time.
 
 \section{Limitations and Future Work}
 
@@ -841,7 +888,7 @@ During the whole process, I observed the participants while they used the system
 
 \hspace{5mm} Mostly due to a lack of time, two functionalities were not implemented.\par
 
-The first one corresponds to the user stories number 3 and 4 mentioned in the Requirements section, to allow the users to make a guess on the identity of the killer, and receive the likelihood of their supposition to be correct. The users would have to input details about the character they suspect, and the app would compare those elements to its own prediction. Based on the number of matching attributes, the app could output a percentage notifying the users how close they are of finding the culprit. \par
+The first one corresponds to user stories number 3 and 4 mentioned in the Requirements section, to allow the users to make a guess on the identity of the killer, and receive the likelihood of their supposition to be correct. The users would have to input details about the character they suspect, and the app would compare those elements to its own prediction. Based on the number of matching attributes, the app could output a percentage notifying the users how close they are of finding the culprit. \par
 
 Another potential functionality is related to the context of the user-interaction with the system. The idea is for detective novels fans to be able to use the app, while reading a book. If they receive a clue on the murderer before the end of the story, they cannot know whether or not the prediction is right, as the identity of the culprit has not been revealed yet. It could therefore be made possible for the users to save the prediction they received, and go back to it later to confirm it or input the correct data if it was wrong.
 
