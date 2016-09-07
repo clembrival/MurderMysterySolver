@@ -26,8 +26,10 @@ import java.io.Serializable;
  */
 public abstract class BaseInputFragment extends Fragment
 {
+    /** Fragment's view. */
 	protected View mView;
 
+    /** Class to be notified once the fragment is closed. */
     protected OnFeaturesInputListener mListener;
 
     // Interface implemented by the container activity to communicate with this fragment.

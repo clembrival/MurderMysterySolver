@@ -22,8 +22,8 @@ import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
 
 
-/** Class implementing a background task to update the content of the local dataset
-  * with the server's new entries and retrain the classifiers with the new data. */
+/** Class implementing a background task to download the server's new entries
+  * and retrain the classifiers with the new data. */
 public class ReplaceDatasetTask extends DatasetTask
 {
     /** Tag for log output. */
@@ -58,6 +58,7 @@ public class ReplaceDatasetTask extends DatasetTask
         Instances serverDataset = getInstances(newEntries);
         if(serverDataset != null)
         {
+            // Retrain the classifiers with the downloaded instances
             Log.w(TAG, "Created instances from server dataset.");
             if(retrainClassifiers(serverDataset))
             {

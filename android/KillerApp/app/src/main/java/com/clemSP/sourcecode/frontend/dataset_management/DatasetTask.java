@@ -16,26 +16,48 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 
+/** 
+  * This class contains all the methods shared by all the AsyncTask classes. */
 public abstract class DatasetTask extends AsyncTask<Void, String, Integer>
 {
+    /** Status codes returned at the end of the execution of the task. */
     public static final int POSITIVE_RESULT = 1, NEGATIVE_RESULT = 0, ERROR = -1;
 
+    /** Dialog showing the progress of the task. */
     protected ProgressDialog mProgressDialog;
+    /** Resource containing the message to be printed on the dialog. */
     private int mMessageRes;
 
+    /** Activity requesting the task. */
     protected Activity mActivity;
+    /** Reference to the class storing the preferences shared by the activities. */
     protected SharedPreferences mSharedPref;
+    /** Listener object to be notified at the end of the task. */
     protected DatasetTaskListener mListener;
 
+    /** Url to be accessed during the task. */
     protected String mUrl;
 
 
+    /** Interface implemented by the class requesting the task. */
     public interface DatasetTaskListener
     {
+        /**
+          * Notifies the listener at the end of the task.
+          * @param task the task which just ended
+          * @param status the status with which the task ended
+          */
         void onTaskCompleted(DatasetTask task, int status);
     }
 
 
+    /**
+      * Constructor
+      * @param the resource of the string storing the message to be displayed
+      *         during the task
+      * @param activity the activity requesting the task
+      * @param the url to be accessed during the task
+      */
     public DatasetTask(int dialogMessage, Activity activity, String url)
     {
         mMessageRes = dialogMessage;
@@ -56,6 +78,7 @@ public abstract class DatasetTask extends AsyncTask<Void, String, Integer>
     {
         super.onPreExecute();
 
+        // Open dialog at the start of the task
         mProgressDialog = new ProgressDialog(mActivity);
 
         mProgressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -71,12 +94,21 @@ public abstract class DatasetTask extends AsyncTask<Void, String, Integer>
     {
         super.onPostExecute(status);
 
+        // Close the dialog at the end of the task
         mProgressDialog.dismiss();
 
+        // Notify the listener
         mListener.onTaskCompleted(this, status);
     }
 
 
+    /**
+      * Opens an https url connection to the url stored in the object.
+      * @param postRequest whether the request is a POST (true) or a GET (false)
+      * @param query the query to be passed in the url
+      * @param contentLength the length of the content of the request
+      * @return the opened https url connection
+      */
     protected HttpsURLConnection getConnection(boolean postRequest, String query, int contentLength)
             throws IOException
     {
@@ -99,6 +131,11 @@ public abstract class DatasetTask extends AsyncTask<Void, String, Integer>
     }
 
 
+    /**
+      * Converts a given input stream to a string.
+      * @param stream the stream to be converted
+      * @param length the number of characters to be extracted from the stream
+      */
     protected String streamToString(InputStream stream, int length) throws IOException
     {
         Reader reader = new InputStreamReader(stream, "UTF-8");

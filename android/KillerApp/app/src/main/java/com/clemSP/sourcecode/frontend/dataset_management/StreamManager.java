@@ -11,8 +11,18 @@ import java.io.OutputStreamWriter;
 import weka.classifiers.Classifier;
 
 
+/**
+  * This class is a utility class containing methods to output streams to files or storage.
+  */
 public class StreamManager
 {
+    /**
+      * Outputs a classifier to a file.
+      * @param activity the activity requesting the output
+      * @param classifier the classifier to be output
+      * @param filename the name of the file to which the classifier is to be output
+      * @param tag the log tag of the activity requesting the ouput
+      */
     public static boolean classifierToInternalStorage(Activity activity, Classifier classifier,
     												  String filename, String tag)
     {

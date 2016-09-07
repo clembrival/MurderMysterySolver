@@ -19,14 +19,24 @@ import java.util.Arrays;
 import javax.net.ssl.HttpsURLConnection;
 
 
+/**
+  * Class implementing a background task to update the serve
+  * with the server's new entries and retrain the classifiers with the new data. */
+  */
 public class UpdateServerTask extends DatasetTask
 {
     /** Tag for log output. */
     private static final String TAG = "UpdateServerTask";
 
+    /** Data to be sent to the server. */
     private Data mData;
 
 
+    /**
+      * @param activity the activity requesting the update of the server
+      * @param the url to be accessed to update the server
+      * @param the data to be sent to the server
+      */
     public UpdateServerTask(Activity activity, String url, Data data)
     {
         super(R.string.update_local, activity, url);
@@ -38,6 +48,7 @@ public class UpdateServerTask extends DatasetTask
     @Override
     protected Integer doInBackground(Void... params)
     {
+        // Convert the data to JSON format and send it to the server
         String newTimestamp = sendDataToServer(getJsonData());
 
         if(newTimestamp == null)
@@ -45,6 +56,7 @@ public class UpdateServerTask extends DatasetTask
 
         Log.w(TAG, "Sent the new data to the server.");
 
+        // Update the app's timestamp
         SharedPreferences.Editor editor = mSharedPref.edit();
         editor.putString("timestamp", newTimestamp);
         editor.apply();
@@ -53,6 +65,9 @@ public class UpdateServerTask extends DatasetTask
     }
 
 
+    /**
+      * @return the data to be sent to the server in JSON format
+      */
     private String getJsonData()
     {
         try
@@ -78,6 +93,11 @@ public class UpdateServerTask extends DatasetTask
     }
 
 
+    /**
+      * Sends the given data to the server via a POST request.
+      * @param jsonData the data to be sent in JSON format
+      * @return the timestamp of the transaction
+      */
     private String sendDataToServer(String jsonData)
     {
         if(jsonData == null)

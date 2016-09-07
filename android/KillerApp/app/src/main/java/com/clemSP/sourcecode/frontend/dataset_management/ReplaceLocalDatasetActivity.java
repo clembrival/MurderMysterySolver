@@ -22,9 +22,12 @@ import com.clemSP.sourcecode.frontend.settings.PreferencesMap;
   */
 public class ReplaceLocalDatasetActivity extends Activity implements DatasetTask.DatasetTaskListener
 {
+	/** The start of the urls which will be accessed when updating the local dataset. */
 	private static final String BASE_URL = "https://murder-mystery-server.herokuapp.com/killerapp/";
 
+	/** Reference to the class storing the preferences shared by the activities. */
 	private SharedPreferences mPreferences;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -63,6 +66,11 @@ public class ReplaceLocalDatasetActivity extends Activity implements DatasetTask
 	}
 
 
+	/**
+	  * Builds the common elements to all dialogs.
+	  * @param messageRes the resource containing the string to be printed on the dialog
+	  * @return the builder to be used to construct the rest of the dialog
+	  */
 	private AlertDialog.Builder getDialogBuilder(int messageRes)
 	{
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -73,8 +81,9 @@ public class ReplaceLocalDatasetActivity extends Activity implements DatasetTask
 	}
 
 
-	/** Shows a pop-up dialog to ask the user if they want to update the server
-	 * with the correct answer they just input. */
+	/** 
+	  * Shows a pop-up dialog to ask the user if they want to update the server
+	  * with the correct answer they just input. */
 	private void showServerDialog()
 	{
 		AlertDialog.Builder builder = getDialogBuilder(R.string.fetch_data_question);

@@ -89,19 +89,20 @@ public class AppClassifier
     {
         try
         {
-            data.setClassIndex(classIndex);
+            Instances new_data = new Instances(data);
+            new_data.setClassIndex(classIndex);
 
             // Loading the required classifier
             Classifier classifier = predictWeapon ? mWeaponClassifier : mGenderClassifier;
 
             // Classifying each instance
-            for(int i = 0; i < data.numInstances(); i++)
+            for(int i = 0; i < new_data.numInstances(); i++)
             {
-                double label = classifier.classifyInstance(data.instance(i));
-                data.instance(i).setClassValue(label);
+                double label = classifier.classifyInstance(new_data.instance(i));
+                new_data.instance(i).setClassValue(label);
             }
 
-            return data;
+            return new_data;
         }
         catch(Exception e)
         {
